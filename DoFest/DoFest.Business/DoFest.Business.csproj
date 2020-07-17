@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="FluentValidation" Version="9.0.1" />
+    <PackageReference Include="LinqBuilder.OrderBy" Version="0.16.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DoFest.Entities\DoFest.Entities.csproj" />
+    <ProjectReference Include="..\DoFest.Persistence\DoFest.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
