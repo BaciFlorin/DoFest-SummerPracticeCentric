@@ -12,3 +12,17 @@ F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerP
 F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.csproj.CopyComplete
 F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.dll
 F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.pdb
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Business.deps.json
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Business.dll
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Business.pdb
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Entities.dll
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Persistence.dll
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Entities.pdb
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Persistence.pdb
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.csprojAssemblyReference.cache
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.AssemblyInfoInputs.cache
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.AssemblyInfo.cs
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.csproj.CoreCompileInputs.cache
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.csproj.CopyComplete
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.dll
+D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.pdb

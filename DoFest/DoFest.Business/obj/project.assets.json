@@ -6332,19 +6332,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Florin\\.nuget\\packages\\": {}
+    "C:\\Users\\stril\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj",
+      "projectUniqueName": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj",
       "projectName": "DoFest.Business",
-      "projectPath": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj",
-      "packagesPath": "C:\\Users\\Florin\\.nuget\\packages\\",
-      "outputPath": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\obj\\",
+      "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj",
+      "packagesPath": "C:\\Users\\stril\\.nuget\\packages\\",
+      "outputPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Florin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\stril\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6357,11 +6357,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
-              "projectPath": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj"
+            "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
+              "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj"
             },
-            "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj": {
-              "projectPath": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj"
+            "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj": {
+              "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj"
             }
           }
         }
