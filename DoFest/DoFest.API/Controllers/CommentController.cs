@@ -44,7 +44,7 @@ namespace DoFest.API.Controllers
         /// <param name="comment"> String ce reprezinta commentariul ce urmeaza sa fie adaugat. </param>
         /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul ok impreuna cu un mesaj de confirmare. </returns>
         [HttpPost("/{activityId}/comments")]
-        public IActionResult PostComment([FromBody] Guid activityId, [FromBody] string comment)
+        public IActionResult PostComment([FromRoute] Guid activityId, [FromBody] string comment)
         {
             // TODO: adaugarea logicii business
             // TODO: adaugarea sintaxei pentru async/await
