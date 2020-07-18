@@ -28,7 +28,8 @@ namespace DoFest.API.Controllers
         {
             // TODO: adaugarea logicii business
             // TODO: adaugarea sintaxei pentru async/await
-            return Ok("Message from GetBucketLists.");
+            return Ok("Message from GetBucketLists." +
+                      "\n[route: GET /api/v1/info/bucketlists]");
         }
 
         /// <summary>
@@ -40,7 +41,8 @@ namespace DoFest.API.Controllers
         {
             // TODO: adaugarea logicii business
             // TODO: adaugarea sintaxei pentru async/await
-            return Ok("Message from GetActivities.");
+            return Ok("Message from GetActivities." +
+                      "\n[route: GET /api/v1/info/activities]");
         }
 
     }
