@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoFest.Persistence.Migrations
 {
     [DbContext(typeof(DoFestContext))]
-    [Migration("20200719062155_All-Entities-Created")]
+    [Migration("20200719064422_All-Entities-Created")]
     partial class AllEntitiesCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
