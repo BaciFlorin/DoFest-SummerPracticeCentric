@@ -36,7 +36,7 @@ namespace DoFest.Persistence
             {
                 entity.Property(p => p.Id)
                     .IsRequired()
-                    .ValueGeneratedOnAdd();
+                    .ValueGeneratedNever();
 
                 entity.HasMany(a => a.Comments)
                     .WithOne(c => c.Activity)
@@ -68,42 +68,42 @@ namespace DoFest.Persistence
             modelBuilder.Entity<ActivityType>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
+                    .ValueGeneratedNever()
                     .IsRequired();
             });
 
             modelBuilder.Entity<Rating>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
+                    .ValueGeneratedNever()
                     .IsRequired();
             });
 
             modelBuilder.Entity<Photo>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
+                    .ValueGeneratedNever()
                     .IsRequired();
             });
 
             modelBuilder.Entity<Note>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
+                    .ValueGeneratedNever()
                     .IsRequired();
             });
 
             modelBuilder.Entity<Comment>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
+                    .ValueGeneratedNever()
                     .IsRequired();
             });
 
             modelBuilder.Entity<Location>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
+                    .ValueGeneratedNever()
                     .IsRequired();
 
                 entity.HasMany(l => l.Activities)
@@ -118,7 +118,7 @@ namespace DoFest.Persistence
                 entity
                     .Property(u => u.Id)
                     .IsRequired()
-                    .ValueGeneratedOnAdd();
+                    .ValueGeneratedNever();
 
                 entity
                     .HasOne(u => u.Student)
@@ -159,7 +159,7 @@ namespace DoFest.Persistence
                 entity
                     .Property(u => u.Id)
                     .IsRequired()
-                    .ValueGeneratedOnAdd();
+                    .ValueGeneratedNever();
 
             });
 
@@ -168,7 +168,7 @@ namespace DoFest.Persistence
                 entity
                     .Property(u => u.Id)
                     .IsRequired()
-                    .ValueGeneratedOnAdd();
+                    .ValueGeneratedNever();
 
                 entity
                     .HasMany(c => c.Students)
@@ -188,14 +188,14 @@ namespace DoFest.Persistence
                 entity
                     .Property(u => u.Id)
                     .IsRequired()
-                    .ValueGeneratedOnAdd();
+                    .ValueGeneratedNever();
             });
 
             modelBuilder.Entity<BucketList>(entity =>
             {
                 entity.Property(e => e.Id)
                     .IsRequired()
-                    .ValueGeneratedOnAdd();
+                    .ValueGeneratedNever();
 
                 entity.HasOne(b => b.User)
                     .WithOne(u => u.BucketList)
@@ -222,7 +222,7 @@ namespace DoFest.Persistence
             {
                 entity.Property(n => n.Id)
                     .IsRequired()
-                    .ValueGeneratedOnAdd();
+                    .ValueGeneratedNever();
 
                 entity.HasOne(n => n.User)
                     .WithMany(u => u.Notifications)

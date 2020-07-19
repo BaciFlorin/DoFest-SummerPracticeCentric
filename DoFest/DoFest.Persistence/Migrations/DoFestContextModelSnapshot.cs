@@ -22,7 +22,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Activities.Activity", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ActivityTypeId")
@@ -48,7 +47,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Activities.ActivityType", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -64,7 +62,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Activities.Content.Comment", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ActivityId")
@@ -92,7 +89,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Activities.Content.Note", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ActivityId")
@@ -120,7 +116,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Activities.Content.Photo", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ActivityId")
@@ -146,7 +141,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Activities.Content.Rating", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ActivityId")
@@ -172,7 +166,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Activities.Places.City", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -188,7 +181,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Activities.Places.Location", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
@@ -217,7 +209,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Authentication.Notification.Notification", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Date")
@@ -242,7 +233,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Authentication.Student", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Age")
@@ -270,7 +260,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Authentication.User", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
@@ -307,7 +296,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Authentication.UserType", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -328,7 +316,6 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Lists.BucketList", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
