@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoFest.Persistence.Migrations
 {
-    public partial class AuthenticationActivityTables : Migration
+    public partial class AllEntitiesCreated : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,7 +24,7 @@ namespace DoFest.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 50, nullable: false)
+                    Name = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,7 +36,7 @@ namespace DoFest.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 50, nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
@@ -92,7 +92,8 @@ namespace DoFest.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     ActivityTypeId = table.Column<Guid>(nullable: false),
-                    LocationId = table.Column<Guid>(nullable: false)
+                    LocationId = table.Column<Guid>(nullable: false),
+                    Description = table.Column<string>(maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -118,7 +119,7 @@ namespace DoFest.Persistence.Migrations
                     Username = table.Column<string>(maxLength: 50, nullable: false),
                     Email = table.Column<string>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: false),
-                    UserTypeId = table.Column<Guid>(nullable: true),
+                    UserTypeId = table.Column<Guid>(nullable: false),
                     StudentId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -134,6 +135,25 @@ namespace DoFest.Persistence.Migrations
                         name: "FK_User_UserType_UserTypeId",
                         column: x => x.UserTypeId,
                         principalTable: "UserType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BucketList",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BucketList", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BucketList_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -171,7 +191,7 @@ namespace DoFest.Persistence.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     ActivityId = table.Column<Guid>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false),
-                    Content = table.Column<string>(maxLength: 1000, nullable: false)
+                    Content = table.Column<string>(maxLength: 250, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -184,6 +204,26 @@ namespace DoFest.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Note_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Notification",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(maxLength: 1000, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notification", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Notification_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
@@ -242,6 +282,31 @@ namespace DoFest.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "BucketListActivity",
+                columns: table => new
+                {
+                    BucketListId = table.Column<Guid>(nullable: false),
+                    ActivityId = table.Column<Guid>(nullable: false),
+                    Status = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BucketListActivity", x => new { x.BucketListId, x.ActivityId });
+                    table.ForeignKey(
+                        name: "FK_BucketListActivity_Activity_ActivityId",
+                        column: x => x.ActivityId,
+                        principalTable: "Activity",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BucketListActivity_BucketList_BucketListId",
+                        column: x => x.BucketListId,
+                        principalTable: "BucketList",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Activity_ActivityTypeId",
                 table: "Activity",
@@ -251,6 +316,17 @@ namespace DoFest.Persistence.Migrations
                 name: "IX_Activity_LocationId",
                 table: "Activity",
                 column: "LocationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BucketList_UserId",
+                table: "BucketList",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BucketListActivity_ActivityId",
+                table: "BucketListActivity",
+                column: "ActivityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comment_ActivityId",
@@ -275,6 +351,11 @@ namespace DoFest.Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Note_UserId",
                 table: "Note",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Notification_UserId",
+                table: "Notification",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -318,16 +399,25 @@ namespace DoFest.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BucketListActivity");
+
+            migrationBuilder.DropTable(
                 name: "Comment");
 
             migrationBuilder.DropTable(
                 name: "Note");
 
             migrationBuilder.DropTable(
+                name: "Notification");
+
+            migrationBuilder.DropTable(
                 name: "Photo");
 
             migrationBuilder.DropTable(
                 name: "Rating");
+
+            migrationBuilder.DropTable(
+                name: "BucketList");
 
             migrationBuilder.DropTable(
                 name: "Activity");

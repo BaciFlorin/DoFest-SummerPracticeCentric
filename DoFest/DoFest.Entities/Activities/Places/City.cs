@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using DoFest.Entities.Authentication;
 
-namespace DoFest.Entities.Places
+namespace DoFest.Entities.Activities.Places
 {
     [Table("City")]
     public class City:Entity
@@ -14,7 +14,7 @@ namespace DoFest.Entities.Places
             Locations = new List<Location>();
         }
         
-        [Required, MaxLength(50)]
+        [Required, MaxLength(100)]
         public string Name { get;  set; }
 
         public ICollection<Student> Students { get;  set; }

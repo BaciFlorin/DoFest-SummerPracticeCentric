@@ -1,7 +1,9 @@
 ﻿using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Content;
+using DoFest.Entities.Activities.Places;
 using DoFest.Entities.Authentication;
-using DoFest.Entities.Places;
+using DoFest.Entities.Authentication.Notification;
+using DoFest.Entities.Lists;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoFest.Persistence
@@ -24,6 +26,9 @@ namespace DoFest.Persistence
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Note> Notes { get; set; }
+        public DbSet<BucketList> BucketLists { get; set; }
+        public DbSet<BucketListActivity> BucketListActivities { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,27 +38,27 @@ namespace DoFest.Persistence
                     .IsRequired()
                     .ValueGeneratedOnAdd();
 
-                entity.HasMany<Comment>(a => a.Comments)
-                    .WithOne(c => c.CActivity)
+                entity.HasMany(a => a.Comments)
+                    .WithOne(c => c.Activity)
                     .HasForeignKey(c => c.ActivityId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasMany<Note>(a => a.Notes)
-                    .WithOne(n => n.NActivity)
+                entity.HasMany(a => a.Notes)
+                    .WithOne(n => n.Activity)
                     .HasForeignKey(n => n.ActivityId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasMany<Photo>(a => a.Photos)
-                    .WithOne(r => r.PActivity)
+                entity.HasMany(a => a.Photos)
+                    .WithOne(r => r.Activity)
                     .HasForeignKey(p => p.ActivityId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasMany<Rating>(a => a.Ratings)
-                    .WithOne(r => r.RActivity)
+                entity.HasMany(a => a.Ratings)
+                    .WithOne(r => r.Activity)
                     .HasForeignKey(r => r.ActivityId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasOne<ActivityType>(a => a.AcType)
+                entity.HasOne(a => a.AcType)
                     .WithMany(a=>a.Activities)
                     .HasForeignKey(a=>a.ActivityTypeId)
                     .OnDelete(DeleteBehavior.NoAction);
@@ -101,8 +106,8 @@ namespace DoFest.Persistence
                     .ValueGeneratedOnAdd()
                     .IsRequired();
 
-                entity.HasMany<Activity>(l => l.Activities)
-                    .WithOne(a=>a.AcLocation)
+                entity.HasMany(l => l.Activities)
+                    .WithOne(a=>a.Location)
                     .HasForeignKey(a=>a.LocationId)
                     .OnDelete(DeleteBehavior.Cascade);
 
@@ -116,34 +121,34 @@ namespace DoFest.Persistence
                     .ValueGeneratedOnAdd();
 
                 entity
-                    .HasOne<Student>(u => u.UStudent)
-                    .WithOne(u=>u.SUser)
+                    .HasOne(u => u.Student)
+                    .WithOne(u=>u.User)
                     .HasForeignKey<User>(u=>u.StudentId)
                     .OnDelete(DeleteBehavior.Cascade);
 
                 entity
-                    .HasOne<UserType>(u => u.Type)
+                    .HasOne(u => u.UserType)
                     .WithMany(ut => ut.Users)
                     .HasForeignKey(u=>u.UserTypeId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasMany<Comment>(a => a.Comments)
-                    .WithOne(c=>c.CUser)
+                entity.HasMany(a => a.Comments)
+                    .WithOne(c=>c.User)
                     .HasForeignKey(c=>c.UserId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasMany<Note>(a => a.Notes)
-                    .WithOne(n=>n.NUser)
+                entity.HasMany(a => a.Notes)
+                    .WithOne(n=>n.User)
                     .HasForeignKey(n=>n.UserId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasMany<Photo>(a => a.Photos)
-                    .WithOne(r=>r.PUser)
+                entity.HasMany(a => a.Photos)
+                    .WithOne(r=>r.User)
                     .HasForeignKey(p=>p.UserId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasMany<Rating>(a => a.Ratings)
-                    .WithOne(r=>r.RUser)
+                entity.HasMany(a => a.Ratings)
+                    .WithOne(r=>r.User)
                     .HasForeignKey(r=>r.UserId)
                     .OnDelete(DeleteBehavior.Cascade);
 
@@ -166,14 +171,14 @@ namespace DoFest.Persistence
                     .ValueGeneratedOnAdd();
 
                 entity
-                    .HasMany<Student>(c => c.Students)
-                    .WithOne(c=>c.SCity)
+                    .HasMany(c => c.Students)
+                    .WithOne(c=>c.City)
                     .HasForeignKey(s=>s.CityId)
                     .OnDelete(DeleteBehavior.Cascade);
 
                 entity
-                    .HasMany<Location>(c => c.Locations)
-                    .WithOne(l=>l.LCity)
+                    .HasMany(c => c.Locations)
+                    .WithOne(l=>l.City)
                     .HasForeignKey(d=>d.CityId)
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
@@ -186,12 +191,44 @@ namespace DoFest.Persistence
                     .ValueGeneratedOnAdd();
             });
 
+            modelBuilder.Entity<BucketList>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .IsRequired()
+                    .ValueGeneratedOnAdd();
 
-        }
+                entity.HasOne(b => b.User)
+                    .WithOne(u => u.BucketList)
+                    .HasForeignKey<BucketList>(b => b.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
+            modelBuilder.Entity<BucketListActivity>(entity =>
+            {
+                entity.HasKey(ba => new { ba.BucketListId, ba.ActivityId});
+
+                entity.HasOne(ba => ba.BucketList)
+                    .WithMany(bl => bl.BucketListActivities)
+                    .HasForeignKey(ba => ba.BucketListId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(ba => ba.Activity)
+                    .WithMany(bl => bl.BucketListActivities)
+                    .HasForeignKey(ba => ba.ActivityId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Notification>(entity =>
+            {
+                entity.Property(n => n.Id)
+                    .IsRequired()
+                    .ValueGeneratedOnAdd();
+
+                entity.HasOne(n => n.User)
+                    .WithMany(u => u.Notifications)
+                    .HasForeignKey(n => n.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
         }
     }
 }

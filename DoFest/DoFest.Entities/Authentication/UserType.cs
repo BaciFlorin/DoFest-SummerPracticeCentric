@@ -12,7 +12,7 @@ namespace DoFest.Entities.Authentication
             Users = new List<User>();
         }
 
-        [Required, MaxLength(50)]
+        [Required, MaxLength(100)]
         public string Name { get;  set; }
 
         [Required, MaxLength(200)]

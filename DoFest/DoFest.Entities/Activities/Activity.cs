@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using DoFest.Entities.Activities.Content;
-using DoFest.Entities.Places;
+using DoFest.Entities.Activities.Places;
+using DoFest.Entities.Lists;
 
 namespace DoFest.Entities.Activities
 {
@@ -16,6 +17,7 @@ namespace DoFest.Entities.Activities
             Comments = new List<Comment>();
             Ratings = new List<Rating>();
             Notes = new List<Note>();
+            BucketListActivities = new List<BucketListActivity>();
         }
 
         [Required]
@@ -24,7 +26,7 @@ namespace DoFest.Entities.Activities
 
         [Required]
         public Guid LocationId { get; set; }
-        public Location AcLocation { get; set; }
+        public Location Location { get; set; }
 
         public ICollection<Photo> Photos { get; set; }
         public ICollection<Comment> Comments { get; set; }
@@ -33,7 +35,9 @@ namespace DoFest.Entities.Activities
 
         public ICollection<Note> Notes { get; set; }
 
-        [Required]
+        [Required, MaxLength(500)]
         public string Description { get; set; }
+
+        public ICollection<BucketListActivity> BucketListActivities { get; set; }
     }
 }

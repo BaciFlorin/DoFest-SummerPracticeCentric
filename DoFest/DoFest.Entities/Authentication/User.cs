@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using DoFest.Entities.Activities.Content;
+using DoFest.Entities.Lists;
 
 namespace DoFest.Entities.Authentication
 {
@@ -27,13 +28,13 @@ namespace DoFest.Entities.Authentication
         [Required, DataType(DataType.Password)]
         public string PasswordHash { get;  set; }
 
-        [AllowNull]
+        [Required]
         public Guid? UserTypeId { get; set; }
-        public UserType Type { get;  set; }
+        public UserType UserType { get;  set; }
 
         [AllowNull]
         public Guid? StudentId { get; set; }
-        public Student UStudent { get;  set; }
+        public Student Student { get;  set; }
 
         public ICollection<Photo> Photos { get; set; }
 
@@ -42,5 +43,9 @@ namespace DoFest.Entities.Authentication
         public ICollection<Rating> Ratings { get; set; }
 
         public ICollection<Note> Notes { get; set; }
+
+        public BucketList BucketList { get; set; }
+
+        public ICollection<Notification.Notification> Notifications { get; set; }
     }
 }

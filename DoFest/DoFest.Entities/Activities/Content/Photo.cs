@@ -15,11 +15,11 @@ namespace DoFest.Entities.Activities.Content
 
         [Required]
         public Guid? ActivityId { get; set; }
-        public Activity PActivity { get; set; }
+        public Activity Activity { get; set; }
 
         [Required]
         public Guid? UserId { get; set; }
-        public User PUser { get; set; }
+        public User User { get; set; }
 
         public byte[] Image { get; set; }
     }
