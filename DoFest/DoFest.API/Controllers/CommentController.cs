@@ -1,4 +1,5 @@
 ﻿using System;
+using DoFest.Business.Models.Comment;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
@@ -44,13 +45,13 @@ namespace DoFest.API.Controllers
         /// <param name="comment"> String ce reprezinta commentariul ce urmeaza sa fie adaugat. </param>
         /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul ok impreuna cu un mesaj de confirmare. </returns>
         [HttpPost("/{activityId}/comments")]
-        public IActionResult PostComment([FromRoute] Guid activityId, [FromBody] string comment)
+        public IActionResult PostComment([FromRoute] Guid activityId, [FromBody] NewCommentModel model)
         {
             // TODO: adaugarea logicii business
             // TODO: adaugarea sintaxei pentru async/await
             return Ok("Message from PostComment." +
                       $"\n[route: POST /api/v1/activities/{activityId}/comments]" +
-                      $"\n comment:{comment}"
+                      $"\n comment:{model.Content}"
                       );
         }
 
