@@ -1,6 +1,4 @@
-﻿using System;
-using DoFest.Business.Models.AuthenticationModels;
-using DoFest.Entities.Authentication;
+﻿using DoFest.Business.Models.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
