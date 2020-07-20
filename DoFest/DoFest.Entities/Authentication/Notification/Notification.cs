@@ -14,7 +14,6 @@ namespace DoFest.Entities.Authentication.Notification
 
         [Required]
         public Guid? UserId { get; set; }
-        public User User { get; set; }
 
         [DataType(DataType.DateTime), Required]
         public DateTime Date { get; set; }

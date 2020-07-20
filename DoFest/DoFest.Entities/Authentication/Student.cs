@@ -25,8 +25,6 @@ namespace DoFest.Entities.Authentication
 
         [Required]
         public Guid? CityId { get; set; }
-        public City City { get;  set; }
-
 
         public User User { get;  set; }
     }

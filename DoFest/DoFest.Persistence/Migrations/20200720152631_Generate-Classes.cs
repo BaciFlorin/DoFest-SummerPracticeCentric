@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoFest.Persistence.Migrations
 {
-    public partial class AllEntitiesCreated : Migration
+    public partial class GenerateClasses : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

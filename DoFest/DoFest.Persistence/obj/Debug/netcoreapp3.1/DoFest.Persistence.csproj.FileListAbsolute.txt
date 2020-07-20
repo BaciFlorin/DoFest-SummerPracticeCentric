@@ -28,3 +28,18 @@ D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Pers
 D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\obj\Debug\netcoreapp3.1\DoFest.Persistence.dll
 D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\obj\Debug\netcoreapp3.1\DoFest.Persistence.pdb
 D:\facultate\an3\summer_practice\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\obj\Debug\netcoreapp3.1\DoFest.Persistence.genruntimeconfig.cache
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\bin\Debug\netcoreapp3.1\DoFest.Persistence.deps.json
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\bin\Debug\netcoreapp3.1\DoFest.Persistence.runtimeconfig.json
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\bin\Debug\netcoreapp3.1\DoFest.Persistence.runtimeconfig.dev.json
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\bin\Debug\netcoreapp3.1\DoFest.Persistence.dll
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\bin\Debug\netcoreapp3.1\DoFest.Persistence.pdb
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\bin\Debug\netcoreapp3.1\DoFest.Entities.dll
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\bin\Debug\netcoreapp3.1\DoFest.Entities.pdb
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\obj\Debug\netcoreapp3.1\DoFest.Persistence.csprojAssemblyReference.cache
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\obj\Debug\netcoreapp3.1\DoFest.Persistence.AssemblyInfoInputs.cache
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\obj\Debug\netcoreapp3.1\DoFest.Persistence.AssemblyInfo.cs
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\obj\Debug\netcoreapp3.1\DoFest.Persistence.csproj.CoreCompileInputs.cache
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\obj\Debug\netcoreapp3.1\DoFest.Persistence.csproj.CopyComplete
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\obj\Debug\netcoreapp3.1\DoFest.Persistence.dll
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\obj\Debug\netcoreapp3.1\DoFest.Persistence.pdb
+F:\Work time\Summer Practice Centric\02_Proiect_echipa\01_Proiect\DoFest-SummerPracticeCentric\DoFest-SummerPracticeCentric\DoFest\DoFest.Persistence\obj\Debug\netcoreapp3.1\DoFest.Persistence.genruntimeconfig.cache
