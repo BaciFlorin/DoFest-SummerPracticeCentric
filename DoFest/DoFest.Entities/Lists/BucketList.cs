@@ -17,7 +17,6 @@ namespace DoFest.Entities.Lists
 
         [Required]
         public Guid? UserId { get; set; }
-        public User User { get; set; }
 
         [Required, MaxLength(100)]
         public string Name { get; set; }

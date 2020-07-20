@@ -22,7 +22,6 @@ namespace DoFest.Entities.Activities.Places
 
         [Required]
         public Guid CityId { get; set; }
-        public City City { get; set; }
 
         [Required, MaxLength(300)]
         public string Address { get; set; }

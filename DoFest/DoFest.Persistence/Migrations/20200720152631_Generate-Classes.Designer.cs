@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoFest.Persistence.Migrations
 {
     [DbContext(typeof(DoFestContext))]
-    [Migration("20200719064422_All-Entities-Created")]
-    partial class AllEntitiesCreated
+    [Migration("20200720152631_Generate-Classes")]
+    partial class GenerateClasses
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,7 +26,8 @@ namespace DoFest.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ActivityTypeId")
+                    b.Property<Guid?>("ActivityTypeId")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -34,7 +35,8 @@ namespace DoFest.Persistence.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<Guid>("LocationId")
+                    b.Property<Guid?>("LocationId")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -357,13 +359,13 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Activities.Activity", b =>
                 {
-                    b.HasOne("DoFest.Entities.Activities.ActivityType", "AcType")
+                    b.HasOne("DoFest.Entities.Activities.ActivityType", null)
                         .WithMany("Activities")
                         .HasForeignKey("ActivityTypeId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("DoFest.Entities.Activities.Places.Location", "Location")
+                    b.HasOne("DoFest.Entities.Activities.Places.Location", null)
                         .WithMany("Activities")
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -372,13 +374,13 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Activities.Content.Comment", b =>
                 {
-                    b.HasOne("DoFest.Entities.Activities.Activity", "Activity")
+                    b.HasOne("DoFest.Entities.Activities.Activity", null)
                         .WithMany("Comments")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DoFest.Entities.Authentication.User", "User")
+                    b.HasOne("DoFest.Entities.Authentication.User", null)
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -387,13 +389,13 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Activities.Content.Note", b =>
                 {
-                    b.HasOne("DoFest.Entities.Activities.Activity", "Activity")
+                    b.HasOne("DoFest.Entities.Activities.Activity", null)
                         .WithMany("Notes")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DoFest.Entities.Authentication.User", "User")
+                    b.HasOne("DoFest.Entities.Authentication.User", null)
                         .WithMany("Notes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -402,13 +404,13 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Activities.Content.Photo", b =>
                 {
-                    b.HasOne("DoFest.Entities.Activities.Activity", "Activity")
+                    b.HasOne("DoFest.Entities.Activities.Activity", null)
                         .WithMany("Photos")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DoFest.Entities.Authentication.User", "User")
+                    b.HasOne("DoFest.Entities.Authentication.User", null)
                         .WithMany("Photos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -417,13 +419,13 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Activities.Content.Rating", b =>
                 {
-                    b.HasOne("DoFest.Entities.Activities.Activity", "Activity")
+                    b.HasOne("DoFest.Entities.Activities.Activity", null)
                         .WithMany("Ratings")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DoFest.Entities.Authentication.User", "User")
+                    b.HasOne("DoFest.Entities.Authentication.User", null)
                         .WithMany("Ratings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -432,7 +434,7 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Activities.Places.Location", b =>
                 {
-                    b.HasOne("DoFest.Entities.Activities.Places.City", "City")
+                    b.HasOne("DoFest.Entities.Activities.Places.City", null)
                         .WithMany("Locations")
                         .HasForeignKey("CityId")
                         .IsRequired();
@@ -440,7 +442,7 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Authentication.Notification.Notification", b =>
                 {
-                    b.HasOne("DoFest.Entities.Authentication.User", "User")
+                    b.HasOne("DoFest.Entities.Authentication.User", null)
                         .WithMany("Notifications")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -449,7 +451,7 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Authentication.Student", b =>
                 {
-                    b.HasOne("DoFest.Entities.Activities.Places.City", "City")
+                    b.HasOne("DoFest.Entities.Activities.Places.City", null)
                         .WithMany("Students")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -458,12 +460,12 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Authentication.User", b =>
                 {
-                    b.HasOne("DoFest.Entities.Authentication.Student", "Student")
+                    b.HasOne("DoFest.Entities.Authentication.Student", null)
                         .WithOne("User")
                         .HasForeignKey("DoFest.Entities.Authentication.User", "StudentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DoFest.Entities.Authentication.UserType", "UserType")
+                    b.HasOne("DoFest.Entities.Authentication.UserType", null)
                         .WithMany("Users")
                         .HasForeignKey("UserTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -472,7 +474,7 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Lists.BucketList", b =>
                 {
-                    b.HasOne("DoFest.Entities.Authentication.User", "User")
+                    b.HasOne("DoFest.Entities.Authentication.User", null)
                         .WithOne("BucketList")
                         .HasForeignKey("DoFest.Entities.Lists.BucketList", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -481,13 +483,13 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Lists.BucketListActivity", b =>
                 {
-                    b.HasOne("DoFest.Entities.Activities.Activity", "Activity")
+                    b.HasOne("DoFest.Entities.Activities.Activity", null)
                         .WithMany("BucketListActivities")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DoFest.Entities.Lists.BucketList", "BucketList")
+                    b.HasOne("DoFest.Entities.Lists.BucketList", null)
                         .WithMany("BucketListActivities")
                         .HasForeignKey("BucketListId")
                         .OnDelete(DeleteBehavior.Cascade)

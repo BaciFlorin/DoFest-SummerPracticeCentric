@@ -30,11 +30,9 @@ namespace DoFest.Entities.Authentication
 
         [Required]
         public Guid? UserTypeId { get; set; }
-        public UserType UserType { get;  set; }
 
         [AllowNull]
         public Guid? StudentId { get; set; }
-        public Student Student { get;  set; }
 
         public ICollection<Photo> Photos { get; set; }
 

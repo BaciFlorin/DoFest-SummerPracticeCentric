@@ -21,12 +21,10 @@ namespace DoFest.Entities.Activities
         }
 
         [Required]
-        public Guid ActivityTypeId { get; set; }
-        public ActivityType AcType { get; set; }
+        public Guid? ActivityTypeId { get; set; }
 
         [Required]
-        public Guid LocationId { get; set; }
-        public Location Location { get; set; }
+        public Guid? LocationId { get; set; }
 
         public ICollection<Photo> Photos { get; set; }
         public ICollection<Comment> Comments { get; set; }
