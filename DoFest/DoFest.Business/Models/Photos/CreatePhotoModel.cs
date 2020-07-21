@@ -8,7 +8,7 @@ namespace DoFest.Business.Models.Photos
 {
     public sealed class CreatePhotoModel
     {
-        [JsonIgnore]
+       
         public Guid UserId { get; set; }
         public IFormFile Image { get; set; }
     }
