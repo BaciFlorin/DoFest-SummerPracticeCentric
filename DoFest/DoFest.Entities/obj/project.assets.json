@@ -8,23 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\d\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\stril\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
+      "projectUniqueName": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
       "projectName": "DoFest.Entities",
-      "projectPath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
-      "packagesPath": "C:\\Users\\d\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\obj\\",
+      "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
+      "packagesPath": "C:\\Users\\stril\\.nuget\\packages\\",
+      "outputPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\d\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\stril\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
