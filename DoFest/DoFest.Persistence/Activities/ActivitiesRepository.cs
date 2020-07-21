@@ -19,8 +19,6 @@ namespace DoFest.Persistence.Activities
                 .FirstAsync(activity => activity.Id == id);
 
 
-
-
         public async Task<Activity> GetByIdWithRatings(Guid id)
             => await this.context.Activities
                 .Include(activity => activity.Ratings)

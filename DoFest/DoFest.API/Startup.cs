@@ -31,7 +31,7 @@ namespace DoFest.API
 
             //inregistrarea repository-urilor
             services.AddDbContext<DoFestContext>(config =>
-                config.UseSqlServer(Configuration.GetConnectionString("TripsConnection")));
+                config.UseSqlServer(Configuration.GetConnectionString("DoFestConnection")));
 
             services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
 
@@ -39,7 +39,10 @@ namespace DoFest.API
             {
                 config.AddProfile<ActivitiesMappingProfile>();
             });
+            
             services.AddScoped<IPhotosService, PhotosService>();
+            services.AddScoped<IRatingsService, RatingsService>();
+
             services
                 .AddMvc()
                 .AddFluentValidation();

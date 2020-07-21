@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DoFest.Business.Models.Photos;
@@ -42,15 +41,17 @@ namespace DoFest.Business.Services.Implementations
             using var stream = new MemoryStream();
             await model.Image.CopyToAsync(stream);
 
-            var photo = new Photo();
-            photo.Image = stream.ToArray();
+            var photo = new Photo
+            {
+                Image = stream.ToArray()
+            };
 
 
             var activity = await _repository.GetById(activityId);
 
-            activity.Photos.Add(photo);
-
+            activity.AddPhoto(photo);
             _repository.Update(activity);
+
             await _repository.SaveChanges();
 
             return _mapper.Map<PhotoModel>(photo);

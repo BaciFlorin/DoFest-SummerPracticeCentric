@@ -23,8 +23,9 @@ namespace DoFest.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromRoute] Guid activityId)
         {
+            var result = await _photosService.Get(activityId);
 
-            return Ok();
+            return Ok(result);
         }
 
 
@@ -39,6 +40,8 @@ namespace DoFest.API.Controllers
         [HttpDelete("/photoId")]
         public async Task<IActionResult> Delete([FromRoute] Guid activityId, [FromRoute] Guid photoId)
         {
+            await _photosService.Delete(activityId, photoId);
+
             return NoContent();
         }
 

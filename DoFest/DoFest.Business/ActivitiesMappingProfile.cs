@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AutoMapper;
+﻿using AutoMapper;
 using DoFest.Business.Models.Photos;
+using DoFest.Business.Models.Ratings;
 using DoFest.Entities.Activities.Content;
 
 namespace DoFest.Business
@@ -14,6 +12,8 @@ namespace DoFest.Business
             CreateMap<CreatePhotoModel, Photo>();
             CreateMap<Photo, PhotoModel>();
 
+            CreateMap<CreateRatingModel, Rating>();
+            CreateMap<Rating, RatingModel>();
         }
     }
 }
