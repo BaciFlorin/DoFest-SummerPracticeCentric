@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj": {}
+    "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj": {}
   },
   "projects": {
-    "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj": {
+    "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj",
+        "projectUniqueName": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj",
         "projectName": "DoFest.Business",
-        "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj",
-        "packagesPath": "C:\\Users\\stril\\.nuget\\packages\\",
-        "outputPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\obj\\",
+        "projectPath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\DoFest.Business.csproj",
+        "packagesPath": "C:\\Users\\d\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Business\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\stril\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\d\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,11 +30,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
-                "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj"
+              "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
+                "projectPath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj"
               },
-              "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj": {
-                "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj"
+              "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj": {
+                "projectPath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj"
               }
             }
           }
@@ -93,17 +96,20 @@
         }
       }
     },
-    "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
+    "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
         "projectName": "DoFest.Entities",
-        "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
-        "packagesPath": "C:\\Users\\stril\\.nuget\\packages\\",
-        "outputPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\obj\\",
+        "projectPath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
+        "packagesPath": "C:\\Users\\d\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\stril\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\d\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -145,17 +151,20 @@
         }
       }
     },
-    "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj": {
+    "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
         "projectName": "DoFest.Persistence",
-        "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
-        "packagesPath": "C:\\Users\\stril\\.nuget\\packages\\",
-        "outputPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\obj\\",
+        "projectPath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
+        "packagesPath": "C:\\Users\\d\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\stril\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\d\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -168,8 +177,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
-                "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj"
+              "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
+                "projectPath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj"
               }
             }
           }

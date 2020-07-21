@@ -1,4 +1,9 @@
+using AutoMapper;
+using DoFest.Business;
+using DoFest.Business.Services.Implementations;
+using DoFest.Business.Services.Interfaces;
 using DoFest.Persistence;
+using DoFest.Persistence.Activities;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,8 +32,14 @@ namespace DoFest.API
             //inregistrarea repository-urilor
             services.AddDbContext<DoFestContext>(config =>
                 config.UseSqlServer(Configuration.GetConnectionString("TripsConnection")));
-            
-            
+
+            services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
+
+            services.AddAutoMapper(config =>
+            {
+                config.AddProfile<ActivitiesMappingProfile>();
+            });
+            services.AddScoped<IPhotosService, PhotosService>();
             services
                 .AddMvc()
                 .AddFluentValidation();
