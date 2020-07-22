@@ -4,7 +4,7 @@ using DoFest.Entities.Authentication;
 
 namespace DoFest.Persistence.Authentication
 {
-    public interface IUserRepository: IRepository<User>
+    public interface IUserRepository
     {
         void UpdatePassword(Guid id, string password);
 
