@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using DoFest.Business.Models.Authentication;
+using DoFest.Entities.Authentication;
 
 namespace DoFest.Business
 {
@@ -9,7 +11,11 @@ namespace DoFest.Business
     {
         public AuthenticationMappingProfile()
         {
-            
+            CreateMap<User, UserModel>();
+
+            CreateMap<LoginModel, User>();
+
+            CreateMap<RegisterModel, User>();
         }
     }
 }
