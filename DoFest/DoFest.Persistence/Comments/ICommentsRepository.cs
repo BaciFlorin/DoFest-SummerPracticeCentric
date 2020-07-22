@@ -8,7 +8,7 @@ namespace DoFest.Persistence.Comments
 {
     public interface ICommentsRepository
     {
-        Task<IEnumerable<Comment>> GetComments(Guid activityId);
+        IQueryable<ICollection<Comment>> GetComments(Guid activityId);
 
         void AddComment(Comment comment);
 

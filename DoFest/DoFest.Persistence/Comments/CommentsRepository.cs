@@ -14,8 +14,9 @@ namespace DoFest.Persistence.Comments
 
         }
 
-        public async Task<IEnumerable<Comment>> GetComments(Guid activityId)
+        public IQueryable<ICollection<Comment>> GetComments(Guid activityId)
         {
+           
             /*
                 => await context
                     .Activities
@@ -23,7 +24,9 @@ namespace DoFest.Persistence.Comments
                     .Where(activity => activity.Id == activityId)
                     .ToListAsync();
             */
-            throw new NotImplementedException("not implemented");
+            return context.Activities
+                .Include(activity => activity.Id == activityId)
+                .Select(activity => activity.Comments);
         }
 
         public async void AddComment(Comment comment)
