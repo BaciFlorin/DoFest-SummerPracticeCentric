@@ -15,9 +15,6 @@ namespace DoFest.Business
 
             CreateMap<CreateRatingModel, Rating>();
             CreateMap<Rating, RatingModel>();
-
-            CreateMap<NewCommentModel, Comment>();
-            CreateMap<Comment, CommentModel>();
         }
     }
 }
