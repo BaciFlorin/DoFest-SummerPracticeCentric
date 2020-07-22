@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DoFest.Business.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
 {
@@ -7,16 +8,15 @@ namespace DoFest.API.Controllers
     public class BucketlistController : ControllerBase
     {
         // ****** Servicii folosite de catre controller ******
-        //.........
-        // TODO: adaugarea serviciilor
+        public readonly IBucketListService _bucketListService;
 
 
         /// Constructorul public care va injecta serviciile necesare prin IoC
-        public BucketlistController()
+        public BucketlistController(IBucketListService bucketListService)
         {
-            // TODO
+            _bucketListService = bucketListService;
         }
-
+        
         // ****** Maparea metodelor HTTP ******
 
         /// <summary>

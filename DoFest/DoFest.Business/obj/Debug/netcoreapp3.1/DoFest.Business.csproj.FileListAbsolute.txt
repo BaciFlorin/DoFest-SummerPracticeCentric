@@ -54,3 +54,17 @@ C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\o
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.csproj.CopyComplete
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.dll
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.pdb
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Business.deps.json
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Business.dll
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Business.pdb
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Entities.dll
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Persistence.dll
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Entities.pdb
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\bin\Debug\netcoreapp3.1\DoFest.Persistence.pdb
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.csprojAssemblyReference.cache
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.AssemblyInfoInputs.cache
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.AssemblyInfo.cs
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.csproj.CoreCompileInputs.cache
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.csproj.CopyComplete
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.dll
+C:\Users\MARINA\Desktop\DoFest\DoFest-SummerPracticeCentric\DoFest\DoFest.Business\obj\Debug\netcoreapp3.1\DoFest.Business.pdb
