@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using DoFest.Business.Models.Content.Comment;
 using DoFest.Business.Models.Content.Photos;
 using DoFest.Business.Models.Content.Ratings;
 using DoFest.Entities.Activities.Content;
