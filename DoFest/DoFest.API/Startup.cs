@@ -40,8 +40,11 @@ namespace DoFest.API
                 config.AddProfile<ActivitiesMappingProfile>();
             });
             
+            // Adaugare servicii
             services.AddScoped<IPhotosService, PhotosService>();
             services.AddScoped<IRatingsService, RatingsService>();
+            services.AddScoped<ICommentsService, CommentsService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             services
                 .AddMvc()
