@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DoFest.Business.Models.Content.Comment;
 using DoFest.Business.Services.Interfaces;
 using DoFest.Entities.Activities.Content;
 using DoFest.Persistence.Comments;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoFest.Business.Services.Implementations
 {
@@ -21,11 +23,13 @@ namespace DoFest.Business.Services.Implementations
             this.repository = repository;
         }
 
-        public IEnumerable<CommentModel> GetComments(Guid activityId)
+        public async Task<CommentModel> GetComments(Guid activityId)
         {
             var comments = repository.GetComments(activityId);
+            var result = await comments.FirstAsync();
 
-            return mapper.Map<IEnumerable<CommentModel>>(comments.GetEnumerator());
+
+            return mapper.Map<CommentModel>(result);
         }
 
         public CommentModel AddComment(NewCommentModel commentModel)

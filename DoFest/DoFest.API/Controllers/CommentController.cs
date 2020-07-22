@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using DoFest.Business.Models.Content.Comment;
 using DoFest.Business.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -27,9 +28,9 @@ namespace DoFest.API.Controllers
         /// <param name="activityId"> Guid-ul activitatii pentru care se face cautarea. Aceasta resursa asigura unicitatea. </param>
         /// <returns>Un raspuns Http care semnaleaza o eroare sau statusul ok impreuna cu datele(comentariile) cerute prin request.</returns>
         [HttpGet("")]
-        public IActionResult GetComments([FromRoute] Guid activityId)
+        public async Task<IActionResult> GetComments([FromRoute] Guid activityId)
         {
-            var comments = commentsService.GetComments(activityId);
+            var comments = await commentsService.GetComments(activityId);
             return Ok(comments);
         }
 
@@ -43,12 +44,9 @@ namespace DoFest.API.Controllers
         [HttpPost("")]
         public IActionResult PostComment([FromRoute] Guid activityId, [FromBody] NewCommentModel model)
         {
-            // TODO: adaugarea logicii business
-            // TODO: adaugarea sintaxei pentru async/await
-            return Ok("Message from PostComment." +
-                      $"\n[route: POST /api/v1/activities/{activityId}/comments]" +
-                      $"\n comment:{model.Content}"
-                      );
+            model.ActivityId = activityId;
+            var newComment = commentsService.AddComment(model);
+            return Ok(newComment);
         }
 
         /// <summary>

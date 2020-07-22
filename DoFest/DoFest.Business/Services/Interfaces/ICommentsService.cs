@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DoFest.Business.Models.Content.Comment;
+using DoFest.Entities.Activities.Content;
 
 namespace DoFest.Business.Services.Interfaces
 {
@@ -15,7 +16,7 @@ namespace DoFest.Business.Services.Interfaces
         /// </summary>
         /// <param name="activityId"> Id-ul unei activitati. </param>
         /// <returns> Un enumerabil ce contine toate comentariile asociate unei activitati. </returns>
-        IEnumerable<CommentModel> GetComments(Guid activityId);
+        Task<CommentModel> GetComments(Guid activityId);
 
         /// <summary>
         /// Adauga un comentariu la o activitate specificata.

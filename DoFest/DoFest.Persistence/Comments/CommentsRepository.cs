@@ -14,10 +14,10 @@ namespace DoFest.Persistence.Comments
 
         public IQueryable<Comment> GetComments(Guid activityId)
         {
-            return context
+            var result = context
                 .Comments
-                .Where(comment => comment.ActivityId == activityId)
-                .Select(comment => comment);
+                .Where(comment => comment.ActivityId == activityId);
+            return result;
         }
 
         public async void AddComment(Comment comment)
