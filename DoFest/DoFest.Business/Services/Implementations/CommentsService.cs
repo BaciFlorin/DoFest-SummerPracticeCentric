@@ -11,7 +11,14 @@ namespace DoFest.Business.Services.Implementations
     public sealed class CommentsService: ICommentsService
     {
         private readonly IMapper mapper;
-        private readonly IActivitiesRepository _repository;
+        private readonly IActivitiesRepository repository;
+
+        public CommentsService(IMapper mapper, IActivitiesRepository repository)
+        {
+            this.mapper = mapper;
+            this.repository = repository;
+        }
+
         public Task<IEnumerable<CommentModel>> GetComments(Guid activityId)
         {
             throw new NotImplementedException();
