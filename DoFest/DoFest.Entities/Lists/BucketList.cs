@@ -20,5 +20,6 @@ namespace DoFest.Entities.Lists
         public string Name { get; set; }
 
         public ICollection<BucketListActivity> BucketListActivities { get; set; }
+        public object Username { get; set; }
     }
 }

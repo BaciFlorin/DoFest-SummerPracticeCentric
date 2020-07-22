@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DoFest.Business.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
 {
@@ -8,14 +9,12 @@ namespace DoFest.API.Controllers
     {
 
         // ****** Servicii folosite de catre controller ******
-        //.........
-        // TODO: adaugarea serviciilor
-
+        private readonly IActivitiesService _activitiesService;
 
         /// Constructorul public care va injecta serviciile necesare prin IoC
-        public ActivitiesController()
+        public ActivitiesController(IActivitiesService activitiesService)
         {
-            // TODO
+            _activitiesService = activitiesService;
         }
 
         // ****** Maparea metodelor HTTP ******

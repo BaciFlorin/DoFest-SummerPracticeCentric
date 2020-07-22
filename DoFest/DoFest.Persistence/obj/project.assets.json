@@ -5318,19 +5318,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\stril\\.nuget\\packages\\": {}
+    "C:\\Users\\MARINA\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
       "projectName": "DoFest.Persistence",
-      "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
-      "packagesPath": "C:\\Users\\stril\\.nuget\\packages\\",
-      "outputPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\obj\\",
+      "projectPath": "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
+      "packagesPath": "C:\\Users\\MARINA\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\stril\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MARINA\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5343,8 +5343,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
-              "projectPath": "D:\\facultate\\an3\\summer_practice\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj"
+            "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
+              "projectPath": "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj"
             }
           }
         }

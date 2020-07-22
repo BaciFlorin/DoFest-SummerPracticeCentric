@@ -1,6 +1,7 @@
 ﻿namespace DoFest.Business.Models.Activity
 {
-    class CreateActivityModel
+    public sealed class CreateActivityModel
     {
+
     }
 }
