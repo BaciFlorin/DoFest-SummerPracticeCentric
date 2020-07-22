@@ -1,5 +1,5 @@
 ﻿using System;
-using DoFest.Business.Models.Comment;
+using DoFest.Business.Models.Content.Comment;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers

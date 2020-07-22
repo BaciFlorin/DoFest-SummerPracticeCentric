@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DoFest.Business.Models.Ratings;
+using DoFest.Business.Models.Content.Ratings;
 using DoFest.Business.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

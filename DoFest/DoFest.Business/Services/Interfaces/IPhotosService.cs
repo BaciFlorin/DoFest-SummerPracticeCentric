@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DoFest.Business.Models.Photos;
+using DoFest.Business.Models.Content.Photos;
 
 namespace DoFest.Business.Services.Interfaces
 {
