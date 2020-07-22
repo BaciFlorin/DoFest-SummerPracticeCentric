@@ -1,7 +1,10 @@
-﻿namespace DoFest.Business.Models.Content.Comment
+﻿using System;
+
+namespace DoFest.Business.Models.Content.Comment
 {
     public sealed class NewCommentModel
     {
+        public Guid? ActivityId { get; set; }
         public string Content { get; set; }
     }
 }

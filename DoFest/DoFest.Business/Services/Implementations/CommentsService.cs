@@ -1,37 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DoFest.Business.Models.Content.Comment;
 using DoFest.Business.Services.Interfaces;
-using DoFest.Persistence.Activities;
+using DoFest.Entities.Activities.Content;
+using DoFest.Persistence.Comments;
 
 namespace DoFest.Business.Services.Implementations
 {
     public sealed class CommentsService: ICommentsService
     {
         private readonly IMapper mapper;
-        private readonly IActivitiesRepository repository;
+        private readonly ICommentsRepository repository;
 
-        public CommentsService(IMapper mapper, IActivitiesRepository repository)
+        public CommentsService(IMapper mapper, ICommentsRepository repository)
         {
             this.mapper = mapper;
             this.repository = repository;
         }
 
-        public Task<IEnumerable<CommentModel>> GetComments(Guid activityId)
+        public IEnumerable<CommentModel> GetComments(Guid activityId)
         {
-            throw new NotImplementedException();
+            var comments = repository.GetComments(activityId);
+
+            return mapper.Map<IEnumerable<CommentModel>>(comments.GetEnumerator());
         }
 
-        public Task AddComment(Guid activityId)
+        public CommentModel AddComment(NewCommentModel commentModel)
         {
-            throw new NotImplementedException();
+            var comment = mapper.Map<Comment>(commentModel);
+            repository.AddComment(comment);
+
+
+            return mapper.Map<CommentModel>(comment);
         }
 
-        public Task DeleteComment(Guid activityId)
+        public async Task<CommentModel> DeleteComment(Guid commentId)
         {
-            throw new NotImplementedException();
+            var comment = await repository.GetById(commentId);
+            repository.DeleteComment(commentId);
+
+            return mapper.Map<CommentModel>(comment);
         }
     }
 }

@@ -5,13 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
 {
-    [Route("api/v1/activities")]
+    [Route("api/v1/activities/{activityId}/comments")]
     [ApiController]
     public class CommentController : ControllerBase
     {
         // ****** Servicii folosite de catre controller ******
         private readonly ICommentsService commentsService;
-
 
         /// Constructorul public care va injecta serviciile necesare prin IoC
         public CommentController(ICommentsService commentsService)
@@ -27,14 +26,11 @@ namespace DoFest.API.Controllers
         /// </summary>
         /// <param name="activityId"> Guid-ul activitatii pentru care se face cautarea. Aceasta resursa asigura unicitatea. </param>
         /// <returns>Un raspuns Http care semnaleaza o eroare sau statusul ok impreuna cu datele(comentariile) cerute prin request.</returns>
-        [HttpGet("/{activityId}/comments")]
+        [HttpGet("")]
         public IActionResult GetComments([FromRoute] Guid activityId)
         {
-            // TODO: adaugarea logicii business
-            // TODO: adaugarea sintaxei pentru async/await
-            return Ok("Message from GetComments." +
-                      $"\n[route: GET /api/v1/activities/{activityId}/comments]"
-                      );
+            var comments = commentsService.GetComments(activityId);
+            return Ok(comments);
         }
 
         /// <summary>
@@ -44,7 +40,7 @@ namespace DoFest.API.Controllers
         /// <param name="activityId"> Guid-ul activitatii pentru care se face cautarea. Aceasta resursa asigura unicitatea. </param>
         /// <param name="model"> Un model de data ce reprezinta commentariul ce urmeaza sa fie adaugat.</param>
         /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul ok impreuna cu un mesaj de confirmare. </returns>
-        [HttpPost("/{activityId}/comments")]
+        [HttpPost("")]
         public IActionResult PostComment([FromRoute] Guid activityId, [FromBody] NewCommentModel model)
         {
             // TODO: adaugarea logicii business
@@ -62,14 +58,12 @@ namespace DoFest.API.Controllers
         /// <param name="activityId"> Guid-ul activitatii pentru care se face cautarea. Aceasta resursa asigura unicitatea. </param>
         /// <param name="commentId"> Guid-ul commentariu pentru care se face cautarea. Aceasta resursa asigura unicitatea. </param>
         /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul ok impreuna cu un mesaj de confirmare. </returns>
-        [HttpDelete("/{activityId}/comments/{commentId}")]
+        [HttpDelete("/{commentId}")]
         public IActionResult DeleteComment([FromRoute] Guid activityId, [FromRoute] Guid commentId)
         {
-            // TODO: adaugarea logicii business
-            // TODO: adaugarea sintaxei pentru async/await
-            return Ok("Message from DeleteComment." +
-                      $"\n[route DELETE /api/v1/activities/{activityId}/comments/{commentId}]"
-                      );
+            var comment = commentsService.DeleteComment(commentId);
+
+            return Ok(comment);
         }
     }
 }

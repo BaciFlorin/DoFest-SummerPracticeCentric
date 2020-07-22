@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using DoFest.Business.Models.Content.Comment;
 using DoFest.Business.Models.Content.Photos;
 using DoFest.Business.Models.Content.Ratings;
@@ -21,7 +22,9 @@ namespace DoFest.Business
 
             // ****** Mappere pentru modele de comentarii ******
             CreateMap<NewCommentModel, Comment>();
+            CreateMap<CommentModel, Comment>();
             CreateMap<Comment, CommentModel>();
+            CreateMap<IEnumerable<Comment>, IEnumerable<CommentModel>>();
         }
     }
 }

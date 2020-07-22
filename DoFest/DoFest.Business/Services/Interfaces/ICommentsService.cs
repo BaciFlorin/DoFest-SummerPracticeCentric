@@ -15,20 +15,20 @@ namespace DoFest.Business.Services.Interfaces
         /// </summary>
         /// <param name="activityId"> Id-ul unei activitati. </param>
         /// <returns> Un enumerabil ce contine toate comentariile asociate unei activitati. </returns>
-        Task<IEnumerable<CommentModel>> GetComments(Guid activityId);
+        IEnumerable<CommentModel> GetComments(Guid activityId);
 
         /// <summary>
         /// Adauga un comentariu la o activitate specificata.
         /// </summary>
-        /// <param name="activityId"> Id-ul unei activitati. </param>
+        /// <param name="commentModel"> Un model de comentariu nou. </param>
         /// <returns> ??? Un string ce semnifica succesul/esecul operatiei. </returns>
-        Task AddComment(Guid activityId);
+        CommentModel AddComment(NewCommentModel commentModel);
 
         /// <summary>
         /// Sterge un comentariu asociat unei activitati.
         /// </summary>
-        /// <param name="activityId"> Id-ul unei activitati. </param>
+        /// <param name="commentId"> Id-ul unui comentariu. </param>
         /// <returns> ??? Un string ce semnifica succesul/esecul operatiei. </returns>
-        Task DeleteComment(Guid activityId);
+        Task<CommentModel> DeleteComment(Guid commentId);
     }
 }
