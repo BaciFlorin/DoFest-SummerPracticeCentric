@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj": {}
+    "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj": {}
   },
   "projects": {
-    "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
+    "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
         "projectName": "DoFest.Entities",
-        "projectPath": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
-        "packagesPath": "C:\\Users\\Florin\\.nuget\\packages\\",
-        "outputPath": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\obj\\",
+        "projectPath": "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
+        "packagesPath": "C:\\Users\\MARINA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Florin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MARINA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -56,17 +56,17 @@
         }
       }
     },
-    "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj": {
+    "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
         "projectName": "DoFest.Persistence",
-        "projectPath": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
-        "packagesPath": "C:\\Users\\Florin\\.nuget\\packages\\",
-        "outputPath": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\obj\\",
+        "projectPath": "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
+        "packagesPath": "C:\\Users\\MARINA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Florin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MARINA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,8 +79,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
-                "projectPath": "F:\\Work time\\Summer Practice Centric\\02_Proiect_echipa\\01_Proiect\\DoFest-SummerPracticeCentric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj"
+              "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj": {
+                "projectPath": "C:\\Users\\MARINA\\Desktop\\DoFest\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj"
               }
             }
           }
