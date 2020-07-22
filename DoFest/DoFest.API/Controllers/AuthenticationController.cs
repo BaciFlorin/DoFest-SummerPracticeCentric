@@ -20,7 +20,12 @@ namespace DoFest.API.Controllers
 
         // ****** Maparea metodelor HTTP ******
 
-        
+        /// <summary>
+        /// Aceasta metoda primeste un LoginModel ce contine datele specifice actiunii de login, foloseste serviciul
+        /// specific acestei actiuni si returneaza un HTTP response catre client potrivit actiunilor realizate de serviciu.
+        /// </summary>
+        /// <param name="model"> Un model de data ce reprezinta datele necesare de login. </param>
+        /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul OK impreuna cu date optionale returnate prin request. </returns>
         [HttpPost("/login")]
         public IActionResult Login([FromBody] LoginModel model)
         {
@@ -31,7 +36,12 @@ namespace DoFest.API.Controllers
                       $"\nmodel: username:{model.Username} password:{model.PasswordHash}");
         }
 
-        
+        /// <summary>
+        /// Aceasta metoda primeste un RegisterModel ce contine datele specifice actiunii de register, foloseste serviciul
+        /// specific acestei actiuni si returneaza un HTTP response catre client potrivit actiunilor realizate de serviciu.
+        /// </summary>
+        /// <param name="model"> Un model de data ce reprezinta datele necesare pentru operatia de register. </param>
+        /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul CREATED impreuna cu date optionale returnate prin request. </returns>
         [HttpPost("/register")]
         public IActionResult Register([FromBody] RegisterModel model)
         {
@@ -42,6 +52,12 @@ namespace DoFest.API.Controllers
                       $"\nuserModel: username:{model.Username} email:{model.Email} passwordHash:{model.PasswordHash}");
         }
 
+        /// <summary>
+        /// Aceasta metoda primeste un NewPasswordModel ce contine datele specifice actiunii de changepassword, foloseste serviciul
+        /// specific acestei actiuni si returneaza un HTTP response catre client potrivit actiunilor realizate de serviciu.
+        /// </summary>
+        /// <param name="model"> Un model de data ce reprezinta datele necesare pentru operatia de change password. </param>
+        /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul OK impreuna cu date optionale returnate prin request. </returns>
         [HttpPut("/changepassword")]
         public IActionResult ChangePassword([FromBody] NewPasswordModel model)
         {
