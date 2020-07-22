@@ -4,6 +4,7 @@ using DoFest.Business.Services.Implementations;
 using DoFest.Business.Services.Interfaces;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
+using DoFest.Persistence.Authentication;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,11 +34,13 @@ namespace DoFest.API
             services.AddDbContext<DoFestContext>(config =>
                 config.UseSqlServer(Configuration.GetConnectionString("DoFestConnection")));
 
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
 
             services.AddAutoMapper(config =>
             {
                 config.AddProfile<ActivitiesMappingProfile>();
+                config.AddProfile<AuthenticationMappingProfile>();
             });
             
             // Adaugare servicii

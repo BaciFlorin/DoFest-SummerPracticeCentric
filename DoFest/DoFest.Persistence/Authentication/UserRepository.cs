@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using DoFest.Entities.Authentication;
 using Microsoft.EntityFrameworkCore;
@@ -11,21 +12,22 @@ namespace DoFest.Persistence.Authentication
         {
         }
 
-        /// <summary>
-        /// Se creeaza un query pentru a gasi userul cu id-ul dat ca parametru.
-        /// </summary>
-        /// <param name="id"> Id-ul userului cautat. </param>
-        /// <returns> Un task ce contine o entitate User.</returns>
-        public async Task<User> GetUserById(Guid id)
-            => await context.Users
-                .FirstAsync(user => user.Id == id);
+        public async void UpdatePassword(Guid id, string password)
+        {
+            var user = await context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return;
+            }
+            context.Users.Update(user).Entity.PasswordHash = password;
+            await SaveChanges();
+        }
 
-        /// <summary>
-        /// Se adauga un user nou in database.
-        /// </summary>
-        /// <param name="userEntity"> O entitate de tip User ce va fi inserata.</param>
-        /// <returns></returns>
-        public async Task AddUser(User userEntity)
-            => await context.Users.AddAsync(userEntity);
+
+        public async Task<User> GetByEmail(string email) 
+            => await context.Users.Where(user => user.Email == email).FirstOrDefaultAsync();
+
+        public async Task<User> GetByUsername(string username)
+            => await context.Users.Where(user => user.Username == username).FirstOrDefaultAsync();
     }
 }

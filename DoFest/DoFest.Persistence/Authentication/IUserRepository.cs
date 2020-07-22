@@ -6,8 +6,10 @@ namespace DoFest.Persistence.Authentication
 {
     public interface IUserRepository: IRepository<User>
     {
-        Task<User> GetUserById(Guid id);
+        void UpdatePassword(Guid id, string password);
 
-        Task AddUser(User userEntity);
+        Task<User> GetByEmail(string email);
+
+        Task<User> GetByUsername(string username);
     }
 }
