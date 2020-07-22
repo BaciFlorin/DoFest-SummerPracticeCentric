@@ -1,5 +1,6 @@
 ﻿using System;
 using DoFest.Business.Models.Content.Comment;
+using DoFest.Business.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
@@ -9,14 +10,13 @@ namespace DoFest.API.Controllers
     public class CommentController : ControllerBase
     {
         // ****** Servicii folosite de catre controller ******
-        //.........
-        // TODO: adaugarea serviciilor
+        private readonly ICommentsService commentsService;
 
 
         /// Constructorul public care va injecta serviciile necesare prin IoC
-        public CommentController()
+        public CommentController(ICommentsService commentsService)
         {
-            // TODO
+            this.commentsService = commentsService;
         }
 
         // ****** Maparea metodelor HTTP ******
