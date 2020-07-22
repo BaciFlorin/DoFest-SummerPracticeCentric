@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DoFest.Business.Models.Photos;
+using DoFest.Business.Models.Content.Photos;
 using DoFest.Business.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DoFest.Business.Models.Activity
+﻿namespace DoFest.Business.Models.Activity
 {
     class CreateActivityModel
     {

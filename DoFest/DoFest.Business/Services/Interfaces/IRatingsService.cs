@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DoFest.Business.Models.Ratings;
+using DoFest.Business.Models.Content.Ratings;
 
 namespace DoFest.Business.Services.Interfaces
 {

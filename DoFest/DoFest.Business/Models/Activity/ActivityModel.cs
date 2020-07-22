@@ -1,5 +1,4 @@
-﻿
-using DoFest.Entities.Activities.Content;
+﻿using DoFest.Entities.Activities.Content;
 using DoFest.Entities.Lists;
 using System;
 using System.Collections.Generic;
