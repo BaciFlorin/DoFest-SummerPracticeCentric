@@ -42,7 +42,7 @@ namespace DoFest.API.Controllers
         /// Activitatea se identifica prin id-ul atribuit acesteia.
         /// </summary>
         /// <param name="activityId"> Guid-ul activitatii pentru care se face cautarea. Aceasta resursa asigura unicitatea. </param>
-        /// <param name="comment"> String ce reprezinta commentariul ce urmeaza sa fie adaugat. </param>
+        /// <param name="model"> Un model de data ce reprezinta commentariul ce urmeaza sa fie adaugat.</param>
         /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul ok impreuna cu un mesaj de confirmare. </returns>
         [HttpPost("/{activityId}/comments")]
         public IActionResult PostComment([FromRoute] Guid activityId, [FromBody] NewCommentModel model)
