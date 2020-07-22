@@ -1,9 +1,12 @@
 using AutoMapper;
 using DoFest.Business;
+using DoFest.Business.Models.Ratings;
 using DoFest.Business.Services.Implementations;
 using DoFest.Business.Services.Interfaces;
+using DoFest.Business.Validators;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +45,7 @@ namespace DoFest.API
             
             services.AddScoped<IPhotosService, PhotosService>();
             services.AddScoped<IRatingsService, RatingsService>();
+            services.AddTransient<IValidator<CreateRatingModel>,CreateRatingModelValidator>();
 
             services
                 .AddMvc()
