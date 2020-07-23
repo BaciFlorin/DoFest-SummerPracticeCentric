@@ -16,7 +16,7 @@ namespace DoFest.Business.Services.Interfaces
         /// </summary>
         /// <param name="activityId"> Id-ul unei activitati. </param>
         /// <returns> Un enumerabil ce contine toate comentariile asociate unei activitati. </returns>
-        Task<CommentModel> GetComments(Guid activityId);
+        Task<List<CommentModel>> GetComments(Guid activityId);
 
         /// <summary>
         /// Adauga un comentariu la o activitate specificata.

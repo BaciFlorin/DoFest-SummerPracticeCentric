@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DoFest.Entities.Activities.Content;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,11 +15,12 @@ namespace DoFest.Persistence.Comments
 
         }
 
-        public IQueryable<Comment> GetComments(Guid activityId)
+        public Task<List<Comment>> GetComments(Guid activityId)
         {
             var result = context
                 .Comments
-                .Where(comment => comment.ActivityId == activityId);
+                .Where(comment => comment.ActivityId == activityId)
+                .ToListAsync();
             return result;
         }
 

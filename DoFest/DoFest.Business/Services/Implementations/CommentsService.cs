@@ -23,13 +23,12 @@ namespace DoFest.Business.Services.Implementations
             this.repository = repository;
         }
 
-        public async Task<CommentModel> GetComments(Guid activityId)
+        public async Task<List<CommentModel>> GetComments(Guid activityId)
         {
-            var comments = repository.GetComments(activityId);
-            var result = await comments.FirstAsync();
+            var comments = await repository.GetComments(activityId);
 
 
-            return mapper.Map<CommentModel>(result);
+            return mapper.Map<List<CommentModel>>(comments);
         }
 
         public CommentModel AddComment(NewCommentModel commentModel)

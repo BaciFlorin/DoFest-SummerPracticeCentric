@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
 {
-    [Route("api/v1/activities/{activityId}/comments")]
+    [Route("/api/v1/activities/{activityId}/comments/")]
     [ApiController]
     public class CommentController : ControllerBase
     {
@@ -56,7 +56,7 @@ namespace DoFest.API.Controllers
         /// <param name="activityId"> Guid-ul activitatii pentru care se face cautarea. Aceasta resursa asigura unicitatea. </param>
         /// <param name="commentId"> Guid-ul commentariu pentru care se face cautarea. Aceasta resursa asigura unicitatea. </param>
         /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul ok impreuna cu un mesaj de confirmare. </returns>
-        [HttpDelete("/{commentId}")]
+        [HttpDelete("{commentId}")]
         public IActionResult DeleteComment([FromRoute] Guid activityId, [FromRoute] Guid commentId)
         {
             var comment = commentsService.DeleteComment(commentId);

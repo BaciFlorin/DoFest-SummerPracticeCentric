@@ -24,7 +24,6 @@ namespace DoFest.Business
             CreateMap<NewCommentModel, Comment>();
             CreateMap<CommentModel, Comment>();
             CreateMap<Comment, CommentModel>();
-            CreateMap<IEnumerable<Comment>, IEnumerable<CommentModel>>();
         }
     }
 }
