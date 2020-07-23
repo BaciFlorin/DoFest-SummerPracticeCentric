@@ -15,7 +15,7 @@ namespace DoFest.Persistence.Comments
         /// </summary>
         /// <param name="activityId"> Id-ul unei activitati. </param>
         /// <returns> O lista de comentarii. </returns>
-        Task<List<Comment>> GetComments(Guid activityId);
+        Task<IList<Comment>> GetComments(Guid activityId);
 
         /// <summary>
         /// Adauga un comentariu nou in tabela.

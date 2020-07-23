@@ -17,14 +17,12 @@ namespace DoFest.Persistence.Comments
 
         }
 
-        public Task<List<Comment>> GetComments(Guid activityId)
-        {
-            var result = context
+        public async Task<IList<Comment>> GetComments(Guid activityId) 
+            => await context
                 .Comments
                 .Where(comment => comment.ActivityId == activityId)
                 .ToListAsync();
-            return result;
-        }
+
 
         public async void AddComment(Comment comment)
         {

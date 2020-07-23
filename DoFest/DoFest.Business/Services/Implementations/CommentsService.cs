@@ -23,7 +23,7 @@ namespace DoFest.Business.Services.Implementations
             this._repository = repository;
         }
 
-        public async Task<List<CommentModel>> GetComments(Guid activityId)
+        public async Task<IList<CommentModel>> GetComments(Guid activityId)
         {
             var comments = await _repository.GetComments(activityId);
 
