@@ -20,15 +20,17 @@ namespace DoFest.Business.Services.Interfaces
         /// <summary>
         /// Adauga un comentariu la o activitate specificata.
         /// </summary>
+        /// <param name="activityId"></param>
         /// <param name="commentModel"> Un model de comentariu nou. </param>
         /// <returns> Un model de comment ce a fost adaugat. </returns>
-        CommentModel AddComment(NewCommentModel commentModel);
+        Task<CommentModel> AddComment(Guid activityId, NewCommentModel commentModel);
 
         /// <summary>
         /// Sterge un comentariu asociat unei activitati.
         /// </summary>
+        /// <param name="activityId"> Id-ul unei activitati. </param>
         /// <param name="commentId"> Id-ul unui comentariu. </param>
         /// <returns> Un model de comment ce a fost sters. </returns>
-        Task<CommentModel> DeleteComment(Guid commentId);
+        Task<CommentModel> DeleteComment(Guid activityId, Guid commentId);
     }
 }

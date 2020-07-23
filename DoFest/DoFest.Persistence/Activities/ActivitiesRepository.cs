@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using DoFest.Entities.Activities;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,11 @@ namespace DoFest.Persistence.Activities
                 .Include(activity => activity.Ratings)
                 .FirstAsync(activity => activity.Id == id);
 
+        public async Task<Activity> GetByIdWithComments(Guid id)
+            => await this.context
+                .Activities
+                .Include(activity => activity.Comments)
+                .FirstAsync(activity => activity.Id == id);
 
     }
 }

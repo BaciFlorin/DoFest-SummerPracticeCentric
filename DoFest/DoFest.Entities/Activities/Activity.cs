@@ -64,5 +64,27 @@ namespace DoFest.Entities.Activities
                 this.Ratings.Remove(rating);
             }
         }
+
+        /// <summary>
+        /// Adauga un comentariu asociat activitatii.
+        /// </summary>
+        /// <param name="comment"> O entitate Comment ce va fi adaugata. </param>
+        public void AddComment(Comment comment)
+        {
+            Comments.Add(comment);
+        }
+
+        /// <summary>
+        /// Sterge un comentariu asociat activitatii.
+        /// </summary>
+        /// <param name="commentId"> Id-ul commentariului ce va fi sters. </param>
+        public void RemoveComment(Guid commentId)
+        {
+            var comment = Comments.FirstOrDefault(comment => comment.Id == commentId);
+            if (comment != null)
+            {
+                Comments.Remove(comment);
+            }
+        }
     }
 }

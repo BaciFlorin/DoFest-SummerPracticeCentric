@@ -11,12 +11,12 @@ namespace DoFest.API.Controllers
     public class CommentController : ControllerBase
     {
         // ****** Servicii folosite de catre controller ******
-        private readonly ICommentsService commentsService;
+        private readonly ICommentsService _commentsService;
 
         /// Constructorul public care va injecta serviciile necesare prin IoC
         public CommentController(ICommentsService commentsService)
         {
-            this.commentsService = commentsService;
+            this._commentsService = commentsService;
         }
 
         // ****** Maparea metodelor HTTP ******
@@ -30,7 +30,7 @@ namespace DoFest.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetComments([FromRoute] Guid activityId)
         {
-            var comments = await commentsService.GetComments(activityId);
+            var comments = await _commentsService.GetComments(activityId);
             return Ok(comments);
         }
 
@@ -42,10 +42,9 @@ namespace DoFest.API.Controllers
         /// <param name="model"> Un model de data ce reprezinta commentariul ce urmeaza sa fie adaugat.</param>
         /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul ok impreuna cu un mesaj de confirmare. </returns>
         [HttpPost("")]
-        public IActionResult PostComment([FromRoute] Guid activityId, [FromBody] NewCommentModel model)
+        public async Task<IActionResult> PostComment([FromRoute] Guid activityId, [FromBody] NewCommentModel model)
         {
-            model.ActivityId = activityId;
-            var newComment = commentsService.AddComment(model);
+            var newComment = await _commentsService.AddComment(activityId, model);
             return Ok(newComment);
         }
 
@@ -57,9 +56,9 @@ namespace DoFest.API.Controllers
         /// <param name="commentId"> Guid-ul commentariu pentru care se face cautarea. Aceasta resursa asigura unicitatea. </param>
         /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul ok impreuna cu un mesaj de confirmare. </returns>
         [HttpDelete("{commentId}")]
-        public IActionResult DeleteComment([FromRoute] Guid activityId, [FromRoute] Guid commentId)
+        public async Task<IActionResult> DeleteComment([FromRoute] Guid activityId, [FromRoute] Guid commentId)
         {
-            var comment = commentsService.DeleteComment(commentId);
+            var comment = await _commentsService.DeleteComment(activityId, commentId);
 
             return Ok(comment);
         }
