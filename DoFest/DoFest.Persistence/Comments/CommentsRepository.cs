@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DoFest.Persistence.Comments
 {
+    /// <summary>
+    /// Implementarea contractului de repository pentru comments.
+    /// </summary>
     public sealed class CommentsRepository: Repository<Comment>, ICommentsRepository
     {
         public CommentsRepository(DoFestContext context) : base(context)

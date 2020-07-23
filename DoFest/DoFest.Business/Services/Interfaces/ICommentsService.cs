@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DoFest.Business.Models.Content.Comment;
-using DoFest.Entities.Activities.Content;
 
 namespace DoFest.Business.Services.Interfaces
 {
@@ -15,21 +14,21 @@ namespace DoFest.Business.Services.Interfaces
         /// Selecteaza si returneaza toate comentariile asociate unei activitati din baza de date.
         /// </summary>
         /// <param name="activityId"> Id-ul unei activitati. </param>
-        /// <returns> Un enumerabil ce contine toate comentariile asociate unei activitati. </returns>
+        /// <returns> O lista ce contine toate comentariile asociate unei activitati. </returns>
         Task<List<CommentModel>> GetComments(Guid activityId);
 
         /// <summary>
         /// Adauga un comentariu la o activitate specificata.
         /// </summary>
         /// <param name="commentModel"> Un model de comentariu nou. </param>
-        /// <returns> ??? Un string ce semnifica succesul/esecul operatiei. </returns>
+        /// <returns> Un model de comment ce a fost adaugat. </returns>
         CommentModel AddComment(NewCommentModel commentModel);
 
         /// <summary>
         /// Sterge un comentariu asociat unei activitati.
         /// </summary>
         /// <param name="commentId"> Id-ul unui comentariu. </param>
-        /// <returns> ??? Un string ce semnifica succesul/esecul operatiei. </returns>
+        /// <returns> Un model de comment ce a fost sters. </returns>
         Task<CommentModel> DeleteComment(Guid commentId);
     }
 }
