@@ -55,7 +55,7 @@ namespace DoFest.Business.Services.Implementations
         {
             var activity = await _repository.GetByIdWithRatings(activityId);
 
-            activity.RemoveRating(activityId);
+            activity.RemoveRating(ratingId);
 
             _repository.Update(activity);
 

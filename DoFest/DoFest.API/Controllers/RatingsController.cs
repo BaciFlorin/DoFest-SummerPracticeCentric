@@ -37,7 +37,7 @@ namespace DoFest.API.Controllers
 
         }
 
-        [HttpDelete("/ratingId")]
+        [HttpDelete("{ratingId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid activityId, [FromRoute] Guid ratingId)
         {
             await _ratingsService.Delete(activityId, ratingId);
