@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DoFest.Persistence.BucketLists
 {
-    public interface IBucketListRepository:IRepository<User>
+    public interface IBucketListRepository:IRepository<BucketList>
     {
-      
-        Task<User> GetBucketListandUsernameByUserId(Guid id);
+
+        Task<IList<BucketList>> GetBucketListById(Guid userId);
     }
 }

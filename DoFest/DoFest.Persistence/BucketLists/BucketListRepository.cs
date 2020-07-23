@@ -2,21 +2,23 @@
 using DoFest.Entities.Lists;
 using Microsoft.EntityFrameworkCore;
 using System;
-
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DoFest.Persistence.BucketLists
 {
       
-    public sealed class BucketListRepository: Repository<User>, IBucketListRepository
+    public sealed class BucketListRepository: Repository<BucketList>, IBucketListRepository
     {
         public BucketListRepository(DoFestContext context) : base(context)
         {
         }
-        public async Task<User> GetBucketListandUsernameByUserId(Guid id)
-            => await this.context.BucketLists
-                .Include(user => user.BucketList && user.Username)
-                .FirstAsync(user => user.Id = id);
+        public async Task<IList<BucketList>> GetBucketListById(Guid userId)
+            => await context
+                .BucketLists
+                .Where(bucketList => bucketList.UserId == userId)
+                .ToListAsync();
 
 
     }
