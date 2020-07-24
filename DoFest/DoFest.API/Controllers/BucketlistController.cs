@@ -26,12 +26,11 @@ namespace DoFest.API.Controllers
         /// </summary>
         /// <returns> Un raspuns Http care semnaleaza o eroare sau statusul ok impreuna cu datele cerute prin request. </returns>
         [HttpGet("")]
-        public IActionResult GetBucketLists()
+        public async Task<IActionResult> GetBucketList()
         {
-            // TODO: adaugarea logicii business
-         
-            return Ok("Message from GetBucketLists." +
-                      "\n[route: GET /api/v1/bucketlists]");
+            var result = await _bucketListService.GetBucketLists();
+
+            return Ok(result);
         }
 
         [HttpGet("{bucketlistId}")]
@@ -50,6 +49,16 @@ namespace DoFest.API.Controllers
         public async Task<IActionResult> Add([FromRoute] Guid bucketlistId,[FromRoute] Guid activityId)
         {
             var result = await _bucketListService.Add(bucketlistId,activityId);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("{bucketlistId}/activities/{activityId}")]
+
+        // TODO: adaugarea logicii business
+        public async Task<IActionResult> Delete([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
+        {
+            var result = await _bucketListService.Delete(bucketlistId, activityId);
 
             return Ok(result);
         }

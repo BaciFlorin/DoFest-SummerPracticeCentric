@@ -30,6 +30,11 @@ namespace DoFest.Business.Services.Implementations
             return _mapper.Map<BucketListModel>(bucketList);
 
         }
+        public async Task<IList<BucketListModel>> GetBucketLists()
+        {
+            var bucketlists = await _repository.GetBucketLists();
+            return _mapper.Map<IList<BucketListModel>>(bucketlists);
+        }
 
         public async Task<BucketListModel> Add(Guid bucketListId, Guid activityId)
         {
@@ -48,5 +53,27 @@ namespace DoFest.Business.Services.Implementations
 
         }
 
+        public async Task<BucketListModel> DeleteActivity(Guid bucketListId, Guid activityId)
+        {
+            // TODO: exception handle
+
+            var bucketlist = await _repository.GetById(bucketListId);
+            var activity = bucketlist
+                .BucketListActivities
+                .FirstOrDefault(activity => activity.Id == activityId);
+            try
+            {
+                bucketlist.RemoveActivity(activityId);
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+            }
+
+            _repository.Update(bucketlist);
+            await _repository.SaveChanges();
+
+            return _mapper.Map<BucketListModel>(bucketlist);
+        }
     }
 }

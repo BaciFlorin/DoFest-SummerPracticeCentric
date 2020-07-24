@@ -24,6 +24,6 @@ namespace DoFest.Entities.Lists
         {
             this.BucketListActivities.Add(activity);
         }
-
+     
     }
 }

@@ -14,12 +14,10 @@ namespace DoFest.Persistence.BucketLists
         public BucketListRepository(DoFestContext context) : base(context)
         {
         }
-        public async Task<IList<BucketList>> GetBucketListById(Guid userId)
+        public async Task<IList<BucketList>> GetBucketLists()
             => await context
                 .BucketLists
-                .Where(bucketList => bucketList.UserId == userId)
                 .ToListAsync();
-
 
     }
 }
