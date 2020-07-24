@@ -6,6 +6,7 @@ using DoFest.Persistence.Activities;
 using DoFest.Persistence.BucketLists;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -75,5 +76,7 @@ namespace DoFest.Business.Services.Implementations
 
             return _mapper.Map<BucketListModel>(bucketlist);
         }
+
+    
     }
 }

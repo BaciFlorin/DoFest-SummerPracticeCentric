@@ -58,7 +58,7 @@ namespace DoFest.API.Controllers
         // TODO: adaugarea logicii business
         public async Task<IActionResult> Delete([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
         {
-            var result = await _bucketListService.Delete(bucketlistId, activityId);
+            var result = await _bucketListService.DeleteActivity(bucketlistId, activityId);
 
             return Ok(result);
         }

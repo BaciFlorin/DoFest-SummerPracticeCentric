@@ -13,6 +13,6 @@ namespace DoFest.Business.Services.Interfaces
         public Task<IList<BucketListModel>> GetBucketLists();
 
         public Task<BucketListModel> Add(Guid bucketList, Guid activityId);
-        public Task<BucketListModel> Delete(Guid bucketList, Guid activityId);
+        public Task<BucketListModel> DeleteActivity(Guid bucketList, Guid activityId);
     }
 }
