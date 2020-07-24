@@ -62,5 +62,15 @@ namespace DoFest.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpPatch("{bucketlistId}/activities/{activityId}")]
+
+        // TODO: adaugarea logicii business
+        public async Task<IActionResult> ChangeStatus([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
+        {
+            var result = await _bucketListService.Status(bucketlistId, activityId);
+
+            return Ok(result);
+        }
     }
 }

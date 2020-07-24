@@ -77,6 +77,31 @@ namespace DoFest.Business.Services.Implementations
             return _mapper.Map<BucketListModel>(bucketlist);
         }
 
-    
+        public async Task<BucketListModel> Status(Guid bucketListId, Guid activityId)
+        {
+            var bucketlist = await _repository.GetById(bucketListId);
+            var activity = bucketlist
+                .BucketListActivities
+                .FirstOrDefault(activity => activity.Id == activityId);
+            try
+            {
+                bucketlist.ChangeStatus(activityId);
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+            }
+
+            _repository.Update(bucketlist);
+            await _repository.SaveChanges();
+
+            return _mapper.Map<BucketListModel>(bucketlist);
+
+
+        }
+
+
+
+
     }
 }

@@ -22,7 +22,7 @@ namespace DoFest.Persistence
 
         public void Update(T entity)
             => this.context.Set<T>().Update(entity);
-
+         
         public void Delete(T entity)
             => this.context.Set<T>().Remove(entity);
 
