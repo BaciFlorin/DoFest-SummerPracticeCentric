@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DoFest.Business.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace DoFest.API.Controllers
 {
@@ -8,14 +11,12 @@ namespace DoFest.API.Controllers
     {
 
         // ****** Servicii folosite de catre controller ******
-        //.........
-        // TODO: adaugarea serviciilor
-
+        private readonly IActivitiesService _activitiesService;
 
         /// Constructorul public care va injecta serviciile necesare prin IoC
-        public ActivitiesController()
+        public ActivitiesController(IActivitiesService activitiesService)
         {
-            // TODO
+            _activitiesService = activitiesService;
         }
 
         // ****** Maparea metodelor HTTP ******
@@ -31,6 +32,16 @@ namespace DoFest.API.Controllers
             // TODO: adaugarea sintaxei pentru async/await
             return Ok("Message from GetActivities." +
                       "\n[route: GET /api/v1/activities]");
+        }
+
+        [HttpGet("{activityId}")]
+
+        // TODO: adaugarea logicii business
+        public async Task<IActionResult> Get([FromRoute] Guid activityId)
+        {
+            var result = await _activitiesService.Get(activityId);
+
+            return Ok(result);
         }
 
     }
