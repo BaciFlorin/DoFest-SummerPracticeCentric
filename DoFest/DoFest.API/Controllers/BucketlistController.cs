@@ -1,5 +1,7 @@
 ﻿using DoFest.Business.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace DoFest.API.Controllers
 {
@@ -27,10 +29,29 @@ namespace DoFest.API.Controllers
         public IActionResult GetBucketLists()
         {
             // TODO: adaugarea logicii business
-            // TODO: adaugarea sintaxei pentru async/await
+         
             return Ok("Message from GetBucketLists." +
                       "\n[route: GET /api/v1/bucketlists]");
         }
 
+        [HttpGet("{bucketlistId}")]
+
+        // TODO: adaugarea logicii business
+        public async Task<IActionResult> Get([FromRoute] Guid bucketlistId)
+        {
+            var result = await _bucketListService.Get(bucketlistId);
+
+            return Ok(result);
+        }
+
+        [HttpPatch("{bucketlistId}/activities/{activityId}")]
+
+        // TODO: adaugarea logicii business
+        public async Task<IActionResult> Add([FromRoute] Guid bucketlistId,[FromRoute] Guid activityId)
+        {
+            var result = await _bucketListService.Add(bucketlistId,activityId);
+
+            return Ok(result);
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using DoFest.Business.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace DoFest.API.Controllers
 {
@@ -30,6 +32,16 @@ namespace DoFest.API.Controllers
             // TODO: adaugarea sintaxei pentru async/await
             return Ok("Message from GetActivities." +
                       "\n[route: GET /api/v1/activities]");
+        }
+
+        [HttpGet("{activityId}")]
+
+        // TODO: adaugarea logicii business
+        public async Task<IActionResult> Get([FromRoute] Guid activityId)
+        {
+            var result = await _activitiesService.Get(activityId);
+
+            return Ok(result);
         }
 
     }

@@ -8,11 +8,9 @@ namespace DoFest.Business.Models.BucketList
     {
         public Guid Id { get; private set; }
 
-        public Guid UserId { get; private set; }
-
         public string Name { get; private set; }
 
-
+        public string Username { get; private set; }
 
     }
 

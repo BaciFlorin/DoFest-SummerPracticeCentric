@@ -4,6 +4,7 @@ using DoFest.Business.Services.Implementations;
 using DoFest.Business.Services.Interfaces;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
+using DoFest.Persistence.BucketLists;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,8 @@ namespace DoFest.API
                 config.UseSqlServer(Configuration.GetConnectionString("DoFestConnection")));
 
             services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
+            services.AddScoped<IBucketListRepository, BucketListRepository>();
+
 
             services.AddAutoMapper(config =>
             {
@@ -42,6 +45,8 @@ namespace DoFest.API
             
             services.AddScoped<IPhotosService, PhotosService>();
             services.AddScoped<IRatingsService, RatingsService>();
+            services.AddScoped<IActivitiesService, ActivitiesService>();
+            services.AddScoped<IBucketListService, BucketListService>();
 
             services
                 .AddMvc()
