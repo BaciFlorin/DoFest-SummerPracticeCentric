@@ -35,7 +35,6 @@ namespace DoFest.API.Controllers
         }
 
         [HttpGet("{activityId}")]
-
         // TODO: adaugarea logicii business
         public async Task<IActionResult> Get([FromRoute] Guid activityId)
         {
