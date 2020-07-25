@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace DoFest.Entities.Lists
 {
@@ -23,6 +24,26 @@ namespace DoFest.Entities.Lists
         public void AddBucketListActivity(BucketListActivity activity)
         {
             this.BucketListActivities.Add(activity);
+        }
+
+        public void RemoveActivity(Guid activityId)
+        {
+            var activity = this.BucketListActivities.FirstOrDefault(activity => activity.Id == activityId);
+
+            if (activity != null)
+            {
+                this.BucketListActivities.Remove(activity);
+            }
+        }
+
+        public void ChangeStatus(Guid activityId)
+        {
+            var activity = this.BucketListActivities.FirstOrDefault(activity => activity.Id == activityId);
+
+            if (activity != null)
+            {
+                this.BucketListActivities.Change(activity);
+            }
         }
 
     }

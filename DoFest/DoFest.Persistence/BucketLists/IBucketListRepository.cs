@@ -10,6 +10,8 @@ namespace DoFest.Persistence.BucketLists
     public interface IBucketListRepository:IRepository<BucketList>
     {
 
-        Task<IList<BucketList>> GetBucketListById(Guid userId);
+        Task<IList<BucketList>> GetBucketLists();
+
+        
     }
 }

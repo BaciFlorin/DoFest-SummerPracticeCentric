@@ -21,6 +21,8 @@ namespace DoFest.Business
 
             CreateMap<Activity, ActivityModel>();
             CreateMap<BucketList,BucketListModel>();
+
+
         }
     }
 }
