@@ -19,5 +19,10 @@ namespace DoFest.Persistence.BucketLists
                 .BucketLists
                 .ToListAsync();
 
+        public async Task<BucketListActivity> GetBucketListActivityById(Guid bucketlistId, Guid activityId)
+            => await context
+                .BucketListActivities
+                .FirstAsync(bla => bla.BucketListId == bucketlistId && bla.ActivityId == activityId);
+
     }
 }

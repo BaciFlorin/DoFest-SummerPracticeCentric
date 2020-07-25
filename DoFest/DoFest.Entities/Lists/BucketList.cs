@@ -28,7 +28,7 @@ namespace DoFest.Entities.Lists
 
         public void RemoveActivity(Guid activityId)
         {
-            var activity = this.BucketListActivities.FirstOrDefault(activity => activity.Id == activityId);
+            var activity = this.BucketListActivities.FirstOrDefault(bucketlistactivity => bucketlistactivity.ActivityId == activityId);
 
             if (activity != null)
             {

@@ -42,15 +42,6 @@ namespace DoFest.API.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("{bucketlistId}/activities/{activityId}")]
-        // TODO: adaugarea logicii business
-        public async Task<IActionResult> Add([FromRoute] Guid bucketlistId,[FromRoute] Guid activityId)
-        {
-            var result = await _bucketListService.Add(bucketlistId,activityId);
-
-            return Ok(result);
-        }
-
         [HttpDelete("{bucketlistId}/activities/{activityId}")]
         // TODO: adaugarea logicii business
         public async Task<IActionResult> Delete([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)

@@ -59,7 +59,7 @@ namespace DoFest.Business.Services.Implementations
             var bucketlist = await _repository.GetById(bucketListId);
             var activity = bucketlist
                 .BucketListActivities
-                .FirstOrDefault(activity => activity.Id == activityId);
+                .FirstOrDefault(activity => activity.ActivityId == activityId);
             try
             {
                 bucketlist.RemoveActivity(activityId);
@@ -77,13 +77,12 @@ namespace DoFest.Business.Services.Implementations
 
         public async Task<BucketListModel> ToggleStatus(Guid bucketListId, Guid activityId)
         {
+            var bucketlistActivity = await _repository.GetBucketListActivityById(bucketListId, activityId);
             var bucketlist = await _repository.GetById(bucketListId);
-            var bucketlistActivity = bucketlist
-                .BucketListActivities
-                .FirstOrDefault(activity => activity.Id == activityId);
             try
             {
                 bucketlistActivity?.UpdateStatus();
+                _repository.Update(bucketlist);
             }
             catch (Exception e)
             {
