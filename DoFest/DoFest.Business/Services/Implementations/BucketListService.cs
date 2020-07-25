@@ -2,12 +2,10 @@
 using DoFest.Business.Models.BucketList;
 using DoFest.Business.Services.Interfaces;
 using DoFest.Entities.Lists;
-using DoFest.Persistence.Activities;
 using DoFest.Persistence.BucketLists;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DoFest.Business.Services.Implementations
@@ -77,31 +75,24 @@ namespace DoFest.Business.Services.Implementations
             return _mapper.Map<BucketListModel>(bucketlist);
         }
 
-        public async Task<BucketListModel> Status(Guid bucketListId, Guid activityId)
+        public async Task<BucketListModel> ToggleStatus(Guid bucketListId, Guid activityId)
         {
             var bucketlist = await _repository.GetById(bucketListId);
-            var activity = bucketlist
+            var bucketlistActivity = bucketlist
                 .BucketListActivities
                 .FirstOrDefault(activity => activity.Id == activityId);
             try
             {
-                bucketlist.ChangeStatus(activityId);
+                bucketlistActivity?.UpdateStatus();
             }
             catch (Exception e)
             {
                 Console.Write(e.Message);
             }
-
             _repository.Update(bucketlist);
             await _repository.SaveChanges();
-
             return _mapper.Map<BucketListModel>(bucketlist);
-
-
         }
-
-
-
 
     }
 }

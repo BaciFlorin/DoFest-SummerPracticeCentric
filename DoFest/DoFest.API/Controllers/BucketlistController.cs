@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DoFest.API.Controllers
 {
-    [Route("api/v1/bucketlists")]
+    [Route("/api/v1/bucketlists/")]
     [ApiController]
     public class BucketlistController : ControllerBase
     {
@@ -63,12 +63,12 @@ namespace DoFest.API.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("{bucketlistId}/activities/{activityId}")]
+        [HttpPatch("{bucketlistId}/activities/{activityId}/togglestatus")]
 
         // TODO: adaugarea logicii business
         public async Task<IActionResult> ChangeStatus([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
         {
-            var result = await _bucketListService.Status(bucketlistId, activityId);
+            var result = await _bucketListService.ToggleStatus(bucketlistId, activityId);
 
             return Ok(result);
         }

@@ -22,5 +22,10 @@ namespace DoFest.Entities.Lists
         [DefaultValue("Unlisted")]
         public string Status { get; set; }
         public Guid Id { get; internal set; }
+
+        public void UpdateStatus()
+        {
+            Status = Status == "Unlisted" ? "Listed" : "Unlisted";
+        }
     }
 }

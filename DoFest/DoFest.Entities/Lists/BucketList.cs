@@ -36,15 +36,5 @@ namespace DoFest.Entities.Lists
             }
         }
 
-        public void ChangeStatus(Guid activityId)
-        {
-            var activity = this.BucketListActivities.FirstOrDefault(activity => activity.Id == activityId);
-
-            if (activity != null)
-            {
-                this.BucketListActivities.Change(activity);
-            }
-        }
-
     }
 }
