@@ -10,6 +10,6 @@ namespace DoFest.Persistence.Activities
     {
         Task<Activity> GetByIdWithPhotos(Guid id);
         Task<Activity> GetByIdWithRatings(Guid id);
-
+    
     }
 }

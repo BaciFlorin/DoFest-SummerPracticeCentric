@@ -9,5 +9,6 @@ namespace DoFest.Business.Services.Interfaces
     public interface IActivitiesService
     {
         public Task<ActivityModel> Get(Guid activityId);
+        
     }
 }
