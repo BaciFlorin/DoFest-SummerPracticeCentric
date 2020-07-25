@@ -5,7 +5,6 @@ using DoFest.Business.Services.Interfaces;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Authentication;
-using DoFest.Persistence.Comments;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,7 +36,6 @@ namespace DoFest.API
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
-            services.AddScoped<ICommentsRepository, CommentsRepository>();
 
             services.AddAutoMapper(config =>
             {
