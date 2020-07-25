@@ -43,5 +43,24 @@ namespace DoFest.API.Controllers
             return Ok(result);
         }
 
+        [HttpPost("")]
+
+        // TODO: adaugarea logicii business
+        public async Task<IActionResult> Add([FromRoute] Guid activityId)
+        {
+            var result = await _activitiesService.Get(activityId);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("/{activityId}")]
+
+        // TODO: adaugarea logicii business
+        public async Task<IActionResult> Delete([FromRoute] Guid activityId)
+        {
+            var result = await _activitiesService.Get(activityId);
+
+            return Ok(result);
+        }
     }
 }

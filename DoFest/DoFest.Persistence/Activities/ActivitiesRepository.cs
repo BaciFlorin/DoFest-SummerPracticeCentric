@@ -23,5 +23,6 @@ namespace DoFest.Persistence.Activities
             => await this.context.Activities
                 .Include(activity => activity.Ratings)
                 .FirstAsync(activity => activity.Id == id);
+
     }
 }

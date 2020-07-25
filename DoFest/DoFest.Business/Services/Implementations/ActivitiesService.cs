@@ -4,6 +4,7 @@ using DoFest.Business.Services.Interfaces;
 using DoFest.Persistence.Activities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,7 @@ namespace DoFest.Business.Services.Implementations
             _repository = repository;
             _mapper = mapper;
         }
+
 
         public async Task<ActivityModel> Get(Guid activityId)
         {
