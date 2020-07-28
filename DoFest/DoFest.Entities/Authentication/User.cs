@@ -41,9 +41,5 @@ namespace DoFest.Entities.Authentication
         public ICollection<Rating> Ratings { get; set; }
 
         public ICollection<Note> Notes { get; set; }
-
-        public BucketList BucketList { get; set; }
-
-        public ICollection<Notification.Notification> Notifications { get; set; }
     }
 }

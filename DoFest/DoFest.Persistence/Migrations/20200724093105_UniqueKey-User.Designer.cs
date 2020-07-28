@@ -4,14 +4,16 @@ using DoFest.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DoFest.Persistence.Migrations
 {
     [DbContext(typeof(DoFestContext))]
-    partial class DoFestContextModelSnapshot : ModelSnapshot
+    [Migration("20200724093105_UniqueKey-User")]
+    partial class UniqueKeyUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,9 +215,6 @@ namespace DoFest.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ActivityId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -224,9 +223,13 @@ namespace DoFest.Persistence.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
+                    b.Property<Guid?>("UserId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ActivityId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Notification");
                 });
@@ -445,9 +448,9 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Authentication.Notification.Notification", b =>
                 {
-                    b.HasOne("DoFest.Entities.Activities.Activity", null)
+                    b.HasOne("DoFest.Entities.Authentication.User", null)
                         .WithMany("Notifications")
-                        .HasForeignKey("ActivityId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -464,7 +467,7 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Authentication.User", b =>
                 {
                     b.HasOne("DoFest.Entities.Authentication.Student", null)
-                        .WithOne()
+                        .WithOne("User")
                         .HasForeignKey("DoFest.Entities.Authentication.User", "StudentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -478,7 +481,7 @@ namespace DoFest.Persistence.Migrations
             modelBuilder.Entity("DoFest.Entities.Lists.BucketList", b =>
                 {
                     b.HasOne("DoFest.Entities.Authentication.User", null)
-                        .WithOne()
+                        .WithOne("BucketList")
                         .HasForeignKey("DoFest.Entities.Lists.BucketList", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

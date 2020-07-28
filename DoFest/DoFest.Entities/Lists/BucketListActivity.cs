@@ -2,8 +2,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Windows.Markup;
-using DoFest.Entities.Activities;
 
 namespace DoFest.Entities.Lists
 {
@@ -23,5 +21,10 @@ namespace DoFest.Entities.Lists
 
         [DefaultValue("Unlisted")]
         public string Status { get; set; }
+
+        public void UpdateStatus()
+        {
+            Status = Status == "Unlisted" ? "Listed" : "Unlisted";
+        }
     }
 }

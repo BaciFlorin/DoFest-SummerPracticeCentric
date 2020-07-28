@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using DoFest.Entities.Activities.Places;
 
 namespace DoFest.Entities.Authentication
 {
@@ -26,6 +25,5 @@ namespace DoFest.Entities.Authentication
         [Required]
         public Guid? CityId { get; set; }
 
-        public User User { get;  set; }
     }
 }

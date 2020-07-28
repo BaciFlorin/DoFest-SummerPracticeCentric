@@ -4,14 +4,16 @@ using DoFest.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DoFest.Persistence.Migrations
 {
     [DbContext(typeof(DoFestContext))]
-    partial class DoFestContextModelSnapshot : ModelSnapshot
+    [Migration("20200726084240_Adding-notifications-to-Activity")]
+    partial class AddingnotificationstoActivity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,7 +215,8 @@ namespace DoFest.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ActivityId")
+                    b.Property<Guid?>("ActivityId")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Date")
@@ -224,9 +227,15 @@ namespace DoFest.Persistence.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
+                    b.Property<Guid?>("UserId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ActivityId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Notification");
                 });
@@ -448,6 +457,12 @@ namespace DoFest.Persistence.Migrations
                     b.HasOne("DoFest.Entities.Activities.Activity", null)
                         .WithMany("Notifications")
                         .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DoFest.Entities.Authentication.User", null)
+                        .WithMany("Notifications")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

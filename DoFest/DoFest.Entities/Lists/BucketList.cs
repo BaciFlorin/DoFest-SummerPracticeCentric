@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using DoFest.Entities.Authentication;
+using System.Linq;
 
 namespace DoFest.Entities.Lists
 {
@@ -22,5 +21,20 @@ namespace DoFest.Entities.Lists
         public string Name { get; set; }
 
         public ICollection<BucketListActivity> BucketListActivities { get; set; }
+        public void AddBucketListActivity(BucketListActivity activity)
+        {
+            this.BucketListActivities.Add(activity);
+        }
+
+        public void RemoveActivity(Guid activityId)
+        {
+            var activity = this.BucketListActivities.FirstOrDefault(bucketlistactivity => bucketlistactivity.ActivityId == activityId);
+
+            if (activity != null)
+            {
+                this.BucketListActivities.Remove(activity);
+            }
+        }
+
     }
 }
