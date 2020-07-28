@@ -1,9 +1,7 @@
-﻿using DoFest.Business.Services.Interfaces;
-using DoFest.Entities.Authentication;
-using DoFest.Persistence.Authentication;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using DoFest.Business.Activities.Services.Interfaces;
 
 namespace DoFest.API.Controllers
 {

@@ -1,8 +1,8 @@
 using AutoMapper;
 using DoFest.API.Extensions;
-using DoFest.Business;
-using DoFest.Business.Services.Implementations;
-using DoFest.Business.Services.Interfaces;
+using DoFest.Business.Activities;
+using DoFest.Business.Activities.Services.Implementations;
+using DoFest.Business.Activities.Services.Interfaces;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Authentication;
