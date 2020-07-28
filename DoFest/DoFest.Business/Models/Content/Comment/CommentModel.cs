@@ -5,6 +5,6 @@
     /// </summary>
     public sealed class CommentModel
     {
-        public string Content { get; set; }
+        public string Content { get; private set; }
     }
 }
