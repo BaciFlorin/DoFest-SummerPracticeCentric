@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DoFest.Business.Models.Content.Photos;
-using DoFest.Business.Services.Interfaces;
+using DoFest.Business.Activities.Models.Content.Photos;
+using DoFest.Business.Activities.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers

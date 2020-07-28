@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DoFest.Business.Models.Content.Ratings;
+using DoFest.Business.Activities.Models.Content.Ratings;
 
-namespace DoFest.Business.Services.Interfaces
+namespace DoFest.Business.Activities.Services.Interfaces
 {
     public interface IRatingsService
     {

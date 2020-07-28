@@ -1,8 +1,9 @@
 using AutoMapper;
-using DoFest.Business;
-using DoFest.Business.Models.Content.Comment;
-using DoFest.Business.Services.Implementations;
-using DoFest.Business.Services.Interfaces;
+using DoFest.Business.Activities;
+using DoFest.Business.Activities.Models.Content.Comment;
+using DoFest.Business.Activities.Services.Implementations;
+using DoFest.Business.Activities.Services.Interfaces;
+using DoFest.Business.Activities.Validators.Content;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
 using FluentValidation;
@@ -14,7 +15,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
-using DoFest.Business.Validators.Content;
 
 namespace DoFest.API
 {

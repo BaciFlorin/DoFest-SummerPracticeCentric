@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DoFest.Business.Models.Content.Photos
+namespace DoFest.Business.Activities.Models.Content.Photos
 {
     public sealed class PhotoModel
     {

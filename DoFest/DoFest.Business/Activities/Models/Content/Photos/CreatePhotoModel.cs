@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http;
 
-namespace DoFest.Business.Models.Content.Photos
+namespace DoFest.Business.Activities.Models.Content.Photos
 {
     public sealed class CreatePhotoModel
     {

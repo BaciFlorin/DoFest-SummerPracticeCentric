@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using DoFest.Business.Models.Content.Comment;
-using DoFest.Business.Services.Interfaces;
+using DoFest.Business.Activities.Models.Content.Comment;
+using DoFest.Business.Activities.Services.Interfaces;
 using DoFest.Entities.Activities.Content;
 using DoFest.Persistence.Activities;
 using Microsoft.AspNetCore.Http;
 
-namespace DoFest.Business.Services.Implementations
+namespace DoFest.Business.Activities.Services.Implementations
 {
     /// <summary>
     /// Implementarea serviciului pentru comentarii.

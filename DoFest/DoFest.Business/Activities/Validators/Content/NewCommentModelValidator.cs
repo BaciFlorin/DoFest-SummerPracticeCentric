@@ -1,7 +1,7 @@
-﻿using DoFest.Business.Models.Content.Comment;
+﻿using DoFest.Business.Activities.Models.Content.Comment;
 using FluentValidation;
 
-namespace DoFest.Business.Validators.Content
+namespace DoFest.Business.Activities.Validators.Content
 {
     /// <summary>
     /// Validatorul asociat modelului business pentru comentarii noi.

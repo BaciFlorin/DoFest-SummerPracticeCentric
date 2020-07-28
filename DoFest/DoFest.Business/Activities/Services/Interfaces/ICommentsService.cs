@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DoFest.Business.Models.Content.Comment;
+using DoFest.Business.Activities.Models.Content.Comment;
 
-namespace DoFest.Business.Services.Interfaces
+namespace DoFest.Business.Activities.Services.Interfaces
 {
     /// <summary>
     /// Definirea contractul folosit de catre un serviciu de comentarii.

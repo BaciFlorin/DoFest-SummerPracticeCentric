@@ -1,4 +1,4 @@
-﻿namespace DoFest.Business.Models.Content.Comment
+﻿namespace DoFest.Business.Activities.Models.Content.Comment
 {
     /// <summary>
     /// Reprezentarea unei entitati Comment in cod.

@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
-using DoFest.Business.Models.Content.Comment;
-using DoFest.Business.Models.Content.Photos;
-using DoFest.Business.Models.Content.Ratings;
+﻿using AutoMapper;
+using DoFest.Business.Activities.Models.Content.Comment;
+using DoFest.Business.Activities.Models.Content.Photos;
+using DoFest.Business.Activities.Models.Content.Ratings;
 using DoFest.Entities.Activities.Content;
 
-namespace DoFest.Business
+namespace DoFest.Business.Activities
 {
     /// <summary>
     /// Profil de mapping intre modelele si entitati.

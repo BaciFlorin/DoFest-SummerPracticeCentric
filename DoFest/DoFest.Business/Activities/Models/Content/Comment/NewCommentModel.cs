@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace DoFest.Business.Models.Content.Comment
+namespace DoFest.Business.Activities.Models.Content.Comment
 {
     /// <summary>
     /// Model de data prin care se adauga un comentariu nou.
