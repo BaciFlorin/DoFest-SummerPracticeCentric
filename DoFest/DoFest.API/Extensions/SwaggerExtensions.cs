@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace TripLooking.API.Extensions
+namespace DoFest.API.Extensions
 {
     public static class SwaggerExtensions
     {

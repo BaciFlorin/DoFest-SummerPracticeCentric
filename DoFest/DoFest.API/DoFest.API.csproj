@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DoFest.Business\DoFest.Business.csproj" />
     <ProjectReference Include="..\DoFest.Persistence\DoFest.Persistence.csproj" />
   </ItemGroup>
