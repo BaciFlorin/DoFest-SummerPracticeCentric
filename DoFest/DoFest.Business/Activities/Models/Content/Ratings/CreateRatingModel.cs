@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
 
-namespace DoFest.Business.Models.Ratings
+namespace DoFest.Business.Activities.Models.Content.Ratings
 {
     public class CreateRatingModel
     {

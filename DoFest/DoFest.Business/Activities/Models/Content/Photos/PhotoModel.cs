@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace DoFest.Business.Models.Photos
+namespace DoFest.Business.Activities.Models.Content.Photos
 {
     public sealed class PhotoModel
     {

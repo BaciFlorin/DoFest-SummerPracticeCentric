@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using DoFest.Business.Models.Photos;
+using DoFest.Business.Activities.Models.Content.Photos;
 
-namespace DoFest.Business.Services.Interfaces
+namespace DoFest.Business.Activities.Services.Interfaces
 {
     public interface IPhotosService
     {

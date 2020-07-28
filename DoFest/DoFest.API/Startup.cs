@@ -1,9 +1,9 @@
 using AutoMapper;
-using DoFest.Business;
-using DoFest.Business.Models.Ratings;
-using DoFest.Business.Services.Implementations;
-using DoFest.Business.Services.Interfaces;
-using DoFest.Business.Validators;
+using DoFest.Business.Activities;
+using DoFest.Business.Activities.Models.Content.Ratings;
+using DoFest.Business.Activities.Services.Implementations;
+using DoFest.Business.Activities.Services.Interfaces;
+using DoFest.Business.Activities.Validators;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
 using FluentValidation;

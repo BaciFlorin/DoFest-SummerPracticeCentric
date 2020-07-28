@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DoFest.Business.Models.Ratings;
+﻿using DoFest.Business.Activities.Models.Content.Ratings;
 using FluentValidation;
 
-namespace DoFest.Business.Validators
+namespace DoFest.Business.Activities.Validators
 {
     public class CreateRatingModelValidator:AbstractValidator<CreateRatingModel>
     {

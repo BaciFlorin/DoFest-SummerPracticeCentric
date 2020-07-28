@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http;
 
-namespace DoFest.Business.Models.Photos
+namespace DoFest.Business.Activities.Models.Content.Photos
 {
     public sealed class CreatePhotoModel
     {

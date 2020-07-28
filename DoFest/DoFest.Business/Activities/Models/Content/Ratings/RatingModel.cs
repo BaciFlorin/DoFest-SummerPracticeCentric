@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace DoFest.Business.Models.Ratings
+namespace DoFest.Business.Activities.Models.Content.Ratings
 {
     public sealed class RatingModel
     {

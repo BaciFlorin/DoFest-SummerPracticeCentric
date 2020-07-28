@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using DoFest.Business.Models.Ratings;
-using DoFest.Business.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
+using DoFest.Business.Activities.Models.Content.Ratings;
+using DoFest.Business.Activities.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
