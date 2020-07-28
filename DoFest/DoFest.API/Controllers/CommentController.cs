@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using DoFest.Business.Models.Content.Comment;
 using DoFest.Business.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
 {
     [Route("/api/v1/activities/{activityId}/comments/")]
     [ApiController]
+    [Authorize]
     public class CommentController : ControllerBase
     {
         // ****** Servicii folosite de catre controller ******

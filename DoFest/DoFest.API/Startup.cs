@@ -1,9 +1,11 @@
 using AutoMapper;
 using DoFest.Business;
+using DoFest.Business.Models.Content.Comment;
 using DoFest.Business.Services.Implementations;
 using DoFest.Business.Services.Interfaces;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using DoFest.Business.Validators.Content;
 
 namespace DoFest.API
 {
@@ -45,9 +48,14 @@ namespace DoFest.API
             services.AddScoped<IRatingsService, RatingsService>();
             services.AddScoped<ICommentsService, CommentsService>();
 
+            // Adaugare validatori
+            services.AddTransient<IValidator<NewCommentModel>, NewCommentModelValidator>();
+
+
             services
                 .AddMvc()
                 .AddFluentValidation();
+
             services.AddControllers()
                 .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 

@@ -11,26 +11,28 @@ namespace DoFest.Business.Services.Interfaces
     public interface ICommentsService
     {
         /// <summary>
-        /// Selecteaza si returneaza toate comentariile asociate unei activitati din baza de date.
+        /// Metoda ce returneaza toate comentariile asociate unei activitati.
         /// </summary>
-        /// <param name="activityId"> Id-ul unei activitati. </param>
-        /// <returns> O lista ce contine toate comentariile asociate unei activitati. </returns>
+        /// <param name="activityId"> Id-ul activitatii cautate. </param>
+        /// <returns> O lista cu toate comentariile unei activitati. </returns>
         Task<IList<CommentModel>> GetComments(Guid activityId);
 
         /// <summary>
-        /// Adauga un comentariu la o activitate specificata.
+        /// Metoda de adaugare a unui comentariu.
         /// </summary>
-        /// <param name="activityId"></param>
-        /// <param name="commentModel"> Un model de comentariu nou. </param>
-        /// <returns> Un model de comment ce a fost adaugat. </returns>
+        /// <param name="activityId"> Id-ul activitatii careia ii va fi adaugat comentariul. </param>
+        /// <param name="commentModel"> Modelul business atribuit comentariului ce va fi adaugat. </param>
+        /// <returns> Un model business cu comentariul adaugat. </returns>
+        /// TODO: schimba datele returnate
         Task<CommentModel> AddComment(Guid activityId, NewCommentModel commentModel);
 
         /// <summary>
-        /// Sterge un comentariu asociat unei activitati.
+        /// Metoda de delete a unui comentariu existent in db.
         /// </summary>
-        /// <param name="activityId"> Id-ul unei activitati. </param>
-        /// <param name="commentId"> Id-ul unui comentariu. </param>
-        /// <returns> Un model de comment ce a fost sters. </returns>
+        /// <param name="activityId"> Id-ul activitatii careia este asociat comentariul. </param>
+        /// <param name="commentId"> Id-ul cometariului care urmeaza sa fie sters. </param>
+        /// <returns> Un model business cu comentariul sters. </returns>
+        /// TODO: schimba datele returnate
         Task<CommentModel> DeleteComment(Guid activityId, Guid commentId);
     }
 }

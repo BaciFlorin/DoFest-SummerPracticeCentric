@@ -7,6 +7,7 @@ using DoFest.Business.Models.Content.Comment;
 using DoFest.Business.Services.Interfaces;
 using DoFest.Entities.Activities.Content;
 using DoFest.Persistence.Activities;
+using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Services.Implementations
 {
@@ -17,11 +18,19 @@ namespace DoFest.Business.Services.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IActivitiesRepository _repository;
+        private readonly IHttpContextAccessor _accessor;
 
-        public CommentsService(IMapper mapper, IActivitiesRepository repository)
+        /// <summary>
+        /// Constructor public default.
+        /// </summary>
+        /// <param name="mapper"> Serviciul de mapare. </param>
+        /// <param name="repository"> Repository-ul atribuit activitatilor. </param>
+        /// <param name="accessor"> Un accesor pentru accesarea campurilor requestului HTTP. </param>
+        public CommentsService(IMapper mapper, IActivitiesRepository repository, IHttpContextAccessor accessor)
         {
-            this._mapper = mapper;
-            this._repository = repository;
+            _mapper = mapper;
+            _repository = repository;
+            _accessor = accessor;
         }
 
         public async Task<IList<CommentModel>> GetComments(Guid activityId)
@@ -35,6 +44,7 @@ namespace DoFest.Business.Services.Implementations
         public async Task<CommentModel> AddComment(Guid activityId, NewCommentModel commentModel)
         {
             // TODO: exception handle
+            commentModel.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var activity = await _repository.GetById(activityId);
             var comment = _mapper.Map<Comment>(commentModel);
             activity.AddComment(comment);
