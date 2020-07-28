@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DoFest.Entities.Activities;
+﻿using System.Threading.Tasks;
 using DoFest.Entities.Authentication;
 
 namespace DoFest.Persistence.Authentication

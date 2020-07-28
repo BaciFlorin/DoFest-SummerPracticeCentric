@@ -1,23 +1,18 @@
 using System.Text;
 using AutoMapper;
 using DoFest.API.Extensions;
+using DoFest.Business.Activities;
+using DoFest.Business.Activities.Models.Content.Comment;
+using DoFest.Business.Activities.Models.Content.Ratings;
+using DoFest.Business.Activities.Services.Implementations;
+using DoFest.Business.Activities.Services.Interfaces;
+using DoFest.Business.Activities.Validators.Content;
 using DoFest.Business.Identity;
 using DoFest.Business.Identity.Models;
 using DoFest.Business.Identity.Models.Notifications;
 using DoFest.Business.Identity.Services.Implementations;
 using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Business.Identity.Validators;
-using AutoMapper;
-using DoFest.Business.Activities;
-using DoFest.Business.Activities.Models.Content.Ratings;
-using DoFest.Business.Activities.Services.Implementations;
-using DoFest.Business.Activities.Services.Interfaces;
-using DoFest.Business.Activities.Validators;
-using DoFest.Business.Activities;
-using DoFest.Business.Activities.Models.Content.Comment;
-using DoFest.Business.Activities.Services.Implementations;
-using DoFest.Business.Activities.Services.Interfaces;
-using DoFest.Business.Activities.Validators.Content;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Activities.Places;
@@ -51,15 +46,31 @@ namespace DoFest.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            // ****** General settings ******
+            AddAuthentication(services);
+            services
+                .AddMvc()
+                .AddFluentValidation();
+            services
+                .AddCors()
+                .AddHttpContextAccessor()
+                .AddSwagger()
+                .AddControllers()
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
+            // ****** Add services ******
             services
                 .AddScoped<IAuthenticationService, AuthenticationService>()
                 .AddScoped<INotificationService, NotificationService>()
-                .AddScoped<IPasswordHasher, PasswordHasher>();
+                .AddScoped<IPasswordHasher, PasswordHasher>()
+                .AddScoped<IActivitiesService, ActivitiesService>()
+                .AddScoped<IBucketListService, BucketListService>()
+                .AddScoped<ICommentsService, CommentsService>()
+                .AddScoped<IPhotosService, PhotosService>()
+                .AddScoped<IRatingsService, RatingsService>();
 
-            AddAuthentication(services);
 
+            // ****** Add Repositories and DbContext ******
             services.AddDbContext<DoFestContext>(config =>
                 config.UseSqlServer(Configuration.GetConnectionString("DoFestConnection")))
                 .AddScoped<IUserRepository, UserRepository>()
@@ -70,25 +81,25 @@ namespace DoFest.API
                 .AddScoped<IActivitiesRepository, ActivitiesRepository>()
                 .AddScoped<IBucketListRepository, BucketListRepository>();
 
+
+            // ****** Add Mapper profiles ******
             services
                 .AddAutoMapper(config =>
                 {
                     config.AddProfile<AuthenticationMappingProfile>();
                     config.AddProfile<NotificationMappingProfile>();
-                })
-                .AddHttpContextAccessor()
-                .AddSwagger()
-                .AddControllers()
-                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore); ;
+                    config.AddProfile<ActivitiesMappingProfile>();
+                });
+                
             
-            services
-                .AddMvc()
-                .AddFluentValidation();
-
+            
+            // ****** Add validators ******
             services.AddTransient<IValidator<RegisterModel>, UserRegisterModelValidator>()
                 .AddTransient<IValidator<NewPasswordModelRequest>, NewPasswordModelValidator>()
                 .AddTransient<IValidator<LoginModelRequest>, LoginModelValidator>()
-                .AddTransient<IValidator<CreateNotificationModel>, CreateNotificationModelValidator>();
+                .AddTransient<IValidator<CreateNotificationModel>, CreateNotificationModelValidator>()
+                .AddTransient<IValidator<NewCommentModel>, NewCommentModelValidator>()
+                .AddTransient<IValidator<CreateRatingModel>, CreateRatingModelValidator>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -98,8 +109,6 @@ namespace DoFest.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseSwagger();
 
             app.UseSwaggerUI(c =>
             {
@@ -112,7 +121,8 @@ namespace DoFest.API
                 .UseCors(options => options.AllowAnyOrigin().AllowAnyMethod())
                 .UseAuthentication()
                 .UseAuthorization()
-                .UseEndpoints(endpoints => endpoints.MapControllers());
+                .UseEndpoints(endpoints => endpoints.MapControllers())
+                .UseSwagger();
         }
 
         private void AddAuthentication(IServiceCollection services)

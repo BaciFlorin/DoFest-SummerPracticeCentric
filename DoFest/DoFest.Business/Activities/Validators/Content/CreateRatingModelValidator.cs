@@ -1,7 +1,7 @@
 ﻿using DoFest.Business.Activities.Models.Content.Ratings;
 using FluentValidation;
 
-namespace DoFest.Business.Activities.Validators
+namespace DoFest.Business.Activities.Validators.Content
 {
     public class CreateRatingModelValidator:AbstractValidator<CreateRatingModel>
     {

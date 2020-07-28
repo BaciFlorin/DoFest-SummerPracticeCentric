@@ -7,7 +7,7 @@ namespace DoFest.API.Controllers
 {
     [Route("api/v1/activities")]
     [ApiController]
-    public class ActivitiesController : ControllerBase
+    public class ActivitiesController: ControllerBase
     {
 
         // ****** Servicii folosite de catre controller ******

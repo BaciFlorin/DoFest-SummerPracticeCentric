@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using DoFest.Entities.Activities;
 using DoFest.Entities.Authentication;
 using Microsoft.EntityFrameworkCore;
 
