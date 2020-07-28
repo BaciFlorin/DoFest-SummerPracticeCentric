@@ -16,6 +16,5 @@ namespace DoFest.Entities.Activities
         public string Name { get; set; }
 
         public ICollection<Activity> Activities { get; set; }
-        
     }
 }
