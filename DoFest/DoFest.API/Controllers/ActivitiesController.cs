@@ -1,4 +1,5 @@
 ﻿using DoFest.Business.Services.Interfaces;
+using DoFest.Persistence.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ namespace DoFest.API.Controllers
             // TODO: adaugarea sintaxei pentru async/await
             return Ok("Message from GetActivities." +
                       "\n[route: GET /api/v1/activities]");
+            //retureneaza toate activitatile 
         }
 
         [HttpGet("{activityId}")]

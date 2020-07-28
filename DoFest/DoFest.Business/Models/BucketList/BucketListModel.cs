@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DoFest.Business.Models.BucketList
 {
@@ -10,7 +8,17 @@ namespace DoFest.Business.Models.BucketList
 
         public string Name { get; private set; }
 
-        public string Username { get; private set; }
+        public string Username { get; private set; } //TODO: de vazut private set-ul
+
+        public static BucketListModel Create(Guid userId, string name, string username)
+        {
+            return new BucketListModel
+            {
+                UserId = userId,
+                Name = name,
+                Username = username
+            };
+        }
 
     }
 

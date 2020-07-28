@@ -2,6 +2,7 @@
 using DoFest.Business.Models.BucketList;
 using DoFest.Business.Services.Interfaces;
 using DoFest.Entities.Lists;
+using DoFest.Persistence.Authentication;
 using DoFest.Persistence.BucketLists;
 using System;
 using System.Collections.Generic;
@@ -13,40 +14,59 @@ namespace DoFest.Business.Services.Implementations
     public class BucketListService:IBucketListService
     {
         private readonly IMapper _mapper;
-        private readonly IBucketListRepository _repository;
+        private readonly IBucketListRepository _bucketListRepository;
+        public readonly IUserRepository _userRepository;
 
-        public BucketListService(IBucketListRepository repository, IMapper mapper)
+        public BucketListService(IBucketListRepository repository, IMapper mapper, IUserRepository userRepository)
         {
-            _repository = repository;
+            _bucketListRepository = repository;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         public async Task<BucketListModel> Get(Guid bucketListId)
         {
 
-            var bucketList = await _repository.GetById(bucketListId);
+            var bucketList = await _bucketListRepository.GetById(bucketListId);
 
-            return _mapper.Map<BucketListModel>(bucketList);
+            var user = await _userRepository.GetById((Guid)bucketList.UserId);
+
+            var bucketListModel = _mapper.Map<BucketListModel>(bucketList);
+
+            //bucketListModel.Username = user.Username;
+
+            return bucketListModel;
 
         }
+
         public async Task<IList<BucketListModel>> GetBucketLists()
         {
-            var bucketlists = await _repository.GetBucketLists();
-            return _mapper.Map<IList<BucketListModel>>(bucketlists);
+            var bucketlists = await _bucketListRepository.GetBucketLists();
+
+            var bucketListModel = new List<BucketListModel>();
+
+            foreach (var bucketList in bucketlists)
+            {
+                var user = await _userRepository.GetById(bucketList.UserId);
+
+                bucketListModel.Add(BucketListModel.Create(bucketList.UserId, bucketList.Name, user.Username));
+            }
+
+            return bucketListModel;
         }
 
         public async Task<BucketListModel> Add(Guid bucketListId, Guid activityId)
         {
-            var bucketList = await _repository.GetById(bucketListId);
+            var bucketList = await _bucketListRepository.GetById(bucketListId);
             var bucketListActivity = new BucketListActivity();
             bucketListActivity.BucketListId = bucketListId;
             bucketListActivity.ActivityId = activityId;
 
             bucketList.AddBucketListActivity(bucketListActivity);
 
-            _repository.Update(bucketList);
+            _bucketListRepository.Update(bucketList);
 
-            await _repository.SaveChanges();
+            await _bucketListRepository.SaveChanges();
 
             return _mapper.Map<BucketListModel>(bucketList);
 
@@ -56,7 +76,7 @@ namespace DoFest.Business.Services.Implementations
         {
             // TODO: exception handle
 
-            var bucketlist = await _repository.GetById(bucketListId);
+            var bucketlist = await _bucketListRepository.GetById(bucketListId);
             var activity = bucketlist
                 .BucketListActivities
                 .FirstOrDefault(activity => activity.ActivityId == activityId);
@@ -69,27 +89,27 @@ namespace DoFest.Business.Services.Implementations
                 Console.Write(e.Message);
             }
 
-            _repository.Update(bucketlist);
-            await _repository.SaveChanges();
+            _bucketListRepository.Update(bucketlist);
+            await _bucketListRepository.SaveChanges();
 
             return _mapper.Map<BucketListModel>(bucketlist);
         }
 
         public async Task<BucketListModel> ToggleStatus(Guid bucketListId, Guid activityId)
         {
-            var bucketlistActivity = await _repository.GetBucketListActivityById(bucketListId, activityId);
-            var bucketlist = await _repository.GetById(bucketListId);
+            var bucketlistActivity = await _bucketListRepository.GetBucketListActivityById(bucketListId, activityId);
+            var bucketlist = await _bucketListRepository.GetById(bucketListId);
             try
             {
                 bucketlistActivity?.UpdateStatus();
-                _repository.Update(bucketlist);
+                _bucketListRepository.Update(bucketlist);
             }
             catch (Exception e)
             {
                 Console.Write(e.Message);
             }
-            _repository.Update(bucketlist);
-            await _repository.SaveChanges();
+            _bucketListRepository.Update(bucketlist);
+            await _bucketListRepository.SaveChanges();
             return _mapper.Map<BucketListModel>(bucketlist);
         }
 

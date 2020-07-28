@@ -1,4 +1,6 @@
 ﻿using DoFest.Business.Services.Interfaces;
+using DoFest.Entities.Authentication;
+using DoFest.Persistence.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ namespace DoFest.API.Controllers
     {
         // ****** Servicii folosite de catre controller ******
         public readonly IBucketListService _bucketListService;
+     
 
 
         /// Constructorul public care va injecta serviciile necesare prin IoC
@@ -18,6 +21,8 @@ namespace DoFest.API.Controllers
         {
             _bucketListService = bucketListService;
         }
+
+
         
         // ****** Maparea metodelor HTTP ******
 
@@ -29,7 +34,7 @@ namespace DoFest.API.Controllers
         public async Task<IActionResult> GetBucketList()
         {
             var result = await _bucketListService.GetBucketLists();
-
+            
             return Ok(result);
         }
 

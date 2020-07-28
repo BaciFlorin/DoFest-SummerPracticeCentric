@@ -5,6 +5,7 @@ using DoFest.Business.Models.Content.Photos;
 using DoFest.Business.Models.Content.Ratings;
 using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Content;
+using DoFest.Entities.Authentication;
 using DoFest.Entities.Lists;
 
 namespace DoFest.Business
@@ -21,6 +22,8 @@ namespace DoFest.Business
 
             CreateMap<Activity, ActivityModel>();
             CreateMap<BucketList,BucketListModel>();
+
+            CreateMap<User, BucketListModel>();
 
 
         }
