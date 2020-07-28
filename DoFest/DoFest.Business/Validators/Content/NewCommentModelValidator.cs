@@ -10,10 +10,6 @@ namespace DoFest.Business.Validators.Content
     {
         public NewCommentModelValidator()
         {
-            RuleFor(x => x.UserId)
-                .NotNull()
-                .NotEmpty();
-
             RuleFor(x => x.Content)
                 .NotNull()
                 .NotEmpty();
