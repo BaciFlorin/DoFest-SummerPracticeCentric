@@ -29,7 +29,7 @@ namespace DoFest.Entities.Authentication
         public string PasswordHash { get;  set; }
 
         [Required]
-        public Guid? UserTypeId { get; set; }
+        public Guid UserTypeId { get; set; }
 
         [AllowNull]
         public Guid? StudentId { get; set; }

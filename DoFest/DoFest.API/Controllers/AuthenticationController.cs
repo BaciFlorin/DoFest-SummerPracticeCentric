@@ -46,8 +46,8 @@ namespace DoFest.API.Controllers
         [Authorize]
         public IActionResult ChangePassword([FromBody] NewPasswordModelRequest modelRequest)
         {
-            var result = _authenticationService.ChangePassword(modelRequest);
-            return Ok(result.Result);
+            _authenticationService.ChangePassword(modelRequest);
+            return Ok("Password changed!");
         }
 
     }

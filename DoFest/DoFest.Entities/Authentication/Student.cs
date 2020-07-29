@@ -23,7 +23,7 @@ namespace DoFest.Entities.Authentication
         public int Year { get;  set; }
 
         [Required]
-        public Guid? CityId { get; set; }
+        public Guid CityId { get; set; }
 
     }
 }

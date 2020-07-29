@@ -4,16 +4,23 @@ namespace DoFest.Business.Identity.Models
 {
     public sealed class UserModel
     {
-        public Guid Id{ get; set; } 
-        public string Username { get; set; }
+        public UserModel(Guid id, string username, string email, string userType, Guid studentId)
+        {
+            Id = id;
+            Username = username;
+            Email = email;
+            UserType = userType;
+            StudentId = studentId;
+        }
 
-        public string Email { get; set; }
+        public Guid Id{ get; private set; } 
+        public string Username { get; private set; }
 
-        public string PasswordHash { get; set; }
+        public string Email { get; private set; }
 
-        public string UserType { get; set; }
+        public string UserType { get; private set; }
 
-        public Guid StudentId { get; set; }
+        public Guid StudentId { get; private set; }
 
     }
 }

@@ -14,10 +14,10 @@ namespace DoFest.Entities.Lists
         }
 
         [Required]
-        public Guid? BucketListId { get; set; }
+        public Guid BucketListId { get; set; }
 
         [Required]
-        public Guid? ActivityId { get; set; }
+        public Guid ActivityId { get; set; }
 
         [DefaultValue("Unlisted")]
         public string Status { get; set; }

@@ -7,6 +7,6 @@ namespace DoFest.Persistence.Notifications
 {
     public interface INotificationRepository:IRepository<Notification>
     {
-        Task<IList<Notification>> GetNotificationsByActivityId(IList<Guid?> activitiesId);
+        Task<IList<Notification>> GetNotificationsByActivityId(IList<Guid> activitiesId);
     }
 }
