@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthenticationService {
   public endpoint: string =
-    'http://trip-looking.ashbell-platform.com/api/v1/auth';
+    'http://192.168.1.102/api/v1/auth';
   constructor(private readonly httpClient: HttpClient) {}
 
   public login(data: unknown): Observable<unknown> {
