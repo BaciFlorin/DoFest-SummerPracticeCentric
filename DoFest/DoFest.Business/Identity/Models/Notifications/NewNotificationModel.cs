@@ -11,11 +11,11 @@ namespace DoFest.Business.Identity.Models.Notifications
             Description = description;
         }
 
-        public Guid Id { get; set; }
-        public Guid ActivityId { get; set; }
+        public Guid Id { get; private set; }
+        public Guid ActivityId { get; private set; }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; private set; }
 
-        public string Description { get; set; }
+        public string Description { get; private set; }
     }
 }

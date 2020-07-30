@@ -34,7 +34,7 @@ namespace DoFest.API.Controllers
             return Created(result.Id.ToString(), null);
         }
 
-        [HttpDelete("/photoId")]
+        [HttpDelete("{photoId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid activityId, [FromRoute] Guid photoId)
         {
             await _photosService.Delete(activityId, photoId);

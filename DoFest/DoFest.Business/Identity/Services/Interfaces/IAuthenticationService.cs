@@ -27,6 +27,6 @@ namespace DoFest.Business.Identity.Services.Interfaces
         /// </summary>
         /// <param name="newPasswordModelRequest"> Model de data pentru schimbarea parolei. </param>
         /// <returns> ????? </returns>
-        Task<NewPasswordModelResponse> ChangePassword(NewPasswordModelRequest newPasswordModelRequest);
+        Task ChangePassword(NewPasswordModelRequest newPasswordModelRequest);
     }
 }

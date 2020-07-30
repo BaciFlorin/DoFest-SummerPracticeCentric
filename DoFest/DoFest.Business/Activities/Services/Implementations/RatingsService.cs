@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DoFest.Business.Activities.Models.Content.Ratings;
@@ -16,7 +15,7 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         private readonly IMapper _mapper;
         private readonly IActivitiesRepository _repository;
-        private readonly IHttpContextAccessor _accessor;
+        private readonly IHttpContextAccessor _accessor;        //ajuta la extragerea userId-ului
 
         public RatingsService(IMapper mapper, IActivitiesRepository repository, IHttpContextAccessor accessor)
         {
@@ -33,7 +32,11 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<RatingModel> Add(Guid activityId, CreateRatingModel model)
         {
-            model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+
+            //va fi folosit (impreuna cu [JsonIgnore] asupra campului UserId din model) pentru a extrage user-ul logat
+
+
+            //  model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
 
             var activity = await _repository.GetById(activityId);
             var rating = _mapper.Map<Rating>(model);
@@ -51,7 +54,7 @@ namespace DoFest.Business.Activities.Services.Implementations
         {
             var activity = await _repository.GetByIdWithRatings(activityId);
 
-            activity.RemoveRating(activityId);
+            activity.RemoveRating(ratingId);
 
             _repository.Update(activity);
 

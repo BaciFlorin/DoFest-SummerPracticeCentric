@@ -94,12 +94,10 @@ namespace DoFest.Business.Identity.Services.Implementations
             await _userRepository.Add(newUser);
             await _userRepository.SaveChanges();
 
-            var returnUser = _mapper.Map<UserModel>(newUser);
-            returnUser.UserType = userType.Name;
-            return returnUser;
+            return new UserModel(newUser.Id, newUser.Username, newUser.Email, userType.Name, newUser.StudentId.GetValueOrDefault());
         }
 
-        public async Task<NewPasswordModelResponse> ChangePassword(NewPasswordModelRequest newPasswordModelRequest)
+        public async Task ChangePassword(NewPasswordModelRequest newPasswordModelRequest)
         {
             var id = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var user = await _userRepository.GetById(id);
@@ -107,8 +105,6 @@ namespace DoFest.Business.Identity.Services.Implementations
             
             _userRepository.Update(user);
             await _userRepository.SaveChanges();
-
-            return new NewPasswordModelResponse(user.PasswordHash);
         }
 
         private async Task<LoginModelResponse> GenerateToken(User user)
@@ -126,7 +122,7 @@ namespace DoFest.Business.Identity.Services.Implementations
                 expires: DateTime.Now.AddHours(hours),
                 signingCredentials: credentials);
 
-            var type = await _userTypeRepository.GetById(user.UserTypeId.GetValueOrDefault());
+            var type = await _userTypeRepository.GetById(user.UserTypeId);
 
             return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), type.Name);
         }

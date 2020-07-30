@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DoFest.Business.Activities.Models.Content.Photos;
@@ -16,7 +15,7 @@ namespace DoFest.Business.Activities.Services.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IActivitiesRepository _repository;
-        private readonly IHttpContextAccessor _accessor;
+        private readonly IHttpContextAccessor _accessor;      //ajuta la extragerea userId-ului
 
         public PhotosService(IActivitiesRepository repository, IMapper mapper, IHttpContextAccessor accessor)
         {
@@ -36,7 +35,10 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<PhotoModel> Add(Guid activityId, CreatePhotoModel model)
         {
-            model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            //va fi folosit (impreuna cu [JsonIgnore] asupra campului UserId din model) pentru a extrage user-ul logat
+
+
+            //model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
 
             using var stream = new MemoryStream();
             await model.Image.CopyToAsync(stream);

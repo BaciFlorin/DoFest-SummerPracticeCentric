@@ -14,7 +14,7 @@ namespace DoFest.Persistence.Notifications
 
         }
 
-        public async Task<IList<Notification>> GetNotificationsByActivityId(IList<Guid?> activitiesId)
+        public async Task<IList<Notification>> GetNotificationsByActivityId(IList<Guid> activitiesId)
             => await context.Notifications.Where(not => activitiesId.Contains((Guid) not.ActivityId)).ToListAsync();
 
     }
