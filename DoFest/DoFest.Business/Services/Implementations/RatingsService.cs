@@ -68,15 +68,14 @@ namespace DoFest.Business.Services.Implementations
 
             var rating = activity.Ratings.FirstOrDefault(r => r.Id == ratingId);
 
-            if (rating != null && model.UserId == rating.UserId)
-            {
-                rating.Stars = model.Stars;
+            if (rating == null || model.UserId != rating.UserId) return null;
+            rating.Stars = model.Stars;
 
-                this.repository.Update(activity);
+            this.repository.Update(activity);
 
-                await this.repository.SaveChanges();
-            }
+            await this.repository.SaveChanges();
             return this.mapper.Map<RatingModel>(rating);
+
         }
     }
 }
