@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nNGDx2vec+/rEJ6LGAbuHLLJ/0YFlH52op8AVqJi6jW192nSsxXWg0Ye2KGBSNc9PO1Jzo1cZdWdH8MXgR1YGQ==",
+  "dgSpecHash": "XzukXxEW/ZSTCuv1ib+magtfI9Cd3fUkp9Xy/Lsj/MWSDe7R/UiQ1UHMtUm/05NYx3fa7AuQBEOsRpt7Lyfl5Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.API\\DoFest.API.csproj",
   "expectedPackageFiles": [
@@ -112,6 +112,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\d\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\d\\.nuget\\packages\\swashbuckle.aspnetcore\\5.5.1\\swashbuckle.aspnetcore.5.5.1.nupkg.sha512",
     "C:\\Users\\d\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.5.1\\swashbuckle.aspnetcore.swagger.5.5.1.nupkg.sha512",
     "C:\\Users\\d\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.5.1\\swashbuckle.aspnetcore.swaggergen.5.5.1.nupkg.sha512",

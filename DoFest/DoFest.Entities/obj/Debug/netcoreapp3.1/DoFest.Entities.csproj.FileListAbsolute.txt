@@ -31,6 +31,6 @@ C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Entities\b
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Entities\obj\Debug\netcoreapp3.1\DoFest.Entities.csprojAssemblyReference.cache
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Entities\obj\Debug\netcoreapp3.1\DoFest.Entities.AssemblyInfoInputs.cache
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Entities\obj\Debug\netcoreapp3.1\DoFest.Entities.AssemblyInfo.cs
-C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Entities\obj\Debug\netcoreapp3.1\DoFest.Entities.csproj.CoreCompileInputs.cache
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Entities\obj\Debug\netcoreapp3.1\DoFest.Entities.dll
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Entities\obj\Debug\netcoreapp3.1\DoFest.Entities.pdb
+C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.Entities\obj\Debug\netcoreapp3.1\DoFest.Entities.csproj.CoreCompileInputs.cache

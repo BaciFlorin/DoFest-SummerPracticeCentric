@@ -616,9 +616,6 @@ C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\bin\De
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.csprojAssemblyReference.cache
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.AssemblyInfoInputs.cache
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.AssemblyInfo.cs
-C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.csproj.CoreCompileInputs.cache
-C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.RazorTargetAssemblyInfo.cache
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.csproj.CopyComplete
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\staticwebassets\DoFest.API.StaticWebAssets.Manifest.cache
@@ -626,3 +623,6 @@ C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\De
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.dll
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.pdb
 C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.genruntimeconfig.cache
+C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.csproj.CoreCompileInputs.cache
+C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\d\Desktop\centric\DoFest-SummerPracticeCentric\DoFest\DoFest.API\obj\Debug\netcoreapp3.1\DoFest.API.MvcApplicationPartsAssemblyInfo.cache

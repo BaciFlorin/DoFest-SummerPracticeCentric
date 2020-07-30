@@ -14,52 +14,69 @@ namespace DoFest.Business.Services.Implementations
     public class RatingsService : IRatingsService
     {
 
-        private readonly IMapper _mapper;
-        private readonly IActivitiesRepository _repository;
-        private readonly IHttpContextAccessor _accessor;        //ajuta la extragerea userId-ului
+        private readonly IMapper mapper;
+        private readonly IActivitiesRepository repository;
+        private readonly IHttpContextAccessor accessor;
 
         public RatingsService(IMapper mapper, IActivitiesRepository repository, IHttpContextAccessor accessor)
         {
-            _mapper = mapper;
-            _repository = repository;
-            _accessor = accessor;
+            this.mapper = mapper;
+            this.repository = repository;
+            this.accessor = accessor;
         }
+
         public async Task<IEnumerable<RatingModel>> Get(Guid activityId)
         {
-            var activity = await _repository.GetByIdWithRatings(activityId);
+            var activity = await this.repository.GetByIdWithRatings(activityId);
 
-            return _mapper.Map<IEnumerable<RatingModel>>(activity.Ratings);
+            return this.mapper.Map<IEnumerable<RatingModel>>(activity.Ratings);
         }
 
         public async Task<RatingModel> Add(Guid activityId, CreateRatingModel model)
         {
 
-            //va fi folosit (impreuna cu [JsonIgnore] asupra campului UserId din model) pentru a extrage user-ul logat
+            model.UserId = Guid.Parse(this.accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
 
-
-            //  model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
-
-            var activity = await _repository.GetById(activityId);
-            var rating = _mapper.Map<Rating>(model);
+            var activity = await this.repository.GetById(activityId);
+            var rating = this.mapper.Map<Rating>(model);
 
             activity.AddRating(rating);
 
-            _repository.Update(activity);
+            this.repository.Update(activity);
 
-            await _repository.SaveChanges();
+            await this.repository.SaveChanges();
 
-            return _mapper.Map<RatingModel>(rating);
+            return this.mapper.Map<RatingModel>(rating);
         }
 
         public async Task Delete(Guid activityId, Guid ratingId)
         {
-            var activity = await _repository.GetByIdWithRatings(activityId);
+            var activity = await this.repository.GetByIdWithRatings(activityId);
 
             activity.RemoveRating(ratingId);
 
-            _repository.Update(activity);
+            this.repository.Update(activity);
 
-            await _repository.SaveChanges();
+            await this.repository.SaveChanges();
+        }
+
+        public async Task<RatingModel> Update(Guid activityId, Guid ratingId, CreateRatingModel model)
+        {
+            var activity = await this.repository.GetByIdWithRatings(activityId);
+
+            model.UserId = Guid.Parse(this.accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+
+            var rating = activity.Ratings.FirstOrDefault(r => r.Id == ratingId);
+
+            if (rating != null && model.UserId == rating.UserId)
+            {
+                rating.Stars = model.Stars;
+
+                this.repository.Update(activity);
+
+                await this.repository.SaveChanges();
+            }
+            return this.mapper.Map<RatingModel>(rating);
         }
     }
 }

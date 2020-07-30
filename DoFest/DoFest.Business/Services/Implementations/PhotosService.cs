@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DoFest.Business.Models.Photos;
@@ -13,32 +14,30 @@ namespace DoFest.Business.Services.Implementations
 {
     public sealed class PhotosService : IPhotosService
     {
-        private readonly IMapper _mapper;
-        private readonly IActivitiesRepository _repository;
-        private readonly IHttpContextAccessor _accessor;      //ajuta la extragerea userId-ului
+        private readonly IMapper mapper;
+        private readonly IActivitiesRepository repository;
+        private readonly IHttpContextAccessor accessor;
 
         public PhotosService(IActivitiesRepository repository, IMapper mapper, IHttpContextAccessor accessor)
         {
-            _repository = repository;
-            _mapper = mapper;
-            _accessor = accessor;
+            this.repository = repository;
+            this.mapper = mapper;
+            this.accessor = accessor;
         }
 
         public async Task<IEnumerable<PhotoModel>> Get(Guid activityId)
         {
 
-            var activity = await _repository.GetByIdWithPhotos(activityId);
+            var activity = await this.repository.GetByIdWithPhotos(activityId);
 
-            return _mapper.Map<IEnumerable<PhotoModel>>(activity.Photos);
+            return this.mapper.Map<IEnumerable<PhotoModel>>(activity.Photos);
 
         }
 
         public async Task<PhotoModel> Add(Guid activityId, CreatePhotoModel model)
         {
-            //va fi folosit (impreuna cu [JsonIgnore] asupra campului UserId din model) pentru a extrage user-ul logat
 
-
-            //model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            model.UserId = Guid.Parse(this.accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
 
             using var stream = new MemoryStream();
             await model.Image.CopyToAsync(stream);
@@ -49,24 +48,24 @@ namespace DoFest.Business.Services.Implementations
             };
 
 
-            var activity = await _repository.GetById(activityId);
+            var activity = await this.repository.GetById(activityId);
 
             activity.AddPhoto(photo);
-            _repository.Update(activity);
+            this.repository.Update(activity);
 
-            await _repository.SaveChanges();
+            await this.repository.SaveChanges();
 
-            return _mapper.Map<PhotoModel>(photo);
+            return this.mapper.Map<PhotoModel>(photo);
         }
 
         public async Task Delete(Guid activityId, Guid photoId)
         {
-            var activity = await _repository.GetByIdWithPhotos(activityId);
+            var activity = await this.repository.GetByIdWithPhotos(activityId);
 
             activity.RemovePhoto(photoId);
-            _repository.Update(activity);
+            this.repository.Update(activity);
 
-            await _repository.SaveChanges();
+            await this.repository.SaveChanges();
         }
     }
 }

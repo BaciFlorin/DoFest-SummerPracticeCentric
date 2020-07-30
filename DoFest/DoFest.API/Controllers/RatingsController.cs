@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using DoFest.Business.Models.Ratings;
 using DoFest.Business.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
@@ -41,6 +38,20 @@ namespace DoFest.API.Controllers
         public async Task<IActionResult> Delete([FromRoute] Guid activityId, [FromRoute] Guid ratingId)
         {
             await _ratingsService.Delete(activityId, ratingId);
+
+            return NoContent();
+        }
+
+        [HttpPatch("{ratingId}")]
+        public async Task<IActionResult> Patch([FromRoute] Guid activityId, [FromRoute] Guid ratingId,
+            [FromBody] CreateRatingModel model)
+        {
+            var result = await this._ratingsService.Update(activityId, ratingId, model);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
 
             return NoContent();
         }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7vDn8sPUR9bBfEaeVIAf2nGuJ86NEZ3mOzzG9/E22uRBEiZw6F3z/iZMWrJj5De6vhHVblz/RaKFhD7fYHXsUQ==",
+  "dgSpecHash": "i3JV7XXKOgyo8mov67l+1FA2/tFLNKnJNNgvOn1twZjs50R0KwvqiNGkFkCIAWFunar5SYOpzMNuWDXHPGAatA==",
   "success": true,
   "projectFilePath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Persistence\\DoFest.Persistence.csproj",
   "expectedPackageFiles": [
@@ -36,6 +36,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\d\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
     "C:\\Users\\d\\.nuget\\packages\\system.collections.immutable\\1.7.1\\system.collections.immutable.1.7.1.nupkg.sha512",

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HpxHOszEfNLBPvhs6HhpULa5B8FZRZ2QRVD4/Ym2YnXxr/DB55mbeBKU9juLdLsFeuvr735xE86WmKHiatMMYw==",
+  "dgSpecHash": "V5AVUHOdGF0pU5y36CGENuK6/HqB1hLyyjnft5LaCbwpeXfJNeG7NGv4z4AogMbQMLevkD1Y4jxxoxMt6/sbYA==",
   "success": true,
   "projectFilePath": "C:\\Users\\d\\Desktop\\centric\\DoFest-SummerPracticeCentric\\DoFest\\DoFest.Entities\\DoFest.Entities.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\d\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512"
+  ],
   "logs": []
 }
