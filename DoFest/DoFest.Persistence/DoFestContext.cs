@@ -63,6 +63,11 @@ namespace DoFest.Persistence
                     .HasForeignKey(a=>a.ActivityTypeId)
                     .OnDelete(DeleteBehavior.NoAction);
 
+                entity.HasMany(a => a.Notifications)
+                    .WithOne()
+                    .HasForeignKey(n => n.ActivityId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
             });
 
             modelBuilder.Entity<ActivityType>(entity =>
@@ -121,8 +126,17 @@ namespace DoFest.Persistence
                     .ValueGeneratedNever();
 
                 entity
+                    .HasIndex(u => u.Username)
+                    .IsUnique();
+
+                entity
+                    .HasIndex(u => u.Email)
+                    .IsUnique();
+
+
+                entity
                     .HasOne<Student>()
-                    .WithOne(u=>u.User)
+                    .WithOne()
                     .HasForeignKey<User>(u=>u.StudentId)
                     .OnDelete(DeleteBehavior.Cascade);
 
@@ -198,7 +212,7 @@ namespace DoFest.Persistence
                     .ValueGeneratedNever();
 
                 entity.HasOne<User>()
-                    .WithOne(u => u.BucketList)
+                    .WithOne()
                     .HasForeignKey<BucketList>(b => b.UserId)
                     .OnDelete(DeleteBehavior.Cascade);
             });
@@ -223,11 +237,6 @@ namespace DoFest.Persistence
                 entity.Property(n => n.Id)
                     .IsRequired()
                     .ValueGeneratedNever();
-
-                entity.HasOne<User>()
-                    .WithMany(u => u.Notifications)
-                    .HasForeignKey(n => n.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
             });
         }
     }

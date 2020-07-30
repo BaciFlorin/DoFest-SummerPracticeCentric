@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using DoFest.Entities.Activities.Content;
+using DoFest.Entities.Authentication.Notification;
 using DoFest.Entities.Lists;
 
 namespace DoFest.Entities.Activities
@@ -18,6 +19,7 @@ namespace DoFest.Entities.Activities
             Ratings = new List<Rating>();
             Notes = new List<Note>();
             BucketListActivities = new List<BucketListActivity>();
+            Notifications = new List<Notification>();
         }
 
         [Required] public Guid? ActivityTypeId { get; set; }
@@ -34,6 +36,8 @@ namespace DoFest.Entities.Activities
         [Required, MaxLength(500)] public string Description { get; set; }
 
         public ICollection<BucketListActivity> BucketListActivities { get; set; }
+
+        public ICollection<Notification> Notifications { get; set; }
 
         public void RemovePhoto(Guid photoId)
         {

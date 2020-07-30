@@ -1,0 +1,31 @@
+<div class="authentication-container">
+  <img src="assets/images/sign_in.svg">
+  <form class="authentication-content"
+        [formGroup]="formGroup">
+    <span class="login-label">{{isSetRegistered? 'Register': 'Log in'}} </span>
+    <label>Email</label>
+    <input formControlName="email"
+           type="email" />
+    <label>Password</label>
+    <input formControlName="password"
+           type="password" />
+    <ng-container *ngIf="isSetRegistered">
+      <label>Full name</label>
+      <input formControlName="fullName"
+             type="text" />
+    </ng-container>
+
+    <span class="not-registered"><input type="checkbox"
+             (click)="setRegister()" />
+      <p>{{isSetRegistered? 'Go back to log in': 'I am not registered yet'}}</p>
+    </span>
+
+    <span class="admin">
+      <input type="checkbox"
+             (click)="setAdmin()">
+      <p>I want to be an admin</p>
+    </span>
+    <button type="button"
+            (click)="authenticate()"><span>{{isSetRegistered? 'Register': 'Login'}}</span></button>
+  </form>
+</div>
