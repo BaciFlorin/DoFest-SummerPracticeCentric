@@ -21,7 +21,7 @@
 
     <ng-container *ngIf="isSetRegistered">
       <label>Full name</label>
-      <input formControlName="fullName"
+      <input formControlName="name"
              type="text"/>
 
       <label>Username</label>
@@ -29,12 +29,12 @@
 
       <label>City</label>
       <select formControlName="city" >
-        <option *ngFor="let city of cities;" [value]="city">{{city}}</option>
+        <option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</option>
       </select>
 
       <label>UserType</label>
       <select formControlName="userType">
-        <option *ngFor="let type of userTypes;" [value]="type">{{type}}</option>
+        <option *ngFor="let type of userTypes;" [value]="type.id">{{type.name}}</option>
       </select>
 
       <label>Age</label>
@@ -44,8 +44,8 @@
       </div>
 
       <label>Year of study:</label>
-      <input type="number" formControlName="yearStudy">
-      <div *ngIf="isInvalid(formGroup.get('yearStudy'))" class="error-alert">
+      <input type="number" formControlName="year">
+      <div *ngIf="isInvalid(formGroup.get('year'))" class="error-alert">
         Year of study must be between 1 and 6
       </div>
     </ng-container>
@@ -54,7 +54,12 @@
              (click)="setRegister()" />
       <p>{{isSetRegistered? 'Go back to log in': 'I am not registered yet'}}</p>
     </span>
+    <div id="successful-register">
 
+    </div>
+    <div id="error-list">
+
+    </div>
     <button type="button"
             (click)="authenticate()"><span>{{isSetRegistered? 'Register': 'Login'}}</span></button>
   </form>
