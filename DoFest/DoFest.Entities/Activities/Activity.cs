@@ -19,7 +19,6 @@ namespace DoFest.Entities.Activities
             Notes = new List<Note>();
             BucketListActivities = new List<BucketListActivity>();
         }
-
         [Required] public Guid? ActivityTypeId { get; set; }
 
         [Required] public Guid? LocationId { get; set; }

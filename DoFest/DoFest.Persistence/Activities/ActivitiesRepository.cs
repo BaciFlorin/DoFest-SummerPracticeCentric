@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DoFest.Entities.Activities;
@@ -24,5 +25,9 @@ namespace DoFest.Persistence.Activities
                 .Include(activity => activity.Ratings)
                 .FirstAsync(activity => activity.Id == id);
 
+        public async Task<IList<Activity>> GetActivityLists()
+             => await context
+                .Activities
+                .ToListAsync();
     }
 }

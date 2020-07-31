@@ -29,13 +29,14 @@ namespace DoFest.Business.Services.Implementations
 
             var bucketList = await _bucketListRepository.GetById(bucketListId);
 
-            var user = await _userRepository.GetById((Guid)bucketList.UserId);
+             var user = await _userRepository.GetById(bucketList.UserId);
 
-            var bucketListModel = _mapper.Map<BucketListModel>(bucketList);
+            //  var bucketListModel = BucketListModel.Create(bucketList.UserId, bucketList.Name, user.Username);
 
-            //bucketListModel.Username = user.Username;
+            var bList = _mapper.Map <BucketListModel>(bucketList);
 
-            return bucketListModel;
+
+            return bList;
 
         }
 

@@ -9,7 +9,9 @@ namespace DoFest.Persistence.Activities
     public interface IActivitiesRepository : IRepository<Activity>
     {
         Task<Activity> GetByIdWithPhotos(Guid id);
+
         Task<Activity> GetByIdWithRatings(Guid id);
-    
+
+        Task<IList<Activity>> GetActivityLists();
     }
 }

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using DoFest.Business.Models.Activity;
 using DoFest.Business.Services.Interfaces;
+using DoFest.Entities.Activities;
 using DoFest.Persistence.Activities;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +28,42 @@ namespace DoFest.Business.Services.Implementations
             var activity = await _repository.GetById(activityId);
 
             return _mapper.Map<ActivityModel>(activity);
+
+        }
+
+        public async Task Delete(Guid activityId)
+        {
+            var activity = await _repository.GetById(activityId);
+
+            _repository.Delete(activity);
+            await _repository.SaveChanges();
+        }
+
+        public async Task<IList<ActivityModel>> GetActivityLists()
+        {
+            var activityList = await _repository.GetActivityLists();
+
+            //var activityModel = new List<ActivityModel>();
+
+            var acList = _mapper.Map<List<ActivityModel>>(activityList);
+
+            return acList;
+        }
+
+        public async Task<ActivityModel> Add(CreateActivityModel model)
+        {
+            var activity = _mapper.Map<Activity>(model);
+
+            await _repository.Add(activity);
+            await _repository.SaveChanges();
+
+            return _mapper.Map<ActivityModel>(activity);
+        }
+
+        public Task<ActivityModel> GetIdByType(string activityType)
+        {
+            // var activity = await _repository.get
+            throw new ExecutionEngineException();
 
         }
     }

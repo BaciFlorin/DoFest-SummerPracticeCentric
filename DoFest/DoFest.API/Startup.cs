@@ -39,7 +39,8 @@ namespace DoFest.API
             services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
             services.AddScoped<IBucketListRepository, BucketListRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            
+            services.AddScoped<IActivityTypeRepository, ActivityTypeRepository>();
+
 
 
             services.AddAutoMapper(config =>
@@ -51,6 +52,7 @@ namespace DoFest.API
             services.AddScoped<IRatingsService, RatingsService>();
             services.AddScoped<IActivitiesService, ActivitiesService>();
             services.AddScoped<IBucketListService, BucketListService>();
+            services.AddScoped<IActivityTypeService, ActivityTypeService>();
             
                
             services

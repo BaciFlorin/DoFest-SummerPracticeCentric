@@ -21,11 +21,11 @@ namespace DoFest.Business
             CreateMap<Rating, RatingModel>();
 
             CreateMap<Activity, ActivityModel>();
+            CreateMap<ActivityType, ActivityTypeModel>();
             CreateMap<BucketList,BucketListModel>();
 
             CreateMap<User, BucketListModel>();
-
-
+            CreateMap<CreateActivityModel, Activity>();
         }
     }
 }

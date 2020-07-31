@@ -18,14 +18,14 @@ namespace DoFest.Entities.Activities.Places
         public byte[] Image { get; set; }
 
         [Required, MaxLength(1000)]
-        public string Description { get; set; }
+        public string Description { get; set; } 
 
         [Required]
-        public Guid CityId { get; set; }
+        public Guid CityId { get; set; } //----
 
         [Required, MaxLength(300)]
-        public string Address { get; set; }
-
+        public string Address { get; set; } //----
+         
         public ICollection<Activity> Activities { get; set; }
     }
 }
