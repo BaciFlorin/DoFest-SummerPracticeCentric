@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using DoFest.Business.Places.Models;
+using DoFest.Business.Activities.Models.Places;
 using DoFest.Entities.Activities.Places;
 
-namespace DoFest.Business.Places
+namespace DoFest.Business.Activities
 {
     public class CityMappingProfile:Profile
     {

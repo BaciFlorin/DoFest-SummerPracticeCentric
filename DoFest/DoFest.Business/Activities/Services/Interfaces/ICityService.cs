@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DoFest.Business.Places.Models;
+using DoFest.Business.Activities.Models.Places;
 
-namespace DoFest.Business.Places.Services.Interfaces
+namespace DoFest.Business.Activities.Services.Interfaces
 {
     public interface ICityService
     {

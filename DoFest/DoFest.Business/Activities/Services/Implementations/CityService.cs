@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using DoFest.Business.Places.Models;
-using DoFest.Business.Places.Services.Interfaces;
+using DoFest.Business.Activities.Models.Places;
+using DoFest.Business.Activities.Services.Interfaces;
 using DoFest.Entities.Activities.Places;
 using DoFest.Persistence.Activities.Places;
 
-namespace DoFest.Business.Places.Services.Implementations
+namespace DoFest.Business.Activities.Services.Implementations
 {
     public sealed class CityService:ICityService
     {
