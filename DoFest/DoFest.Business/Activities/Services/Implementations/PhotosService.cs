@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Models.Content.Photos;
 using DoFest.Business.Activities.Services.Interfaces;
+using DoFest.Business.Errors;
 using DoFest.Entities.Activities.Content;
 using DoFest.Persistence.Activities;
 using Microsoft.AspNetCore.Http;
@@ -25,16 +27,21 @@ namespace DoFest.Business.Activities.Services.Implementations
             _accessor = accessor;
         }
 
-        public async Task<IEnumerable<PhotoModel>> Get(Guid activityId)
+        public async Task<Result<IEnumerable<PhotoModel>, Error>> Get(Guid activityId)
         {
+            var activityExists = (await _repository.GetById(activityId)) != null;
+            if (!activityExists)
+            {
+                return Result.Failure<IEnumerable<PhotoModel>, Error>(ErrorsList.UnavailableActivity);
+            }
 
             var activity = await _repository.GetByIdWithPhotos(activityId);
 
-            return _mapper.Map<IEnumerable<PhotoModel>>(activity.Photos);
+            return Result.Success<IEnumerable<PhotoModel>, Error>(_mapper.Map<IEnumerable<PhotoModel>>(activity.Photos));
 
         }
 
-        public async Task<PhotoModel> Add(Guid activityId, CreatePhotoModel model)
+        public async Task<Result<PhotoModel, Error>> Add(Guid activityId, CreatePhotoModel model)
         {
             model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
 
@@ -46,25 +53,46 @@ namespace DoFest.Business.Activities.Services.Implementations
                 Image = stream.ToArray()
             };
 
-
             var activity = await _repository.GetById(activityId);
+            if (activity == null)
+            {
+                return Result.Failure<PhotoModel, Error>(ErrorsList.UnavailableActivity);
+            }
 
             activity.AddPhoto(photo);
             _repository.Update(activity);
 
             await _repository.SaveChanges();
 
-            return _mapper.Map<PhotoModel>(photo);
+            return Result.Success<PhotoModel, Error>(_mapper.Map<PhotoModel>(photo));
         }
 
-        public async Task Delete(Guid activityId, Guid photoId)
+        public async Task<Result<string, Error>> Delete(Guid activityId, Guid photoId)
         {
             var activity = await _repository.GetByIdWithPhotos(activityId);
+            if (activity == null)
+            {
+                return Result.Failure<string, Error>(ErrorsList.UnavailableActivity);
+            }
+            var photo = activity.Photos.FirstOrDefault(p => p.Id == photoId);
+
+            if (photo == null)
+            {
+                return Result.Failure<string, Error>(ErrorsList.InvalidPhoto);
+            }
+
+            var loggedUserId = Guid.Parse(this._accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            if (loggedUserId != photo.UserId)
+            {
+                return Result.Failure<string, Error>(ErrorsList.DeleteNotAuthorized);
+            }
 
             activity.RemovePhoto(photoId);
             _repository.Update(activity);
 
             await _repository.SaveChanges();
+
+            return Result.Success<string, Error>("Photo deleted successfully");
         }
     }
 }
