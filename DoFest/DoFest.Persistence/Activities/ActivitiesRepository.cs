@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DoFest.Entities.Activities;
 using Microsoft.EntityFrameworkCore;
@@ -31,5 +32,8 @@ namespace DoFest.Persistence.Activities
              => await context
                 .Activities
                 .ToListAsync();
+        public async Task<Activity> GetByName(string name)
+            => await context
+            .Activities.Where(activity => activity.Name == name).FirstOrDefaultAsync();
     }
 }
