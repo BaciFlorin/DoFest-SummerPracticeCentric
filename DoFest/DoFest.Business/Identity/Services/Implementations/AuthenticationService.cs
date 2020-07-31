@@ -9,9 +9,11 @@ using AutoMapper;
 using DoFest.Business.Identity.Models;
 using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Entities.Authentication;
+using DoFest.Entities.Lists;
 using DoFest.Persistence.Activities.Places;
 using DoFest.Persistence.Authentication;
 using DoFest.Persistence.Authentication.Type;
+using DoFest.Persistence.BucketLists;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -28,6 +30,7 @@ namespace DoFest.Business.Identity.Services.Implementations
         private readonly IUserTypeRepository _userTypeRepository;
         private readonly IStudentRepository _studentRepository;
         private readonly IHttpContextAccessor _accessor;
+        private readonly IBucketListRepository _bucketListRepository;
 
         public AuthenticationService(IMapper mapper,
             IOptions<JwtOptions> config, 
@@ -36,7 +39,8 @@ namespace DoFest.Business.Identity.Services.Implementations
             IUserTypeRepository userTypeRepository, 
             ICityRepository cityRepository,
             IStudentRepository studentRepository, 
-            IHttpContextAccessor accessor)
+            IHttpContextAccessor accessor,
+            IBucketListRepository bucketListRepository)
         {
             _mapper = mapper;
             _config = config.Value;
@@ -46,6 +50,7 @@ namespace DoFest.Business.Identity.Services.Implementations
             _cityRepository = cityRepository;
             _studentRepository = studentRepository;
             _accessor = accessor;
+            _bucketListRepository = bucketListRepository;
         }
 
 
@@ -66,8 +71,8 @@ namespace DoFest.Business.Identity.Services.Implementations
             if (user != null)
                 return null;
 
-            var city = await _cityRepository.GetByName(registerModel.City);
-            var userType = await _userTypeRepository.GetByName(registerModel.UserType);
+            var city = await _cityRepository.GetById(registerModel.City);
+            var userType = await _userTypeRepository.GetById(registerModel.UserType);
             if (city == null || userType == null)
             {
                 return null;
@@ -80,6 +85,7 @@ namespace DoFest.Business.Identity.Services.Implementations
                 Name = registerModel.Name,
                 Year = registerModel.Year
             };
+
             await _studentRepository.Add(newStudent);
             await _studentRepository.SaveChanges();
 
@@ -94,7 +100,14 @@ namespace DoFest.Business.Identity.Services.Implementations
             await _userRepository.Add(newUser);
             await _userRepository.SaveChanges();
 
-            return new UserModel(newUser.Id, newUser.Username, newUser.Email, userType.Name, newUser.StudentId.GetValueOrDefault());
+            var newBucketList = new BucketList()
+            {
+                Name = registerModel.BucketListName
+            };
+            await _bucketListRepository.Add(newBucketList);
+            await _bucketListRepository.SaveChanges();
+
+            return new UserModel(newUser.Id, newUser.Username, newUser.Email, userType.Name, newUser.StudentId.GetValueOrDefault(), newBucketList.Id);
         }
 
         public async Task ChangePassword(NewPasswordModelRequest newPasswordModelRequest)
@@ -105,6 +118,18 @@ namespace DoFest.Business.Identity.Services.Implementations
             
             _userRepository.Update(user);
             await _userRepository.SaveChanges();
+        }
+
+        public async Task<IList<UserTypeModel>> GetAllUserTypes()
+        {
+            var result = await _userTypeRepository.GetAll();
+            var successRemove = result.Remove(await _userTypeRepository.GetByName("Admin"));
+            if (!successRemove)
+            {
+                return null;
+            }
+
+            return _mapper.Map<IList<UserTypeModel>>(result);
         }
 
         private async Task<LoginModelResponse> GenerateToken(User user)

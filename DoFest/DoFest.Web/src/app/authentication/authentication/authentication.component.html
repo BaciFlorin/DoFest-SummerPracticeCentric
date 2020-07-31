@@ -6,25 +6,60 @@
     <label>Email</label>
     <input formControlName="email"
            type="email" />
+
+    <div *ngIf="isInvalid(formGroup.get('email'))" class="error-alert">
+      Email is invalid
+    </div>
+
     <label>Password</label>
     <input formControlName="password"
            type="password" />
+
+    <div *ngIf="isInvalid(formGroup.get('password'))" class="error-alert">
+      Password must have minumum 8 characters
+    </div>
+
     <ng-container *ngIf="isSetRegistered">
       <label>Full name</label>
-      <input formControlName="fullName"
-             type="text" />
+      <input formControlName="name"
+             type="text"/>
+
+      <label>Username</label>
+      <input formControlName="username" type="text">
+
+      <label>City</label>
+      <select formControlName="city" >
+        <option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</option>
+      </select>
+
+      <label>UserType</label>
+      <select formControlName="userType">
+        <option *ngFor="let type of userTypes;" [value]="type.id">{{type.name}}</option>
+      </select>
+
+      <label>Age</label>
+      <input type="number" formControlName="age">
+      <div *ngIf="isInvalid(formGroup.get('age'))" class="error-alert">
+        Age must be between 18 and 99
+      </div>
+
+      <label>Year of study:</label>
+      <input type="number" formControlName="year">
+      <div *ngIf="isInvalid(formGroup.get('year'))" class="error-alert">
+        Year of study must be between 1 and 6
+      </div>
     </ng-container>
 
     <span class="not-registered"><input type="checkbox"
              (click)="setRegister()" />
       <p>{{isSetRegistered? 'Go back to log in': 'I am not registered yet'}}</p>
     </span>
+    <div id="successful-register">
 
-    <span class="admin">
-      <input type="checkbox"
-             (click)="setAdmin()">
-      <p>I want to be an admin</p>
-    </span>
+    </div>
+    <div id="error-list">
+
+    </div>
     <button type="button"
             (click)="authenticate()"><span>{{isSetRegistered? 'Register': 'Login'}}</span></button>
   </form>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DoFest.Business.Activities.Models.Content.Ratings;
@@ -15,7 +16,7 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         private readonly IMapper _mapper;
         private readonly IActivitiesRepository _repository;
-        private readonly IHttpContextAccessor _accessor;        //ajuta la extragerea userId-ului
+        private readonly IHttpContextAccessor _accessor;        
 
         public RatingsService(IMapper mapper, IActivitiesRepository repository, IHttpContextAccessor accessor)
         {
@@ -33,10 +34,7 @@ namespace DoFest.Business.Activities.Services.Implementations
         public async Task<RatingModel> Add(Guid activityId, CreateRatingModel model)
         {
 
-            //va fi folosit (impreuna cu [JsonIgnore] asupra campului UserId din model) pentru a extrage user-ul logat
-
-
-            //  model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
 
             var activity = await _repository.GetById(activityId);
             var rating = _mapper.Map<Rating>(model);
@@ -59,6 +57,24 @@ namespace DoFest.Business.Activities.Services.Implementations
             _repository.Update(activity);
 
             await _repository.SaveChanges();
+        }
+
+        public async Task<RatingModel> Update(Guid activityId, Guid ratingId, CreateRatingModel model)
+        {
+            var activity = await this._repository.GetByIdWithRatings(activityId);
+
+            model.UserId = Guid.Parse(this._accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+
+            var rating = activity.Ratings.FirstOrDefault(r => r.Id == ratingId);
+
+            if (rating == null || model.UserId != rating.UserId) return null;
+            rating.Stars = model.Stars;
+
+            this._repository.Update(activity);
+
+            await this._repository.SaveChanges();
+            return this._mapper.Map<RatingModel>(rating);
+
         }
     }
 }

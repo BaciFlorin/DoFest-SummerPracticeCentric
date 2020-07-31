@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoFest.Persistence.Migrations
 {
-    public partial class GenerateClasses : Migration
+    public partial class Generateclasses : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,24 +45,31 @@ namespace DoFest.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Location",
+                name: "Activity",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Image = table.Column<byte[]>(nullable: true),
-                    Description = table.Column<string>(maxLength: 1000, nullable: false),
+                    ActivityTypeId = table.Column<Guid>(nullable: false),
                     CityId = table.Column<Guid>(nullable: false),
-                    Address = table.Column<string>(maxLength: 300, nullable: false)
+                    Name = table.Column<string>(maxLength: 200, nullable: false),
+                    Address = table.Column<string>(maxLength: 300, nullable: false),
+                    Description = table.Column<string>(maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Location", x => x.Id);
+                    table.PrimaryKey("PK_Activity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Location_City_CityId",
+                        name: "FK_Activity_ActivityType_ActivityTypeId",
+                        column: x => x.ActivityTypeId,
+                        principalTable: "ActivityType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Activity_City_CityId",
                         column: x => x.CityId,
                         principalTable: "City",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,7 +80,7 @@ namespace DoFest.Persistence.Migrations
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     Age = table.Column<int>(nullable: false),
                     Year = table.Column<int>(nullable: false),
-                    CityId = table.Column<Guid>(nullable: false)
+                    CityId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -83,30 +90,25 @@ namespace DoFest.Persistence.Migrations
                         column: x => x.CityId,
                         principalTable: "City",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Activity",
+                name: "Notification",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    ActivityTypeId = table.Column<Guid>(nullable: false),
-                    LocationId = table.Column<Guid>(nullable: false),
-                    Description = table.Column<string>(maxLength: 500, nullable: false)
+                    ActivityId = table.Column<Guid>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(maxLength: 1000, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Activity", x => x.Id);
+                    table.PrimaryKey("PK_Notification", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Activity_ActivityType_ActivityTypeId",
-                        column: x => x.ActivityTypeId,
-                        principalTable: "ActivityType",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Activity_Location_LocationId",
-                        column: x => x.LocationId,
-                        principalTable: "Location",
+                        name: "FK_Notification_Activity_ActivityId",
+                        column: x => x.ActivityId,
+                        principalTable: "Activity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -130,7 +132,7 @@ namespace DoFest.Persistence.Migrations
                         column: x => x.StudentId,
                         principalTable: "Student",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_User_UserType_UserTypeId",
                         column: x => x.UserTypeId,
@@ -204,26 +206,6 @@ namespace DoFest.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Note_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Notification",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    UserId = table.Column<Guid>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Description = table.Column<string>(maxLength: 1000, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Notification", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Notification_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
@@ -313,9 +295,9 @@ namespace DoFest.Persistence.Migrations
                 column: "ActivityTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Activity_LocationId",
+                name: "IX_Activity_CityId",
                 table: "Activity",
-                column: "LocationId");
+                column: "CityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BucketList_UserId",
@@ -339,11 +321,6 @@ namespace DoFest.Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Location_CityId",
-                table: "Location",
-                column: "CityId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Note_ActivityId",
                 table: "Note",
                 column: "ActivityId");
@@ -354,9 +331,9 @@ namespace DoFest.Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notification_UserId",
+                name: "IX_Notification_ActivityId",
                 table: "Notification",
-                column: "UserId");
+                column: "ActivityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Photo_ActivityId",
@@ -384,6 +361,12 @@ namespace DoFest.Persistence.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_User_Email",
+                table: "User",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_User_StudentId",
                 table: "User",
                 column: "StudentId",
@@ -394,6 +377,12 @@ namespace DoFest.Persistence.Migrations
                 name: "IX_User_UserTypeId",
                 table: "User",
                 column: "UserTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Username",
+                table: "User",
+                column: "Username",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -427,9 +416,6 @@ namespace DoFest.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "ActivityType");
-
-            migrationBuilder.DropTable(
-                name: "Location");
 
             migrationBuilder.DropTable(
                 name: "Student");
