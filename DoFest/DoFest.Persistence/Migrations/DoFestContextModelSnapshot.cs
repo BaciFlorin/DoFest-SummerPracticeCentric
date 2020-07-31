@@ -24,8 +24,15 @@ namespace DoFest.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ActivityTypeId")
+                    b.Property<Guid>("ActivityTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
                         .IsRequired()
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300);
+
+                    b.Property<Guid>("CityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -33,15 +40,16 @@ namespace DoFest.Persistence.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<Guid?>("LocationId")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.HasKey("Id");
 
                     b.HasIndex("ActivityTypeId");
 
-                    b.HasIndex("LocationId");
+                    b.HasIndex("CityId");
 
                     b.ToTable("Activity");
                 });
@@ -66,8 +74,7 @@ namespace DoFest.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ActivityId")
-                        .IsRequired()
+                    b.Property<Guid>("ActivityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
@@ -75,8 +82,7 @@ namespace DoFest.Persistence.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<Guid?>("UserId")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -93,8 +99,7 @@ namespace DoFest.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ActivityId")
-                        .IsRequired()
+                    b.Property<Guid>("ActivityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
@@ -102,8 +107,7 @@ namespace DoFest.Persistence.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
-                    b.Property<Guid?>("UserId")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -120,15 +124,13 @@ namespace DoFest.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ActivityId")
-                        .IsRequired()
+                    b.Property<Guid>("ActivityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<Guid?>("UserId")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -145,15 +147,13 @@ namespace DoFest.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ActivityId")
-                        .IsRequired()
+                    b.Property<Guid>("ActivityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Stars")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("UserId")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -178,34 +178,6 @@ namespace DoFest.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("City");
-                });
-
-            modelBuilder.Entity("DoFest.Entities.Activities.Places.Location", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
-
-                    b.Property<Guid>("CityId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.ToTable("Location");
                 });
 
             modelBuilder.Entity("DoFest.Entities.Authentication.Notification.Notification", b =>
@@ -240,7 +212,6 @@ namespace DoFest.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<Guid?>("CityId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -274,8 +245,7 @@ namespace DoFest.Persistence.Migrations
                     b.Property<Guid?>("StudentId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("UserTypeId")
-                        .IsRequired()
+                    b.Property<Guid>("UserTypeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Username")
@@ -330,8 +300,7 @@ namespace DoFest.Persistence.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<Guid?>("UserId")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -344,10 +313,10 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Lists.BucketListActivity", b =>
                 {
-                    b.Property<Guid?>("BucketListId")
+                    b.Property<Guid>("BucketListId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ActivityId")
+                    b.Property<Guid>("ActivityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Status")
@@ -365,12 +334,12 @@ namespace DoFest.Persistence.Migrations
                     b.HasOne("DoFest.Entities.Activities.ActivityType", null)
                         .WithMany("Activities")
                         .HasForeignKey("ActivityTypeId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DoFest.Entities.Activities.Places.Location", null)
+                    b.HasOne("DoFest.Entities.Activities.Places.City", null)
                         .WithMany("Activities")
-                        .HasForeignKey("LocationId")
+                        .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -435,14 +404,6 @@ namespace DoFest.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DoFest.Entities.Activities.Places.Location", b =>
-                {
-                    b.HasOne("DoFest.Entities.Activities.Places.City", null)
-                        .WithMany("Locations")
-                        .HasForeignKey("CityId")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("DoFest.Entities.Authentication.Notification.Notification", b =>
                 {
                     b.HasOne("DoFest.Entities.Activities.Activity", null)
@@ -457,8 +418,7 @@ namespace DoFest.Persistence.Migrations
                     b.HasOne("DoFest.Entities.Activities.Places.City", null)
                         .WithMany("Students")
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("DoFest.Entities.Authentication.User", b =>
@@ -466,7 +426,7 @@ namespace DoFest.Persistence.Migrations
                     b.HasOne("DoFest.Entities.Authentication.Student", null)
                         .WithOne()
                         .HasForeignKey("DoFest.Entities.Authentication.User", "StudentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("DoFest.Entities.Authentication.UserType", null)
                         .WithMany("Users")

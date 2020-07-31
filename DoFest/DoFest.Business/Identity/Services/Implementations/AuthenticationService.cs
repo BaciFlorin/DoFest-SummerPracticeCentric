@@ -66,8 +66,8 @@ namespace DoFest.Business.Identity.Services.Implementations
             if (user != null)
                 return null;
 
-            var city = await _cityRepository.GetByName(registerModel.City);
-            var userType = await _userTypeRepository.GetByName(registerModel.UserType);
+            var city = await _cityRepository.GetById(registerModel.City);
+            var userType = await _userTypeRepository.GetById(registerModel.UserType);
             if (city == null || userType == null)
             {
                 return null;
@@ -105,6 +105,18 @@ namespace DoFest.Business.Identity.Services.Implementations
             
             _userRepository.Update(user);
             await _userRepository.SaveChanges();
+        }
+
+        public async Task<IList<UserTypeModel>> GetAllUserTypes()
+        {
+            var result = await _userTypeRepository.GetAll();
+            var successRemove = result.Remove(await _userTypeRepository.GetByName("Admin"));
+            if (!successRemove)
+            {
+                return null;
+            }
+
+            return _mapper.Map<IList<UserTypeModel>>(result);
         }
 
         private async Task<LoginModelResponse> GenerateToken(User user)

@@ -13,6 +13,9 @@ using DoFest.Business.Identity.Models.Notifications;
 using DoFest.Business.Identity.Services.Implementations;
 using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Business.Identity.Validators;
+using DoFest.Business.Places;
+using DoFest.Business.Places.Services.Implementations;
+using DoFest.Business.Places.Services.Interfaces;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Activities.Places;
@@ -67,7 +70,8 @@ namespace DoFest.API
                 .AddScoped<IBucketListService, BucketListService>()
                 .AddScoped<ICommentsService, CommentsService>()
                 .AddScoped<IPhotosService, PhotosService>()
-                .AddScoped<IRatingsService, RatingsService>();
+                .AddScoped<IRatingsService, RatingsService>()
+                .AddScoped<ICityService, CityService>();
 
 
             // ****** Add Repositories and DbContext ******
@@ -89,6 +93,7 @@ namespace DoFest.API
                     config.AddProfile<AuthenticationMappingProfile>();
                     config.AddProfile<NotificationMappingProfile>();
                     config.AddProfile<ActivitiesMappingProfile>();
+                    config.AddProfile<CityMappingProfile>();
                 });
                 
             
@@ -118,7 +123,7 @@ namespace DoFest.API
             app
                 .UseHttpsRedirection()
                 .UseRouting()
-                .UseCors(options => options.AllowAnyOrigin().AllowAnyMethod())
+                .UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())
                 .UseAuthentication()
                 .UseAuthorization()
                 .UseEndpoints(endpoints => endpoints.MapControllers())

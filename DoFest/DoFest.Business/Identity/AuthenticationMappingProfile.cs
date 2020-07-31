@@ -12,6 +12,7 @@ namespace DoFest.Business.Identity
         public AuthenticationMappingProfile()
         {
             CreateMap<User, UserModel>();
+            CreateMap<UserType, UserTypeModel>();
         }
     }
 }

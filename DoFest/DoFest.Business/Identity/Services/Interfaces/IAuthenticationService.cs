@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using DoFest.Business.Identity.Models;
 
 namespace DoFest.Business.Identity.Services.Interfaces
@@ -28,5 +29,7 @@ namespace DoFest.Business.Identity.Services.Interfaces
         /// <param name="newPasswordModelRequest"> Model de data pentru schimbarea parolei. </param>
         /// <returns> ????? </returns>
         Task ChangePassword(NewPasswordModelRequest newPasswordModelRequest);
+
+        Task<IList<UserTypeModel>> GetAllUserTypes();
     }
 }

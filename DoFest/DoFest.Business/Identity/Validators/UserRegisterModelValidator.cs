@@ -1,4 +1,5 @@
 ﻿using DoFest.Business.Identity.Models;
+using DoFest.Persistence;
 using FluentValidation;
 
 namespace DoFest.Business.Identity.Validators
@@ -34,6 +35,7 @@ namespace DoFest.Business.Identity.Validators
 
             RuleFor(x => x.City)
                 .NotNull();
+
         }
     }
 }

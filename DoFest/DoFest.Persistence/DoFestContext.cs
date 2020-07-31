@@ -21,7 +21,6 @@ namespace DoFest.Persistence
         public DbSet<City> Cities { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
-        public DbSet<Location> Locations { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Photo> Photos { get; set; }
@@ -61,7 +60,7 @@ namespace DoFest.Persistence
                 entity.HasOne<ActivityType>()
                     .WithMany(a=>a.Activities)
                     .HasForeignKey(a=>a.ActivityTypeId)
-                    .OnDelete(DeleteBehavior.NoAction);
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasMany(a => a.Notifications)
                     .WithOne()
@@ -105,18 +104,6 @@ namespace DoFest.Persistence
                     .IsRequired();
             });
 
-            modelBuilder.Entity<Location>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .IsRequired();
-
-                entity.HasMany(l => l.Activities)
-                    .WithOne()
-                    .HasForeignKey(a=>a.LocationId)
-                    .OnDelete(DeleteBehavior.Cascade);
-
-            });
 
             modelBuilder.Entity<User>(entity =>
             {
@@ -138,7 +125,7 @@ namespace DoFest.Persistence
                     .HasOne<Student>()
                     .WithOne()
                     .HasForeignKey<User>(u=>u.StudentId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.SetNull);
 
                 entity
                     .HasOne<UserType>()
@@ -188,13 +175,13 @@ namespace DoFest.Persistence
                     .HasMany(c => c.Students)
                     .WithOne()
                     .HasForeignKey(s=>s.CityId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.SetNull);
 
                 entity
-                    .HasMany(c => c.Locations)
+                    .HasMany(c => c.Activities)
                     .WithOne()
-                    .HasForeignKey(d=>d.CityId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                    .HasForeignKey(a=>a.CityId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<UserType>(entity =>

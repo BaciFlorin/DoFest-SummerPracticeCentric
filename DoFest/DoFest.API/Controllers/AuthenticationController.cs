@@ -17,7 +17,7 @@ namespace DoFest.API.Controllers
             _authenticationService = authenticationService;
         }
 
-        [HttpPost("/login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Authenticate([FromBody] LoginModelRequest modelRequest)
         {
             var result = await _authenticationService.Login(modelRequest);
@@ -29,7 +29,7 @@ namespace DoFest.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost("/register")]
+        [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             var result = await _authenticationService.Register(model);
@@ -42,13 +42,26 @@ namespace DoFest.API.Controllers
             return Created(result.Id.ToString(), null);
         }
 
-        [HttpPut("/change-password")]
+        [HttpPut("change-password")]
         [Authorize]
         public IActionResult ChangePassword([FromBody] NewPasswordModelRequest modelRequest)
         {
             _authenticationService.ChangePassword(modelRequest);
             return Ok("Password changed!");
         }
+
+        [HttpGet("userTypes")]
+        public async Task<IActionResult> GetUserTypes()
+        {
+            var result = await _authenticationService.GetAllUserTypes();
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
+
 
     }
 }
