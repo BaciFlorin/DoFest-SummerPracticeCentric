@@ -6,6 +6,8 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using CSharpFunctionalExtensions;
+using DoFest.Business.Errors;
 using DoFest.Business.Identity.Models;
 using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Entities.Authentication;
@@ -54,29 +56,35 @@ namespace DoFest.Business.Identity.Services.Implementations
         }
 
 
-        public async Task<LoginModelResponse> Login(LoginModelRequest loginModelRequest)
+        public async Task<Result<LoginModelResponse, Error>> Login(LoginModelRequest loginModelRequest)
         {
             var user = await _userRepository.GetByEmail(loginModelRequest.Email);
+            if (user == null)
+                return Result.Failure<LoginModelResponse, Error>(ErrorsList.UserNotFound);
 
-            return user == null || !_passwordHasher.Check(user.PasswordHash, loginModelRequest.Password) ? null : await GenerateToken(user);
+            if (!_passwordHasher.Check(user.PasswordHash, loginModelRequest.Password))
+                return Result.Failure<LoginModelResponse, Error>(ErrorsList.InvalidPassword);
+
+            return Result.Success<LoginModelResponse, Error>(await GenerateToken(user));
         }
 
-        public async Task<UserModel> Register(RegisterModel registerModel)
+        public async Task<Result<UserModel, Error>> Register(RegisterModel registerModel)
         {
             var user = await _userRepository.GetByEmail(registerModel.Email);
             if (user != null)
-                return null;
+                return Result.Failure<UserModel,Error>(ErrorsList.EmailExists);
 
             user = await _userRepository.GetByUsername(registerModel.Username);
             if (user != null)
-                return null;
+                return Result.Failure<UserModel, Error>(ErrorsList.UsernameExists);
 
             var city = await _cityRepository.GetById(registerModel.City);
-            var userType = await _userTypeRepository.GetById(registerModel.UserType);
-            if (city == null || userType == null)
-            {
-                return null;
-            }
+            if (city == null)
+                return Result.Failure<UserModel, Error>(ErrorsList.InvalidCity);
+
+            var userType = await _userTypeRepository.GetById(registerModel.UserType); 
+            if(userType == null)
+                return Result.Failure<UserModel, Error>(ErrorsList.InvalidUserType);
 
             var newStudent = new Student()
             {
@@ -97,6 +105,7 @@ namespace DoFest.Business.Identity.Services.Implementations
                 StudentId = newStudent.Id,
                 UserTypeId = userType.Id
             };
+
             await _userRepository.Add(newUser);
             await _userRepository.SaveChanges();
 
@@ -107,17 +116,24 @@ namespace DoFest.Business.Identity.Services.Implementations
             await _bucketListRepository.Add(newBucketList);
             await _bucketListRepository.SaveChanges();
 
-            return new UserModel(newUser.Id, newUser.Username, newUser.Email, userType.Name, newUser.StudentId.GetValueOrDefault(), newBucketList.Id);
+            return Result.Success<UserModel, Error>(new UserModel(newUser.Id, newUser.Username, newUser.Email, userType.Name, newUser.StudentId.GetValueOrDefault(), newBucketList.Id));
         }
 
-        public async Task ChangePassword(NewPasswordModelRequest newPasswordModelRequest)
+        public async Task<Result<string, Error>> ChangePassword(NewPasswordModelRequest newPasswordModelRequest)
         {
             var id = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var user = await _userRepository.GetById(id);
+            var samePassword = _passwordHasher.Check(user.PasswordHash, newPasswordModelRequest.NewPassword);
+            if (samePassword)
+            {
+                return Result.Failure<string, Error>(ErrorsList.SamePassword);
+            }
             user.PasswordHash = _passwordHasher.CreateHash(newPasswordModelRequest.NewPassword);
             
             _userRepository.Update(user);
             await _userRepository.SaveChanges();
+
+            return Result.Success<string, Error>("Password changed!");
         }
 
         public async Task<IList<UserTypeModel>> GetAllUserTypes()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Identity.Models.Notifications;
 using DoFest.Business.Identity.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -20,7 +21,7 @@ namespace DoFest.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> FindAllNotificationsUser(Guid id)
+        public async Task<IActionResult> FindAllNotificationsUser()
         {
             var result = await _notificationService.FindAllNotifications();
             return Ok(result);
@@ -29,13 +30,13 @@ namespace DoFest.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNotification([FromBody] CreateNotificationModel notificationModel)
         {
-            var result = await _notificationService.CreateNotification(notificationModel);
-            if (result == null)
+            var (_, isFailure, value, error) = await _notificationService.CreateNotification(notificationModel);
+            if (isFailure)
             {
-                return BadRequest();
+                return BadRequest(error);
             }
 
-            return Created(result.Id.ToString(),null);
+            return Created(value.Id.ToString(),null);
         }
     }
 }

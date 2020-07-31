@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Models.Places;
 using DoFest.Business.Activities.Services.Interfaces;
+using DoFest.Business.Errors;
 using DoFest.Entities.Activities.Places;
 using DoFest.Persistence.Activities.Places;
 
@@ -26,12 +28,12 @@ namespace DoFest.Business.Activities.Services.Implementations
             return _mapper.Map<IList<CityModel>>(cities);
         }
 
-        public async Task<CityModel> CreateCity(CreateCityModel cityModel)
+        public async Task<Result<CityModel, Error>> CreateCity(CreateCityModel cityModel)
         {
             var city = await _cityRepository.GetByName(cityModel.Name);
             if (city != null)
             {
-                return null;
+                return Result.Failure<CityModel,Error>(ErrorsList.ExistingCity);
             }
 
             var newCity = new City()
@@ -41,21 +43,21 @@ namespace DoFest.Business.Activities.Services.Implementations
             await _cityRepository.Add(newCity);
             await _cityRepository.SaveChanges();
 
-            return _mapper.Map<CityModel>(newCity);
+            return Result.Success<CityModel, Error>(_mapper.Map<CityModel>(newCity));
         }
 
-        public async Task<Boolean> DeleteCity(Guid cityId)
+        public async Task<Result<string, Error>> DeleteCity(Guid cityId)
         {
             var city = await _cityRepository.GetById(cityId);
             if (city == null)
             {
-                return false;
+                return Result.Failure<string,Error>(ErrorsList.InvalidCity);
             }
 
             _cityRepository.Delete(city);
             await _cityRepository.SaveChanges();
 
-            return true;
+            return Result.Success<string, Error>("City deleted successfully");
         }
     }
 }
