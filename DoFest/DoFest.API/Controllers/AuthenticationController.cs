@@ -61,7 +61,5 @@ namespace DoFest.API.Controllers
 
             return Ok(result);
         }
-
-
     }
 }

@@ -9,9 +9,11 @@ using AutoMapper;
 using DoFest.Business.Identity.Models;
 using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Entities.Authentication;
+using DoFest.Entities.Lists;
 using DoFest.Persistence.Activities.Places;
 using DoFest.Persistence.Authentication;
 using DoFest.Persistence.Authentication.Type;
+using DoFest.Persistence.BucketLists;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -28,6 +30,7 @@ namespace DoFest.Business.Identity.Services.Implementations
         private readonly IUserTypeRepository _userTypeRepository;
         private readonly IStudentRepository _studentRepository;
         private readonly IHttpContextAccessor _accessor;
+        private readonly IBucketListRepository _bucketListRepository;
 
         public AuthenticationService(IMapper mapper,
             IOptions<JwtOptions> config, 
@@ -36,7 +39,8 @@ namespace DoFest.Business.Identity.Services.Implementations
             IUserTypeRepository userTypeRepository, 
             ICityRepository cityRepository,
             IStudentRepository studentRepository, 
-            IHttpContextAccessor accessor)
+            IHttpContextAccessor accessor,
+            IBucketListRepository bucketListRepository)
         {
             _mapper = mapper;
             _config = config.Value;
@@ -46,6 +50,7 @@ namespace DoFest.Business.Identity.Services.Implementations
             _cityRepository = cityRepository;
             _studentRepository = studentRepository;
             _accessor = accessor;
+            _bucketListRepository = bucketListRepository;
         }
 
 
@@ -80,6 +85,7 @@ namespace DoFest.Business.Identity.Services.Implementations
                 Name = registerModel.Name,
                 Year = registerModel.Year
             };
+
             await _studentRepository.Add(newStudent);
             await _studentRepository.SaveChanges();
 
@@ -94,7 +100,14 @@ namespace DoFest.Business.Identity.Services.Implementations
             await _userRepository.Add(newUser);
             await _userRepository.SaveChanges();
 
-            return new UserModel(newUser.Id, newUser.Username, newUser.Email, userType.Name, newUser.StudentId.GetValueOrDefault());
+            var newBucketList = new BucketList()
+            {
+                Name = registerModel.BucketListName
+            };
+            await _bucketListRepository.Add(newBucketList);
+            await _bucketListRepository.SaveChanges();
+
+            return new UserModel(newUser.Id, newUser.Username, newUser.Email, userType.Name, newUser.StudentId.GetValueOrDefault(), newBucketList.Id);
         }
 
         public async Task ChangePassword(NewPasswordModelRequest newPasswordModelRequest)

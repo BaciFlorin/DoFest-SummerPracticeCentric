@@ -12,5 +12,6 @@ namespace DoFest.Business.Identity.Models
         public int Age { get; set; }
         public int Year { get; set; }
         public Guid City { get; set; }
+        public string BucketListName { get; set; }
     }
 }
