@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DoFest.Business.Activities.Models.Activity.ActivityType;
 using DoFest.Business.Activities.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;

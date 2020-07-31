@@ -63,7 +63,6 @@ namespace DoFest.Business.Services.Implementations
         {
             // var activity = await _repository.get
             throw new ExecutionEngineException();
-
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CSharpFunctionalExtensions;
+using DoFest.Business.Errors;
 using DoFest.Business.Identity.Models.Notifications;
 using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Entities.Authentication.Notification;
@@ -47,13 +49,14 @@ namespace DoFest.Business.Identity.Services.Implementations
             return _mapper.Map<IList<NotificationModel>>(notifications);
         }
 
-        public async Task<NewNotificationModel> CreateNotification(CreateNotificationModel model)
+        public async Task<Result<NewNotificationModel, Error>> CreateNotification(CreateNotificationModel model)
         {
             var existsActivity = (await _activitiesRepository.GetById(model.ActivityId)) != null;
             if (!existsActivity)
             {
-                return null;
+                return Result.Failure<NewNotificationModel, Error>(ErrorsList.UnavailableActivity);
             }
+
             var notification = new Notification()
             {
                 ActivityId =  model.ActivityId,
@@ -63,7 +66,7 @@ namespace DoFest.Business.Identity.Services.Implementations
 
             await _notificationRepository.Add(notification);
             await _notificationRepository.SaveChanges();
-            return _mapper.Map<NewNotificationModel>(notification);
+            return Result.Success<NewNotificationModel,Error>(_mapper.Map<NewNotificationModel>(notification));
         }
     }
 }

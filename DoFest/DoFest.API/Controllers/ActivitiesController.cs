@@ -1,10 +1,7 @@
-﻿using DoFest.Business.Services.Interfaces;
-using DoFest.Business.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using DoFest.Business.Models.Activity;
-using DoFest.Persistence.Activities;
 using DoFest.Business.Activities.Services.Interfaces;
 
 namespace DoFest.API.Controllers
@@ -16,13 +13,11 @@ namespace DoFest.API.Controllers
 
         // ****** Servicii folosite de catre controller ******
         private readonly IActivitiesService _activitiesService;
-        private readonly IActivityTypeService _activityTypeService;
 
         /// Constructorul public care va injecta serviciile necesare prin IoC
-        public ActivitiesController(IActivitiesService activitiesService, IActivityTypeService activityTypeService)
+        public ActivitiesController(IActivitiesService activitiesService)
         {
             _activitiesService = activitiesService;
-            _activityTypeService = activityTypeService;
         }
 
         // ****** Maparea metodelor HTTP ******
@@ -66,14 +61,6 @@ namespace DoFest.API.Controllers
             await _activitiesService.Delete(activityId);
 
             return NoContent();
-        }
-
-        [HttpGet("allTypes")]
-        public async Task<IActionResult> GetActivityTypeList()
-        {
-            var result = await _activityTypeService.GetActivitiesType();
-
-            return Ok(result);
         }
     }
 }

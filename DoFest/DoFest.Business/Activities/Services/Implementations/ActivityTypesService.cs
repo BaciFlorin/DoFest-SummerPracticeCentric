@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using DoFest.Business.Activities.Models.Activity.ActivityType;
-using DoFest.Business.Activities.Models.Content.Ratings;
 using DoFest.Business.Activities.Services.Interfaces;
 using DoFest.Entities.Activities;
 using DoFest.Persistence.Activities.ActivityTypes;

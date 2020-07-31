@@ -1,5 +1,4 @@
 ﻿using DoFest.Business.Identity.Models;
-using DoFest.Persistence;
 using FluentValidation;
 
 namespace DoFest.Business.Identity.Validators
