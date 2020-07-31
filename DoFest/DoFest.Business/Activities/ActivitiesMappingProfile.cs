@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using DoFest.Business.Activities.Models.Activity;
-using DoFest.Business.Activities.Models.BucketList;
 using DoFest.Business.Activities.Models.Content.Comment;
 using DoFest.Business.Activities.Models.Content.Photos;
 using DoFest.Business.Activities.Models.Content.Ratings;
+using DoFest.Business.Models.Activity;
+using DoFest.Business.Models.BucketList;
 using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Content;
 using DoFest.Entities.Authentication;
@@ -30,6 +30,8 @@ namespace DoFest.Business.Activities
             CreateMap<Comment, CommentModel>();
 
             CreateMap<Activity, ActivityModel>();
+            CreateMap<ActivityType, ActivityTypeModel>();
+            CreateMap<CreateActivityModel, Activity>();
             CreateMap<BucketList, BucketListModel>();
 
             CreateMap<User, BucketListModel>();

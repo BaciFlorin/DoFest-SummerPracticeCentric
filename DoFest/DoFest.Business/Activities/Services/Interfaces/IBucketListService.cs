@@ -1,7 +1,7 @@
-﻿using System;
+﻿using DoFest.Business.Models.BucketList;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DoFest.Business.Activities.Models.BucketList;
 
 namespace DoFest.Business.Activities.Services.Interfaces
 {

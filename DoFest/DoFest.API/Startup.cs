@@ -31,6 +31,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using DoFest.Business.Services.Interfaces;
+using DoFest.Business.Services.Implementations;
 
 namespace DoFest.API
 {
@@ -67,7 +69,8 @@ namespace DoFest.API
                 .AddScoped<IBucketListService, BucketListService>()
                 .AddScoped<ICommentsService, CommentsService>()
                 .AddScoped<IPhotosService, PhotosService>()
-                .AddScoped<IRatingsService, RatingsService>();
+                .AddScoped<IRatingsService, RatingsService>()
+                .AddScoped<IActivityTypeService, ActivityTypeService>();
 
 
             // ****** Add Repositories and DbContext ******
@@ -79,7 +82,8 @@ namespace DoFest.API
                 .AddScoped<IStudentRepository, StudentRepository>()
                 .AddScoped<INotificationRepository, NotificationRepository>()
                 .AddScoped<IActivitiesRepository, ActivitiesRepository>()
-                .AddScoped<IBucketListRepository, BucketListRepository>();
+                .AddScoped<IBucketListRepository, BucketListRepository>()
+                .AddScoped<IActivityTypeRepository, ActivityTypeRepository>();
 
 
             // ****** Add Mapper profiles ******
