@@ -13,5 +13,7 @@ namespace DoFest.Business.Activities.Services.Interfaces
 
         Task Delete(Guid activityId, Guid ratingId);
 
+        Task<RatingModel> Update(Guid activityId, Guid ratingId, CreateRatingModel model);
+
     }
 }

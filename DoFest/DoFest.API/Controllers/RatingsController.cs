@@ -41,5 +41,19 @@ namespace DoFest.API.Controllers
 
             return NoContent();
         }
+
+        [HttpPatch("{ratingId}")]
+        public async Task<IActionResult> Patch([FromRoute] Guid activityId, [FromRoute] Guid ratingId,
+            [FromBody] CreateRatingModel model)
+        {
+            var result = await this._ratingsService.Update(activityId, ratingId, model);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return NoContent();
+        }
     }
 }
