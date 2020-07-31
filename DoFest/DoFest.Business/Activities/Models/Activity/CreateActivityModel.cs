@@ -8,7 +8,9 @@ namespace DoFest.Business.Models.Activity
 
         public string Name { get; set; }
 
-        public Guid? LocationId { get; set; }
+        public Guid CityId { get; set; }
+
+        public string Address { get; set; }
 
         public string Description { get; set; }
     }
