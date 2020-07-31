@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DoFest.Business.Places.Models;
-using DoFest.Business.Places.Services.Interfaces;
+using CSharpFunctionalExtensions;
+using DoFest.Business.Activities.Models.Places;
+using DoFest.Business.Activities.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
@@ -24,28 +26,30 @@ namespace DoFest.API.Controllers
         }
 
         [HttpPost()]
+        [Authorize]
         public async Task<IActionResult> CreateCity([FromBody] CreateCityModel cityModel)
         {
-            var result = await _cityService.CreateCity(cityModel);
+            var (_, isFailure, value, error) = await _cityService.CreateCity(cityModel);
 
-            if (result == null)
+            if (isFailure)
             {
-                return BadRequest("City already exists!");
+                return BadRequest(error);
             }
 
-            return Ok(result);
+            return Ok(value);
         }
 
         [HttpDelete("{cityId}")]
+        [Authorize]
         public async Task<IActionResult> DeleteCity([FromRoute] Guid cityId)
         {
-            var isSuccess = await _cityService.DeleteCity(cityId);
-            if (!isSuccess)
+            var (_, isFailure, value, error) = await _cityService.DeleteCity(cityId);
+            if (!isFailure)
             {
-                return BadRequest("City doesn't exists");
+                return BadRequest(error);
             }
 
-            return Ok();
+            return Ok(value);
         }
     }
 }

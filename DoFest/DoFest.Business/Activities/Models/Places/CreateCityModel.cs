@@ -1,4 +1,4 @@
-﻿namespace DoFest.Business.Places.Models
+﻿namespace DoFest.Business.Activities.Models.Places
 {
     public sealed class CreateCityModel
     {

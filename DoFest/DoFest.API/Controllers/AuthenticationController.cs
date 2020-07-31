@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Identity.Models;
 using DoFest.Business.Identity.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -20,34 +21,29 @@ namespace DoFest.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Authenticate([FromBody] LoginModelRequest modelRequest)
         {
-            var result = await _authenticationService.Login(modelRequest);
-            if (result == null)
-            {
-                return BadRequest("Incorrect username or password");
-            }
-
-            return Ok(result);
+            var (_, isFailure, value, error) = await _authenticationService.Login(modelRequest);
+            if (isFailure)
+                return BadRequest(error);
+            return Ok(value);
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            var result = await _authenticationService.Register(model);
-
-            if (result == null)
-            {
-                return BadRequest("Incorrect input data!");
-            }
-
-            return Created(result.Id.ToString(), null);
+            var (_, isFailure, value, error) = await _authenticationService.Register(model);
+            if (isFailure)
+                return BadRequest(error);
+            return Created(value.Id.ToString(), null);
         }
 
         [HttpPut("change-password")]
         [Authorize]
-        public IActionResult ChangePassword([FromBody] NewPasswordModelRequest modelRequest)
+        public async Task<IActionResult> ChangePassword([FromBody] NewPasswordModelRequest modelRequest)
         {
-            _authenticationService.ChangePassword(modelRequest);
-            return Ok("Password changed!");
+            var(_, isFailure, value, error) = await _authenticationService.ChangePassword(modelRequest);
+            if (isFailure)
+                return BadRequest(error);
+            return Ok(value);
         }
 
         [HttpGet("userTypes")]
@@ -55,10 +51,7 @@ namespace DoFest.API.Controllers
         {
             var result = await _authenticationService.GetAllUserTypes();
             if (result == null)
-            {
                 return BadRequest();
-            }
-
             return Ok(result);
         }
     }
