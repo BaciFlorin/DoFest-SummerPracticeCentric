@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using DoFest.Business.Errors;
 using DoFest.Business.Identity.Models;
-using DoFest.Entities.Authentication;
 
 namespace DoFest.Business.Identity.Services.Interfaces
 {

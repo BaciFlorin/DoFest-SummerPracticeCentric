@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using DoFest.Business.Identity.Models.Notifications;
 using DoFest.Business.Identity.Services.Interfaces;

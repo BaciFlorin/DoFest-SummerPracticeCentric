@@ -1,7 +1,4 @@
 ﻿using DoFest.Business.Activities.Services.Interfaces;
-using DoFest.Business.Services.Interfaces;
-using DoFest.Entities.Authentication;
-using DoFest.Persistence.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

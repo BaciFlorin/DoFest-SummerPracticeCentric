@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DoFest.Business.Activities.Models.Activity.ActivityType
+﻿namespace DoFest.Business.Activities.Models.Activity.ActivityType
 {
     public sealed class CreateActivityTypeModel
     {
