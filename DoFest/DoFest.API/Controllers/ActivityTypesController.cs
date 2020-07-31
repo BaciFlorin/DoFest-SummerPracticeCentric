@@ -20,9 +20,9 @@ namespace DoFest.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var ratings = await _activityTypesService.Get();
+            var activityTypes = await _activityTypesService.Get();
 
-            return Ok(ratings);
+            return Ok(activityTypes);
         }
 
         [HttpPost]

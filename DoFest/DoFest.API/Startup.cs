@@ -15,6 +15,7 @@ using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Business.Identity.Validators;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
+using DoFest.Persistence.Activities.ActivityTypes;
 using DoFest.Persistence.Activities.Places;
 using DoFest.Persistence.Authentication;
 using DoFest.Persistence.Authentication.Type;
@@ -68,7 +69,8 @@ namespace DoFest.API
                 .AddScoped<ICommentsService, CommentsService>()
                 .AddScoped<IPhotosService, PhotosService>()
                 .AddScoped<IRatingsService, RatingsService>()
-                .AddScoped<ICityService, CityService>();
+                .AddScoped<ICityService, CityService>()
+                .AddScoped<IActivityTypesService, ActivityTypesService>();
 
 
             // ****** Add Repositories and DbContext ******
@@ -80,8 +82,8 @@ namespace DoFest.API
                 .AddScoped<IStudentRepository, StudentRepository>()
                 .AddScoped<INotificationRepository, NotificationRepository>()
                 .AddScoped<IActivitiesRepository, ActivitiesRepository>()
-                .AddScoped<IBucketListRepository, BucketListRepository>();
-
+                .AddScoped<IBucketListRepository, BucketListRepository>()
+                .AddScoped<IActivityTypesRepository, ActivityTypesRepository>();
 
             // ****** Add Mapper profiles ******
             services
