@@ -65,12 +65,6 @@ namespace DoFest.Business.Services.Implementations
 
             return Result.Success<ActivityModel, Error>(_mapper.Map < ActivityModel>(activity));
         }
-
-        public Task<ActivityModel> GetIdByType(string activityType)
-        {
-            // var activity = await _repository.get
-            throw new ExecutionEngineException();
-        }
     }
 }
 
