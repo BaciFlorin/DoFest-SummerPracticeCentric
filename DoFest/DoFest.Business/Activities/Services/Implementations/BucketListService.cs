@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CSharpFunctionalExtensions;
+using DoFest.Business.Activities.Models.Activity;
 using DoFest.Business.Activities.Models.BucketList;
 using DoFest.Business.Activities.Services.Interfaces;
 using DoFest.Business.Errors;
@@ -49,9 +50,10 @@ namespace DoFest.Business.Activities.Services.Implementations
                 return Result.Failure<BucketListWithActivityIdModel, Error>(ErrorsList.UserNotFound);
             }
 
-            var activitiesIdList = bucketList.BucketListActivities.Select(bucketListActivity => bucketListActivity.ActivityId).ToList();
+            var bucketListActivities = bucketList.BucketListActivities.ToList();
+            var activities = bucketListActivities.Select(activity => ActivityWithStatusModel.Create(activity.ActivityId, activity.Status)).ToList();
 
-            return BucketListWithActivityIdModel.Create(bucketList.Id, activitiesIdList, bucketList.Name, user.Username);
+            return BucketListWithActivityIdModel.Create(bucketList.Id, activities, bucketList.Name, user.Username);
         }
 
         public async Task<Result<IList<BucketListModel>, Error>> GetBucketLists()
