@@ -163,6 +163,11 @@ namespace DoFest.Business.Activities.Services.Implementations
         /// <returns> Modelul bucket list-ului care a fost updatat sau null. </returns>
         public async Task<Result<BucketListModel, Error>> ToggleStatus(Guid bucketListId, Guid activityId)
         {
+            var activity = await _activitiesRepository.GetById(activityId);
+            if (activity == null)
+            {
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableActivity);
+            }
             var bucketList = await _bucketListRepository.GetById(bucketListId);
             if (bucketList == null)
             {
