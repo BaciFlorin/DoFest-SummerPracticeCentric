@@ -30,7 +30,7 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             var user = await _userRepository.GetById(bucketList.UserId);
 
-            var bucketListModel = BucketListModel.Create(bucketList.UserId, bucketList.Name, user.Username);
+            var bucketListModel = BucketListModel.Create(bucketList.Id, bucketList.Name, user.Username);
 
             return bucketListModel;
         }

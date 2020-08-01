@@ -15,6 +15,6 @@
         public static Error InvalidPhoto => new Error("photo.not.exists", "Photo doesn't exist!");
         public static Error DeleteNotAuthorized => new Error("user.not.authorized", "An user can only delete his own content!");
         public static Error UpdateNotAuthorized => new Error("user.not.authorized", "An user can only update his own content!");
-
+        public static Error ActivityExists => new Error("activity.exists", "Activity already exists!");
     }
 }
