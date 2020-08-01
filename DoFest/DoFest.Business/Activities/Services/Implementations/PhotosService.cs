@@ -88,11 +88,14 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<string, Error>> Delete(Guid activityId, Guid photoId)
         {
-            var activity = await _activitiesRepository.GetByIdWithPhotos(activityId);
-            if (activity == null)
+            var activityExists = (await _activitiesRepository.GetById(activityId)) != null;
+            if (!activityExists)
             {
                 return Result.Failure<string, Error>(ErrorsList.UnavailableActivity);
             }
+
+            var activity = await _activitiesRepository.GetByIdWithPhotos(activityId);
+          
             var photo = activity.Photos.FirstOrDefault(p => p.Id == photoId);
 
             if (photo == null)

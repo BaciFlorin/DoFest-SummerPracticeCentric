@@ -84,12 +84,13 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<string, Error>> Delete(Guid activityId, Guid ratingId)
         {
-            var activity = await _activitiesRepository.GetByIdWithRatings(activityId);
-
-            if (activity == null)
+            var activityExists = (await _activitiesRepository.GetById(activityId)) != null;
+            if (!activityExists)
             {
                 return Result.Failure<string, Error>(ErrorsList.UnavailableActivity);
             }
+
+            var activity = await _activitiesRepository.GetByIdWithRatings(activityId);
 
             var rating = activity.Ratings.FirstOrDefault(r => r.Id == ratingId) ;
 
@@ -114,11 +115,13 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<RatingModel, Error>> Update(Guid activityId, Guid ratingId, CreateRatingModel model)
         {
-            var activity = await this._activitiesRepository.GetByIdWithRatings(activityId);
-            if (activity == null)
+            var activityExists = (await _activitiesRepository.GetById(activityId)) != null;
+            if (!activityExists)
             {
                 return Result.Failure<RatingModel, Error>(ErrorsList.UnavailableActivity);
             }
+
+            var activity = await this._activitiesRepository.GetByIdWithRatings(activityId);
 
             model.UserId = Guid.Parse(this._accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
 
