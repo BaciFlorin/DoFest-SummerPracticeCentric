@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Services.Interfaces;
+using DoFest.Business.Errors;
 using DoFest.Business.Models.Activity;
 using DoFest.Entities.Activities;
 using DoFest.Persistence.Activities;
@@ -42,27 +44,26 @@ namespace DoFest.Business.Services.Implementations
         {
             var activityList = await _repository.GetActivityLists();
 
-            //var activityModel = new List<ActivityModel>();
-
             var acList = _mapper.Map<List<ActivityModel>>(activityList);
 
             return acList;
         }
 
-        public async Task<ActivityModel> Add(CreateActivityModel model)
+        public async Task<Result<ActivityModel, Error>> Add(CreateActivityModel model)
         {
+            var act = await _repository.GetByName(model.Name);
+
+            if (act != null)
+            {
+                return Result.Failure<ActivityModel, Error>(ErrorsList.ActivityExists);
+            }
+
             var activity = _mapper.Map<Activity>(model);
 
             await _repository.Add(activity);
             await _repository.SaveChanges();
 
-            return _mapper.Map<ActivityModel>(activity);
-        }
-
-        public Task<ActivityModel> GetIdByType(string activityType)
-        {
-            // var activity = await _repository.get
-            throw new ExecutionEngineException();
+            return Result.Success<ActivityModel, Error>(_mapper.Map < ActivityModel>(activity));
         }
     }
 }

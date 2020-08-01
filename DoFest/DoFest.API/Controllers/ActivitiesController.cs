@@ -35,7 +35,6 @@ namespace DoFest.API.Controllers
         }
 
         [HttpGet("{activityId}")]
-        // TODO: adaugarea logicii business
         public async Task<IActionResult> Get([FromRoute] Guid activityId)
         {
             var result = await _activitiesService.Get(activityId);
@@ -44,8 +43,6 @@ namespace DoFest.API.Controllers
         }
 
         [HttpPost("")]
-
-        // TODO: adaugarea logicii business
         public async Task<IActionResult> Add([FromBody] CreateActivityModel activity)
         {
             var result = await _activitiesService.Add(activity);
@@ -54,13 +51,11 @@ namespace DoFest.API.Controllers
         }
 
         [HttpDelete("{activityId}")]
-
-        // TODO: adaugarea logicii business
         public async Task<IActionResult> Delete([FromRoute] Guid activityId)
         {
             await _activitiesService.Delete(activityId);
 
-            return NoContent();
+            return Ok();
         }
     }
 }

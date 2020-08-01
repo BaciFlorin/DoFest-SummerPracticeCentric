@@ -32,5 +32,7 @@ namespace DoFest.Persistence.Activities
         Task<Activity> GetByIdWithComments(Guid id);
 
         Task<IList<Activity>> GetActivityLists();
+
+        Task<Activity> GetByName(string name);
     }
 }

@@ -32,6 +32,7 @@ namespace DoFest.Business.Activities
             CreateMap<Comment, CommentModel>();
 
             CreateMap<Activity, ActivityModel>();
+            CreateMap<CreateActivityModel, Activity>();
             CreateMap<BucketList, BucketListModel>();
 
             CreateMap<User, BucketListModel>();
