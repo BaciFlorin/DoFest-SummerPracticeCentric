@@ -29,14 +29,11 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             var bucketList = await _bucketListRepository.GetById(bucketListId);
 
-            var user = await _userRepository.GetById((Guid)bucketList.UserId);
+            var user = await _userRepository.GetById(bucketList.UserId);
 
-            var bucketListModel = _mapper.Map<BucketListModel>(bucketList);
-
-            //bucketListModel.Username = user.Username;
+            var bucketListModel = BucketListModel.Create(bucketList.UserId, bucketList.Name, user.Username);
 
             return bucketListModel;
-
         }
 
         public async Task<IList<BucketListModel>> GetBucketLists()
@@ -61,7 +58,7 @@ namespace DoFest.Business.Activities.Services.Implementations
             var bucketListActivity = new BucketListActivity();
             bucketListActivity.BucketListId = bucketListId;
             bucketListActivity.ActivityId = activityId;
-
+            //TODO: error if activity already exists
             bucketList.AddBucketListActivity(bucketListActivity);
 
             _bucketListRepository.Update(bucketList);
