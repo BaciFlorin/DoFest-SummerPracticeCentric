@@ -11,6 +11,7 @@
         public static Error SamePassword => new Error("same.password","New password must be different from the old one.");
         public static Error ExistingCity => new Error("existing.city", "City already exits!");
         public static Error UnavailableActivity => new Error("activity.not.exists","Activity doesn't exists!");
+        public static Error UnavailableComment => new Error("activity.not.exists", "Comment doesn't exists!");
 
     }
 }
