@@ -27,13 +27,7 @@ namespace DoFest.Business.Activities.Services.Implementations
         {
 
             var activity = await _activitiesRepository.GetById(activityId);
-            if (activity == null)
-            {
-                return Result.Failure<ActivityModel, Error>(ErrorsList.UnavailableActivity);
-            }
-
-            return _mapper.Map<ActivityModel>(activity);
-
+            return activity == null ? Result.Failure<ActivityModel, Error>(ErrorsList.UnavailableActivity) : _mapper.Map<ActivityModel>(activity);
         }
 
         public async Task<Result<ActivityModel,Error>> Delete(Guid activityId)
@@ -59,19 +53,18 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<ActivityModel, Error>> Add(CreateActivityModel model)
         {
-            var act = await _activitiesRepository.GetByName(model.Name);
-
-            if (act != null)
+            var activityModel = await _activitiesRepository.GetByName(model.Name);
+            if (activityModel != null)
             {
                 return Result.Failure<ActivityModel, Error>(ErrorsList.ActivityExists);
             }
 
-            var activity = _mapper.Map<Activity>(model);
+            var activityEntity = _mapper.Map<Activity>(model);
 
-            await _activitiesRepository.Add(activity);
+            await _activitiesRepository.Add(activityEntity);
             await _activitiesRepository.SaveChanges();
 
-            return Result.Success<ActivityModel, Error>(_mapper.Map < ActivityModel>(activity));
+            return _mapper.Map<ActivityModel>(activityEntity);
         }
     }
 }

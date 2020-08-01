@@ -63,9 +63,12 @@ namespace DoFest.API.Controllers
         [HttpDelete("{activityId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid activityId)
         {
-            await _activitiesService.Delete(activityId);
-
-            return Ok();
+            var(_, isFailure, result, error) = await _activitiesService.Delete(activityId);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+            return Ok(result);
         }
     }
 }
