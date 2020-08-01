@@ -5,14 +5,13 @@ using System.Threading.Tasks;
 
 namespace DoFest.API.Controllers
 {
-    [Route("/api/v1/bucketlists")]
+    [Route("/api/v1/bucketlist")]
     [ApiController]
     public class BucketlistController : ControllerBase
     {
         // ****** Servicii folosite de catre controller ******
-        public readonly IBucketListService _bucketListService;
-     
 
+        public readonly IBucketListService _bucketListService;
 
         /// Constructorul public care va injecta serviciile necesare prin IoC
         public BucketlistController(IBucketListService bucketListService)
@@ -20,8 +19,6 @@ namespace DoFest.API.Controllers
             _bucketListService = bucketListService;
         }
 
-
-        
         // ****** Maparea metodelor HTTP ******
 
         /// <summary>
@@ -36,8 +33,12 @@ namespace DoFest.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Metoda expusa pe web care returneaza un bucket list impreuna cu id activitatilor asociate.
+        /// </summary>
+        /// <param name="bucketlistId"> Id-ul bucket list-ului. </param>
+        /// <returns> Modelul de bucket list care a fost cautat sau un mesaj de eroare. </returns>
         [HttpGet("{bucketlistId}")]
-        // TODO: adaugarea logicii business
         public async Task<IActionResult> Get([FromRoute] Guid bucketlistId)
         {
             var result = await _bucketListService.Get(bucketlistId);
@@ -45,8 +46,13 @@ namespace DoFest.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Metoda expusa pe web care disociaza o activitate de un bucket list.
+        /// </summary>
+        /// <param name="bucketlistId"> Id-ul bucket list-ului. </param>
+        /// <param name="activityId"> Id-ul activitatii. </param>
+        /// <returns> Un model de BucketList care a fost updatat sau un mesaj de eroare. </returns>
         [HttpDelete("{bucketlistId}/activities/{activityId}")]
-        // TODO: adaugarea logicii business
         public async Task<IActionResult> Delete([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
         {
             var result = await _bucketListService.DeleteActivity(bucketlistId, activityId);
@@ -54,8 +60,13 @@ namespace DoFest.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Metoda expusa pe web care modifica starea activitatilor din bucket list.
+        /// </summary>
+        /// <param name="bucketlistId"> Id-ul bucket list-ului. </param>
+        /// <param name="activityId"> Id-ul activitatii. </param>
+        /// <returns> Un model de BucketList care a fost updatat sau un mesaj de eroare. </returns>
         [HttpPatch("{bucketlistId}/activities/{activityId}/togglestatus")]
-        // TODO: adaugarea logicii business
         public async Task<IActionResult> ChangeStatus([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
         {
             var result = await _bucketListService.ToggleStatus(bucketlistId, activityId);
@@ -63,6 +74,12 @@ namespace DoFest.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Metoda expusa pe web care atribuie o activitate unui bucketlist.
+        /// </summary>
+        /// <param name="bucketlistId"> Id-ul bucket list-ului. </param>
+        /// <param name="activityId"> Id-ul activitatii. </param>
+        /// <returns> Un model de BucketList care a fost updatat sau un mesaj de eroare. </returns>
         [HttpGet("add/{bucketlistId}/{activityId}")]
         public async Task<IActionResult> Add([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
         {

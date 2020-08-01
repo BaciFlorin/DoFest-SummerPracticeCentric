@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CSharpFunctionalExtensions;
+using DoFest.Business.Activities.Models.BucketList;
 using DoFest.Business.Activities.Services.Interfaces;
 using DoFest.Business.Errors;
-using DoFest.Business.Models.BucketList;
 using DoFest.Entities.Lists;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Authentication;
@@ -29,18 +29,26 @@ namespace DoFest.Business.Activities.Services.Implementations
             _activitiesRepository = activitiesRepository;
         }
 
-        public async Task<BucketListModel> Get(Guid bucketListId)
+        public async Task<Result<BucketListWithActivityIdModel, Error>> Get(Guid bucketListId)
         {
-            var bucketList = await _bucketListRepository.GetById(bucketListId);
+            var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
+            if (bucketList == null)
+            {
+                return Result.Failure<BucketListWithActivityIdModel, Error>(ErrorsList.UnavailableBucketList);
+            }
 
             var user = await _userRepository.GetById(bucketList.UserId);
+            if (user == null)
+            {
+                return Result.Failure<BucketListWithActivityIdModel, Error>(ErrorsList.UserNotFound);
+            }
 
-            var bucketListModel = BucketListModel.Create(bucketList.UserId, bucketList.Name, user.Username);
+            var activitiesIdList = bucketList.BucketListActivities.Select(bucketListActivity => bucketListActivity.ActivityId).ToList();
 
-            return bucketListModel;
+            return BucketListWithActivityIdModel.Create(bucketList.Id, activitiesIdList, bucketList.Name, user.Username);
         }
 
-        public async Task<IList<BucketListModel>> GetBucketLists()
+        public async Task<Result<IList<BucketListModel>, Error>> GetBucketLists()
         {
             var bucketlists = await _bucketListRepository.GetBucketLists();
 
@@ -58,25 +66,28 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<BucketListModel, Error>> Add(Guid bucketListId, Guid activityId)
         {
-
             var bucketList = await _bucketListRepository.GetById(bucketListId);
             if (bucketList == null)
             {
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
+            }
 
+            var user = await _userRepository.GetById(bucketList.UserId);
+            if (user == null)
+            {
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
             }
 
             var activity = await _activitiesRepository.GetById(activityId);
             if (activity == null)
             {
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableActivity);
-
             }
 
-            var bucketListActivity = new BucketListActivity();
-            bucketListActivity.BucketListId = bucketListId;
-            bucketListActivity.ActivityId = activityId;
-            bucketListActivity.Status = "On Hold";
+            var bucketListActivity = new BucketListActivity
+            {
+                BucketListId = bucketListId, ActivityId = activityId, Status = "On hold"
+            };
 
 
             bucketList.AddBucketListActivity(bucketListActivity);
@@ -85,44 +96,73 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             await _bucketListRepository.SaveChanges();
 
-            return _mapper.Map<BucketListModel>(bucketList);
+            return BucketListModel.Create(bucketList.Id, bucketList.Name, user.Username);
 
         }
 
-        public async Task<BucketListModel> DeleteActivity(Guid bucketListId, Guid activityId)
+        /// <summary>
+        /// Disociaza o activitate inclusa intr-un bucket list.
+        /// </summary>
+        /// <param name="bucketListId"> Id-ul bucket list-ului. </param>
+        /// <param name="activityId"> Id-ul activitatii. </param>
+        /// <returns></returns>
+        public async Task<Result<BucketListModel, Error>> DeleteActivity(Guid bucketListId, Guid activityId)
         {
-            // TODO: exception handle
+            var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
+            if (bucketList == null)
+            {
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
+            }
 
-            var bucketlist = await _bucketListRepository.GetById(bucketListId);
-            var activity = bucketlist
+            var activity = bucketList
                 .BucketListActivities
-                .FirstOrDefault(activity => activity.ActivityId == activityId);
- 
-                bucketlist.RemoveActivity(activityId);
-       
+                .FirstOrDefault(activityQuery => activityQuery.ActivityId == activityId);
+            if (activity == null)
+            {
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableActivity);
+            }
 
-            _bucketListRepository.Update(bucketlist);
+            bucketList
+                .BucketListActivities
+                .Remove(activity);
+
+            _bucketListRepository.Update(bucketList);
             await _bucketListRepository.SaveChanges();
 
-            return _mapper.Map<BucketListModel>(bucketlist);
+            return _mapper.Map<BucketListModel>(bucketList);
         }
 
-        public async Task<BucketListModel> ToggleStatus(Guid bucketListId, Guid activityId)
+        /// <summary>
+        /// Schimba statusul unei activitati din bucket list: Completed/On hold.
+        /// </summary>
+        /// <param name="bucketListId"> Id-ul bucket list-ului. </param>
+        /// <param name="activityId"> Id-ul activitatii. </param>
+        /// <returns> Modelul bucket list-ului care a fost updatat sau null. </returns>
+        public async Task<Result<BucketListModel, Error>> ToggleStatus(Guid bucketListId, Guid activityId)
         {
-            var bucketlistActivity = await _bucketListRepository.GetBucketListActivityById(bucketListId, activityId);
-            var bucketlist = await _bucketListRepository.GetById(bucketListId);
-            try
+            var bucketList = await _bucketListRepository.GetById(bucketListId);
+            if (bucketList == null)
             {
-                bucketlistActivity?.UpdateStatus();
-                _bucketListRepository.Update(bucketlist);
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
             }
-            catch (Exception e)
+            var user = await _userRepository.GetById(bucketList.UserId);
+            if (user == null)
             {
-                Console.Write(e.Message);
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UserNotFound);
             }
-            _bucketListRepository.Update(bucketlist);
+
+            var bucketListActivity = await _bucketListRepository.GetBucketListActivityById(bucketListId, activityId);
+            if (bucketListActivity == null )
+            {
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketListActivity);
+            }
+
+            bucketListActivity.UpdateStatus();
+            _bucketListRepository.Update(bucketList);
+
             await _bucketListRepository.SaveChanges();
-            return _mapper.Map<BucketListModel>(bucketlist);
+
+            return BucketListModel.Create(bucketList.Id, bucketList.Name, user.Username);
         }
 
     }

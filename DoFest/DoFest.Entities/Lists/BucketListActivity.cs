@@ -19,12 +19,12 @@ namespace DoFest.Entities.Lists
         [Required]
         public Guid ActivityId { get; set; }
 
-        [DefaultValue("Unlisted")]
+        [DefaultValue("On hold")]
         public string Status { get; set; }
 
         public void UpdateStatus()
         {
-            Status = Status == "Unlisted" ? "Listed" : "Unlisted";
+            Status = Status == "Completed" ? "On hold" : "Completed";
         }
     }
 }

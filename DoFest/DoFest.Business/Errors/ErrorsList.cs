@@ -14,5 +14,7 @@
         public static Error ActivityExists => new Error("activity.exists", "Activity already exists!");
         public static Error BucketListExists => new Error("bucketList.exists", "BucketList already exists!");
         public static Error UnavailableBucketList => new Error("bucketList.not.exists", "BucketList doesn't exists!");
+        public static Error UnavailableBucketListActivity => new Error("bucketList.not.exists", "Activity isn't associated with the searched bucket list doesn't exists!");
+
     }
 }
