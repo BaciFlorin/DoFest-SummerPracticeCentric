@@ -9,49 +9,57 @@ using DoFest.Business.Models.Activity;
 using DoFest.Entities.Activities;
 using DoFest.Persistence.Activities;
 
-namespace DoFest.Business.Services.Implementations
+namespace DoFest.Business.Activities.Services.Implementations
 {
     public sealed class ActivitiesService : IActivitiesService
     {
         private readonly IMapper _mapper;
-        private readonly IActivitiesRepository _repository;
+        private readonly IActivitiesRepository _activitiesRepository;
 
         public ActivitiesService(IActivitiesRepository repository, IMapper mapper)
         {
-            _repository = repository;
+            _activitiesRepository = repository;
             _mapper = mapper;
         }
 
 
-        public async Task<ActivityModel> Get(Guid activityId)
+        public async Task<Result<ActivityModel, Error>> Get(Guid activityId)
         {
 
-            var activity = await _repository.GetById(activityId);
+            var activity = await _activitiesRepository.GetById(activityId);
+            if (activity == null)
+            {
+                return Result.Failure<ActivityModel, Error>(ErrorsList.UnavailableActivity);
+            }
 
             return _mapper.Map<ActivityModel>(activity);
 
         }
 
-        public async Task Delete(Guid activityId)
+        public async Task<Result<ActivityModel,Error>> Delete(Guid activityId)
         {
-            var activity = await _repository.GetById(activityId);
+            var activity = await _activitiesRepository.GetById(activityId);
+            if (activity == null)
+            {
+                return Result.Failure<ActivityModel, Error>(ErrorsList.UnavailableActivity);
+            }
 
-            _repository.Delete(activity);
-            await _repository.SaveChanges();
+            _activitiesRepository.Delete(activity);
+            await _activitiesRepository.SaveChanges();
+
+            return _mapper.Map<ActivityModel>(activity);
         }
 
-        public async Task<IList<ActivityModel>> GetActivityLists()
+        public async Task<Result<IList<ActivityModel>,Error>> GetActivityLists()
         {
-            var activityList = await _repository.GetActivityLists();
+            var activityList = await _activitiesRepository.GetActivityLists();
 
-            var acList = _mapper.Map<List<ActivityModel>>(activityList);
-
-            return acList;
+            return _mapper.Map<List<ActivityModel>>(activityList);
         }
 
         public async Task<Result<ActivityModel, Error>> Add(CreateActivityModel model)
         {
-            var act = await _repository.GetByName(model.Name);
+            var act = await _activitiesRepository.GetByName(model.Name);
 
             if (act != null)
             {
@@ -60,8 +68,8 @@ namespace DoFest.Business.Services.Implementations
 
             var activity = _mapper.Map<Activity>(model);
 
-            await _repository.Add(activity);
-            await _repository.SaveChanges();
+            await _activitiesRepository.Add(activity);
+            await _activitiesRepository.SaveChanges();
 
             return Result.Success<ActivityModel, Error>(_mapper.Map < ActivityModel>(activity));
         }

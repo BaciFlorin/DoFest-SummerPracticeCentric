@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Models.Activity;
 using DoFest.Business.Activities.Services.Interfaces;
 
@@ -29,24 +30,33 @@ namespace DoFest.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetActivities()
         {
-            var result = await _activitiesService.GetActivityLists();
-
+            var (_, isFailure, result, error) = await _activitiesService.GetActivityLists();
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
             return Ok(result);
         }
 
         [HttpGet("{activityId}")]
         public async Task<IActionResult> Get([FromRoute] Guid activityId)
         {
-            var result = await _activitiesService.Get(activityId);
-
+            var (_, isFailure, result, error) = await _activitiesService.Get(activityId);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
             return Ok(result);
         }
 
         [HttpPost("")]
         public async Task<IActionResult> Add([FromBody] CreateActivityModel activity)
         {
-            var result = await _activitiesService.Add(activity);
-
+            var (_, isFailure, result, error) = await _activitiesService.Add(activity);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
             return Ok(result);
         }
 
