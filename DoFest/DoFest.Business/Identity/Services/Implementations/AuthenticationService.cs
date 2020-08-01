@@ -97,6 +97,7 @@ namespace DoFest.Business.Identity.Services.Implementations
             await _studentRepository.Add(newStudent);
             await _studentRepository.SaveChanges();
 
+            
             var newUser = new User()
             {
                 Username = registerModel.Username,
@@ -111,7 +112,8 @@ namespace DoFest.Business.Identity.Services.Implementations
 
             var newBucketList = new BucketList()
             {
-                Name = registerModel.BucketListName
+                Name = registerModel.BucketListName,
+                UserId = newUser.Id
             };
             await _bucketListRepository.Add(newBucketList);
             await _bucketListRepository.SaveChanges();
