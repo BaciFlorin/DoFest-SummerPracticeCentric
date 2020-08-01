@@ -26,7 +26,6 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<BucketListModel> Get(Guid bucketListId)
         {
-
             var bucketList = await _bucketListRepository.GetById(bucketListId);
 
             var user = await _userRepository.GetById(bucketList.UserId);
@@ -46,7 +45,7 @@ namespace DoFest.Business.Activities.Services.Implementations
             {
                 var user = await _userRepository.GetById(bucketList.UserId);
 
-                bucketListModel.Add(BucketListModel.Create(bucketList.UserId, bucketList.Name, user.Username));
+                bucketListModel.Add(BucketListModel.Create(bucketList.Id, bucketList.Name, user.Username));
             }
 
             return bucketListModel;
