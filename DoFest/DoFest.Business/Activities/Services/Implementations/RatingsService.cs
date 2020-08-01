@@ -76,7 +76,7 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             if (rating == null)
             {
-                return Result.Failure<string, Error>(ErrorsList.InvalidRating);
+                return Result.Failure<string, Error>(ErrorsList.UnavailableRating);
             }
 
             var loggedUserId = Guid.Parse(this._accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
@@ -107,7 +107,7 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             if (rating == null)
             {
-                return Result.Failure<RatingModel, Error>(ErrorsList.InvalidRating);
+                return Result.Failure<RatingModel, Error>(ErrorsList.UnavailableRating);
             }
 
             if (model.UserId != rating.UserId)

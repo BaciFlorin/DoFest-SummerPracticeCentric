@@ -78,7 +78,7 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             if (photo == null)
             {
-                return Result.Failure<string, Error>(ErrorsList.InvalidPhoto);
+                return Result.Failure<string, Error>(ErrorsList.UnavailablePhoto);
             }
 
             var loggedUserId = Guid.Parse(this._accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
