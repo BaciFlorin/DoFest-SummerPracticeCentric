@@ -66,10 +66,14 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<BucketListModel, Error>> Add(Guid bucketListId, Guid activityId)
         {
-            var bucketList = await _bucketListRepository.GetById(bucketListId);
+            var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
             if (bucketList == null)
             {
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
+            }
+            if (bucketList.BucketListActivities.Any(bucketListActivityQuery => bucketListActivityQuery.ActivityId == activityId) == true)
+            {
+                return Result.Failure<BucketListModel, Error>(ErrorsList.ActivityInBucketListExists);
             }
 
             var user = await _userRepository.GetById(bucketList.UserId);
@@ -88,7 +92,6 @@ namespace DoFest.Business.Activities.Services.Implementations
             {
                 BucketListId = bucketListId, ActivityId = activityId, Status = "On hold"
             };
-
 
             bucketList.AddBucketListActivity(bucketListActivity);
 
