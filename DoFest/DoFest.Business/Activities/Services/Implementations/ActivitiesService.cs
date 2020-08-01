@@ -8,6 +8,8 @@ using DoFest.Business.Errors;
 using DoFest.Business.Models.Activity;
 using DoFest.Entities.Activities;
 using DoFest.Persistence.Activities;
+using DoFest.Persistence.Activities.ActivityTypes;
+using DoFest.Persistence.Activities.Places;
 
 namespace DoFest.Business.Activities.Services.Implementations
 {
@@ -15,11 +17,15 @@ namespace DoFest.Business.Activities.Services.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IActivitiesRepository _activitiesRepository;
+        private readonly IActivityTypesRepository _activityTypesRepository;
+        private readonly ICityRepository _cityRepository;
 
-        public ActivitiesService(IActivitiesRepository repository, IMapper mapper)
+        public ActivitiesService(IActivitiesRepository repository, IActivityTypesRepository activityTypesRepository, ICityRepository cityRepository, IMapper mapper)
         {
             _activitiesRepository = repository;
             _mapper = mapper;
+            _activityTypesRepository = activityTypesRepository;
+            _cityRepository = cityRepository;
         }
 
 
@@ -53,6 +59,16 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<ActivityModel, Error>> Add(CreateActivityModel model)
         {
+            var isActivityTypeNull = (await _activityTypesRepository.GetById(model.ActivityTypeId)) == null;
+            if (isActivityTypeNull)
+            {
+                return Result.Failure<ActivityModel, Error>(ErrorsList.UnavailableActivityType);
+            }
+            var isCityNull = (await _cityRepository.GetById(model.CityId)) == null;
+            if (isCityNull)
+            {
+                return Result.Failure<ActivityModel, Error>(ErrorsList.InvalidCity);
+            }
             var activityModel = await _activitiesRepository.GetByName(model.Name);
             if (activityModel != null)
             {

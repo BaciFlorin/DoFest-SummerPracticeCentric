@@ -12,9 +12,10 @@
         public static Error ExistingCity => new Error("existing.city", "City already exits!");
         public static Error UnavailableActivity => new Error("activity.not.exists","Activity doesn't exists!");
         public static Error ActivityExists => new Error("activity.exists", "Activity already exists!");
-        public static Error ActivityInBucketListExists => new Error("bucketList.exists", "The activity already exists in the given bucket list!");
+        public static Error ActivityInBucketListExists => new Error("activity.in.bucketList.exists", "The activity already exists in the given bucket list!");
         public static Error UnavailableBucketList => new Error("bucketList.not.exists", "BucketList doesn't exists!");
-        public static Error UnavailableBucketListActivity => new Error("bucketList.not.exists", "Activity isn't associated with the searched bucket list doesn't exists!");
+        public static Error UnavailableBucketListActivity => new Error("bucketListActivity.not.exists", "Activity isn't associated with the searched bucket list doesn't exists!");
+        public static Error UnavailableActivityType => new Error("activityType.not.exists", "ActivityType doesn't exist!");
 
     }
 }
