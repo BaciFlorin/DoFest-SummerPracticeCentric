@@ -31,6 +31,12 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<BucketListWithActivityIdModel, Error>> Get(Guid bucketListId)
         {
+            var bucketListExists = (await _bucketListRepository.GetById(bucketListId)) != null;
+            if (!bucketListExists)
+            {
+                return Result.Failure<BucketListWithActivityIdModel, Error>(ErrorsList.UnavailableBucketList);
+            }
+
             var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
             if (bucketList == null)
             {
@@ -66,6 +72,12 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<BucketListModel, Error>> Add(Guid bucketListId, Guid activityId)
         {
+            var bucketListExists = (await _bucketListRepository.GetById(bucketListId)) != null;
+            if (!bucketListExists)
+            {
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
+            }
+
             var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
             if (bucketList == null)
             {
@@ -111,6 +123,12 @@ namespace DoFest.Business.Activities.Services.Implementations
         /// <returns></returns>
         public async Task<Result<BucketListModel, Error>> DeleteActivity(Guid bucketListId, Guid activityId)
         {
+            var bucketListExists = (await _bucketListRepository.GetById(bucketListId)) != null;
+            if (!bucketListExists)
+            {
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
+            }
+
             var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
             if (bucketList == null)
             {

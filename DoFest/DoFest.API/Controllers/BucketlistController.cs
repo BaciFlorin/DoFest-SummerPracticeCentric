@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using CSharpFunctionalExtensions;
 
 namespace DoFest.API.Controllers
 {
@@ -28,8 +29,11 @@ namespace DoFest.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetBucketList()
         {
-            var result = await _bucketListService.GetBucketLists();
-            
+            var (_, isFailure, result, error) = await _bucketListService.GetBucketLists();
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
             return Ok(result);
         }
 
@@ -41,8 +45,11 @@ namespace DoFest.API.Controllers
         [HttpGet("{bucketlistId}")]
         public async Task<IActionResult> Get([FromRoute] Guid bucketlistId)
         {
-            var result = await _bucketListService.Get(bucketlistId);
-
+            var (_, isFailure, result, error) = await _bucketListService.Get(bucketlistId);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
             return Ok(result);
         }
 
@@ -55,8 +62,11 @@ namespace DoFest.API.Controllers
         [HttpDelete("{bucketlistId}/activities/{activityId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
         {
-            var result = await _bucketListService.DeleteActivity(bucketlistId, activityId);
-
+            var (_, isFailure, result, error) = await _bucketListService.DeleteActivity(bucketlistId, activityId);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
             return Ok(result);
         }
 
@@ -69,8 +79,11 @@ namespace DoFest.API.Controllers
         [HttpPatch("{bucketlistId}/activities/{activityId}/togglestatus")]
         public async Task<IActionResult> ChangeStatus([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
         {
-            var result = await _bucketListService.ToggleStatus(bucketlistId, activityId);
-
+            var (_, isFailure, result, error) = await _bucketListService.ToggleStatus(bucketlistId, activityId);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
             return Ok(result);
         }
 
@@ -83,8 +96,11 @@ namespace DoFest.API.Controllers
         [HttpGet("add/{bucketlistId}/{activityId}")]
         public async Task<IActionResult> Add([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
         {
-            var result = await _bucketListService.Add(bucketlistId, activityId);
-
+            var (_, isFailure, result, error) = await _bucketListService.Add(bucketlistId, activityId);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
             return Ok(result);
         }
     }
