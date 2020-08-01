@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Services.Interfaces;
+using DoFest.Business.Errors;
 using DoFest.Business.Models.BucketList;
 using DoFest.Entities.Lists;
+using DoFest.Persistence.Activities;
 using DoFest.Persistence.Authentication;
 using DoFest.Persistence.BucketLists;
 
@@ -16,12 +19,14 @@ namespace DoFest.Business.Activities.Services.Implementations
         private readonly IMapper _mapper;
         private readonly IBucketListRepository _bucketListRepository;
         public readonly IUserRepository _userRepository;
+        public readonly IActivitiesRepository _activitiesRepository;
 
-        public BucketListService(IBucketListRepository repository, IMapper mapper, IUserRepository userRepository)
+        public BucketListService(IBucketListRepository repository, IMapper mapper, IUserRepository userRepository, IActivitiesRepository activitiesRepository)
         {
             _bucketListRepository = repository;
             _mapper = mapper;
             _userRepository = userRepository;
+            _activitiesRepository = activitiesRepository;
         }
 
         public async Task<BucketListModel> Get(Guid bucketListId)
@@ -51,13 +56,29 @@ namespace DoFest.Business.Activities.Services.Implementations
             return bucketListModel;
         }
 
-        public async Task<BucketListModel> Add(Guid bucketListId, Guid activityId)
+        public async Task<Result<BucketListModel, Error>> Add(Guid bucketListId, Guid activityId)
         {
+
             var bucketList = await _bucketListRepository.GetById(bucketListId);
+            if (bucketList == null)
+            {
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
+
+            }
+
+            var activity = await _activitiesRepository.GetById(activityId);
+            if (activity == null)
+            {
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableActivity);
+
+            }
+
             var bucketListActivity = new BucketListActivity();
             bucketListActivity.BucketListId = bucketListId;
             bucketListActivity.ActivityId = activityId;
-            //TODO: error if activity already exists
+            bucketListActivity.Status = "On Hold";
+
+
             bucketList.AddBucketListActivity(bucketListActivity);
 
             _bucketListRepository.Update(bucketList);
@@ -76,14 +97,9 @@ namespace DoFest.Business.Activities.Services.Implementations
             var activity = bucketlist
                 .BucketListActivities
                 .FirstOrDefault(activity => activity.ActivityId == activityId);
-            try
-            {
+ 
                 bucketlist.RemoveActivity(activityId);
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
-            }
+       
 
             _bucketListRepository.Update(bucketlist);
             await _bucketListRepository.SaveChanges();

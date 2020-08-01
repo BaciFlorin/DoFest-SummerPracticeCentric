@@ -62,5 +62,13 @@ namespace DoFest.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("add/{bucketlistId}/{activityId}")]
+        public async Task<IActionResult> Add([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
+        {
+            var result = await _bucketListService.Add(bucketlistId, activityId);
+
+            return Ok(result);
+        }
     }
 }

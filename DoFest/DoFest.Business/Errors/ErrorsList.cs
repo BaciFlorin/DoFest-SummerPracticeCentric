@@ -12,5 +12,7 @@
         public static Error ExistingCity => new Error("existing.city", "City already exits!");
         public static Error UnavailableActivity => new Error("activity.not.exists","Activity doesn't exists!");
         public static Error ActivityExists => new Error("activity.exists", "Activity already exists!");
+        public static Error BucketListExists => new Error("bucketList.exists", "BucketList already exists!");
+        public static Error UnavailableBucketList => new Error("bucketList.not.exists", "BucketList doesn't exists!");
     }
 }
