@@ -24,9 +24,7 @@ namespace DoFest.Business.Errors
         public static Error UnavailableBucketList => new Error("bucketList.not.exists", "BucketList doesn't exists!");
         public static Error UnavailableBucketListActivity => new Error("bucketListActivity.not.exists", "Activity isn't associated with the searched bucket list doesn't exists!");
         public static Error UnavailableActivityType => new Error("activityType.not.exists", "ActivityType doesn't exist!");
-
-        public static Error ActivityExists => new Error("activity.exists", "Activity already exists!");
         public static Error ActivityTypeExists => new Error("activityType.exists", "ActivityType already exists!");
-        public static Error UnavailableActivityType => new Error("activityType.not.exists", "ActivityType doesn't exist!");
+
     }
 }
