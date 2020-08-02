@@ -1,4 +1,6 @@
-﻿namespace DoFest.Business.Errors
+﻿using DoFest.Entities.Activities;
+
+namespace DoFest.Business.Errors
 {
     public static class ErrorsList
     {
@@ -12,8 +14,8 @@
         public static Error SamePassword => new Error("same.password","New password must be different from the old one.");
         public static Error ExistingCity => new Error("existing.city", "City already exists!");
         public static Error UnavailableActivity => new Error("activity.not.exists","Activity doesn't exist!");
-        public static Error InvalidRating => new Error("rating.not.exists", "Rating doesn't exist!");
-        public static Error InvalidPhoto => new Error("photo.not.exists", "Photo doesn't exist!");
+        public static Error UnavailableRating => new Error("rating.not.exists", "Rating doesn't exist!");
+        public static Error UnavailablePhoto => new Error("photo.not.exists", "Photo doesn't exist!");
         public static Error DeleteNotAuthorized => new Error("user.not.authorized", "An user can only delete his own content!");
         public static Error UpdateNotAuthorized => new Error("user.not.authorized", "An user can only update his own content!");
         public static Error ActivityExists => new Error("activity.exists", "Activity already exists!");
@@ -23,5 +25,8 @@
         public static Error UnavailableBucketListActivity => new Error("bucketListActivity.not.exists", "Activity isn't associated with the searched bucket list doesn't exists!");
         public static Error UnavailableActivityType => new Error("activityType.not.exists", "ActivityType doesn't exist!");
 
+        public static Error ActivityExists => new Error("activity.exists", "Activity already exists!");
+        public static Error ActivityTypeExists => new Error("activityType.exists", "ActivityType already exists!");
+        public static Error UnavailableActivityType => new Error("activityType.not.exists", "ActivityType doesn't exist!");
     }
 }
