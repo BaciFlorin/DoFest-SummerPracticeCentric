@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
+using DoFest.Business.Activities.Models.Activity;
 using DoFest.Business.Errors;
-using DoFest.Business.Models.Activity;
 
 namespace DoFest.Business.Activities.Services.Interfaces
 {

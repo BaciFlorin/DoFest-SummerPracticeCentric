@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
-using DoFest.Business.Models.Activity;
+using DoFest.Business.Activities.Models.Activity;
 using DoFest.Business.Activities.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 

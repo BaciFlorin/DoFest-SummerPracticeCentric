@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using DoFest.Business.Activities.Models.Activity;
 using DoFest.Business.Activities.Models.Activity.ActivityType;
 using DoFest.Business.Activities.Models.BucketList;
 using DoFest.Business.Activities.Models.Content.Comment;
 using DoFest.Business.Activities.Models.Content.Photos;
 using DoFest.Business.Activities.Models.Content.Ratings;
-using DoFest.Business.Models.Activity;
 using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Content;
 using DoFest.Entities.Authentication;
