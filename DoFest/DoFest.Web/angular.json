@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "DoFest"
+  "defaultProject": "DoFest",
+  "cli": {
+    "analytics": false
+  }
 }

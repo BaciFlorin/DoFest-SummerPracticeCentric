@@ -16,5 +16,9 @@
         public static Error DeleteNotAuthorized => new Error("user.not.authorized", "An user can only delete his own content!");
         public static Error UpdateNotAuthorized => new Error("user.not.authorized", "An user can only update his own content!");
         public static Error ActivityExists => new Error("activity.exists", "Activity already exists!");
+        public static Error ExistingCity => new Error("existing.city", "City already exits!");
+        public static Error UnavailableActivity => new Error("activity.not.exists","Activity doesn't exists!");
+        public static Error UnavailableComment => new Error("activity.not.exists", "Comment doesn't exists!");
+
     }
 }
