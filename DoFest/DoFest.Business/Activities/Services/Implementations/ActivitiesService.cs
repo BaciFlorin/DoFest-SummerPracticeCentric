@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CSharpFunctionalExtensions;
@@ -10,22 +11,39 @@ using DoFest.Entities.Activities;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Activities.ActivityTypes;
 using DoFest.Persistence.Activities.Places;
+using DoFest.Persistence.Authentication;
+using DoFest.Persistence.Authentication.Type;
+using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
 {
     public sealed class ActivitiesService : IActivitiesService
     {
-        private readonly IMapper _mapper;
         private readonly IActivitiesRepository _activitiesRepository;
         private readonly IActivityTypesRepository _activityTypesRepository;
         private readonly ICityRepository _cityRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IUserTypeRepository _userTypeRepository;
+        private readonly IHttpContextAccessor _accessor;
+        private readonly IMapper _mapper;
 
-        public ActivitiesService(IActivitiesRepository repository, IActivityTypesRepository activityTypesRepository, ICityRepository cityRepository, IMapper mapper)
+        public ActivitiesService(
+            IActivitiesRepository repository, 
+            IActivityTypesRepository activityTypesRepository, 
+            ICityRepository cityRepository,
+            IUserRepository userRepository,
+            IUserTypeRepository userTypeRepository,
+            IMapper mapper,
+            IHttpContextAccessor accessor
+            )
         {
             _activitiesRepository = repository;
-            _mapper = mapper;
             _activityTypesRepository = activityTypesRepository;
             _cityRepository = cityRepository;
+            _userRepository = userRepository;
+            _userTypeRepository = userTypeRepository;
+            _mapper = mapper;
+            _accessor = accessor;
         }
 
 
@@ -38,6 +56,15 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<ActivityModel,Error>> Delete(Guid activityId)
         {
+            // Check authority
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var user = await _userRepository.GetById(userId);
+            var userType = await _userTypeRepository.GetById(user.UserTypeId);
+            if (userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d"))
+            {
+                return Result.Failure<ActivityModel, Error>(ErrorsList.UnauthorizedUser);
+            }
+
             var activity = await _activitiesRepository.GetById(activityId);
             if (activity == null)
             {
@@ -59,6 +86,15 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<ActivityModel, Error>> Add(CreateActivityModel model)
         {
+            // Check authority
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var user = await _userRepository.GetById(userId);
+            var userType = await _userTypeRepository.GetById(user.UserTypeId);
+            if (userType.Name != "Admin")
+            {
+                return Result.Failure<ActivityModel, Error>(ErrorsList.UnauthorizedUser);
+            }
+
             var isActivityTypeNull = (await _activityTypesRepository.GetById(model.ActivityTypeId)) == null;
             if (isActivityTypeNull)
             {

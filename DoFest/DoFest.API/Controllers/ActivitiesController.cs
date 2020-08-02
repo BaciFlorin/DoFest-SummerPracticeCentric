@@ -4,11 +4,13 @@ using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using DoFest.Business.Models.Activity;
 using DoFest.Business.Activities.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoFest.API.Controllers
 {
     [Route("/api/v1/activities")]
     [ApiController]
+    [Authorize]
     public class ActivitiesController : ControllerBase
     {
 

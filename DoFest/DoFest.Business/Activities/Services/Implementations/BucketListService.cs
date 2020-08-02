@@ -11,7 +11,9 @@ using DoFest.Business.Errors;
 using DoFest.Entities.Lists;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Authentication;
+using DoFest.Persistence.Authentication.Type;
 using DoFest.Persistence.BucketLists;
+using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
 {
@@ -19,19 +21,31 @@ namespace DoFest.Business.Activities.Services.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IBucketListRepository _bucketListRepository;
-        public readonly IUserRepository _userRepository;
-        public readonly IActivitiesRepository _activitiesRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IActivitiesRepository _activitiesRepository;
+        private readonly IUserTypeRepository _userTypeRepository;
+        private readonly IHttpContextAccessor _accessor;
 
-        public BucketListService(IBucketListRepository repository, IMapper mapper, IUserRepository userRepository, IActivitiesRepository activitiesRepository)
+        public BucketListService(
+            IBucketListRepository repository,
+            IMapper mapper, 
+            IUserRepository userRepository, 
+            IActivitiesRepository activitiesRepository,
+            IUserTypeRepository userTypeRepository,
+            IHttpContextAccessor accessor
+            )
         {
             _bucketListRepository = repository;
             _mapper = mapper;
             _userRepository = userRepository;
             _activitiesRepository = activitiesRepository;
+            _accessor = accessor;
+            _userTypeRepository = userTypeRepository;
         }
 
         public async Task<Result<BucketListWithActivityIdModel, Error>> Get(Guid bucketListId)
         {
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var bucketListExists = (await _bucketListRepository.GetById(bucketListId)) != null;
             if (!bucketListExists)
             {
@@ -43,9 +57,9 @@ namespace DoFest.Business.Activities.Services.Implementations
             {
                 return Result.Failure<BucketListWithActivityIdModel, Error>(ErrorsList.UnavailableBucketList);
             }
-
             var user = await _userRepository.GetById(bucketList.UserId);
-            if (user == null)
+            var userType = await _userTypeRepository.GetById(user.UserTypeId);
+            if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d")) // Admin id
             {
                 return Result.Failure<BucketListWithActivityIdModel, Error>(ErrorsList.UserNotFound);
             }
@@ -58,11 +72,11 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<IList<BucketListModel>, Error>> GetBucketLists()
         {
-            var bucketlists = await _bucketListRepository.GetBucketLists();
+            var bucketListEntity = await _bucketListRepository.GetBucketLists();
 
             var bucketListModel = new List<BucketListModel>();
 
-            foreach (var bucketList in bucketlists)
+            foreach (var bucketList in bucketListEntity)
             {
                 var user = await _userRepository.GetById(bucketList.UserId);
 
@@ -74,6 +88,7 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<BucketListModel, Error>> Add(Guid bucketListId, Guid activityId)
         {
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var bucketListExists = (await _bucketListRepository.GetById(bucketListId)) != null;
             if (!bucketListExists)
             {
@@ -85,15 +100,17 @@ namespace DoFest.Business.Activities.Services.Implementations
             {
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
             }
-            if (bucketList.BucketListActivities.Any(bucketListActivityQuery => bucketListActivityQuery.ActivityId == activityId) == true)
+            var user = await _userRepository.GetById(bucketList.UserId);
+            var userType = await _userTypeRepository.GetById(user.UserTypeId);
+            if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d")) // Admin id
             {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.ActivityInBucketListExists);
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UserNotFound);
             }
 
-            var user = await _userRepository.GetById(bucketList.UserId);
-            if (user == null)
+            // Daca activitatea exista deja in bucketlist se returneaza o eroare.
+            if (bucketList.BucketListActivities.Any(bucketListActivityQuery => bucketListActivityQuery.ActivityId == activityId))
             {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
+                return Result.Failure<BucketListModel, Error>(ErrorsList.ActivityInBucketListExists);
             }
 
             var activity = await _activitiesRepository.GetById(activityId);
@@ -125,6 +142,7 @@ namespace DoFest.Business.Activities.Services.Implementations
         /// <returns></returns>
         public async Task<Result<BucketListModel, Error>> DeleteActivity(Guid bucketListId, Guid activityId)
         {
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var bucketListExists = (await _bucketListRepository.GetById(bucketListId)) != null;
             if (!bucketListExists)
             {
@@ -132,9 +150,11 @@ namespace DoFest.Business.Activities.Services.Implementations
             }
 
             var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
-            if (bucketList == null)
+            var user = await _userRepository.GetById(bucketList.UserId);
+            var userType = await _userTypeRepository.GetById(user.UserTypeId);
+            if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d"))
             {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UserNotFound);
             }
 
             var activity = bucketList
@@ -163,6 +183,7 @@ namespace DoFest.Business.Activities.Services.Implementations
         /// <returns> Modelul bucket list-ului care a fost updatat sau null. </returns>
         public async Task<Result<BucketListModel, Error>> ToggleStatus(Guid bucketListId, Guid activityId)
         {
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var activity = await _activitiesRepository.GetById(activityId);
             if (activity == null)
             {
@@ -174,7 +195,8 @@ namespace DoFest.Business.Activities.Services.Implementations
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
             }
             var user = await _userRepository.GetById(bucketList.UserId);
-            if (user == null)
+            var userType = await _userTypeRepository.GetById(user.UserTypeId);
+            if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d"))
             {
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UserNotFound);
             }

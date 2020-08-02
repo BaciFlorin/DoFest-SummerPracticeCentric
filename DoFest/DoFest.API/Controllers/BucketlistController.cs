@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoFest.API.Controllers
 {
     [Route("/api/v1/bucketlist")]
     [ApiController]
+    [Authorize]
     public class BucketlistController : ControllerBase
     {
         // ****** Servicii folosite de catre controller ******
@@ -93,7 +95,7 @@ namespace DoFest.API.Controllers
         /// <param name="bucketlistId"> Id-ul bucket list-ului. </param>
         /// <param name="activityId"> Id-ul activitatii. </param>
         /// <returns> Un model de BucketList care a fost updatat sau un mesaj de eroare. </returns>
-        [HttpGet("add/{bucketlistId}/{activityId}")]
+        [HttpPost("{bucketlistId}/activities/{activityId}")]
         public async Task<IActionResult> Add([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
         {
             var (_, isFailure, result, error) = await _bucketListService.Add(bucketlistId, activityId);
