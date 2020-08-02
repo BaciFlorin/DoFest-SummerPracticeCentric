@@ -167,7 +167,7 @@ namespace DoFest.Business.Identity.Services.Implementations
 
             var type = await _userTypeRepository.GetById(user.UserTypeId);
 
-            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), type.Name);
+            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), type.Name == "Admin");
         }
     }
 }
