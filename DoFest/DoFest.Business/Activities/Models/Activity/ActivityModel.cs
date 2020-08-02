@@ -16,6 +16,5 @@ namespace DoFest.Business.Activities.Models.Activity
 
         public string Description { get; private set; }
 
-
     }
 }
