@@ -13,7 +13,6 @@ using DoFest.Business.Identity.Models.Notifications;
 using DoFest.Business.Identity.Services.Implementations;
 using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Business.Identity.Validators;
-using DoFest.Business.Services.Implementations;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Activities.ActivityTypes;

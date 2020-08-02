@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DoFest.Business.Models.BucketList
+namespace DoFest.Business.Activities.Models.BucketList
 {
     public sealed class BucketListModel
     {

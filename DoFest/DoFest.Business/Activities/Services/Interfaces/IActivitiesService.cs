@@ -9,12 +9,12 @@ namespace DoFest.Business.Activities.Services.Interfaces
 {
     public interface IActivitiesService
     {
-        public Task<ActivityModel> Get(Guid activityId);
+        public Task<Result<ActivityModel, Error>> Get(Guid activityId);
 
         public Task<Result<ActivityModel, Error>> Add(CreateActivityModel model);
 
-        public Task<IList<ActivityModel>> GetActivityLists();
+        public Task<Result<IList<ActivityModel>, Error>> GetActivityLists();
 
-        public Task Delete(Guid activityId);
+        public Task<Result<ActivityModel, Error>> Delete(Guid activityId);
     }
 }
