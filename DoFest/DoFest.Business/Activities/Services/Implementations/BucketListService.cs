@@ -45,7 +45,6 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<BucketListWithActivityIdModel, Error>> Get(Guid bucketListId)
         {
-            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var bucketListExists = (await _bucketListRepository.GetById(bucketListId)) != null;
             if (!bucketListExists)
             {
@@ -54,11 +53,6 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
             var user = await _userRepository.GetById(bucketList.UserId);
-            var userType = await _userTypeRepository.GetById(user.UserTypeId);
-            if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d")) // Admin id
-            {
-                return Result.Failure<BucketListWithActivityIdModel, Error>(ErrorsList.UnauthorizedUser);
-            }
 
             var bucketListActivities = bucketList.BucketListActivities.ToList();
             var activities = bucketListActivities.Select(activity => ActivityWithStatusModel.Create(activity.ActivityId, activity.Status)).ToList();
@@ -97,8 +91,7 @@ namespace DoFest.Business.Activities.Services.Implementations
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
             }
             var user = await _userRepository.GetById(bucketList.UserId);
-            var userType = await _userTypeRepository.GetById(user.UserTypeId);
-            if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d")) // Admin id
+            if (userId != bucketList.UserId)
             {
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UnauthorizedUser);
             }
@@ -146,9 +139,10 @@ namespace DoFest.Business.Activities.Services.Implementations
             }
 
             var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
+
             var user = await _userRepository.GetById(bucketList.UserId);
-            var userType = await _userTypeRepository.GetById(user.UserTypeId);
-            if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d"))
+
+            if (userId != bucketList.UserId)
             {
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UnauthorizedUser);
             }
@@ -168,7 +162,7 @@ namespace DoFest.Business.Activities.Services.Implementations
             _bucketListRepository.Update(bucketList);
             await _bucketListRepository.SaveChanges();
 
-            return _mapper.Map<BucketListModel>(bucketList);
+            return BucketListModel.Create(bucketList.Id, bucketList.Name, user.Username);
         }
 
         /// <summary>
@@ -190,9 +184,9 @@ namespace DoFest.Business.Activities.Services.Implementations
             {
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
             }
+
             var user = await _userRepository.GetById(bucketList.UserId);
-            var userType = await _userTypeRepository.GetById(user.UserTypeId);
-            if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d"))
+            if (userId != bucketList.UserId)
             {
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UnauthorizedUser);
             }

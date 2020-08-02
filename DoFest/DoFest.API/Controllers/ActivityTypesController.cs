@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Models.Activity.ActivityType;
 using DoFest.Business.Activities.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
@@ -19,6 +20,7 @@ namespace DoFest.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Get()
         {
             var (_, isFailure, value, error) = await _activityTypesService.Get();
@@ -32,6 +34,7 @@ namespace DoFest.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] CreateActivityTypeModel model)
         {
             var (_, isFailure, value, error) = await _activityTypesService.Add(model);
@@ -45,6 +48,7 @@ namespace DoFest.API.Controllers
         }
 
         [HttpDelete("{activityTypeId}")]
+        [Authorize]
         public async Task<IActionResult> Delete([FromRoute] Guid activityTypeId)
         {
             var (_, isFailure, value, error) = await _activityTypesService.Delete(activityTypeId);

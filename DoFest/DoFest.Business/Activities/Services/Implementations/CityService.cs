@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CSharpFunctionalExtensions;
@@ -8,6 +9,9 @@ using DoFest.Business.Activities.Services.Interfaces;
 using DoFest.Business.Errors;
 using DoFest.Entities.Activities.Places;
 using DoFest.Persistence.Activities.Places;
+using DoFest.Persistence.Authentication;
+using DoFest.Persistence.Authentication.Type;
+using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
 {
@@ -15,11 +19,18 @@ namespace DoFest.Business.Activities.Services.Implementations
     {
         private readonly ICityRepository _cityRepository;
         private readonly IMapper _mapper;
-        public CityService(ICityRepository cityRepository,
-            IMapper mapper)
+        private readonly IHttpContextAccessor _accessor;
+        private readonly IUserRepository _userRepository;
+        private readonly IUserTypeRepository _userTypeRepository;
+
+        public CityService(ICityRepository cityRepository, IMapper mapper, IHttpContextAccessor accessor,
+            IUserRepository userRepository, IUserTypeRepository userTypeRepository)
         {
             _cityRepository = cityRepository;
             _mapper = mapper;
+            _accessor = accessor;
+            _userRepository = userRepository;
+            _userTypeRepository = userTypeRepository;
         }
 
         public async Task<IList<CityModel>> GetAllCities()
@@ -34,6 +45,14 @@ namespace DoFest.Business.Activities.Services.Implementations
             if (city != null)
             {
                 return Result.Failure<CityModel,Error>(ErrorsList.ExistingCity);
+            }
+
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var user = await _userRepository.GetById(userId);
+            var userType = await _userTypeRepository.GetByName("Admin");
+            if (user.UserTypeId != userType.Id)
+            {
+                return Result.Failure<CityModel, Error>(ErrorsList.UnauthorizedUser);
             }
 
             var newCity = new City()
@@ -52,6 +71,14 @@ namespace DoFest.Business.Activities.Services.Implementations
             if (city == null)
             {
                 return Result.Failure<string,Error>(ErrorsList.InvalidCity);
+            }
+
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var user = await _userRepository.GetById(userId);
+            var userType = await _userTypeRepository.GetByName("Admin");
+            if (user.UserTypeId != userType.Id)
+            {
+                return Result.Failure<string, Error>(ErrorsList.UnauthorizedUser);
             }
 
             _cityRepository.Delete(city);
