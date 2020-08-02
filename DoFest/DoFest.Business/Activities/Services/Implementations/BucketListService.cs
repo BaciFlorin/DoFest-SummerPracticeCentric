@@ -53,15 +53,11 @@ namespace DoFest.Business.Activities.Services.Implementations
             }
 
             var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
-            if (bucketList == null)
-            {
-                return Result.Failure<BucketListWithActivityIdModel, Error>(ErrorsList.UnavailableBucketList);
-            }
             var user = await _userRepository.GetById(bucketList.UserId);
             var userType = await _userTypeRepository.GetById(user.UserTypeId);
             if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d")) // Admin id
             {
-                return Result.Failure<BucketListWithActivityIdModel, Error>(ErrorsList.UserNotFound);
+                return Result.Failure<BucketListWithActivityIdModel, Error>(ErrorsList.UnauthorizedUser);
             }
 
             var bucketListActivities = bucketList.BucketListActivities.ToList();
@@ -104,7 +100,7 @@ namespace DoFest.Business.Activities.Services.Implementations
             var userType = await _userTypeRepository.GetById(user.UserTypeId);
             if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d")) // Admin id
             {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UserNotFound);
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnauthorizedUser);
             }
 
             // Daca activitatea exista deja in bucketlist se returneaza o eroare.
@@ -154,7 +150,7 @@ namespace DoFest.Business.Activities.Services.Implementations
             var userType = await _userTypeRepository.GetById(user.UserTypeId);
             if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d"))
             {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UserNotFound);
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnauthorizedUser);
             }
 
             var activity = bucketList
@@ -198,7 +194,7 @@ namespace DoFest.Business.Activities.Services.Implementations
             var userType = await _userTypeRepository.GetById(user.UserTypeId);
             if (userId != bucketList.UserId && userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d"))
             {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UserNotFound);
+                return Result.Failure<BucketListModel, Error>(ErrorsList.UnauthorizedUser);
             }
 
             var bucketListActivity = await _bucketListRepository.GetBucketListActivityById(bucketListId, activityId);
