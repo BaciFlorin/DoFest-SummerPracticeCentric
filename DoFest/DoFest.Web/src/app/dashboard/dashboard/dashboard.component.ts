@@ -12,4 +12,9 @@ export class DashboardComponent {
   public goToPage(page: string): void {
     this.router.navigate([page]);
   }
+
+  public isAdmin():boolean{
+    var identity = JSON.parse(localStorage.getItem('identity'));
+    return identity.isAdmin;
+  }
 }
