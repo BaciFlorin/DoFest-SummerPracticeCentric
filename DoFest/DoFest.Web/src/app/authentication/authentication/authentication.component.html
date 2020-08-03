@@ -1,78 +1,73 @@
 <div class="authentication-container">
-  <img src="assets/images/sign_in.svg">
-  <form class="authentication-content"
-        [formGroup]="formGroup">
-    <span class="login-label">{{isSetRegistered? 'Register': 'Log in'}} </span>
-    <label>Email</label>
-    <input formControlName="email"
-           type="email" />
+    <img src="assets/images/sign_in.svg">
+    <form class="authentication-content" [formGroup]="formGroup">
+        <span class="login-label">{{isSetRegistered? 'Register': 'Log in'}} </span>
+        <label>Email</label>
+        <input formControlName="email" type="email" />
 
-    <div *ngIf="isInvalid(formGroup.get('email'))" class="error-alert">
-      Email is invalid
-    </div>
+        <div *ngIf="isInvalid(formGroup.get('email'))" class="error-alert">
+            Email is invalid
+        </div>
 
-    <label>Password</label>
-    <input formControlName="password"
-           type="password" />
+        <label>Password</label>
+        <input formControlName="password" type="password" />
 
-    <div *ngIf="isInvalid(formGroup.get('password'))" class="error-alert">
-      Password must have minumum 8 characters
-    </div>
+        <div *ngIf="isInvalid(formGroup.get('password'))" class="error-alert">
+            Password must have minumum 8 characters
+        </div>
 
-    <ng-container *ngIf="isSetRegistered">
-      <label>Full name</label>
-      <input formControlName="name"
-             type="text"/>
+        <ng-container *ngIf="isSetRegistered">
+            <label>Full name</label>
+            <input formControlName="name" type="text" />
 
-      <label>Username</label>
-      <input formControlName="username" type="text">
+            <label>Username</label>
+            <input formControlName="username" type="text">
 
-      <mat-form-field appearance="fill">
-        <mat-label>City</mat-label>
-        <mat-select [(value)]="cities[0].id" formControlName="city">
-          <mat-option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>City</mat-label>
+                <mat-select [(value)]="cities[0].id" formControlName="city">
+                    <mat-option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label> UserType</mat-label>
-        <mat-select [(value)]="userTypes[0].id" formControlName="userType">
-          <mat-option *ngFor="let type of userTypes;" [value]="type.id">{{type.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label> UserType</mat-label>
+                <mat-select [(value)]="userTypes[0].id" formControlName="userType">
+                    <mat-option *ngFor="let type of userTypes;" [value]="type.id">{{type.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-      <label>Age</label>
-      <input type="number" formControlName="age">
-      <div *ngIf="isInvalid(formGroup.get('age'))" class="error-alert">
-        Age must be between 18 and 99
-      </div>
+            <label>Age</label>
+            <input type="number" formControlName="age">
+            <div *ngIf="isInvalid(formGroup.get('age'))" class="error-alert">
+                Age must be between 18 and 99
+            </div>
 
-      <label>Year of study</label>
-      <input type="number" formControlName="year">
-      <div *ngIf="isInvalid(formGroup.get('year'))" class="error-alert">
-        Year of study must be between 1 and 6
-      </div>
+            <label>Year of study</label>
+            <input type="number" formControlName="year">
+            <div *ngIf="isInvalid(formGroup.get('year'))" class="error-alert">
+                Year of study must be between 1 and 6
+            </div>
 
 
 
-      <label>BucketList name</label>
-      <input type="text" formControlName="bucketlistname">
-      <div *ngIf="isInvalid(formGroup.get('bucketlistname'))" class="error-alert">
-        Name must have minimum 6 characters
-      </div>
-    </ng-container>
+            <label>BucketList name</label>
+            <input type="text" formControlName="bucketlistname">
+            <div *ngIf="isInvalid(formGroup.get('bucketlistname'))" class="error-alert">
+                Name must have minimum 6 characters
+            </div>
+        </ng-container>
 
-    <span class="not-registered"><input type="checkbox"
+        <span class="not-registered"><input type="checkbox"
              (click)="setRegister()" />
       <p>{{isSetRegistered? 'Go back to log in': 'I am not registered yet'}}</p>
     </span>
-    <div id="successful-register">
+        <div id="successful-register">
 
-    </div>
-    <div id="error-list">
+        </div>
+        <div id="error-list">
 
-    </div>
-    <button type="button"
-            (click)="authenticate()"><span>{{isSetRegistered? 'Register': 'Login'}}</span></button>
-  </form>
+        </div>
+        <button type="button" (click)="authenticate()"><span>{{isSetRegistered? 'Register': 'Login'}}</span></button>
+    </form>
 </div>

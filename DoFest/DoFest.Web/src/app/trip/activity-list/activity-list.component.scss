@@ -1,9 +1,15 @@
 @import "../../../assets/styles/layout.scss";
-cards {
+.cards {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
     align-content: flex-start;
     padding: 32px;
+    transition: transform .2s;
+    justify-content: space-evenly;
+}
+
+.cards:hover {
+    transform: scale(1.5);
 }
 
 .page-container {

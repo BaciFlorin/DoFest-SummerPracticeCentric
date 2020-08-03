@@ -2,20 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ActivityModel, ActivitiesModel } from '../models';
-import { TripService } from '../services/trip.service';
+import { ActivityService } from '../services/activity.service';
 
 @Component({
   selector: 'app-trip-list',
-  templateUrl: './trip-list.component.html',
-  styleUrls: ['./trip-list.component.scss'],
-  providers: [TripService]
+  templateUrl: './activity-list.component.html',
+  styleUrls: ['./activity-list.component.scss'],
+  providers: [ActivityService]
 })
 export class TripListComponent implements OnInit {
   public tripList: ActivityModel[];
 
   constructor(
     private router: Router,
-    private service: TripService,
+    private service: ActivityService,
     ) { }
 
   public ngOnInit(): void {

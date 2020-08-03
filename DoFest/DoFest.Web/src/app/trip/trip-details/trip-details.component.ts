@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ActivityModel } from '../models';
-import { TripService } from '../services/trip.service';
+import { ActivityService } from '../services/activity.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -35,7 +35,7 @@ export class TripDetailsComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private service: TripService) { }
+    private service: ActivityService) { }
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
