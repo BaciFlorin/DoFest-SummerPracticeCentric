@@ -17,17 +17,17 @@ using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
 {
-    public class BucketListService:IBucketListService
+    public class BucketListsService:IBucketListService
     {
         private readonly IMapper _mapper;
-        private readonly IBucketListRepository _bucketListRepository;
+        private readonly IBucketListsRepository _bucketListRepository;
         private readonly IUserRepository _userRepository;
         private readonly IActivitiesRepository _activitiesRepository;
         private readonly IUserTypeRepository _userTypeRepository;
         private readonly IHttpContextAccessor _accessor;
 
-        public BucketListService(
-            IBucketListRepository repository,
+        public BucketListsService(
+            IBucketListsRepository repository,
             IMapper mapper, 
             IUserRepository userRepository, 
             IActivitiesRepository activitiesRepository,

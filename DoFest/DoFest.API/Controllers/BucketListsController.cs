@@ -7,17 +7,17 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DoFest.API.Controllers
 {
-    [Route("/api/v1/bucketlist")]
+    [Route("/api/v1/bucketlists")]
     [ApiController]
     [Authorize]
-    public class BucketlistController : ControllerBase
+    public class BucketListsController : ControllerBase
     {
         // ****** Servicii folosite de catre controller ******
 
         public readonly IBucketListService _bucketListService;
 
         /// Constructorul public care va injecta serviciile necesare prin IoC
-        public BucketlistController(IBucketListService bucketListService)
+        public BucketListsController(IBucketListService bucketListService)
         {
             _bucketListService = bucketListService;
         }

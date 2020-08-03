@@ -17,7 +17,6 @@ namespace DoFest.Entities.Activities
             Photos = new List<Photo>();
             Comments = new List<Comment>();
             Ratings = new List<Rating>();
-            Notes = new List<Note>();
             BucketListActivities = new List<BucketListActivity>();
             Notifications = new List<Notification>();
         }
@@ -35,16 +34,14 @@ namespace DoFest.Entities.Activities
 
         [Required, MaxLength(500)] public string Description { get; set; }
 
-        public ICollection<Photo> Photos { get; set; }
-        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Photo> Photos { get;  private set; }
+        public ICollection<Comment> Comments { get; private set; }
 
-        public ICollection<Rating> Ratings { get; set; }
+        public ICollection<Rating> Ratings { get; private set; }
 
-        public ICollection<Note> Notes { get; set; }
+        public ICollection<BucketListActivity> BucketListActivities { get; private set; }
 
-        public ICollection<BucketListActivity> BucketListActivities { get; set; }
-
-        public ICollection<Notification> Notifications { get; set; }
+        public ICollection<Notification> Notifications { get; private set; }
 
         public void RemovePhoto(Guid photoId)
         {

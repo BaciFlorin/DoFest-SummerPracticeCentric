@@ -65,7 +65,7 @@ namespace DoFest.API
                 .AddScoped<INotificationService, NotificationService>()
                 .AddScoped<IPasswordHasher, PasswordHasher>()
                 .AddScoped<IActivitiesService, ActivitiesService>()
-                .AddScoped<IBucketListService, BucketListService>()
+                .AddScoped<IBucketListService, BucketListsService>()
                 .AddScoped<ICommentsService, CommentsService>()
                 .AddScoped<IPhotosService, PhotosService>()
                 .AddScoped<IRatingsService, RatingsService>()
@@ -82,7 +82,7 @@ namespace DoFest.API
                 .AddScoped<IStudentRepository, StudentRepository>()
                 .AddScoped<INotificationRepository, NotificationRepository>()
                 .AddScoped<IActivitiesRepository, ActivitiesRepository>()
-                .AddScoped<IBucketListRepository, BucketListRepository>()
+                .AddScoped<IBucketListsRepository, BucketListsRepository>()
                 .AddScoped<IActivityTypesRepository, ActivityTypesRepository>();
 
             // ****** Add Mapper profiles ******
