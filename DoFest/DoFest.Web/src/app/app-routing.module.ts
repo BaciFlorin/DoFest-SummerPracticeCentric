@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthenticationComponent } from './authentication/authentication/authentication.component';
+
 import { TripDetailsComponent } from './trip/trip-details/trip-details.component';
 import { TripListComponent } from './trip/trip-list/trip-list.component';
 
@@ -12,14 +12,27 @@ const routes: Routes = [
     redirectTo: 'authentication',
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+    import('./admin/admin.module').then(
+      (m) => m.AdminModule
+    ),
+  },
+  {
     path: 'authentication',
     loadChildren: () =>
       import('./authentication/authentication.module').then(
         (m) => m.AuthenticationModule
       ),
   },
-  { path: 'list', component: TripListComponent },
-  { path: 'create-trip', component: TripDetailsComponent },
+  {
+    path: 'list',
+    component: TripListComponent
+  },
+  {
+    path: 'create-trip',
+    component: TripDetailsComponent
+  },
   {
     path: 'notifications',
     loadChildren: () =>
