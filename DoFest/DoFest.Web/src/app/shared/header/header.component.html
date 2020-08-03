@@ -7,7 +7,7 @@
 
   <section id="project-title">
     <h2>
-      TRIPS project
+      DoFest
     </h2>
   </section>
 
@@ -15,7 +15,7 @@
     *ngIf="userService.username | async as username"
     class="flex-row-end"
   >
-    <img src="../../assets/images/profile.png" />
+    <img src="../../assets/images/profile.png" (click)="onProfileClick()" />
     <h3 class="flex-row-end">Welcome, {{ username }}</h3>
     <img
       class="logout"

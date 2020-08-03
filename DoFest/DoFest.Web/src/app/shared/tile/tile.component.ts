@@ -18,8 +18,6 @@ export class TileComponent implements OnInit {
     } else {
       this.background = "linear-gradient(to bottom right, #27ae60, #87bc27)";
     }
-
-
   }
 
 }

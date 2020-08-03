@@ -3,6 +3,8 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -15,15 +17,22 @@ import { UserService } from '../services';
 })
 export class HeaderComponent {
   public username: string;
+  @Output() private profileCLick: EventEmitter<string>;
+
   constructor(
     private readonly router: Router,
     private readonly cdRef: ChangeDetectorRef,
     public readonly userService: UserService
-  ) {}
+  ) {
+    this.profileCLick = new EventEmitter<string>();
+  }
 
   public logout(): void {
     this.router.navigate(['authentication']);
-    localStorage.removeItem('email');
-    this.username = localStorage.getItem('email');
+    localStorage.removeItem('identity');
+  }
+
+  public onProfileClick(){
+    this.router.navigate(['userInfo']);
   }
 }

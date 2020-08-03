@@ -1,11 +1,19 @@
 <div class="container">
-  <app-tile label="All Trips"
+  <app-tile label="All Activities"
             icon="list"
             (click)="goToPage('list')"></app-tile>
-  <app-tile label="Create Trip"
-            icon="create"
-            (click)="goToPage('create-trip')"></app-tile>
+  <app-tile label="Your bucketlist"
+            icon="bucketlist"
+            (click)="goToPage('yourBucket')"></app-tile>
+  <app-tile label="Bucket lists"
+            icon="community"
+            (click)="goToPage('bucketLists')"></app-tile>
   <app-tile label="Notifications"
             icon="notifications"
             (click)="goToPage('notifications')"></app-tile>
+  <ng-container *ngIf="isAdmin()">
+    <app-tile label="App management"
+        icon="admin"
+        (click)="goToPage('app-management')"></app-tile>
+  </ng-container>
 </div>
