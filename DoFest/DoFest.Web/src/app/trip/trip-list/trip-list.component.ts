@@ -15,14 +15,13 @@ export class TripListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private service: TripService) { }
+    private service: TripService,
+    ) { }
 
   public ngOnInit(): void {
-    this.service.getAll().subscribe((data: ActivitiesModel) => {
-      this.tripList = data.results;
+    this.service.getAll().subscribe((data: ActivityModel[]) => {
+      this.tripList = data;
     });
-
-    console.log("Am ajuns aici");
   }
 
   goToTrip(id: string): void {

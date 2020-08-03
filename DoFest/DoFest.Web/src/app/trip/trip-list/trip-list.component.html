@@ -4,8 +4,10 @@
     </h1>
 
     <div class="cards">
-        <app-tile *ngFor="let trip of tripList" label="{{trip.title}}" background="../../assets/images/travel_logo.png" (click)="goToTrip(trip.id)"></app-tile>
+        <app-tile *ngFor="let trip of tripList" label="{{trip.description}}" background="../../assets/images/travel_logo.png" (click)="goToTrip(trip.id)"></app-tile>
     </div>
+
+
 
 
 </div>

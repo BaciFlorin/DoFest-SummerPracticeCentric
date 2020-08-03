@@ -21,8 +21,8 @@ export class TripService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getAll(): Observable<ActivitiesModel> {
-    return this.http.get<ActivitiesModel>(this.endpoint, this.httpOptions);
+  getAll(): Observable<ActivityModel[]> {
+    return this.http.get<ActivityModel[]>(this.endpoint, this.httpOptions);
   }
 
   get(id: string): Observable<ActivityModel> {
