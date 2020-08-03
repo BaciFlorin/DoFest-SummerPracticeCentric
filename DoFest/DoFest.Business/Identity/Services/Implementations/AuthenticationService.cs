@@ -32,7 +32,7 @@ namespace DoFest.Business.Identity.Services.Implementations
         private readonly IUserTypeRepository _userTypeRepository;
         private readonly IStudentRepository _studentRepository;
         private readonly IHttpContextAccessor _accessor;
-        private readonly IBucketListRepository _bucketListRepository;
+        private readonly IBucketListsRepository _bucketListRepository;
 
         public AuthenticationService(IMapper mapper,
             IOptions<JwtOptions> config, 
@@ -42,7 +42,7 @@ namespace DoFest.Business.Identity.Services.Implementations
             ICityRepository cityRepository,
             IStudentRepository studentRepository, 
             IHttpContextAccessor accessor,
-            IBucketListRepository bucketListRepository)
+            IBucketListsRepository bucketListRepository)
         {
             _mapper = mapper;
             _config = config.Value;

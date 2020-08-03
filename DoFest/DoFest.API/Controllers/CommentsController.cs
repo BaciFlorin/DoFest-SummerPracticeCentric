@@ -11,13 +11,13 @@ namespace DoFest.API.Controllers
     [Route("/api/v1/activities/{activityId}/comments/")]
     [ApiController]
     [Authorize]
-    public class CommentController : ControllerBase
+    public class CommentsController : ControllerBase
     {
         // ****** Servicii folosite de catre controller ******
         private readonly ICommentsService _commentsService;
 
         /// Constructorul public care va injecta serviciile necesare prin IoC
-        public CommentController(ICommentsService commentsService)
+        public CommentsController(ICommentsService commentsService)
         {
             this._commentsService = commentsService;
         }

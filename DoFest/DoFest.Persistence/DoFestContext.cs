@@ -42,11 +42,6 @@ namespace DoFest.Persistence
                     .HasForeignKey(c => c.ActivityId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasMany(a => a.Notes)
-                    .WithOne()
-                    .HasForeignKey(n => n.ActivityId)
-                    .OnDelete(DeleteBehavior.Cascade);
-
                 entity.HasMany(a => a.Photos)
                     .WithOne()
                     .HasForeignKey(p => p.ActivityId)

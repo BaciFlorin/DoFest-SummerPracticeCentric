@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace DoFest.Persistence.BucketLists
 {
-    public interface IBucketListRepository:IRepository<BucketList>
+    public interface IBucketListsRepository:IRepository<BucketList>
     {
 
         Task<IList<BucketList>> GetBucketLists();
         Task<BucketListActivity> GetBucketListActivityById(Guid bucketlistId, Guid activityId);
-        Task<BucketList> GetByIdWithActivities(Guid userId);
+        Task<BucketList> GetByIdWithActivities(Guid bucketListId);
+        Task<BucketList> GetByUserIdWithActivities(Guid userId);
 
 
     }

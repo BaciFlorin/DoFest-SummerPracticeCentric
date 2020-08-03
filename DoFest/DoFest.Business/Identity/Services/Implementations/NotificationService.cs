@@ -18,14 +18,13 @@ namespace DoFest.Business.Identity.Services.Implementations
 {
     public sealed class NotificationService: INotificationService
     {
-        private readonly IBucketListRepository _bucketListRepository;
+        private readonly IBucketListsRepository _bucketListRepository;
         private readonly IHttpContextAccessor _accessor;
         private readonly INotificationRepository _notificationRepository;
         private readonly IActivitiesRepository _activitiesRepository;
-        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public NotificationService(IBucketListRepository bucketListRepository, 
+        public NotificationService(IBucketListsRepository bucketListRepository, 
             IHttpContextAccessor accessor,
             INotificationRepository notificationRepository,
             IActivitiesRepository activitiesRepository, 
@@ -36,14 +35,14 @@ namespace DoFest.Business.Identity.Services.Implementations
             _accessor = accessor;
             _notificationRepository = notificationRepository;
             _activitiesRepository = activitiesRepository;
-            _userRepository = userRepository;
             _mapper = mapper;
         }
 
         public async Task<IList<NotificationModel>> FindAllNotifications()
         {
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
-            var bucketList = await _bucketListRepository.GetByIdWithActivities(userId);
+
+            var bucketList = await _bucketListRepository.GetByUserIdWithActivities(userId);
             var activitiesId = bucketList.BucketListActivities.Select(bActivity => bActivity.ActivityId).ToList();
             var notifications = await _notificationRepository.GetNotificationsByActivityId(activitiesId);
             return _mapper.Map<IList<NotificationModel>>(notifications);
