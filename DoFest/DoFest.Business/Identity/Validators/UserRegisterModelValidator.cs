@@ -34,6 +34,12 @@ namespace DoFest.Business.Identity.Validators
 
             RuleFor(x => x.City)
                 .NotNull();
+
+            RuleFor(x => x.BucketListName)
+                .NotEmpty()
+                .NotNull()
+                .MinimumLength(6);
+
         }
     }
 }

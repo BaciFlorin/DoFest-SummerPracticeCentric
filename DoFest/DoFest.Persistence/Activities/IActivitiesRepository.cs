@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using DoFest.Entities.Activities;
 
@@ -29,5 +30,9 @@ namespace DoFest.Persistence.Activities
         /// <param name="id"> Id-ul activitatii cautate. </param>
         /// <returns> O entitate activity. </returns>
         Task<Activity> GetByIdWithComments(Guid id);
+
+        Task<IList<Activity>> GetActivityLists();
+
+        Task<Activity> GetByName(string name);
     }
 }

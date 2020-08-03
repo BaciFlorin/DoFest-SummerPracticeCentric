@@ -4,22 +4,20 @@ namespace DoFest.Business.Activities.Models.BucketList
 {
     public sealed class BucketListModel
     {
-        public Guid UserId { get; private set; }
+        public Guid Id { get; private set; }
 
         public string Name { get; private set; }
 
-        public string Username { get; private set; } //TODO: de vazut private set-ul
+        public string Username { get; private set; }
 
-        public static BucketListModel Create(Guid userId, string name, string username)
+        public static BucketListModel Create(Guid id, string name, string username)
         {
             return new BucketListModel
             {
-                UserId = userId,
+                Id = id,
                 Name = name,
                 Username = username
             };
         }
-
     }
-
 }

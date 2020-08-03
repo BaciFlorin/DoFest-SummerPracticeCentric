@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Models.Content.Comment;
 using DoFest.Business.Activities.Services.Interfaces;
+using DoFest.Business.Errors;
 using DoFest.Entities.Activities.Content;
+using DoFest.Entities.Authentication.Notification;
 using DoFest.Persistence.Activities;
+using DoFest.Persistence.Authentication;
+using DoFest.Persistence.Notifications;
 using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
@@ -17,8 +22,11 @@ namespace DoFest.Business.Activities.Services.Implementations
     public sealed class CommentsService: ICommentsService
     {
         private readonly IMapper _mapper;
-        private readonly IActivitiesRepository _repository;
+        private readonly IActivitiesRepository _activitiesRepository;
         private readonly IHttpContextAccessor _accessor;
+        private readonly IUserRepository _userRepository;
+        private readonly INotificationRepository _notificationRepository;
+
 
         /// <summary>
         /// Constructor public default.
@@ -26,52 +34,81 @@ namespace DoFest.Business.Activities.Services.Implementations
         /// <param name="mapper"> Serviciul de mapare. </param>
         /// <param name="repository"> Repository-ul atribuit activitatilor. </param>
         /// <param name="accessor"> Un accesor pentru accesarea campurilor requestului HTTP. </param>
-        public CommentsService(IMapper mapper, IActivitiesRepository repository, IHttpContextAccessor accessor)
+        public CommentsService(IMapper mapper, IActivitiesRepository activitiesRepository, IHttpContextAccessor accessor,
+            IUserRepository userRepository, INotificationRepository notificationRepository)
         {
             _mapper = mapper;
-            _repository = repository;
+            _activitiesRepository = activitiesRepository;
             _accessor = accessor;
+            _userRepository = userRepository;
+            _notificationRepository = notificationRepository;
         }
 
-        public async Task<IList<CommentModel>> GetComments(Guid activityId)
+        public async Task<Result<IList<CommentModel>, Error>> GetComments(Guid activityId)
         {
-            // TODO: exception handle
-            var comments = await _repository.GetByIdWithComments(activityId);
+            var activityExists = (await _activitiesRepository.GetById(activityId)) != null;
+            if (!activityExists)
+            {
+                return Result.Failure<IList<CommentModel>, Error>(ErrorsList.UnavailableActivity);
+            }
+
+            var comments = await _activitiesRepository.GetByIdWithComments(activityId);
 
             return _mapper.Map<List<CommentModel>>(comments.Comments);
         }
 
-        public async Task<CommentModel> AddComment(Guid activityId, NewCommentModel commentModel)
+        public async Task<Result<CommentModel, Error>> AddComment(Guid activityId, NewCommentModel commentModel)
         {
-            // TODO: exception handle
             commentModel.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
-            var activity = await _repository.GetById(activityId);
+            var activity = await _activitiesRepository.GetById(activityId);
+            if (activity == null)
+            {
+                return Result.Failure<CommentModel, Error>(ErrorsList.UnavailableActivity);
+            }
+
             var comment = _mapper.Map<Comment>(commentModel);
+
             activity.AddComment(comment);
-            _repository.Update(activity);
-            await _repository.SaveChanges();
+            _activitiesRepository.Update(activity);
+            await _activitiesRepository.SaveChanges();
+
+            var user = await _userRepository.GetById(commentModel.UserId);
+            var notification = new Notification()
+            {
+                ActivityId = activityId,
+                Date = DateTime.Now,
+                Description = $" {user.Username} has added a comment to activity {activity.Name} : {comment.Content}."
+            };
+
+            await _notificationRepository.Add(notification);
+            await _activitiesRepository.SaveChanges();
+
             return _mapper.Map<CommentModel>(comment);
         }
 
-        public async Task<CommentModel> DeleteComment(Guid activityId, Guid commentId)
+        public async Task<Result<CommentModel, Error>> DeleteComment(Guid activityId, Guid commentId)
         {
-            // TODO: exception handle
+            var activityExists = (await _activitiesRepository.GetById(activityId)) != null;
+            if (!activityExists)
+            {
+                return Result.Failure<CommentModel, Error>(ErrorsList.UnavailableActivity);
+            }
 
-            var activity = await _repository.GetByIdWithComments(activityId);
+            var activity = await _activitiesRepository.GetByIdWithComments(activityId);
+
             var comment = activity
                 .Comments
                 .FirstOrDefault(commentSearch => commentSearch.Id == commentId);
-            try
+            if (comment == null)
             {
-                activity.RemoveComment(commentId);
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
+                return Result.Failure<CommentModel, Error>(ErrorsList.UnavailableComment);
             }
 
-            _repository.Update(activity);
-            await _repository.SaveChanges();
+            activity.RemoveComment(commentId);
+
+            _activitiesRepository.Update(activity);
+            await _activitiesRepository.SaveChanges();
+
 
             return _mapper.Map<CommentModel>(comment);
         }

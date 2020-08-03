@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using DoFest.Entities.Activities.Content;
-using DoFest.Entities.Lists;
 
 namespace DoFest.Entities.Authentication
 {

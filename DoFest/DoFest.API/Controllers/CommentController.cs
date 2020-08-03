@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Models.Content.Comment;
 using DoFest.Business.Activities.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -32,7 +33,11 @@ namespace DoFest.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetComments([FromRoute] Guid activityId)
         {
-            var comments = await _commentsService.GetComments(activityId);
+            var (_, isFailure, comments, error) = await _commentsService.GetComments(activityId);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
             return Ok(comments);
         }
 
@@ -46,7 +51,11 @@ namespace DoFest.API.Controllers
         [HttpPost("")]
         public async Task<IActionResult> PostComment([FromRoute] Guid activityId, [FromBody] NewCommentModel model)
         {
-            var newComment = await _commentsService.AddComment(activityId, model);
+            var (_, isFailure, newComment, error) = await _commentsService.AddComment(activityId, model);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
             return Ok(newComment);
         }
 
@@ -60,8 +69,11 @@ namespace DoFest.API.Controllers
         [HttpDelete("{commentId}")]
         public async Task<IActionResult> DeleteComment([FromRoute] Guid activityId, [FromRoute] Guid commentId)
         {
-            var comment = await _commentsService.DeleteComment(activityId, commentId);
-
+            var (_, isFailure, comment, error) = await _commentsService.DeleteComment(activityId, commentId);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
             return Ok(comment);
         }
     }

@@ -6,12 +6,16 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using CSharpFunctionalExtensions;
+using DoFest.Business.Errors;
 using DoFest.Business.Identity.Models;
 using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Entities.Authentication;
+using DoFest.Entities.Lists;
 using DoFest.Persistence.Activities.Places;
 using DoFest.Persistence.Authentication;
 using DoFest.Persistence.Authentication.Type;
+using DoFest.Persistence.BucketLists;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -28,6 +32,7 @@ namespace DoFest.Business.Identity.Services.Implementations
         private readonly IUserTypeRepository _userTypeRepository;
         private readonly IStudentRepository _studentRepository;
         private readonly IHttpContextAccessor _accessor;
+        private readonly IBucketListRepository _bucketListRepository;
 
         public AuthenticationService(IMapper mapper,
             IOptions<JwtOptions> config, 
@@ -36,7 +41,8 @@ namespace DoFest.Business.Identity.Services.Implementations
             IUserTypeRepository userTypeRepository, 
             ICityRepository cityRepository,
             IStudentRepository studentRepository, 
-            IHttpContextAccessor accessor)
+            IHttpContextAccessor accessor,
+            IBucketListRepository bucketListRepository)
         {
             _mapper = mapper;
             _config = config.Value;
@@ -46,32 +52,39 @@ namespace DoFest.Business.Identity.Services.Implementations
             _cityRepository = cityRepository;
             _studentRepository = studentRepository;
             _accessor = accessor;
+            _bucketListRepository = bucketListRepository;
         }
 
 
-        public async Task<LoginModelResponse> Login(LoginModelRequest loginModelRequest)
+        public async Task<Result<LoginModelResponse, Error>> Login(LoginModelRequest loginModelRequest)
         {
             var user = await _userRepository.GetByEmail(loginModelRequest.Email);
+            if (user == null)
+                return Result.Failure<LoginModelResponse, Error>(ErrorsList.UserNotFound);
 
-            return user == null || !_passwordHasher.Check(user.PasswordHash, loginModelRequest.Password) ? null : await GenerateToken(user);
+            if (!_passwordHasher.Check(user.PasswordHash, loginModelRequest.Password))
+                return Result.Failure<LoginModelResponse, Error>(ErrorsList.InvalidPassword);
+
+            return Result.Success<LoginModelResponse, Error>(await GenerateToken(user));
         }
 
-        public async Task<UserModel> Register(RegisterModel registerModel)
+        public async Task<Result<UserModel, Error>> Register(RegisterModel registerModel)
         {
             var user = await _userRepository.GetByEmail(registerModel.Email);
             if (user != null)
-                return null;
+                return Result.Failure<UserModel,Error>(ErrorsList.EmailExists);
 
             user = await _userRepository.GetByUsername(registerModel.Username);
             if (user != null)
-                return null;
+                return Result.Failure<UserModel, Error>(ErrorsList.UsernameExists);
 
-            var city = await _cityRepository.GetByName(registerModel.City);
-            var userType = await _userTypeRepository.GetByName(registerModel.UserType);
-            if (city == null || userType == null)
-            {
-                return null;
-            }
+            var city = await _cityRepository.GetById(registerModel.City);
+            if (city == null)
+                return Result.Failure<UserModel, Error>(ErrorsList.InvalidCity);
+
+            var userType = await _userTypeRepository.GetById(registerModel.UserType); 
+            if(userType == null)
+                return Result.Failure<UserModel, Error>(ErrorsList.InvalidUserType);
 
             var newStudent = new Student()
             {
@@ -80,9 +93,11 @@ namespace DoFest.Business.Identity.Services.Implementations
                 Name = registerModel.Name,
                 Year = registerModel.Year
             };
+
             await _studentRepository.Add(newStudent);
             await _studentRepository.SaveChanges();
 
+            
             var newUser = new User()
             {
                 Username = registerModel.Username,
@@ -91,20 +106,48 @@ namespace DoFest.Business.Identity.Services.Implementations
                 StudentId = newStudent.Id,
                 UserTypeId = userType.Id
             };
+
             await _userRepository.Add(newUser);
             await _userRepository.SaveChanges();
 
-            return new UserModel(newUser.Id, newUser.Username, newUser.Email, userType.Name, newUser.StudentId.GetValueOrDefault());
+            var newBucketList = new BucketList()
+            {
+                Name = registerModel.BucketListName,
+                UserId = newUser.Id
+            };
+            await _bucketListRepository.Add(newBucketList);
+            await _bucketListRepository.SaveChanges();
+
+            return Result.Success<UserModel, Error>(new UserModel(newUser.Id, newUser.Username, newUser.Email, userType.Name, newUser.StudentId.GetValueOrDefault(), newBucketList.Id));
         }
 
-        public async Task ChangePassword(NewPasswordModelRequest newPasswordModelRequest)
+        public async Task<Result<string, Error>> ChangePassword(NewPasswordModelRequest newPasswordModelRequest)
         {
             var id = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var user = await _userRepository.GetById(id);
+            var samePassword = _passwordHasher.Check(user.PasswordHash, newPasswordModelRequest.NewPassword);
+            if (samePassword)
+            {
+                return Result.Failure<string, Error>(ErrorsList.SamePassword);
+            }
             user.PasswordHash = _passwordHasher.CreateHash(newPasswordModelRequest.NewPassword);
             
             _userRepository.Update(user);
             await _userRepository.SaveChanges();
+
+            return Result.Success<string, Error>("Password changed!");
+        }
+
+        public async Task<IList<UserTypeModel>> GetAllUserTypes()
+        {
+            var result = await _userTypeRepository.GetAll();
+            var successRemove = result.Remove(await _userTypeRepository.GetByName("Admin"));
+            if (!successRemove)
+            {
+                return null;
+            }
+
+            return _mapper.Map<IList<UserTypeModel>>(result);
         }
 
         private async Task<LoginModelResponse> GenerateToken(User user)
@@ -124,7 +167,7 @@ namespace DoFest.Business.Identity.Services.Implementations
 
             var type = await _userTypeRepository.GetById(user.UserTypeId);
 
-            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), type.Name);
+            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), type.Name == "Admin");
         }
     }
 }

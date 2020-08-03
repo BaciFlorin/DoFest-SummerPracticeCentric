@@ -11,7 +11,7 @@ namespace DoFest.Entities.Activities.Places
         public City():base()
         {
             Students = new List<Student>();
-            Locations = new List<Location>();
+            Activities = new List<Activity>();
         }
         
         [Required, MaxLength(100)]
@@ -19,6 +19,6 @@ namespace DoFest.Entities.Activities.Places
 
         public ICollection<Student> Students { get;  set; }
 
-        public ICollection<Location> Locations { get; set; }
+        public ICollection<Activity> Activities { get; set; }
     }
 }

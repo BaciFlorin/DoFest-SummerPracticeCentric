@@ -8,6 +8,6 @@ import { TileComponent } from './tile/tile.component';
 @NgModule({
   declarations: [TileComponent, HeaderComponent],
   imports: [CommonModule, MatIconModule],
-  exports: [TileComponent, HeaderComponent],
+  exports: [TileComponent, HeaderComponent]
 })
 export class SharedModule {}
