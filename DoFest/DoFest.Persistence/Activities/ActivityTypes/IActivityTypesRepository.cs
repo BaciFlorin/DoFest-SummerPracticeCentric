@@ -7,5 +7,7 @@ namespace DoFest.Persistence.Activities.ActivityTypes
     public interface IActivityTypesRepository: IRepository<ActivityType>
     {
         public Task<IList<ActivityType>> GetAll();
+
+        Task<ActivityType> GetByName(string name);
     }
 }

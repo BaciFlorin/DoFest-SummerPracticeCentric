@@ -1,4 +1,4 @@
-﻿namespace DoFest.Business.Models.BucketList
+﻿namespace DoFest.Business.Activities.Models.BucketList
 {
     class CreateBucketListModel
     {

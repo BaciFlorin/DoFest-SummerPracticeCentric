@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DoFest.Business.Models.Activity
+namespace DoFest.Business.Activities.Models.Activity
 {
     public sealed class CreateActivityModel
     {

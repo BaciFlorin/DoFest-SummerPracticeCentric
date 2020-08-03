@@ -27,15 +27,19 @@
       <label>Username</label>
       <input formControlName="username" type="text">
 
-      <label>City</label>
-      <select formControlName="city" >
-        <option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</option>
-      </select>
+      <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <mat-select [(value)]="cities[0].id" formControlName="city">
+          <mat-option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      <label>UserType</label>
-      <select formControlName="userType">
-        <option *ngFor="let type of userTypes;" [value]="type.id">{{type.name}}</option>
-      </select>
+      <mat-form-field appearance="fill">
+        <mat-label> UserType</mat-label>
+        <mat-select [(value)]="userTypes[0].id" formControlName="userType">
+          <mat-option *ngFor="let type of userTypes;" [value]="type.id">{{type.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
       <label>Age</label>
       <input type="number" formControlName="age">
@@ -43,10 +47,18 @@
         Age must be between 18 and 99
       </div>
 
-      <label>Year of study:</label>
+      <label>Year of study</label>
       <input type="number" formControlName="year">
       <div *ngIf="isInvalid(formGroup.get('year'))" class="error-alert">
         Year of study must be between 1 and 6
+      </div>
+
+
+
+      <label>BucketList name</label>
+      <input type="text" formControlName="bucketlistname">
+      <div *ngIf="isInvalid(formGroup.get('bucketlistname'))" class="error-alert">
+        Name must have minimum 6 characters
       </div>
     </ng-container>
 

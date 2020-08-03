@@ -97,6 +97,7 @@ namespace DoFest.Business.Identity.Services.Implementations
             await _studentRepository.Add(newStudent);
             await _studentRepository.SaveChanges();
 
+            
             var newUser = new User()
             {
                 Username = registerModel.Username,
@@ -111,7 +112,8 @@ namespace DoFest.Business.Identity.Services.Implementations
 
             var newBucketList = new BucketList()
             {
-                Name = registerModel.BucketListName
+                Name = registerModel.BucketListName,
+                UserId = newUser.Id
             };
             await _bucketListRepository.Add(newBucketList);
             await _bucketListRepository.SaveChanges();
@@ -164,8 +166,9 @@ namespace DoFest.Business.Identity.Services.Implementations
                 signingCredentials: credentials);
 
             var type = await _userTypeRepository.GetById(user.UserTypeId);
+            var bucketList = await _bucketListRepository.GetByUserId(user.Id);
 
-            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), type.Name);
+            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), type.Name == "Admin", bucketList.Id);
         }
     }
 }

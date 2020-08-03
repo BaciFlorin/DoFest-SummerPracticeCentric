@@ -44,7 +44,7 @@ namespace DoFest.API.Controllers
         public async Task<IActionResult> DeleteCity([FromRoute] Guid cityId)
         {
             var (_, isFailure, value, error) = await _cityService.DeleteCity(cityId);
-            if (!isFailure)
+            if (isFailure)
             {
                 return BadRequest(error);
             }
