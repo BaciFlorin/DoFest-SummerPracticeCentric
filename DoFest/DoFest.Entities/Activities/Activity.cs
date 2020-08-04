@@ -94,5 +94,10 @@ namespace DoFest.Entities.Activities
                 Comments.Remove(comment);
             }
         }
+
+        public void AddNotification(Notification notification)
+        {
+            Notifications.Add(notification);
+        }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoFest.Persistence.Migrations
 {
-    public partial class Generateclasses : Migration
+    public partial class GenerateClasses : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -187,32 +187,6 @@ namespace DoFest.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Note",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    ActivityId = table.Column<Guid>(nullable: false),
-                    UserId = table.Column<Guid>(nullable: false),
-                    Content = table.Column<string>(maxLength: 250, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Note", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Note_Activity_ActivityId",
-                        column: x => x.ActivityId,
-                        principalTable: "Activity",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Note_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Photo",
                 columns: table => new
                 {
@@ -321,16 +295,6 @@ namespace DoFest.Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Note_ActivityId",
-                table: "Note",
-                column: "ActivityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Note_UserId",
-                table: "Note",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Notification_ActivityId",
                 table: "Notification",
                 column: "ActivityId");
@@ -392,9 +356,6 @@ namespace DoFest.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Comment");
-
-            migrationBuilder.DropTable(
-                name: "Note");
 
             migrationBuilder.DropTable(
                 name: "Notification");

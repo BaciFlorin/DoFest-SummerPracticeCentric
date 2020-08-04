@@ -383,7 +383,7 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Authentication.User", b =>
                 {
-                    b.HasOne("DoFest.Entities.Authentication.Student", null)
+                    b.HasOne("DoFest.Entities.Authentication.Student", "Student")
                         .WithOne()
                         .HasForeignKey("DoFest.Entities.Authentication.User", "StudentId")
                         .OnDelete(DeleteBehavior.SetNull);

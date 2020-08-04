@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoFest.Persistence.Migrations
 {
     [DbContext(typeof(DoFestContext))]
-    [Migration("20200731073637_Generate-classes")]
-    partial class Generateclasses
+    [Migration("20200804075709_Generate-Classes")]
+    partial class GenerateClasses
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,31 +94,6 @@ namespace DoFest.Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Comment");
-                });
-
-            modelBuilder.Entity("DoFest.Entities.Activities.Content.Note", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ActivityId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ActivityId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Note");
                 });
 
             modelBuilder.Entity("DoFest.Entities.Activities.Content.Photo", b =>
@@ -361,21 +336,6 @@ namespace DoFest.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DoFest.Entities.Activities.Content.Note", b =>
-                {
-                    b.HasOne("DoFest.Entities.Activities.Activity", null)
-                        .WithMany("Notes")
-                        .HasForeignKey("ActivityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DoFest.Entities.Authentication.User", null)
-                        .WithMany("Notes")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("DoFest.Entities.Activities.Content.Photo", b =>
                 {
                     b.HasOne("DoFest.Entities.Activities.Activity", null)
@@ -425,7 +385,7 @@ namespace DoFest.Persistence.Migrations
 
             modelBuilder.Entity("DoFest.Entities.Authentication.User", b =>
                 {
-                    b.HasOne("DoFest.Entities.Authentication.Student", null)
+                    b.HasOne("DoFest.Entities.Authentication.Student", "Student")
                         .WithOne()
                         .HasForeignKey("DoFest.Entities.Authentication.User", "StudentId")
                         .OnDelete(DeleteBehavior.SetNull);

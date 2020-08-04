@@ -31,12 +31,18 @@ namespace DoFest.Entities.Authentication
 
         [AllowNull]
         public Guid? StudentId { get; set; }
+        public Student Student { get; private set; }
 
-        public ICollection<Photo> Photos { get; set; }
+        public ICollection<Photo> Photos { get; private set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Comment> Comments { get; private set; }
 
-        public ICollection<Rating> Ratings { get; set; }
+        public ICollection<Rating> Ratings { get; private set; }
+
+        public void AddStudent(Student student)
+        {
+            Student = student;
+        }
 
     }
 }

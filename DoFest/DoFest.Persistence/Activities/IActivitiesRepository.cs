@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DoFest.Entities.Activities;
+using DoFest.Entities.Authentication.Notification;
 
 namespace DoFest.Persistence.Activities
 {
@@ -34,5 +35,7 @@ namespace DoFest.Persistence.Activities
         Task<IList<Activity>> GetActivityLists();
 
         Task<Activity> GetByName(string name);
+
+        Task<Activity> GetByIdWithNotifications(Guid activityId);
     }
 }
