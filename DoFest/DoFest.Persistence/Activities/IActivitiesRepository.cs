@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DoFest.Entities.Activities;
-using DoFest.Entities.Authentication.Notification;
 
 namespace DoFest.Persistence.Activities
 {

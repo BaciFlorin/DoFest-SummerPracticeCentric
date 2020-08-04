@@ -12,7 +12,6 @@ using DoFest.Business.Identity.Models;
 using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Entities.Authentication;
 using DoFest.Entities.Lists;
-using DoFest.Persistence;
 using DoFest.Persistence.Activities.Places;
 using DoFest.Persistence.Authentication;
 using DoFest.Persistence.Authentication.Type;

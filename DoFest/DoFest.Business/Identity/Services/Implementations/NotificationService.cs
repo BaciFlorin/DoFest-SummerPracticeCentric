@@ -9,7 +9,6 @@ using DoFest.Business.Identity.Models.Notifications;
 using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Entities.Authentication.Notification;
 using DoFest.Persistence.Activities;
-using DoFest.Persistence.Authentication;
 using DoFest.Persistence.BucketLists;
 using Microsoft.AspNetCore.Http;
 
@@ -25,7 +24,6 @@ namespace DoFest.Business.Identity.Services.Implementations
         public NotificationService(IBucketListsRepository bucketListRepository, 
             IHttpContextAccessor accessor,
             IActivitiesRepository activitiesRepository, 
-            IUserRepository userRepository,
             IMapper mapper)
         {
             _bucketListRepository = bucketListRepository;

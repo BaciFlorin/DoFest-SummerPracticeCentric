@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoFest.Persistence.Migrations
 {
     [DbContext(typeof(DoFestContext))]
-    [Migration("20200804075709_Generate-Classes")]
+    [Migration("20200804094854_Generate-Classes")]
     partial class GenerateClasses
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
