@@ -38,8 +38,8 @@ namespace DoFest.Business.Identity.Services.Implementations
         {
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var user = await _userRepository.GetById(userId);
-            var userType = await _userTypeRepository.GetByName("Admin");
-            return userType.Id != user.UserTypeId ? 
+            var userType = await _userTypeRepository.GetById(user.UserTypeId);
+            return userType.Name != "Admin" ? 
                 Result.Failure<IList<UserModel>, Error>(ErrorsList.UnauthorizedUser) 
                 : _mapper.Map<List<UserModel>>(await _userRepository.GetUsers());
         }
@@ -48,8 +48,8 @@ namespace DoFest.Business.Identity.Services.Implementations
         {
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var user = await _userRepository.GetById(userId);
-            var userType = await _userTypeRepository.GetByName("Admin");
-            return userType.Id != user.UserTypeId ? 
+            var userType = await _userTypeRepository.GetById(user.UserTypeId);
+            return userType.Name != "Admin" ? 
                 Result.Failure<IList<UserTypeModel>, Error>(ErrorsList.UnauthorizedUser) 
                 : _mapper.Map<List<UserTypeModel>>(await _userTypeRepository.GetAll());
         }
@@ -68,7 +68,7 @@ namespace DoFest.Business.Identity.Services.Implementations
             var userTypesDictionary = (await _userTypeRepository.GetAll()).ToDictionary(x => x.Name, x => x.Id);
 
             user.UserTypeId = user.UserTypeId == userTypesDictionary["Admin"] 
-                ? userTypesDictionary["User"] 
+                ? userTypesDictionary["Normal user"] 
                 : userTypesDictionary["Admin"];
             
             _userRepository.Update(user);
