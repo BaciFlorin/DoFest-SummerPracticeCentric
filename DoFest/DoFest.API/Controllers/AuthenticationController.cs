@@ -45,14 +45,5 @@ namespace DoFest.API.Controllers
                 return BadRequest(error);
             return Ok(value);
         }
-
-        [HttpGet("userTypes")]
-        public async Task<IActionResult> GetUserTypes()
-        {
-            var result = await _authenticationService.GetAllUserTypes();
-            if (result == null)
-                return BadRequest();
-            return Ok(result);
-        }
     }
 }
