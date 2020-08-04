@@ -1,0 +1,604 @@
+﻿{
+  "Activities": [
+    {
+      "Location": "Iași",
+      "Category": "Voluntariat",
+      "Name": "AIESEC",
+      "Address": "Universitatea Alexandru Ioan Cuza, Corp B, Bulevardul Carol I 22, Iași 700505",
+      "Description": "AIESEC este o platformă internațională de dezvoltare pentru tineri, care are ca scop descoperirea şi dezvoltarea potențialului acestora, pentru a avea un impact pozitiv în societate. Înființată în 1948 ca organizație non-politică și non-profit, AIESEC permite indivizilor să-şi modeleze şi să-şi îmbogățească propria experiență printr-un sistem complex de oportunități.AIESEC:  shorturl.at/qyDIZ",
+      "Photo": "Voluntariat/AIESEC.png"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Voluntariat",
+      "Name": "BEST",
+      "Address": "Cămin T11, Aleea Profesor Gheorghe Alexa, Iași 700259",
+      "Description": "BEST încearcă să ajute studenţii europeni să devină mai deschiși spre colaborarea internaţională, oferindu-le șansa de a se familiariza cu diversitatea culturală europeană, dezvoltându-le, în același timp, capacitatea de a lucra în medii internaționale.BEST:  https://bestis.ro/",
+      "Photo": "Voluntariat/best.png"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Voluntariat",
+      "Name": "ASCOR",
+      "Address": "Strada Cloşca 9, Iași 700259",
+      "Description": "Scopul organizatiei este promovarea credinţei şi a spiritualităţii ortodoxe în rândul tinerilor, cu prioritate în mediul univASCOR:  https://ascoriasi.ro/",
+      "Photo": "Voluntariat/ascor.png"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Voluntariat",
+      "Name": "OSUBB",
+      "Address": "Strada Păstorului 11, Cluj-Napoca 400338",
+      "Description": "Organizația Studenților de la Universitatea Tehnică oferă un cadru informal în care viitorii ingineri pot construi fundația carierei lor.",
+      "Photo": "Voluntariat/OSUBB.png"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Voluntariat",
+      "Name": "ASER",
+      "Address": "Strada Frumoasă, Nr. 31, Cluj",
+      "Description": "Și-au propus să aibă impact asupra mediului economic românesc, oferind acces la resurse de învățare care te vor ajuta să-ți dezvolți competențele profesionale, dar și sociale. Proiectele lor sunt practice, interactive și te aduc cu un pas mai aproape de cariera pe care ți-o dorești. ",
+      "Photo": "Voluntariat/ASER.png"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Voluntariat",
+      "Name": "Let’s Do It, Romania!",
+      "Address": "Aleea Crivaia, Timișoara",
+      "Description": "Proiecte create cu scopul de a contribui la o tara in care oamenii se implica si sunt parte din schimbarea pe care si-o doresc, devenind la randul lor inspiratie pentru ceilalt.Actiuni de educare a tinerilor, aplicatia LDIR,reamenajari de spatii destinate diverselor categorii sociale si alte proiecte create pentru a proteja mediul si a contribui la rezolvarea problemei deseurilor",
+      "Photo": "Voluntariat/LESTDORO.png"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Voluntariat",
+      "Name": "Ajungem Mari",
+      "Address": " Biblioteca Judeteana “Octavian Goga”, Calea Dorobanților 104, Cluj-Napoca, Sala de lectura de la etajul 2",
+      "Description": "Ajungem MARI este singurul program demarat de Asociația Lindenfeld și susține educația copiilor din centre de plasament și medii defavorizate.",
+      "Photo": "Voluntariat/ajungemMari.png"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Work&Travel",
+      "Name": "American Experience",
+      "Address": "Copou\nAleea Veronica Micle 8\nlanga FEAA, dupa Teo's Cafe",
+      "Description": "Summer Work & Travel SUA – este un program de schimb cultural, reglementat de catre Departamentul de Stat\nal SUA. Pe durata acestui program studentii, masteranzii sau doctoranzii inscrisi la zi la cursurile\nunei facultati acreditate din Romania, au posibilitatea de a expermimenta legal culutra americana pe o perioada\ndeterminata de maxim 3 luni si jumatate, pe durata vacantei universitare.\nDe asemenea programul le permite acestora sa viziteze teritoriul Statelor Unite ale Americii pentru o perioada determinata de maxim 1 luna. La terminarea programului trebuie sa se intoarca in tara de resedinta, unde isi vor continua studiile.American Experience:  shorturl.at/dEMN1",
+      "Photo": "WorkAndTravel/AEIasi.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Work&Travel",
+      "Name": " Student Travel",
+      "Address": "Bulevardul Carol I nr. 4, Iași 700505",
+      "Description": "CE OFERA PROGRAMUL:\nun loc de munca in domeniul hospitality pe toata perioada programului (minim 3 luni pana la maxim 7 luni);\nmasa si cazarea gratuita;\nsuport permanent 24h din 24 pe toata perioada derularii programului;\nsalariul cuprins intre 300 si 500 Euro;Student Travel: shorturl.at/gilp9",
+      "Photo": "WorkAndTravel/STIasi.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Work&Travel",
+      "Name": "American Experience",
+      "Address": "Strada Piezisa Nr 19",
+      "Description": "Summer Work & Travel SUA – este un program de schimb cultural, reglementat de catre Departamentul de Stat\nal SUA. Pe durata acestui program studentii, masteranzii sau doctoranzii inscrisi la zi la cursurile\nunei facultati acreditate din Romania, au posibilitatea de a expermimenta legal culutra americana pe o perioada\ndeterminata de maxim 3 luni si jumatate, pe durata vacantei universitare.\nDe asemenea programul le permite acestora sa viziteze teritoriul Statelor Unite ale Americii pentru o perioada determinata de maxim 1 luna. La terminarea programului trebuie sa se intoarca in tara de resedinta, unde isi vor continua studiile.American Experience:  shorturl.at/dEMN1",
+      "Photo": "WorkAndTravel/clujWTSUA.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Work&Travel",
+      "Name": "Adira Work & Travel",
+      "Address": "Strada Moldovei 1, Cluj-Napoca 400380",
+      "Description": "CE OFERA PROGRAMUL:\nun loc de munca in domeniul hospitality pe toata perioada programului (minim 3 luni pana la maxim 7 luni);\nmasa si cazarea gratuita;\nsuport permanent 24h din 24 pe toata perioada derularii programului;\nsalariul cuprins intre 300 si 500 Euro;Student Travel: shorturl.at/gilp9",
+      "Photo": "WorkAndTravel/Adira.jpg"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Work&Travel",
+      "Name": "GTS * GOTOSUA Work & Travel",
+      "Address": "Strada Francesco Griselini 2, Timișoara 300054",
+      "Description": "Summer Work & Travel SUA – este un program de schimb cultural, reglementat de catre Departamentul de Stat\nal SUA. Pe durata acestui program studentii, masteranzii sau doctoranzii inscrisi la zi la cursurile\nunei facultati acreditate din Romania, au posibilitatea de a expermimenta legal culutra americana pe o perioada\ndeterminata de maxim 3 luni si jumatate, pe durata vacantei universitare.\nDe asemenea programul le permite acestora sa viziteze teritoriul Statelor Unite ale Americii pentru o perioada determinata de maxim 1 luna. La terminarea programului trebuie sa se intoarca in tara de resedinta, unde isi vor continua studiile.American Experience:  shorturl.at/dEMN1",
+      "Photo": "WorkAndTravel/clujWTSUA.jpg"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Work&Travel",
+      "Name": "American Experience",
+      "Address": "Parcare Caminele 12-17\nComplex Studentesc, Timisoara",
+      "Description": "CE OFERA PROGRAMUL:\nun loc de munca in domeniul hospitality pe toata perioada programului (minim 3 luni pana la maxim 7 luni);\nmasa si cazarea gratuita;\nsuport permanent 24h din 24 pe toata perioada derularii programului;\nsalariul cuprins intre 300 si 500 Euro;Student Travel: shorturl.at/gilp9",
+      "Photo": "WorkAndTravel/AETim.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Pub&Restaurants",
+      "Name": "Panoramic",
+      "Address": "Piața Unirii nr. 5, Iași 700056",
+      "Description": "Panoramic",
+      "Photo": "Pub&Restaurants/Iasi/panoramic.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Pub&Restaurants",
+      "Name": "Beer Zone",
+      "Address": "Strada Alexandru Lăpușneanu nr. 16, Iași 700057",
+      "Description": "Beer Zone",
+      "Photo": "Pub&Restaurants/IasibeerZone.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Pub&Restaurants",
+      "Name": "Kraft Pub & Restaurant",
+      "Address": " Bulevardul Profesor Dimitrie Mangeron nr. 71, Iași 700050",
+      "Description": "Kraft Pub & Restaurant",
+      "Photo": "Pub&Restaurants/Iasi/Kraft.jpg "
+    },
+    {
+      "Location": "Iași",
+      "Category": "Pub&Restaurants",
+      "Name": "Bistro \"La noi\"",
+      "Address": " Bulevardul Ștefan cel Mare și Sfânt nr. 8, Iași 700063",
+      "Description": "Bistro \"La noi\"",
+      "Photo": "Pub&Restaurants/Iasi/Bistro.jpg "
+    },
+    {
+      "Location": "Iași",
+      "Category": "Pub&Restaurants",
+      "Name": "Vivo",
+      "Address": "Strada Moldovei 20, Iași 700046",
+      "Description": "Vivo",
+      "Photo": "Pub&Restaurants/Iasi/Vivo.jpg "
+    },
+    {
+      "Location": "Iași",
+      "Category": "Pub&Restaurants",
+      "Name": "Cafeneaua Piața Unirii",
+      "Address": "Piața Unirii nr. 6, Iași 700055",
+      "Description": "Cafeneaua Piața Unirii",
+      "Photo": "Pub&Restaurants/Iasi/Cafenea.jpg "
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Pub&Restaurants",
+      "Name": "O'Peter's Irish Pub &Grill",
+      "Address": "Strada Vasile Goldiș 4, Cluj-Napoca 400112",
+      "Description": "O'Peter's Irish Pub &Grill",
+      "Photo": "Pub&Restaurants/Cluj/Peter.jpg "
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Pub&Restaurants",
+      "Name": "Old Shepherd",
+      "Address": "Strada Matei Corvin Nr 2, Cluj-Napoca 400000",
+      "Description": "Old Shepherd",
+      "Photo": "Pub&Restaurants/Cluj/OldShep.jpg "
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Pub&Restaurants",
+      "Name": "Casa TIFF",
+      "Address": "Strada Universității 6, Cluj-Napoca 400091",
+      "Description": "Casa TIFF",
+      "Photo": "Pub&Restaurants/Cluj/casaTIFF.jpg "
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Pub&Restaurants",
+      "Name": "Samsara Foodhouse",
+      "Address": " Cardinal Iuliu Hossu Street 3, Cluj-Napoca 400029",
+      "Description": "Samsara Foodhouse",
+      "Photo": "Pub&Restaurants/Cluj/samsara.jpg "
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Pub&Restaurants",
+      "Name": "Sax",
+      "Address": " Piața Muzeului, Cluj-Napoca 400000",
+      "Description": "Sax",
+      "Photo": "Pub&Restaurants/Cluj/sax.jpg "
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Pub&Restaurants",
+      "Name": "The 80's Pub",
+      "Address": " str.Aries, Nr.19(Casa Tineretului), 300736 Timisoara",
+      "Description": "The 80's Pub",
+      "Photo": "Pub&Restaurants/Timisoara/80pub.jpg "
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Pub&Restaurants",
+      "Name": "The Drunken Rat Pub",
+      "Address": "Strada George Coșbuc 1, Timișoara 300048",
+      "Description": "The Drunken Rat Pub",
+      "Photo": "Pub&Restaurants/Timisoara/Drunken.jpg "
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Pub&Restaurants",
+      "Name": "The Scotland Yard",
+      "Address": "Strada Eugeniu de Savoya 9, Timișoara",
+      "Description": "The Scotland Yard",
+      "Photo": "Pub&Restaurants/Timisoara/Scotland.jpg "
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Pub&Restaurants",
+      "Name": "Enoteca de Savoya",
+      "Address": " Strada Eugeniu de Savoya 11, Timișoara 300085",
+      "Description": "Enoteca de Savoya",
+      "Photo": "Pub&Restaurants/Timisoara/Enoteca.jpg "
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Pub&Restaurants",
+      "Name": "Joy Pub",
+      "Address": "Joy Pub",
+      "Description": "Joy Pub",
+      "Photo": "Pub&Restaurants/Timisoara/joyPub.jpg "
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Pub&Restaurants",
+      "Name": "Jack's Bistro",
+      "Address": " Strada Vasile Alecsandri 3, Timișoara 300078",
+      "Description": "Jack's Bistro",
+      "Photo": "Pub&Restaurants/Timisoara/jackbistro.jpg "
+    },
+    {
+      "Location": "Iași",
+      "Category": "Turism",
+      "Name": "Palatul Culturii",
+      "Address": "Bulevardul Ștefan cel Mare și Sfânt 1, Iași 700028",
+      "Description": "Palatul Culturii- Această clădire impresionantă este sediul a numeroase instituții culturale de prestigiu din acest oraș și a fost pusă în valoare prin recenta sa reabilitare. În cadrul Palatului Culturii din Iași vei descoperi patru muzee, care te vor ajuta să înțelegi mai bine istoria și cultura acestor meleaguri: Muzeul de Istorie al Moldovei, Muzeul Etnografic, Muzeul de Artă și Muzeul Științei și Tehnologiei Ștefan Procopiu.",
+      "Photo": "Turism/Iasi/palat.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Turism",
+      "Name": "Parcul Copou",
+      "Address": "Bulevardul Carol I nr. 31, Iași 700462",
+      "Description": "Parcul Copou- Amenajarea celebrului Parc Copou din Iași a început în perioada 1833-1834. Acesta adăpostește Monumentul Legilor Constituționale, cel mai vechi monument din țara noastră. Cunoscut și ca Obeliscul cu lei, acesta a fost creat de Mihail Singurov în anul 1834. Reprezentat de o coloană din piatră de 15 m înălțime și cu o greutate ce depășește 10 tone, celebrul monument reprezintă un simbol al celor patru puteri europene care au recunoscut independența Țărilor Române.",
+      "Photo": "Turism/Iasi/capou.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Turism",
+      "Name": "Mitropolia Moldovei și a Bucovinei",
+      "Address": "Bulevardul Ștefan cel Mare și Sfânt 16, Iași 700064",
+      "Description": "Mitropolia Moldovei și a Bucovinei- Aceasta este renumită pentru că adăpostește Moaștele Sfintei Cuvioase Parascheva, ocrotitoarea Moldovei. Monumentala catedrală ieșeană este marcată de patru turle masive, iar arhitectura sa este inspirată de stilul baroc, care marchează atât elementele decorative din exterior cât și cele din interiorul său.",
+      "Photo": "Turism/Iasi/mitropolia.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Turism",
+      "Name": "Teatrul Național Vasile Alecsandri",
+      "Address": "Strada Agatha Bârsescu nr. 18, Iași 700074",
+      "Description": "Teatrul Național Vasile Alecsandri- Datând din anul 1896, Teatrul Național Vasile Alecsandri este cel mai vechi din țară și unul dintre cele mai frumoase din Europa. Interiorul său elegant și bogat decorat a fost inspirat din stilurile arhitecturale baroce și rococo, unul dintre plafoanele sale fiind pictate de celebrul pictor vienez Alexander Goltz. Cortina sa a fost, de asemenea, pictată manual, simbolizând cele trei etape ale vieții și fiind considerată o alegorie a Unificării României.",
+      "Photo": "Turism/Iasi/teatrul.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Turism",
+      "Name": "Mănăstirea Sfinții Trei Ierarhi din Iași",
+      "Address": " Bulevardul Ștefan cel Mare și Sfânt nr. 28, Iași 700259",
+      "Description": "Mănăstirea Sfinții Trei Ierarhi din Iași- Considerat un monument arhitectural de mare valoare în Iași și în întreaga țară, Mănăstirea Sfinții Trei Ierarhi atrage atenția prin arhitectura sa impresionantă și datorită decorațiunilor sale unice din piatră, care împodobesc fațadele superioare. Aceasta a fost zidită inițial pentru a inaugura domnia marelui voievod de odinioară, Vasile Lupu. Aceasta a fost restaurată din punct de vedere arhitectural în perioada 1882 – 1887, amenajarea interiorului său și realizarea picturilor continuând până în anul 1898.",
+      "Photo": "Turism/Iasi/treiierahi.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Turism",
+      "Name": "Biblioteca Gheorghe Asachi",
+      "Address": "Bulevardul Ștefan cel Mare și Sfânt nr. 10, Iași 700063",
+      "Description": "Biblioteca Gheorghe Asachi- Biblioteca Gheorghe Asachi din Iași a fost desemnată ca fiind cea mai frumoasă din lume, în cadrul unei competiții desfășurate online la care au participat nume celebre din întreaga lume, precum Biblioteca Colegiului Trinity din Dublin, Biblioteca Regală Portugheză din Buenos Aires și Biblioteca Națională din Praga.",
+      "Photo": "Turism/Iasi/biblioteca.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Turism",
+      "Name": "Esplanada Elisabeta ",
+      "Address": "Str. Râpa Galbenă,Iași 700259",
+      "Description": "Esplanada Elisabeta (Râpa Galbenă)- Râpa Galbenă din Iași, așa cum este cunoscută printre localnici, este o zonă importantă, localizată la baza Dealului Copou. Esplanada Elisabeta din Iași a fost construită la sfârșitul secolului al XIX-lea, scopul acesteia fiind acela de facilitare a circulației pietonilor către zona centrală a orașului.",
+      "Photo": "Turism/Iasi/esplanada.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Turism",
+      "Name": "Sala Pașilor Pierduți",
+      "Address": "Corp AUniversitATEA Alexandru Ioan Cuza , Bulevardul Carol I 11, Iași 700506",
+      "Description": "Sala Pașilor Pierduți- Dacă în cadrul periplului tău turistic te abați și pe la celebra Universitate “Alexandru Ioan Cuza” din Iași, trebuie să vizitezi și Sala Pașilor Pierduți. Picturile murale unice ale celebrului artist Sabin Bălașa te vor impresiona, acesta reușind să introducă acest spațiu pe harta locurilor de referință ale artei universale, prin măiestria sa artistică.",
+      "Photo": "Turism/Iasi/salapasilor.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Turism",
+      "Name": "Grădina Botanică din Copou",
+      "Address": "Strada Dumbrava Roșie nr. 7-9, Iași 700487",
+      "Description": "Grădina Botanică din Copou- Înființată în anul 1856, Grădina Botanică Anastasie Fătu poartă numele fondatorului său, un celebru medic și susținător al remediilor naturiste din acea perioadă. Aceasta este prima grădină universitară deschisă în țara noastră și cea mai mare din România în acest moment.",
+      "Photo": "Turism/Iasi/gradinabotanicat.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Turism",
+      "Name": "Piața Unirii ",
+      "Address": "Piața Unirii ",
+      "Description": "Piața Unirii - Asemenea Pieței Muzeului, Piața Unirii se mândrește cu unele dintre cele mai importante ansambluri arhitectonice gotice, baroce și neo-baroce din Transilvania: Biserica Romano-Catolică Sf. Mihail, Muzeul de Artă, Muzeul Farmaciei, pe care nu am mai apucat să-l vizităm, statuia lui Matia Corvin, Strada în oglindă și vechile palate nobiliare.",
+      "Photo": "Turism/Cluj/piataunirii.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Turism",
+      "Name": "Grădina Botanică ",
+      "Address": "Strada Republicii 42, Cluj-Napoca 400015",
+      "Description": "Grădina Botanică - Fondată în anul 1872 și considerată astăzi muzeul național, Grădina Botanică este una dintre primele, cele mai mari și cele mai complexe astfel de grădini din sud-estul Europei. Întinzându-se pe o suprafață de 14 hectare, are ca principale atracții grădina japoneză, grădina romană, serele cu plante tropicale și ecuatoriale.",
+      "Photo": "Turism/Cluj/gradinabotanica.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Turism",
+      "Name": " Cetățuia ",
+      "Address": "Strada Emil Racoviță 60a, Cluj-Napoca 400124",
+      "Description": " Cetățuia - De fapt, Cetățuia este un parc situat la o altitudine de 405 metri, de mici dimensiuni, ce-i drept, cu vedere asupra orașului, deci nu este deloc de ocolit.",
+      "Photo": "Turism/Cluj/cetatuia.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Turism",
+      "Name": "Turnul Croitorilor ",
+      "Address": " Strada Baba Novac 2, Cluj-Napoca 400097",
+      "Description": "Turnul Croitorilor - Turnul face parte din vechiul zid de apărare al orașului, care înconjura în vremuri de demult o suprafață de 45 hectare, cât măsura cetatea, și este unul dintre puținele care s-au păstrat într-o stare foarte bună până în zilele noastre (practic, turnul este astăzi intact",
+      "Photo": "Turism/Cluj/turnul.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Turism",
+      "Name": " Biserica Reformată ",
+      "Address": "Bd. 21 decembrie 1989 nr. 41, Cluj",
+      "Description": " Biserica Reformată - Este una dintre cele mai masive construcții gotice din întreaga Transilvanie, având mai degrabă aspectul unei cetăți. Aici se organizează periodic tot felul de concerte și evenimente",
+      "Photo": "Turism/Cluj/bisericareformata.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Turism",
+      "Name": "Salina Turda",
+      "Address": "Aleea Durgăului 7, Turda 401106",
+      "Description": "Salina Turda-A devenit celebră în ultimii ani în România, așa că ne este greu să credem că mai e cineva care să nu fi auzit de ea. Ca să nu mai vorbim că are și o poveste interesantă, trecând de la statutul de salină de renume a Transilvaniei, la începuturi, la o decădere neașteptată datorată concurenței, salina de la Ocna Mureș. Paradoxal, abia cel de-Al Doilea Război Mondial a readus-o în memoria colectivă, fiind folosită ca adăpost antiaerian.",
+      "Photo": "Turism/Cluj/salina.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Turism",
+      "Name": "Centrul Timișoarei",
+      "Address": "Centrul Trimisoarei",
+      "Description": "Centrul Timișoarei-Centrul este primul dintre locurile cu care vei dori să faci cunoștiință imediat ce ai ajuns și ți-ai lăsat bagajele în cameră. Începând cu Palatul Culturii și până la Catedrala Mitropolitană, centrul orașului cunoscut și sub numele de Piața Victoriei sau Piața Operei concentrează un număr impresionant de palate și clădiri care încă păstrează gloria și arhitectura spectaculoasă de pe vremuri.",
+      "Photo": "Turism/Timisoara/centru.jpg"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Turism",
+      "Name": "Palatului Culturii ",
+      "Address": "Strada Mărășești 2, Timișoara 300086",
+      "Description": "Clădirea Palatului Culturii (cea care mărginește centrul în parte de nord) adăpostește astăzi Opera Națională Română și cele trei teatre de stat Teatrul National Mihai Eminescu, Teatrul Maghiar de Stat Csiky Gergely și Teatrul German de Stat (o situație unică și totodată o premieră în Europa). Dacă inițial clădirea avea exteriorul în stil Renaissance, în urma celor două mari incendii din 1880 și 1920, au mai rămas intacte doar aripile",
+      "Photo": "Turism/Timisoara/palat.jpg"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Turism",
+      "Name": "Catedrala Mitropolitană din Timișoara",
+      "Address": "Bulevardul Regele Ferdinand I, Timișoara",
+      "Description": "Catedrala Mitropolitană din Timișoara marchează cealaltă intrare principală în centrul orașului, fiind dispusă în partea de sud a pieței. Catedrala este fără îndoială una dintre clădirile care îți va atrage privirea indiferent în ce parte a centrului te vei afla, doar este cel mai mare edificiu religios din oraș. Impresionează atât prin arhitectura somptuoasă care îmbină stilul bizantin cu cel moldovenesc cât și prin dimensiunile sale vaste",
+      "Photo": "Turism/Timisoara/catedrala.jpg"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Turism",
+      "Name": "Bastionul Maria Theresia",
+      "Address": " Strada Hector, Timișoara",
+      "Description": "Bastionul Maria Theresia-Aflat în zona centrală, între Hotel Continental și Fântâna Punctelor Cardinale (pe strada Hector), Bastionul Maria Theresia este un monument în stil baroc de o mare însemnătate istorică, fiind cea mai mare bucată de zid păstrată din vechea cetate a Timișoarei.",
+      "Photo": "Turism/Timisoara/teresia.jpg"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Turism",
+      "Name": "Parcul Rozelor",
+      "Address": " Strada Michelangelo - Strada 20 Decembrie 1989,Timisoara",
+      "Description": "Parcul Rozelor. Situat în centrul oraşului, la doar câțiva pași de malul râului Bega, Parcul Rozelor reprezintă o altă atracție de renume a Timişoarei. De fapt, s-ar putea spune că faima Timişoarei de oraş al parcurilor sau oraş al trandafirilor este în mare măsură datorată acestui parc.",
+      "Photo": "Turism/Timisoara/parcRoze.jpg"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Sporturi",
+      "Name": "Asaltul Lupilor",
+      "Address": "Enduro Ranch (Bârnova, Județul Iași)\n",
+      "Description": "Asaltul Lupilor- evenimentului te aşteaptă pe un teren accidentat de 6 Km, perfect ca să-ţi testeze limitele. Vei alerga prin pădure, te vei târî prin şanţuri, te vei căţăra pe funii, vei traversa râpe, vei sări peste garduri, te vei împiedica sau nu de rădacinile copacilor şi nu în ultimul rând te vei murdări de noroi … dar te vei distra ! ",
+      "Photo": "Sporturi/Iasi/AsaltulLupilor.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Sporturi",
+      "Name": "Pilates",
+      "Address": "Strada Stihii 2, Iași 700083",
+      "Description": "Pilates- Pilates este o metodă de întărire a mușchilor profunzi, care sunt responsabili cu menținerea posturii. (Tonus Plus- sală )",
+      "Photo": "Sporturi/Iasi/pilates.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Sporturi",
+      "Name": "Întreținere corporală",
+      "Address": "Strada Pantelimon Halipa 6B, Iași",
+      "Description": "Întreținere corporală- săli de sport cu prețuri speciale pentru student: Oxygen, Let’ s move",
+      "Photo": "Sporturi/Iasi/oxygen.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Sporturi",
+      "Name": "Maratonul International Iasi",
+      "Address": "Strat/Stop: Palatul Culturii, Iasi",
+      "Description": "Maratonul International Iasi- Maratonul International Iasi isi propune sa fie un eveniment sportiv de referinta pentru Municipiul Iasi, dar si la nivel regional, national si international. Obiectivul principal este unul social, fondurile rezultate in urma organizarii evenimentului fiind destinate finantarii proiectului de Infiintare si functionare a punctelor de prim ajutor si interventie in caz de dezastre in principalele cartiere ale Iasului",
+      "Photo": "Sporturi/Iasi/MaratonInternational.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Sporturi",
+      "Name": "Maratonul de Ciclism International din nou la Cluj",
+      "Address": "Start/Stop: Cluj Arena, Cluj",
+      "Description": "Maratonul de Ciclism International din nou la Cluj(Perioada Mai-Iunie)- evenimentul sportiv  aduce la Cluj cel mai mare număr de cicliști din România, într-un context nou și plin de surprize. Vor exista competiții de ciclism și alergare pentru adulți, competiții pentru copii, competiție de spinning, o zonă culinară și una de camping cu foc de tabără precum și alte activități de petrecere a timpului liber.",
+      "Photo": "Sporturi/Cluj/pilates.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Sporturi",
+      "Name": "Făget Winter Race",
+      "Address": " Baza Sportivă Unirea, Cluj-Napoca ",
+      "Description": "Făget Winter Race- Făget Winter Race este un primul concurs de alergare din an. Se desfaşoară în pădurea Făget din Cluj-Napoca, iarna, in al doilea week-end al lunii ianuarie.",
+      "Photo": "Sporturi/Cluj/fagesWinter.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Sporturi",
+      "Name": "Runsilvania Wild Race",
+      "Address": "Bride's Veil Waterfall",
+      "Description": "Runsilvania Wild Race. Runsilvania WILD RACE este o cursă de trail running, Traseul de alergare trece pe lângă Cascada Vălul Miresei, Peşterile Vârfuraşul şi Lespezi, ajunge la Pietrele Albe şi urcă pe Vf. Vlădeasa (la proba de Maraton), trece prin grote şi segmente tehnice asigurate cu lanţuri şi corzi, podeţe şi scări din lemn.",
+      "Photo": "Sporturi/Cluj/Runsilvania.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Sporturi",
+      "Name": "Free Wall Climbing",
+      "Address": "In curtea interioara, Strada Berăriei nr. 6, Cluj-Napoca 400380",
+      "Description": "Free Wall (Rock Climbing Gym).Sali  de escaladă&bouldering",
+      "Photo": "Sporturi/Cluj/escalada.jpg"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Sporturi",
+      "Name": "Transilvania eXtreme Adventures",
+      "Address": "trada Băii nr 17, Cluj-Napoca 400389",
+      "Description": "Rafting, Parapanta, Tir cu arcul, Caiac, Paintball, Motoparapanta- organizate de Transilvania eXtreme Adventures  care o multime de activitati outdoor care te fac sa uiti de stresul zilnic si sa te reincarci cu energie. O modalitate frumoasa de a adauga in viata ta un plus de miscare si sanatate.",
+      "Photo": "Sporturi/Cluj/eXtremeAdventures"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Sport",
+      "Name": "Memorialul Daniela Zaharie",
+      "Address": " \nDinias\n,Timisoara",
+      "Description": "Primul targa rally organizat in Romania. Toti banii adunati vor fi donati Spitalului de Copii ”Louis Turcanu”. ",
+      "Photo": "Sportui/Timisoara/memorial_daniele_zaharie_large.jpg"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Sport",
+      "Name": "Noaptea Spartanilor",
+      "Address": "Sala Constantin Jude (Olimpia), Timisoara",
+      "Description": "Ne propunem ca prin evenimentele noastre sa aducem un nou concept dedicat boxului profesionist,sa imbinam sportul cu spectacolul si sa aducem in fata publicului unii dintre cei mai buni sportivi de box si kickboxing din Romania, fiecare dintre acestia confruntandu-se pe reguli de box cu adversari de valoare din Europa, Africa si America Latina intr-o serie de 3 evenimente pe an ",
+      "Photo": "Sportui/Timisoara/noaptea-spartanilor_large.jpg"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Sport",
+      "Name": "Chess Contest",
+      "Address": "Universitatea Politehnica Timişoara",
+      "Description": "Chess Contest este un concurs de șah dedicat tuturor elevilor și studenților din toată țara, organizat de Liga AC (Liga Studenților din Facultatea de Automatică și Calculatoare) în colaborare cu Facultatea de Automatică și Calculatoare și Universitatea Politehnica Timișoara. Concursul se desfăşoară în perioada 17-19 noiembrie şi îşi propune să adune cât mai mulţi tineri în Timişoara pentru a-şi arăta strategia în această confruntare a minţii. ",
+      "Photo": "Sportui/Timisoara/chess_contest_2_large.jpg"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Sport",
+      "Name": "International Dance Open",
+      "Address": " B-dul.Eroilor de la Tisa, Timisoara",
+      "Description": "Vor participa dansatori din: Rusia, Bulgaria, Hungaria , France , Montenegro , Serbia , Moldova , Czech Republic si Romania ",
+      "Photo": "Sportui/Timisoara/international_dance_open_large.jpg"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Festivaluri",
+      "Name": "Hangariada",
+      "Address": "Aeroclubul „Alexandru Matei” ,Iași",
+      "Description": "Hangariada înseamnă 3 zile de fericire cu ½ muzică și ½ zbor. Privești cerul, saltă inima, îți strângi prietenii de mână, lași gândul să-ți zboare prin iarba cosită. Te întinzi pe spate, îți pui ochelarii de soare, „oare de ce nu m-am făcut pilot/cântăreț ca-n compunerea dintr-a patra?” Aplauze! Ridică-te, înverzește-ți tălpile pantofilor, cântă și dansează odată cu cei de pe scenă. Și-apoi, a doua zi, de la capăt.",
+      "Photo": "Festivaluri/Iasi/Hangariada.png"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Festivaluri",
+      "Name": "Serile de Film Romanesc",
+      "Address": "Piața Unirii 5\nIași",
+      "Description": "Se organizeaza seri de film in diferite locatii, unde sunt invitati oameni importanti ai filmului romanesc.",
+      "Photo": "Festivaluri/Iasi/filmromanesc.jpg"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Festivaluri",
+      "Name": "Afterhills ",
+      "Address": "Strada Vasile Lupu 78A, Iași 700350",
+      "Description": "Afterhills este cel mai tânăr festival de muzică de anvergură din România, desfășurat în județul Iași, fiind cel mai mare și important festival din regiunea Moldova.",
+      "Photo": "Festivaluri/Iasi/afterhills.png"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Festivaluri",
+      "Name": "FILIT",
+      "Address": " Iași, str. V. Pogor, nr. 4, 700110.",
+      "Description": "Festivalul Internațional de Literatură și Traducere Iași (FILIT) este un festival internațional care are loc anual în octombrie, în Iași. Festivalul reunește la Iași profesioniști din domeniul cărții, atât din țară, cât și din străinătate. Scriitori, traducători, editori, organizatori de festival, critici literari, librari, distribuitori de carte, manageri și jurnaliști culturali – cu toții se află, de-a lungul celor cinci zile de festival, în centrul unor evenimente destinate, pe de o parte, publicului larg, pe de altă parte, specialiștilor din domeniu.",
+      "Photo": "Festivaluri/Iasi/filit.png"
+    },
+    {
+      "Location": "Iași",
+      "Category": "Festivaluri",
+      "Name": "Smida Jazz",
+      "Address": "Smida, 18, Smida 407082, Cluj",
+      "Description": "Smida Jazz, festival dedicat jazz-ului de avangardă ce se desfășoară an de an în pitorescul sat Smida (comuna Beliș, județul Cluj - în mijlocul Parcului Natural Apuseni). Pe parcursul a 3 zile, vom petrece o vacanță în Apuseni, cu tot felul de activități în aer liber și concerte ale grupurilor internaționale și din România. ",
+      "Photo": "Festivaluri/Cluj/Smida.png"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Festivaluri",
+      "Name": "UNTOLD",
+      "Address": "Untold Festival Arena, Cluj-Napoc",
+      "Description": "Untold Festival este cel mai mare festival de muzică din România.[1][2] Acesta se desfășoară în fiecare an pe Cluj Arena",
+      "Photo": "Festivaluri/Cluj/untold.png"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Festivaluri",
+      "Name": "Electric Castle",
+      "Address": " Bánffy Castle, Cluj-Napoca",
+      "Description": "Festivalul îmbină în lineup zone muzicale variate cum ar fi rock, reggae, hip hop, trap, muzică electronică sau indie cu tehnologia, cu arta alternativă, arta stradală și cultura.",
+      "Photo": "Festivaluri/Cluj/electric.png"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Festivaluri",
+      "Name": "TIFF",
+      "Address": "Piata Unirii, Cluj",
+      "Description": "Este primul festival internațional de film de lungmetraj din România, se bazează pe lungmetraje sau scurtmetraje necomerciale produse în special în țările europene. Marele premiu al festivalului, Trofeul Transilvania, opera artistului Teo Mureșan, este o statuetă ce reprezintă un turn tăiat.",
+      "Photo": "Festivaluri/Cluj/tiff.png"
+    },
+    {
+      "Location": "Cluj",
+      "Category": "Festivaluri",
+      "Name": "Festivalul Acces Art",
+      "Address": "Parcul Botanic, Timisoara",
+      "Description": "Festivalul Acces Art – Festival organizat în aer liber, centrat pe ateliere de arte creative.",
+      "Photo": "Festivaluri/Timisoara/accesArt.png"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Festivaluri",
+      "Name": "Festivalul Internațional de Tango Argentinian",
+      "Address": "Ambasada/Timisoara",
+      "Description": "Festivalul Internațional de Tango Argentinian - Festivalul are loc anual, începând cu 2013, în ultima săptămână a lunii mai. Acest unic eveniment din vestul țării este organizat de Școala de Tango Argentinian „Tango Embrace”, din cadrul Asociației \"Art Embrace\".",
+      "Photo": "Festivaluri/Timisoara/tango.png"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Festivaluri",
+      "Name": "Festivalul Internațional de Literatură de la Timișoara ",
+      "Address": "Sala Barocă a Muzeului de Artă din Timișoara ",
+      "Description": "Festivalul Internațional de Literatură de la Timișoara – Festivalul reunește autori români și străini, pentru două zile de lecturi și dialoguri deschise cu publicul.",
+      "Photo": "Festivaluri/Timisoara/literatura.png"
+    },
+    {
+      "Location": "Timișoara",
+      "Category": "Festivaluri",
+      "Name": "Festivalul Jazz TM",
+      "Address": "Piata Victoriei, Timisoara",
+      "Description": "Festivalul Jazz TM este un festival de jazz care se desfășoară în aer liber, în Piața Victoriei, în luna iulie și aduce pe scenă artiști din scena internațională a muzicii Jazz.",
+      "Photo": "Festivaluri/Timisoara/jazz.png"
+    }
+  ]
+}
