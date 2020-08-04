@@ -15,7 +15,6 @@ namespace DoFest.Entities.Authentication
             Photos = new List<Photo>();
             Comments = new List<Comment>();
             Ratings = new List<Rating>();
-            Notes = new List<Note>();
         }
 
         [Required, MaxLength(50)]
@@ -39,6 +38,5 @@ namespace DoFest.Entities.Authentication
 
         public ICollection<Rating> Ratings { get; set; }
 
-        public ICollection<Note> Notes { get; set; }
     }
 }
