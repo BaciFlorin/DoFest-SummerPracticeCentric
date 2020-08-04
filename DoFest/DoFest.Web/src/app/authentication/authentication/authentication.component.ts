@@ -39,7 +39,8 @@ export class AuthenticationComponent implements OnInit{
       city:['', [Validators.required]],
       userType:['', [Validators.required]],
       age:[18, [Validators.min(18), Validators.max(99), Validators.required]],
-      year:[1,[Validators.required, Validators.min(1), Validators.max(6)]]
+      year:[1,[Validators.required, Validators.min(1), Validators.max(6)]],
+      bucketlistname:['',[Validators.required, Validators.minLength(6)]]
     });
     this.userService.username.next('');
   }
@@ -58,11 +59,10 @@ export class AuthenticationComponent implements OnInit{
 
   public setRegister(): void {
     this.isSetRegistered = !this.isSetRegistered;
+    cleanErrorList();
     if(!this.isSetRegistered)
     {
       this.formGroup.markAsUntouched();
-      console.log("Value changed");
-
       this.formGroup.setValue({email:'', password:'',name:'', username:'', city:this.cities[0].id, userType: this.userTypes[0].id,age:18, yearStudy:1});
     }
   }
@@ -70,7 +70,6 @@ export class AuthenticationComponent implements OnInit{
   public authenticate(): void {
     if (this.isSetRegistered) {
       const data: RegisterModel = this.formGroup.getRawValue();
-      console.log(data);
       this.authenticationService.register(data).subscribe((registerData: HttpResponse<any>) => {
         if(registerData.status == 201)
         {
@@ -80,33 +79,31 @@ export class AuthenticationComponent implements OnInit{
       }, this.handleError);
     }
     else {
-      const data: LoginModel = this.formGroup.getRawValue();
-      this.authenticationService.login(data).subscribe((data: HttpResponse<any>) => {
+        const data: LoginModel = this.formGroup.getRawValue();
+        this.authenticationService.login(data).subscribe((data: HttpResponse<any>) => {
         if(data.status == 200)
         {
-          localStorage.setItem('userToken', JSON.stringify(data.body.token));
-          console.log(localStorage.getItem('userToken'));
-          this.userService.username.next(data.body.email);
+          localStorage.setItem('identity', JSON.stringify(data.body));
+          this.userService.username.next(data.body.username);
           this.router.navigate(['dashboard']);
         }
         }, this.handleError);
       }
     }
 
-  public isInvalid(form:AbstractControl)
+  public isInvalid(form:AbstractControl):boolean
   {
     return form.invalid && form.touched && form.dirty && this.isSetRegistered;
   }
 
-  public handleError(responseError:HttpErrorResponse)
+  private handleError(responseError:HttpErrorResponse):void
   {
-    // de facut mai frumoasa functia
+    cleanErrorList();
     if(responseError.status == 400)
     {
-      let errorList;
-      if(responseError instanceof HttpErrorResponse)
+      if("errors" in responseError.error)
       {
-        errorList = responseError.error.errors;
+        let errorList: Array<string> = responseError.error.errors;
         for(var error in errorList)
         {
           var newError = document.createElement('div');
@@ -115,6 +112,21 @@ export class AuthenticationComponent implements OnInit{
           document.getElementById("error-list").appendChild(newError);
         }
       }
+      else
+      {
+        var newError = document.createElement('div');
+        newError.className = "error-item";
+        newError.innerHTML = responseError.error.message;
+        document.getElementById("error-list").appendChild(newError);
+      }
     }
   }
+}
+
+function cleanErrorList():void
+{
+  let errorList = document.getElementById("error-list").childNodes;
+  errorList.forEach((child)=>{
+    document.getElementById("error-list").removeChild(child);
+  });
 }

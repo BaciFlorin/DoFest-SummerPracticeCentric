@@ -1,6 +1,5 @@
-export type TripModel = {
+export type ActivityModel = {
   id?: string;
   title: string;
   description: string;
-  private: boolean;
 };

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { TripDetailsComponent } from './trip/trip-details/trip-details.component';
-import { TripListComponent } from './trip/trip-list/trip-list.component';
+import { TripListComponent } from './trip/activity-list/activity-list.component';
 
 const routes: Routes = [
   {
