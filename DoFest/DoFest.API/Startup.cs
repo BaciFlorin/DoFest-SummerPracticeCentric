@@ -21,7 +21,6 @@ using DoFest.Persistence.Authentication;
 using DoFest.Persistence.Authentication.Type;
 using FluentValidation;
 using DoFest.Persistence.BucketLists;
-using DoFest.Persistence.Notifications;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -80,8 +79,6 @@ namespace DoFest.API
                 .AddScoped<IUserRepository, UserRepository>()
                 .AddScoped<IUserTypeRepository, UserTypeRepository>()
                 .AddScoped<ICityRepository, CityRepository>()
-                .AddScoped<IStudentRepository, StudentRepository>()
-                .AddScoped<INotificationRepository, NotificationRepository>()
                 .AddScoped<IActivitiesRepository, ActivitiesRepository>()
                 .AddScoped<IBucketListsRepository, BucketListsRepository>()
                 .AddScoped<IActivityTypesRepository, ActivityTypesRepository>();
