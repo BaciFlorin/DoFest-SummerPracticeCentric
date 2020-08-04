@@ -166,7 +166,7 @@ namespace DoFest.Business.Identity.Services.Implementations
                 signingCredentials: credentials);
 
             var type = await _userTypeRepository.GetById(user.UserTypeId);
-            var bucketList = await _bucketListRepository.GetByUserId(user.Id);
+            var bucketList = await _bucketListRepository.GetByUserIdWithActivities(user.Id);
 
             return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), type.Name == "Admin", bucketList.Id);
         }
