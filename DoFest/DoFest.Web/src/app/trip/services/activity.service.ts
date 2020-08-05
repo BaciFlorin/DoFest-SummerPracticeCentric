@@ -5,12 +5,13 @@ import { Observable } from 'rxjs';
 import { ActivityModel } from '../models';
 import { ActivitiesModel } from '../models/activities.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ActivityService {
 
-  private endpoint: string = 'http://192.168.0.10:5002/api/v1/activities';
+  private endpoint: string = 'http://192.168.100.10:5002/api/v1/activities';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -22,6 +23,7 @@ export class ActivityService {
   constructor(private readonly http: HttpClient) { }
 
   getAll(): Observable<ActivityModel[]> {
+    console.log(this.httpOptions);
     return this.http.get<ActivityModel[]>(this.endpoint, this.httpOptions);
   }
 

@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 
 import { ActivityModel, ActivitiesModel } from '../models';
 import { ActivityService } from '../services/activity.service';
+import { CityModel } from '../../shared/models/city.model';
+import { CitiesService } from 'src/app/shared/services';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-trip-list',
@@ -12,15 +15,25 @@ import { ActivityService } from '../services/activity.service';
 })
 export class TripListComponent implements OnInit {
   public tripList: ActivityModel[];
+  public cities: CityModel[];
+  public formGroup: FormGroup;
+  public selectedCity: string;
 
   constructor(
     private router: Router,
     private service: ActivityService,
+    private readonly citiesService: CitiesService
     ) { }
 
   public ngOnInit(): void {
     this.service.getAll().subscribe((data: ActivityModel[]) => {
       this.tripList = data;
+    });
+
+    this.citiesService.getCities().subscribe((data)=>{
+      this.cities = data;
+      this.formGroup.get('city').setValue(this.cities[0].id);
+      this.selectedCity = 'e2f2c7fa-c583-4014-a336-1988c772fb58';
     });
   }
 
@@ -28,3 +41,7 @@ export class TripListComponent implements OnInit {
     this.router.navigate([`/trip/details/${id}`]);
   }
 }
+
+
+
+
