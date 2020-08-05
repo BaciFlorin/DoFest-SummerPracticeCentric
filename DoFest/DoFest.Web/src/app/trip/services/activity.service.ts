@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ActivityModel } from '../models';
-import { ActivitiesModel } from '../models/activities.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivityService {
 
-  private endpoint: string = 'http://localhost:5001/api/v1/activities';
+  private endpoint: string = 'https://localhost:5001/api/v1/activities';
 
   private httpOptions = {
     headers: new HttpHeaders({

@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {AdminService } from '../services/admin.service'
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
@@ -24,28 +23,20 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css'],
-  providers: [
-    AdminService
-  ]
+  selector: 'app-user-table',
+  templateUrl: './user-table.component.html',
+  styleUrls: ['./user-table.component.css']
 })
-export class AdminComponent implements OnInit {
+export class UserTableComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(
-    private readonly adminService: AdminService
-  ) {
-
-  }
+  constructor() { }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
   }
-
 }

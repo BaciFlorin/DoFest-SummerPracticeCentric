@@ -1,8 +1,6 @@
-@import "../../../assets/styles/layout.scss";
+@import "../../../../assets/styles/layout.scss";
 
 .container {
-
-
   font-family: "Open Sans", sans-serif;
   font-size: 12px;
 
@@ -38,9 +36,12 @@
   align-content: center;
 }
 
-table{
-  width: 100%;
+.mat-expansion-panel{
+  margin: 2%;
+  width: 80%;
 }
-.users-tab-content{
-  background-color: aquamarine;
+
+mat-form-field{
+  width: 80%;
+  margin: 2%;
 }

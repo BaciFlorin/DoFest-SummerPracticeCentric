@@ -4,7 +4,7 @@ namespace DoFest.Business.Identity.Models
 {
     public sealed class LoginModelResponse
     {
-        public LoginModelResponse(string username, string email, string token, Guid studentId, bool isAdmin)
+        public LoginModelResponse(string username, string email, string token, Guid studentId, Guid bucketListId)
         {
             Username = username;
             Email = email;

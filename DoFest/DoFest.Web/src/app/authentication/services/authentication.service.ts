@@ -8,7 +8,7 @@ import { RegisterModel } from '../models/register.model';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  public endpoint: string = "http://localhost:5001/api/v1/auth";
+  public endpoint: string = "https://localhost:5001/api/v1/auth";
   constructor(private readonly httpClient: HttpClient) {}
 
   public login(data: LoginModel): Observable<HttpResponse<unknown>> {
