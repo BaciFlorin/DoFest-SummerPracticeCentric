@@ -19,5 +19,6 @@ namespace DoFest.Entities.Authentication
         public string Description { get;  set; }
 
         public ICollection<User> Users { get;  set; }
+
     }
 }

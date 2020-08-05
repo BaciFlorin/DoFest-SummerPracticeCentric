@@ -69,7 +69,8 @@ namespace DoFest.API
                 .AddScoped<IPhotosService, PhotosService>()
                 .AddScoped<IRatingsService, RatingsService>()
                 .AddScoped<ICityService, CityService>()
-                .AddScoped<IActivityTypesService, ActivityTypesService>();
+                .AddScoped<IActivityTypesService, ActivityTypesService>()
+                .AddScoped<IAdminService, AdminService>();
 
 
             // ****** Add Repositories and DbContext ******
