@@ -30,18 +30,11 @@
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
-                <mat-label> UserType</mat-label>
-                <mat-select [(value)]="userTypes[0].id" formControlName="userType">
-                    <mat-option *ngFor="let type of userTypes;" [value]="type.id">{{type.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <label>Age</label>
-            <input type="number" formControlName="age">
-            <div *ngIf="isInvalid(formGroup.get('age'))" class="error-alert">
-                Age must be between 18 and 99
-            </div>
+      <label>Age</label>
+      <input type="number" formControlName="age">
+      <div *ngIf="isInvalid(formGroup.get('age'))" class="error-alert">
+        Age must be between 18 and 99
+      </div>
 
             <label>Year of study</label>
             <input type="number" formControlName="year">
