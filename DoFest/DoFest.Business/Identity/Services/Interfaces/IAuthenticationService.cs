@@ -22,7 +22,7 @@ namespace DoFest.Business.Identity.Services.Interfaces
         /// </summary>
         /// <param name="registerModel">  Model de data pentru register. </param>
         /// <returns> ????? </returns>
-        Task<Result<UserModel, Error>> Register(RegisterModel registerModel);
+        Task<Result<string, Error>> Register(RegisterModel registerModel);
 
         /// <summary>
         /// Poate schimba parola unui user existent in baza de date.

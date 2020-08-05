@@ -62,19 +62,19 @@ namespace DoFest.Business.Identity.Services.Implementations
             return Result.Success<LoginModelResponse, Error>(await GenerateToken(user));
         }
 
-        public async Task<Result<UserModel, Error>> Register(RegisterModel registerModel)
+        public async Task<Result<string, Error>> Register(RegisterModel registerModel)
         {
             var user = await _userRepository.GetByEmail(registerModel.Email);
             if (user != null)
-                return Result.Failure<UserModel,Error>(ErrorsList.EmailExists);
+                return Result.Failure<string, Error>(ErrorsList.EmailExists);
 
             user = await _userRepository.GetByUsername(registerModel.Username);
             if (user != null)
-                return Result.Failure<UserModel, Error>(ErrorsList.UsernameExists);
+                return Result.Failure<string, Error>(ErrorsList.UsernameExists);
 
             var city = await _cityRepository.GetById(registerModel.City);
             if (city == null)
-                return Result.Failure<UserModel, Error>(ErrorsList.InvalidCity);
+                return Result.Failure<string, Error>(ErrorsList.InvalidCity);
 
             var userType = await _userTypeRepository.GetByName("Normal user");
 
@@ -109,7 +109,7 @@ namespace DoFest.Business.Identity.Services.Implementations
             await _bucketListRepository.Add(newBucketList);
             await _bucketListRepository.SaveChanges();
 
-            return Result.Success<UserModel, Error>(UserModel.Create(newUser.Id, newUser.Username, newUser.Email, userType.Name, newUser.StudentId.GetValueOrDefault(), newBucketList.Id));
+            return Result.Success<string, Error>("User registered");
         }
 
         public async Task<Result<string, Error>> ChangePassword(NewPasswordModelRequest newPasswordModelRequest)
@@ -135,6 +135,7 @@ namespace DoFest.Business.Identity.Services.Implementations
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var hours = int.Parse(_config.TokenExpirationInHours);
             var type = await _userTypeRepository.GetById(user.UserTypeId);
+            var bucketList = await _bucketListRepository.GetByUserId(user.Id);
 
             var token = new JwtSecurityToken(_config.Issuer,
                 _config.Audience,
@@ -146,9 +147,7 @@ namespace DoFest.Business.Identity.Services.Implementations
                 expires: DateTime.Now.AddHours(hours),
                 signingCredentials: credentials);
 
-           
-
-            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault());
+            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), bucketList.Id);
         }
     }
 }

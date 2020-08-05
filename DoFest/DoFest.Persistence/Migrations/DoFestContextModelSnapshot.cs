@@ -56,75 +56,75 @@ namespace DoFest.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c205dba0-f95a-4c3f-84b8-7b32e0076a09"),
-                            ActivityTypeId = new Guid("00e143ca-47e2-42d9-8293-d698eb035179"),
+                            Id = new Guid("dcae28a4-4789-4830-b908-ddd7d0dc088a"),
+                            ActivityTypeId = new Guid("ed3d227a-d359-4a55-987b-43bdbddd219f"),
                             Address = "Universitatea Alexandru Ioan Cuza, Corp B, Bulevardul Carol I 22, Iași 700505",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "AIESEC este o platformă internațională de dezvoltare pentru tineri, care are ca scop descoperirea şi dezvoltarea potențialului acestora, pentru a avea un impact pozitiv în societate. Înființată în 1948 ca organizație non-politică și non-profit, AIESEC permite indivizilor să-şi modeleze şi să-şi îmbogățească propria experiență printr-un sistem complex de oportunități.AIESEC:  shorturl.at/qyDIZ",
                             Name = "AIESEC"
                         },
                         new
                         {
-                            Id = new Guid("b7aaae3a-397a-4377-b0aa-989b94bcf440"),
-                            ActivityTypeId = new Guid("00e143ca-47e2-42d9-8293-d698eb035179"),
+                            Id = new Guid("252fa196-d41b-4846-9ceb-dd8b06057946"),
+                            ActivityTypeId = new Guid("ed3d227a-d359-4a55-987b-43bdbddd219f"),
                             Address = "Cămin T11, Aleea Profesor Gheorghe Alexa, Iași 700259",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "BEST încearcă să ajute studenţii europeni să devină mai deschiși spre colaborarea internaţională, oferindu-le șansa de a se familiariza cu diversitatea culturală europeană, dezvoltându-le, în același timp, capacitatea de a lucra în medii internaționale.BEST:  https://bestis.ro/",
                             Name = "BEST"
                         },
                         new
                         {
-                            Id = new Guid("9ce8717e-4c1d-45aa-85b5-ac282af61b08"),
-                            ActivityTypeId = new Guid("00e143ca-47e2-42d9-8293-d698eb035179"),
+                            Id = new Guid("e65056a9-280c-4138-8f78-26ace3cd5f84"),
+                            ActivityTypeId = new Guid("ed3d227a-d359-4a55-987b-43bdbddd219f"),
                             Address = "Strada Cloşca 9, Iași 700259",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Scopul organizatiei este promovarea credinţei şi a spiritualităţii ortodoxe în rândul tinerilor, cu prioritate în mediul univASCOR:  https://ascoriasi.ro/",
                             Name = "ASCOR"
                         },
                         new
                         {
-                            Id = new Guid("a3dfccbd-623c-4789-b775-12f6e83bb4ea"),
-                            ActivityTypeId = new Guid("00e143ca-47e2-42d9-8293-d698eb035179"),
+                            Id = new Guid("ffa71fe0-bf7b-4bde-8270-1f4c2747ef20"),
+                            ActivityTypeId = new Guid("ed3d227a-d359-4a55-987b-43bdbddd219f"),
                             Address = "Strada Păstorului 11, Cluj-Napoca 400338",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Organizația Studenților de la Universitatea Tehnică oferă un cadru informal în care viitorii ingineri pot construi fundația carierei lor.",
                             Name = "OSUBB"
                         },
                         new
                         {
-                            Id = new Guid("8a38bef7-5115-4612-b632-19d5f587153a"),
-                            ActivityTypeId = new Guid("00e143ca-47e2-42d9-8293-d698eb035179"),
+                            Id = new Guid("cc3e59c5-86f3-4c02-9e8f-ec6b39cb388b"),
+                            ActivityTypeId = new Guid("ed3d227a-d359-4a55-987b-43bdbddd219f"),
                             Address = "Strada Frumoasă, Nr. 31, Cluj",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Și-au propus să aibă impact asupra mediului economic românesc, oferind acces la resurse de învățare care te vor ajuta să-ți dezvolți competențele profesionale, dar și sociale. Proiectele lor sunt practice, interactive și te aduc cu un pas mai aproape de cariera pe care ți-o dorești. ",
                             Name = "ASER"
                         },
                         new
                         {
-                            Id = new Guid("bbf0ee70-0e32-432e-8c96-cbfc487a4004"),
-                            ActivityTypeId = new Guid("00e143ca-47e2-42d9-8293-d698eb035179"),
+                            Id = new Guid("f4feab4d-9c52-49b8-88ab-60a75a210508"),
+                            ActivityTypeId = new Guid("ed3d227a-d359-4a55-987b-43bdbddd219f"),
                             Address = "Aleea Crivaia, Timișoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Proiecte create cu scopul de a contribui la o tara in care oamenii se implica si sunt parte din schimbarea pe care si-o doresc, devenind la randul lor inspiratie pentru ceilalt.Actiuni de educare a tinerilor, aplicatia LDIR,reamenajari de spatii destinate diverselor categorii sociale si alte proiecte create pentru a proteja mediul si a contribui la rezolvarea problemei deseurilor",
                             Name = "Let’s Do It, Romania!"
                         },
                         new
                         {
-                            Id = new Guid("73a9434d-5ae5-48fc-b573-d26f7fe7e4a4"),
-                            ActivityTypeId = new Guid("00e143ca-47e2-42d9-8293-d698eb035179"),
+                            Id = new Guid("03b71b9b-2f36-4138-84c0-bb818d885d9d"),
+                            ActivityTypeId = new Guid("ed3d227a-d359-4a55-987b-43bdbddd219f"),
                             Address = " Biblioteca Judeteana “Octavian Goga”, Calea Dorobanților 104, Cluj-Napoca, Sala de lectura de la etajul 2",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Ajungem MARI este singurul program demarat de Asociația Lindenfeld și susține educația copiilor din centre de plasament și medii defavorizate.",
                             Name = "Ajungem Mari"
                         },
                         new
                         {
-                            Id = new Guid("2f4ac1bf-228d-487e-9410-1cdfde028578"),
-                            ActivityTypeId = new Guid("ee57c933-6107-44af-a085-4c86d756f7dc"),
+                            Id = new Guid("2c981e89-f4a6-439b-930c-3081ffbd6840"),
+                            ActivityTypeId = new Guid("8a04435f-240d-4e48-bd77-a371af266275"),
                             Address = @"Copou
 Aleea Veronica Micle 8
 langa FEAA, dupa Teo's Cafe",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = @"Summer Work & Travel SUA – este un program de schimb cultural, reglementat de catre Departamentul de Stat
 al SUA. Pe durata acestui program studentii, masteranzii sau doctoranzii inscrisi la zi la cursurile
 unei facultati acreditate din Romania, au posibilitatea de a expermimenta legal culutra americana pe o perioada
@@ -134,10 +134,10 @@ De asemenea programul le permite acestora sa viziteze teritoriul Statelor Unite 
                         },
                         new
                         {
-                            Id = new Guid("80f3afd4-49ad-411d-9e64-4cf951e62e7a"),
-                            ActivityTypeId = new Guid("ee57c933-6107-44af-a085-4c86d756f7dc"),
+                            Id = new Guid("5339ce4b-2430-4124-ac7f-139ab9921396"),
+                            ActivityTypeId = new Guid("8a04435f-240d-4e48-bd77-a371af266275"),
                             Address = "Bulevardul Carol I nr. 4, Iași 700505",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = @"CE OFERA PROGRAMUL:
 un loc de munca in domeniul hospitality pe toata perioada programului (minim 3 luni pana la maxim 7 luni);
 masa si cazarea gratuita;
@@ -147,10 +147,10 @@ salariul cuprins intre 300 si 500 Euro;Student Travel: shorturl.at/gilp9",
                         },
                         new
                         {
-                            Id = new Guid("4aebc7a6-3387-4464-9b5b-cc693a614bc1"),
-                            ActivityTypeId = new Guid("ee57c933-6107-44af-a085-4c86d756f7dc"),
+                            Id = new Guid("9a4b6ef8-5298-4978-a6b1-646a053ac958"),
+                            ActivityTypeId = new Guid("8a04435f-240d-4e48-bd77-a371af266275"),
                             Address = "Strada Piezisa Nr 19",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = @"Summer Work & Travel SUA – este un program de schimb cultural, reglementat de catre Departamentul de Stat
 al SUA. Pe durata acestui program studentii, masteranzii sau doctoranzii inscrisi la zi la cursurile
 unei facultati acreditate din Romania, au posibilitatea de a expermimenta legal culutra americana pe o perioada
@@ -160,10 +160,10 @@ De asemenea programul le permite acestora sa viziteze teritoriul Statelor Unite 
                         },
                         new
                         {
-                            Id = new Guid("1a248a90-47e4-4260-952d-47521797d8d4"),
-                            ActivityTypeId = new Guid("ee57c933-6107-44af-a085-4c86d756f7dc"),
+                            Id = new Guid("147ce209-4e6d-4032-8a0a-4ce27f0e86d3"),
+                            ActivityTypeId = new Guid("8a04435f-240d-4e48-bd77-a371af266275"),
                             Address = "Strada Moldovei 1, Cluj-Napoca 400380",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = @"CE OFERA PROGRAMUL:
 un loc de munca in domeniul hospitality pe toata perioada programului (minim 3 luni pana la maxim 7 luni);
 masa si cazarea gratuita;
@@ -173,10 +173,10 @@ salariul cuprins intre 300 si 500 Euro;Student Travel: shorturl.at/gilp9",
                         },
                         new
                         {
-                            Id = new Guid("a6a3aae4-b279-41da-8ed1-4918712d21e7"),
-                            ActivityTypeId = new Guid("ee57c933-6107-44af-a085-4c86d756f7dc"),
+                            Id = new Guid("f2c7217a-1a78-491b-bf4f-533f6e284392"),
+                            ActivityTypeId = new Guid("8a04435f-240d-4e48-bd77-a371af266275"),
                             Address = "Strada Francesco Griselini 2, Timișoara 300054",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = @"Summer Work & Travel SUA – este un program de schimb cultural, reglementat de catre Departamentul de Stat
 al SUA. Pe durata acestui program studentii, masteranzii sau doctoranzii inscrisi la zi la cursurile
 unei facultati acreditate din Romania, au posibilitatea de a expermimenta legal culutra americana pe o perioada
@@ -186,11 +186,11 @@ De asemenea programul le permite acestora sa viziteze teritoriul Statelor Unite 
                         },
                         new
                         {
-                            Id = new Guid("bfa7c0e4-cd29-45cb-9295-a515ab9a0749"),
-                            ActivityTypeId = new Guid("ee57c933-6107-44af-a085-4c86d756f7dc"),
+                            Id = new Guid("c5bcb261-22b8-4754-8284-dfeb57e96d1b"),
+                            ActivityTypeId = new Guid("8a04435f-240d-4e48-bd77-a371af266275"),
                             Address = @"Parcare Caminele 12-17
 Complex Studentesc, Timisoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = @"CE OFERA PROGRAMUL:
 un loc de munca in domeniul hospitality pe toata perioada programului (minim 3 luni pana la maxim 7 luni);
 masa si cazarea gratuita;
@@ -200,563 +200,563 @@ salariul cuprins intre 300 si 500 Euro;Student Travel: shorturl.at/gilp9",
                         },
                         new
                         {
-                            Id = new Guid("c8984ee3-f446-4a47-bd4b-bbd8d1357f4f"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("204d0932-3517-45a7-b3c4-5e785150e541"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = "Piața Unirii nr. 5, Iași 700056",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Panoramic",
                             Name = "Panoramic"
                         },
                         new
                         {
-                            Id = new Guid("34478e5a-11c2-41f8-95e7-1ba5e599f78e"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("293d1f52-9a3f-4204-8b4d-9c302f1cc151"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = "Strada Alexandru Lăpușneanu nr. 16, Iași 700057",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Beer Zone",
                             Name = "Beer Zone"
                         },
                         new
                         {
-                            Id = new Guid("c39163da-68e2-4499-9bad-09ac6a13f821"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("3c53c7a8-b8ce-4503-914d-e21ed478ca16"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = " Bulevardul Profesor Dimitrie Mangeron nr. 71, Iași 700050",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Kraft Pub & Restaurant",
                             Name = "Kraft Pub & Restaurant"
                         },
                         new
                         {
-                            Id = new Guid("3e7e9d23-6b6c-43d2-a711-37ce29f49390"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("465d5149-1e40-41c5-8cea-84a80ab5db64"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = " Bulevardul Ștefan cel Mare și Sfânt nr. 8, Iași 700063",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Bistro \"La noi\"",
                             Name = "Bistro \"La noi\""
                         },
                         new
                         {
-                            Id = new Guid("162ebbac-37ab-449e-881f-15fc449129a4"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("9fbc6e81-7221-4e25-ae78-d7c97086212a"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = "Strada Moldovei 20, Iași 700046",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Vivo",
                             Name = "Vivo"
                         },
                         new
                         {
-                            Id = new Guid("9f3c4c8d-e707-4390-bcdc-45941dcfd1f2"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("a026432d-87b7-46be-9eb2-1fa2d61c4a66"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = "Piața Unirii nr. 6, Iași 700055",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Cafeneaua Piața Unirii",
                             Name = "Cafeneaua Piața Unirii"
                         },
                         new
                         {
-                            Id = new Guid("97a80a4c-de10-47fb-a008-7cbc0802abc3"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("8cff84aa-2451-4690-8349-e0be447320eb"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = "Strada Vasile Goldiș 4, Cluj-Napoca 400112",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "O'Peter's Irish Pub &Grill",
                             Name = "O'Peter's Irish Pub &Grill"
                         },
                         new
                         {
-                            Id = new Guid("4c4065e5-0047-4511-ba0b-d506b8a43970"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("cf70e1a8-6cc1-4fea-bd47-fcba888dd143"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = "Strada Matei Corvin Nr 2, Cluj-Napoca 400000",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Old Shepherd",
                             Name = "Old Shepherd"
                         },
                         new
                         {
-                            Id = new Guid("7922828d-0821-43b2-8929-71db5de7c268"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("87f64301-a85a-4bda-a949-99d03c78c35a"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = "Strada Universității 6, Cluj-Napoca 400091",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Casa TIFF",
                             Name = "Casa TIFF"
                         },
                         new
                         {
-                            Id = new Guid("df13164b-d13b-425d-beca-bdaf17ee0d78"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("b8bcce50-557c-4f74-b623-163c7bfd6531"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = " Cardinal Iuliu Hossu Street 3, Cluj-Napoca 400029",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Samsara Foodhouse",
                             Name = "Samsara Foodhouse"
                         },
                         new
                         {
-                            Id = new Guid("b64e4ad7-1d31-41bb-b94b-57c9cf75d4b9"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("155b448a-fd2e-4933-aa22-84ac4ed08c68"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = " Piața Muzeului, Cluj-Napoca 400000",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Sax",
                             Name = "Sax"
                         },
                         new
                         {
-                            Id = new Guid("932f3e36-dc6e-4c53-b68c-c19a62af0174"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("4c621b05-2fa7-4506-98d2-536f38820fd7"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = " str.Aries, Nr.19(Casa Tineretului), 300736 Timisoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "The 80's Pub",
                             Name = "The 80's Pub"
                         },
                         new
                         {
-                            Id = new Guid("7ac6a747-9076-4bbc-a9e4-6dd0e829de5e"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("737f6a28-55c7-4254-889a-ded13bbf09f9"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = "Strada George Coșbuc 1, Timișoara 300048",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "The Drunken Rat Pub",
                             Name = "The Drunken Rat Pub"
                         },
                         new
                         {
-                            Id = new Guid("c9585a8d-54c9-472c-81a4-7cabe33a0618"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("8a0f4f85-294a-4c3c-b6ad-8f08011b86ef"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = "Strada Eugeniu de Savoya 9, Timișoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "The Scotland Yard",
                             Name = "The Scotland Yard"
                         },
                         new
                         {
-                            Id = new Guid("0479d5d1-c1f6-4914-9ff7-c90eed2c33b1"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("0b9bce32-f40c-48af-a681-348c7589fcc5"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = " Strada Eugeniu de Savoya 11, Timișoara 300085",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Enoteca de Savoya",
                             Name = "Enoteca de Savoya"
                         },
                         new
                         {
-                            Id = new Guid("6fcdad24-b205-49f0-8fc0-57cf7f516fad"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("b16dc2f6-2807-4d11-86ff-e0a70cc02de9"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = "Joy Pub",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Joy Pub",
                             Name = "Joy Pub"
                         },
                         new
                         {
-                            Id = new Guid("340edcc8-312f-4a48-bc08-c1b351a88d56"),
-                            ActivityTypeId = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("84e8ec2f-1ba4-4e9d-a04a-67992e5dc843"),
+                            ActivityTypeId = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Address = " Strada Vasile Alecsandri 3, Timișoara 300078",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Jack's Bistro",
                             Name = "Jack's Bistro"
                         },
                         new
                         {
-                            Id = new Guid("e0ce83a9-0f84-4094-ac2f-597bb11cfbcf"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("ce4426e2-a79f-40a5-b5a5-3f51adf05c0d"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Bulevardul Ștefan cel Mare și Sfânt 1, Iași 700028",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Palatul Culturii- Această clădire impresionantă este sediul a numeroase instituții culturale de prestigiu din acest oraș și a fost pusă în valoare prin recenta sa reabilitare. În cadrul Palatului Culturii din Iași vei descoperi patru muzee, care te vor ajuta să înțelegi mai bine istoria și cultura acestor meleaguri: Muzeul de Istorie al Moldovei, Muzeul Etnografic, Muzeul de Artă și Muzeul Științei și Tehnologiei Ștefan Procopiu.",
                             Name = "Palatul Culturii"
                         },
                         new
                         {
-                            Id = new Guid("9dd99397-cf01-47bb-8264-11b77ba570e9"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("556f9f36-3ec8-4782-996d-d15962635fd4"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Bulevardul Carol I nr. 31, Iași 700462",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Parcul Copou- Amenajarea celebrului Parc Copou din Iași a început în perioada 1833-1834. Acesta adăpostește Monumentul Legilor Constituționale, cel mai vechi monument din țara noastră. Cunoscut și ca Obeliscul cu lei, acesta a fost creat de Mihail Singurov în anul 1834. Reprezentat de o coloană din piatră de 15 m înălțime și cu o greutate ce depășește 10 tone, celebrul monument reprezintă un simbol al celor patru puteri europene care au recunoscut independența Țărilor Române.",
                             Name = "Parcul Copou"
                         },
                         new
                         {
-                            Id = new Guid("8f512baf-4f5e-4878-8b2e-2b59a4488ec3"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("5048e743-18fc-47ca-8e09-c0c739999b59"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Bulevardul Ștefan cel Mare și Sfânt 16, Iași 700064",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Mitropolia Moldovei și a Bucovinei- Aceasta este renumită pentru că adăpostește Moaștele Sfintei Cuvioase Parascheva, ocrotitoarea Moldovei. Monumentala catedrală ieșeană este marcată de patru turle masive, iar arhitectura sa este inspirată de stilul baroc, care marchează atât elementele decorative din exterior cât și cele din interiorul său.",
                             Name = "Mitropolia Moldovei și a Bucovinei"
                         },
                         new
                         {
-                            Id = new Guid("854c5bc5-17f2-4c18-b094-c9c4be517a2e"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("4ad62c6f-3c63-40dc-b5b0-4cc59d572465"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Strada Agatha Bârsescu nr. 18, Iași 700074",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Teatrul Național Vasile Alecsandri- Datând din anul 1896, Teatrul Național Vasile Alecsandri este cel mai vechi din țară și unul dintre cele mai frumoase din Europa. Interiorul său elegant și bogat decorat a fost inspirat din stilurile arhitecturale baroce și rococo, unul dintre plafoanele sale fiind pictate de celebrul pictor vienez Alexander Goltz. Cortina sa a fost, de asemenea, pictată manual, simbolizând cele trei etape ale vieții și fiind considerată o alegorie a Unificării României.",
                             Name = "Teatrul Național Vasile Alecsandri"
                         },
                         new
                         {
-                            Id = new Guid("090a5fdd-13c9-44f2-9eae-a729c8708bcc"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("81e6f805-0698-45d7-b41f-1bcd290c8013"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = " Bulevardul Ștefan cel Mare și Sfânt nr. 28, Iași 700259",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Mănăstirea Sfinții Trei Ierarhi din Iași- Considerat un monument arhitectural de mare valoare în Iași și în întreaga țară, Mănăstirea Sfinții Trei Ierarhi atrage atenția prin arhitectura sa impresionantă și datorită decorațiunilor sale unice din piatră, care împodobesc fațadele superioare. Aceasta a fost zidită inițial pentru a inaugura domnia marelui voievod de odinioară, Vasile Lupu. Aceasta a fost restaurată din punct de vedere arhitectural în perioada 1882 – 1887, amenajarea interiorului său și realizarea picturilor continuând până în anul 1898.",
                             Name = "Mănăstirea Sfinții Trei Ierarhi din Iași"
                         },
                         new
                         {
-                            Id = new Guid("5ec035fe-a24b-4299-8cae-1fb0cd5b90e0"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("095bbf71-79cc-4686-a1c7-ea79226419dd"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Bulevardul Ștefan cel Mare și Sfânt nr. 10, Iași 700063",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Biblioteca Gheorghe Asachi- Biblioteca Gheorghe Asachi din Iași a fost desemnată ca fiind cea mai frumoasă din lume, în cadrul unei competiții desfășurate online la care au participat nume celebre din întreaga lume, precum Biblioteca Colegiului Trinity din Dublin, Biblioteca Regală Portugheză din Buenos Aires și Biblioteca Națională din Praga.",
                             Name = "Biblioteca Gheorghe Asachi"
                         },
                         new
                         {
-                            Id = new Guid("bdda963e-570e-4db3-94f1-019e91d9fb51"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("9370b984-1a40-46d3-b144-9ed1309e595a"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Str. Râpa Galbenă,Iași 700259",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Esplanada Elisabeta (Râpa Galbenă)- Râpa Galbenă din Iași, așa cum este cunoscută printre localnici, este o zonă importantă, localizată la baza Dealului Copou. Esplanada Elisabeta din Iași a fost construită la sfârșitul secolului al XIX-lea, scopul acesteia fiind acela de facilitare a circulației pietonilor către zona centrală a orașului.",
                             Name = "Esplanada Elisabeta "
                         },
                         new
                         {
-                            Id = new Guid("8ed5d269-f37f-4730-8495-59ac11123050"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("007fba32-4163-480b-8ab9-83aa933dfca9"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Corp AUniversitATEA Alexandru Ioan Cuza , Bulevardul Carol I 11, Iași 700506",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Sala Pașilor Pierduți- Dacă în cadrul periplului tău turistic te abați și pe la celebra Universitate “Alexandru Ioan Cuza” din Iași, trebuie să vizitezi și Sala Pașilor Pierduți. Picturile murale unice ale celebrului artist Sabin Bălașa te vor impresiona, acesta reușind să introducă acest spațiu pe harta locurilor de referință ale artei universale, prin măiestria sa artistică.",
                             Name = "Sala Pașilor Pierduți"
                         },
                         new
                         {
-                            Id = new Guid("ca5a2d10-b7eb-4aa6-a734-c926c8a17442"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("dcdd77fd-f010-4261-a2dc-f658acf4ce84"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Strada Dumbrava Roșie nr. 7-9, Iași 700487",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Grădina Botanică din Copou- Înființată în anul 1856, Grădina Botanică Anastasie Fătu poartă numele fondatorului său, un celebru medic și susținător al remediilor naturiste din acea perioadă. Aceasta este prima grădină universitară deschisă în țara noastră și cea mai mare din România în acest moment.",
                             Name = "Grădina Botanică din Copou"
                         },
                         new
                         {
-                            Id = new Guid("36c639f0-c2a9-444b-9c2d-2cecac40345b"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("ee4b8a93-87c2-4454-88d7-1716be51aa42"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Piața Unirii ",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Piața Unirii - Asemenea Pieței Muzeului, Piața Unirii se mândrește cu unele dintre cele mai importante ansambluri arhitectonice gotice, baroce și neo-baroce din Transilvania: Biserica Romano-Catolică Sf. Mihail, Muzeul de Artă, Muzeul Farmaciei, pe care nu am mai apucat să-l vizităm, statuia lui Matia Corvin, Strada în oglindă și vechile palate nobiliare.",
                             Name = "Piața Unirii "
                         },
                         new
                         {
-                            Id = new Guid("8a575cfc-674a-405e-967c-fe4f2a3ec21e"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("c7a98d8d-5cf3-42fe-86f0-32f99892abb8"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Strada Republicii 42, Cluj-Napoca 400015",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Grădina Botanică - Fondată în anul 1872 și considerată astăzi muzeul național, Grădina Botanică este una dintre primele, cele mai mari și cele mai complexe astfel de grădini din sud-estul Europei. Întinzându-se pe o suprafață de 14 hectare, are ca principale atracții grădina japoneză, grădina romană, serele cu plante tropicale și ecuatoriale.",
                             Name = "Grădina Botanică "
                         },
                         new
                         {
-                            Id = new Guid("2aa8c17d-18f6-4144-94da-45e6a2a39fa6"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("c5d44707-53e6-429d-a647-c586eda7d589"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Strada Emil Racoviță 60a, Cluj-Napoca 400124",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = " Cetățuia - De fapt, Cetățuia este un parc situat la o altitudine de 405 metri, de mici dimensiuni, ce-i drept, cu vedere asupra orașului, deci nu este deloc de ocolit.",
                             Name = " Cetățuia "
                         },
                         new
                         {
-                            Id = new Guid("a4681844-689b-40bb-a75a-4155b3aa345c"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("80a00b41-c8b5-485f-9082-f55a21240893"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = " Strada Baba Novac 2, Cluj-Napoca 400097",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Turnul Croitorilor - Turnul face parte din vechiul zid de apărare al orașului, care înconjura în vremuri de demult o suprafață de 45 hectare, cât măsura cetatea, și este unul dintre puținele care s-au păstrat într-o stare foarte bună până în zilele noastre (practic, turnul este astăzi intact",
                             Name = "Turnul Croitorilor "
                         },
                         new
                         {
-                            Id = new Guid("5036a50b-f539-4eff-bcab-6e9df79bcb02"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("2f148a5a-a70f-41d4-a1ec-ef25bf298cff"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Bd. 21 decembrie 1989 nr. 41, Cluj",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = " Biserica Reformată - Este una dintre cele mai masive construcții gotice din întreaga Transilvanie, având mai degrabă aspectul unei cetăți. Aici se organizează periodic tot felul de concerte și evenimente",
                             Name = " Biserica Reformată "
                         },
                         new
                         {
-                            Id = new Guid("740eaeb4-2ae8-4a0d-b824-16b1733bec55"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("d8a3727b-81f9-4018-8e6f-183b332df995"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Aleea Durgăului 7, Turda 401106",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Salina Turda-A devenit celebră în ultimii ani în România, așa că ne este greu să credem că mai e cineva care să nu fi auzit de ea. Ca să nu mai vorbim că are și o poveste interesantă, trecând de la statutul de salină de renume a Transilvaniei, la începuturi, la o decădere neașteptată datorată concurenței, salina de la Ocna Mureș. Paradoxal, abia cel de-Al Doilea Război Mondial a readus-o în memoria colectivă, fiind folosită ca adăpost antiaerian.",
                             Name = "Salina Turda"
                         },
                         new
                         {
-                            Id = new Guid("badff660-d31e-4e3f-8bdf-566085d28824"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("589e83f6-a1fe-4442-9ec6-0fd269da5fc0"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Centrul Trimisoarei",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Centrul Timișoarei-Centrul este primul dintre locurile cu care vei dori să faci cunoștiință imediat ce ai ajuns și ți-ai lăsat bagajele în cameră. Începând cu Palatul Culturii și până la Catedrala Mitropolitană, centrul orașului cunoscut și sub numele de Piața Victoriei sau Piața Operei concentrează un număr impresionant de palate și clădiri care încă păstrează gloria și arhitectura spectaculoasă de pe vremuri.",
                             Name = "Centrul Timișoarei"
                         },
                         new
                         {
-                            Id = new Guid("9b7d5a70-8d0a-411a-acd3-d4413411848a"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("bf683c8a-85fb-4665-b4ba-ad0e062e6ff6"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Strada Mărășești 2, Timișoara 300086",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Clădirea Palatului Culturii (cea care mărginește centrul în parte de nord) adăpostește astăzi Opera Națională Română și cele trei teatre de stat Teatrul National Mihai Eminescu, Teatrul Maghiar de Stat Csiky Gergely și Teatrul German de Stat (o situație unică și totodată o premieră în Europa). Dacă inițial clădirea avea exteriorul în stil Renaissance, în urma celor două mari incendii din 1880 și 1920, au mai rămas intacte doar aripile",
                             Name = "Palatului Culturii "
                         },
                         new
                         {
-                            Id = new Guid("f3cb5f99-18b4-46a8-9d74-7ab9f1a9af89"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("11d6fd7a-f3f0-449d-9d12-dc15ca7b5d70"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = "Bulevardul Regele Ferdinand I, Timișoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Catedrala Mitropolitană din Timișoara marchează cealaltă intrare principală în centrul orașului, fiind dispusă în partea de sud a pieței. Catedrala este fără îndoială una dintre clădirile care îți va atrage privirea indiferent în ce parte a centrului te vei afla, doar este cel mai mare edificiu religios din oraș. Impresionează atât prin arhitectura somptuoasă care îmbină stilul bizantin cu cel moldovenesc cât și prin dimensiunile sale vaste",
                             Name = "Catedrala Mitropolitană din Timișoara"
                         },
                         new
                         {
-                            Id = new Guid("2960c6cd-305f-423b-8124-45c429bc79c1"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("1a327f10-7525-4738-847e-a6f6e90b6d19"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = " Strada Hector, Timișoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Bastionul Maria Theresia-Aflat în zona centrală, între Hotel Continental și Fântâna Punctelor Cardinale (pe strada Hector), Bastionul Maria Theresia este un monument în stil baroc de o mare însemnătate istorică, fiind cea mai mare bucată de zid păstrată din vechea cetate a Timișoarei.",
                             Name = "Bastionul Maria Theresia"
                         },
                         new
                         {
-                            Id = new Guid("93416432-fc7d-41e9-8a79-f65ff1b4151c"),
-                            ActivityTypeId = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("1db71d00-5428-4f64-b736-5bac3cbc6f1f"),
+                            ActivityTypeId = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Address = " Strada Michelangelo - Strada 20 Decembrie 1989,Timisoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Parcul Rozelor. Situat în centrul oraşului, la doar câțiva pași de malul râului Bega, Parcul Rozelor reprezintă o altă atracție de renume a Timişoarei. De fapt, s-ar putea spune că faima Timişoarei de oraş al parcurilor sau oraş al trandafirilor este în mare măsură datorată acestui parc.",
                             Name = "Parcul Rozelor"
                         },
                         new
                         {
-                            Id = new Guid("e0c6efdd-3156-42f3-8b4a-acbbdb3fe5c4"),
-                            ActivityTypeId = new Guid("b35467f7-1c4d-43d7-bfcf-23c3eb136359"),
+                            Id = new Guid("216e7205-ef38-474c-91e9-c33ade87a1ce"),
+                            ActivityTypeId = new Guid("2a5b112b-aad2-462e-9759-a8db16d8fcde"),
                             Address = @"Enduro Ranch (Bârnova, Județul Iași)
 ",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Asaltul Lupilor- evenimentului te aşteaptă pe un teren accidentat de 6 Km, perfect ca să-ţi testeze limitele. Vei alerga prin pădure, te vei târî prin şanţuri, te vei căţăra pe funii, vei traversa râpe, vei sări peste garduri, te vei împiedica sau nu de rădacinile copacilor şi nu în ultimul rând te vei murdări de noroi … dar te vei distra ! ",
                             Name = "Asaltul Lupilor"
                         },
                         new
                         {
-                            Id = new Guid("5ab07d7d-192e-4f73-8a50-dba12c88dae2"),
-                            ActivityTypeId = new Guid("b35467f7-1c4d-43d7-bfcf-23c3eb136359"),
+                            Id = new Guid("2f4f89a0-db80-49e2-94e4-fab76c013ff8"),
+                            ActivityTypeId = new Guid("2a5b112b-aad2-462e-9759-a8db16d8fcde"),
                             Address = "Strada Stihii 2, Iași 700083",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Pilates- Pilates este o metodă de întărire a mușchilor profunzi, care sunt responsabili cu menținerea posturii. (Tonus Plus- sală )",
                             Name = "Pilates"
                         },
                         new
                         {
-                            Id = new Guid("956f6304-7057-4ed2-ac93-f8474ad834a8"),
-                            ActivityTypeId = new Guid("b35467f7-1c4d-43d7-bfcf-23c3eb136359"),
+                            Id = new Guid("2eddb5f7-ac96-4104-81c0-ae3dc53d32f7"),
+                            ActivityTypeId = new Guid("2a5b112b-aad2-462e-9759-a8db16d8fcde"),
                             Address = "Strada Pantelimon Halipa 6B, Iași",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Întreținere corporală- săli de sport cu prețuri speciale pentru student: Oxygen, Let’ s move",
                             Name = "Întreținere corporală"
                         },
                         new
                         {
-                            Id = new Guid("9a4ad246-eeb4-4cc5-bdc2-1bdbdf9d6d9d"),
-                            ActivityTypeId = new Guid("b35467f7-1c4d-43d7-bfcf-23c3eb136359"),
+                            Id = new Guid("3729c14a-c998-4f22-a97e-f3a5ceb3e957"),
+                            ActivityTypeId = new Guid("2a5b112b-aad2-462e-9759-a8db16d8fcde"),
                             Address = "Strat/Stop: Palatul Culturii, Iasi",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Maratonul International Iasi- Maratonul International Iasi isi propune sa fie un eveniment sportiv de referinta pentru Municipiul Iasi, dar si la nivel regional, national si international. Obiectivul principal este unul social, fondurile rezultate in urma organizarii evenimentului fiind destinate finantarii proiectului de Infiintare si functionare a punctelor de prim ajutor si interventie in caz de dezastre in principalele cartiere ale Iasului",
                             Name = "Maratonul International Iasi"
                         },
                         new
                         {
-                            Id = new Guid("09f38498-4851-4d9a-893f-0c9ac19e9867"),
-                            ActivityTypeId = new Guid("b35467f7-1c4d-43d7-bfcf-23c3eb136359"),
+                            Id = new Guid("38050c49-f290-4a7c-8974-0d7a7c216d00"),
+                            ActivityTypeId = new Guid("2a5b112b-aad2-462e-9759-a8db16d8fcde"),
                             Address = "Start/Stop: Cluj Arena, Cluj",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Maratonul de Ciclism International din nou la Cluj(Perioada Mai-Iunie)- evenimentul sportiv  aduce la Cluj cel mai mare număr de cicliști din România, într-un context nou și plin de surprize. Vor exista competiții de ciclism și alergare pentru adulți, competiții pentru copii, competiție de spinning, o zonă culinară și una de camping cu foc de tabără precum și alte activități de petrecere a timpului liber.",
                             Name = "Maratonul de Ciclism International din nou la Cluj"
                         },
                         new
                         {
-                            Id = new Guid("57f083e0-0899-4434-958c-fd78e1be3816"),
-                            ActivityTypeId = new Guid("b35467f7-1c4d-43d7-bfcf-23c3eb136359"),
+                            Id = new Guid("8412569f-47f1-464b-b650-68f990e8835c"),
+                            ActivityTypeId = new Guid("2a5b112b-aad2-462e-9759-a8db16d8fcde"),
                             Address = " Baza Sportivă Unirea, Cluj-Napoca ",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Făget Winter Race- Făget Winter Race este un primul concurs de alergare din an. Se desfaşoară în pădurea Făget din Cluj-Napoca, iarna, in al doilea week-end al lunii ianuarie.",
                             Name = "Făget Winter Race"
                         },
                         new
                         {
-                            Id = new Guid("9790292b-5733-4c67-ab37-0f092fdddebe"),
-                            ActivityTypeId = new Guid("b35467f7-1c4d-43d7-bfcf-23c3eb136359"),
+                            Id = new Guid("1853c1f3-82ea-4dca-b177-ffb4f72c1cc5"),
+                            ActivityTypeId = new Guid("2a5b112b-aad2-462e-9759-a8db16d8fcde"),
                             Address = "Bride's Veil Waterfall",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Runsilvania Wild Race. Runsilvania WILD RACE este o cursă de trail running, Traseul de alergare trece pe lângă Cascada Vălul Miresei, Peşterile Vârfuraşul şi Lespezi, ajunge la Pietrele Albe şi urcă pe Vf. Vlădeasa (la proba de Maraton), trece prin grote şi segmente tehnice asigurate cu lanţuri şi corzi, podeţe şi scări din lemn.",
                             Name = "Runsilvania Wild Race"
                         },
                         new
                         {
-                            Id = new Guid("fa511937-dd7f-40e5-ace5-6f6668e55d99"),
-                            ActivityTypeId = new Guid("b35467f7-1c4d-43d7-bfcf-23c3eb136359"),
+                            Id = new Guid("32efee1d-c466-42aa-94cd-0d73ff829900"),
+                            ActivityTypeId = new Guid("2a5b112b-aad2-462e-9759-a8db16d8fcde"),
                             Address = "In curtea interioara, Strada Berăriei nr. 6, Cluj-Napoca 400380",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Free Wall (Rock Climbing Gym).Sali  de escaladă&bouldering",
                             Name = "Free Wall Climbing"
                         },
                         new
                         {
-                            Id = new Guid("c1976ebc-2cc9-4cb4-a0e2-b39d48b9344a"),
-                            ActivityTypeId = new Guid("b35467f7-1c4d-43d7-bfcf-23c3eb136359"),
+                            Id = new Guid("de95b100-87a1-405b-a6e7-01770c59dff2"),
+                            ActivityTypeId = new Guid("2a5b112b-aad2-462e-9759-a8db16d8fcde"),
                             Address = "trada Băii nr 17, Cluj-Napoca 400389",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Rafting, Parapanta, Tir cu arcul, Caiac, Paintball, Motoparapanta- organizate de Transilvania eXtreme Adventures  care o multime de activitati outdoor care te fac sa uiti de stresul zilnic si sa te reincarci cu energie. O modalitate frumoasa de a adauga in viata ta un plus de miscare si sanatate.",
                             Name = "Transilvania eXtreme Adventures"
                         },
                         new
                         {
-                            Id = new Guid("d0a64a2b-55bc-4097-a3ea-2743de6e6b99"),
-                            ActivityTypeId = new Guid("8461cb61-03b4-4a6b-859a-45de15ecca4b"),
+                            Id = new Guid("1adbe8cc-c8cd-467a-825e-18409889c5b4"),
+                            ActivityTypeId = new Guid("18d0a9ff-89aa-4528-a536-8ffa82c198ac"),
                             Address = @" 
 Dinias
 ,Timisoara",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Primul targa rally organizat in Romania. Toti banii adunati vor fi donati Spitalului de Copii ”Louis Turcanu”. ",
                             Name = "Memorialul Daniela Zaharie"
                         },
                         new
                         {
-                            Id = new Guid("2daebd42-3643-4f7f-923d-28ac3d342c08"),
-                            ActivityTypeId = new Guid("8461cb61-03b4-4a6b-859a-45de15ecca4b"),
+                            Id = new Guid("45c1dac2-3b29-4835-a1ce-25e3c0072280"),
+                            ActivityTypeId = new Guid("18d0a9ff-89aa-4528-a536-8ffa82c198ac"),
                             Address = "Sala Constantin Jude (Olimpia), Timisoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Ne propunem ca prin evenimentele noastre sa aducem un nou concept dedicat boxului profesionist,sa imbinam sportul cu spectacolul si sa aducem in fata publicului unii dintre cei mai buni sportivi de box si kickboxing din Romania, fiecare dintre acestia confruntandu-se pe reguli de box cu adversari de valoare din Europa, Africa si America Latina intr-o serie de 3 evenimente pe an ",
                             Name = "Noaptea Spartanilor"
                         },
                         new
                         {
-                            Id = new Guid("24a257b5-76b6-4e48-a931-27b61117ae3a"),
-                            ActivityTypeId = new Guid("8461cb61-03b4-4a6b-859a-45de15ecca4b"),
+                            Id = new Guid("7243db67-7a71-49a4-85f8-3b4a5a8ef8a7"),
+                            ActivityTypeId = new Guid("18d0a9ff-89aa-4528-a536-8ffa82c198ac"),
                             Address = "Universitatea Politehnica Timişoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Chess Contest este un concurs de șah dedicat tuturor elevilor și studenților din toată țara, organizat de Liga AC (Liga Studenților din Facultatea de Automatică și Calculatoare) în colaborare cu Facultatea de Automatică și Calculatoare și Universitatea Politehnica Timișoara. Concursul se desfăşoară în perioada 17-19 noiembrie şi îşi propune să adune cât mai mulţi tineri în Timişoara pentru a-şi arăta strategia în această confruntare a minţii. ",
                             Name = "Chess Contest"
                         },
                         new
                         {
-                            Id = new Guid("6939f8f9-10cd-4ca5-b898-8c6ba7508bea"),
-                            ActivityTypeId = new Guid("8461cb61-03b4-4a6b-859a-45de15ecca4b"),
+                            Id = new Guid("2d56a52e-2c43-4891-b2af-ecc6779513b9"),
+                            ActivityTypeId = new Guid("18d0a9ff-89aa-4528-a536-8ffa82c198ac"),
                             Address = " B-dul.Eroilor de la Tisa, Timisoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Vor participa dansatori din: Rusia, Bulgaria, Hungaria , France , Montenegro , Serbia , Moldova , Czech Republic si Romania ",
                             Name = "International Dance Open"
                         },
                         new
                         {
-                            Id = new Guid("49bb0b75-dfbd-4588-93ca-0879ce7e613b"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("ae9fc220-2855-48fc-aafa-33f35a1603f7"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = "Aeroclubul „Alexandru Matei” ,Iași",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Hangariada înseamnă 3 zile de fericire cu ½ muzică și ½ zbor. Privești cerul, saltă inima, îți strângi prietenii de mână, lași gândul să-ți zboare prin iarba cosită. Te întinzi pe spate, îți pui ochelarii de soare, „oare de ce nu m-am făcut pilot/cântăreț ca-n compunerea dintr-a patra?” Aplauze! Ridică-te, înverzește-ți tălpile pantofilor, cântă și dansează odată cu cei de pe scenă. Și-apoi, a doua zi, de la capăt.",
                             Name = "Hangariada"
                         },
                         new
                         {
-                            Id = new Guid("82e7cc0d-3284-4607-b7bb-d3dbf34dcf36"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("ca67d5a3-c7e1-40c8-ba70-2a066790f657"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = @"Piața Unirii 5
 Iași",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Se organizeaza seri de film in diferite locatii, unde sunt invitati oameni importanti ai filmului romanesc.",
                             Name = "Serile de Film Romanesc"
                         },
                         new
                         {
-                            Id = new Guid("5dd7c151-b99f-413f-9934-281ad0651fe8"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("a11c9ea5-9e64-4ae4-ba84-d32996f083e2"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = "Strada Vasile Lupu 78A, Iași 700350",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Afterhills este cel mai tânăr festival de muzică de anvergură din România, desfășurat în județul Iași, fiind cel mai mare și important festival din regiunea Moldova.",
                             Name = "Afterhills "
                         },
                         new
                         {
-                            Id = new Guid("1ab6a103-fa4c-433e-8f07-c0f2aa94867f"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("341bfa2f-dffa-4a70-90db-48ac3de3a0b1"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = " Iași, str. V. Pogor, nr. 4, 700110.",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Festivalul Internațional de Literatură și Traducere Iași (FILIT) este un festival internațional care are loc anual în octombrie, în Iași. Festivalul reunește la Iași profesioniști din domeniul cărții, atât din țară, cât și din străinătate. Scriitori, traducători, editori, organizatori de festival, critici literari, librari, distribuitori de carte, manageri și jurnaliști culturali – cu toții se află, de-a lungul celor cinci zile de festival, în centrul unor evenimente destinate, pe de o parte, publicului larg, pe de altă parte, specialiștilor din domeniu.",
                             Name = "FILIT"
                         },
                         new
                         {
-                            Id = new Guid("e7a54de8-aa20-4e8e-8143-e9ccefcfabf8"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("efe8d802-35da-4b06-9937-c44a733d1082"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = "Smida, 18, Smida 407082, Cluj",
-                            CityId = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            CityId = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Description = "Smida Jazz, festival dedicat jazz-ului de avangardă ce se desfășoară an de an în pitorescul sat Smida (comuna Beliș, județul Cluj - în mijlocul Parcului Natural Apuseni). Pe parcursul a 3 zile, vom petrece o vacanță în Apuseni, cu tot felul de activități în aer liber și concerte ale grupurilor internaționale și din România. ",
                             Name = "Smida Jazz"
                         },
                         new
                         {
-                            Id = new Guid("21e9d2ad-dc8d-4b8f-b31d-09e7d1315198"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("6ad7e125-ae62-4720-800e-73bce5429a5b"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = "Untold Festival Arena, Cluj-Napoc",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Untold Festival este cel mai mare festival de muzică din România.[1][2] Acesta se desfășoară în fiecare an pe Cluj Arena",
                             Name = "UNTOLD"
                         },
                         new
                         {
-                            Id = new Guid("f7366ae4-df81-45a4-9982-1618c262b119"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("dafe81df-7051-4f48-a4d9-7e535837ef9c"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = " Bánffy Castle, Cluj-Napoca",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Festivalul îmbină în lineup zone muzicale variate cum ar fi rock, reggae, hip hop, trap, muzică electronică sau indie cu tehnologia, cu arta alternativă, arta stradală și cultura.",
                             Name = "Electric Castle"
                         },
                         new
                         {
-                            Id = new Guid("d09c842e-256d-4c5b-a0db-cd92128d82e5"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("4f095745-b528-4984-b201-82b3be48da24"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = "Piata Unirii, Cluj",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Este primul festival internațional de film de lungmetraj din România, se bazează pe lungmetraje sau scurtmetraje necomerciale produse în special în țările europene. Marele premiu al festivalului, Trofeul Transilvania, opera artistului Teo Mureșan, este o statuetă ce reprezintă un turn tăiat.",
                             Name = "TIFF"
                         },
                         new
                         {
-                            Id = new Guid("a59c6873-8126-44c7-bb52-c7232c76975b"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("f79499bf-870d-4e97-b4a6-f54cd5aa2dd3"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = "Parcul Botanic, Timisoara",
-                            CityId = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            CityId = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Description = "Festivalul Acces Art – Festival organizat în aer liber, centrat pe ateliere de arte creative.",
                             Name = "Festivalul Acces Art"
                         },
                         new
                         {
-                            Id = new Guid("11f43bca-9810-4274-b5ae-08df2cc08c89"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("78421889-180a-4c5b-b214-7e49b3c13a7c"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = "Ambasada/Timisoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Festivalul Internațional de Tango Argentinian - Festivalul are loc anual, începând cu 2013, în ultima săptămână a lunii mai. Acest unic eveniment din vestul țării este organizat de Școala de Tango Argentinian „Tango Embrace”, din cadrul Asociației \"Art Embrace\".",
                             Name = "Festivalul Internațional de Tango Argentinian"
                         },
                         new
                         {
-                            Id = new Guid("072a5d8f-5a87-4a3a-ba2c-bfce701dca5d"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("248bdaee-1a03-4609-9708-073623dc83fd"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = "Sala Barocă a Muzeului de Artă din Timișoara ",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Festivalul Internațional de Literatură de la Timișoara – Festivalul reunește autori români și străini, pentru două zile de lecturi și dialoguri deschise cu publicul.",
                             Name = "Festivalul Internațional de Literatură de la Timișoara "
                         },
                         new
                         {
-                            Id = new Guid("dd88aa49-3325-40dc-8b30-f3eb29262c37"),
-                            ActivityTypeId = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("150df9da-a2f8-4dd3-96d0-e332bcc35bd3"),
+                            ActivityTypeId = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Address = "Piata Victoriei, Timisoara",
-                            CityId = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            CityId = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Description = "Festivalul Jazz TM este un festival de jazz care se desfășoară în aer liber, în Piața Victoriei, în luna iulie și aduce pe scenă artiști din scena internațională a muzicii Jazz.",
                             Name = "Festivalul Jazz TM"
                         });
@@ -779,37 +779,37 @@ Iași",
                     b.HasData(
                         new
                         {
-                            Id = new Guid("00e143ca-47e2-42d9-8293-d698eb035179"),
+                            Id = new Guid("ed3d227a-d359-4a55-987b-43bdbddd219f"),
                             Name = "Voluntariat"
                         },
                         new
                         {
-                            Id = new Guid("ee57c933-6107-44af-a085-4c86d756f7dc"),
+                            Id = new Guid("8a04435f-240d-4e48-bd77-a371af266275"),
                             Name = "Work&Travel"
                         },
                         new
                         {
-                            Id = new Guid("d387efef-32e9-4d4b-9b0c-dc591cffb1b4"),
+                            Id = new Guid("6c0bcf63-01aa-47f3-af0a-5665352ff3ca"),
                             Name = "Pub&Restaurants"
                         },
                         new
                         {
-                            Id = new Guid("6c8d8876-4af0-425f-9930-9e99ad5b5e8f"),
+                            Id = new Guid("bc7a9f79-8b97-4efc-acfc-cd3e96668fa0"),
                             Name = "Turism"
                         },
                         new
                         {
-                            Id = new Guid("b35467f7-1c4d-43d7-bfcf-23c3eb136359"),
+                            Id = new Guid("2a5b112b-aad2-462e-9759-a8db16d8fcde"),
                             Name = "Sporturi"
                         },
                         new
                         {
-                            Id = new Guid("8461cb61-03b4-4a6b-859a-45de15ecca4b"),
+                            Id = new Guid("18d0a9ff-89aa-4528-a536-8ffa82c198ac"),
                             Name = "Sport"
                         },
                         new
                         {
-                            Id = new Guid("363db996-073a-4b90-a165-44b1019338dc"),
+                            Id = new Guid("0b73e5ba-7290-45e8-b97b-0d6cebda7a38"),
                             Name = "Festivaluri"
                         });
                 });
@@ -902,17 +902,17 @@ Iași",
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5cba7fff-8bfd-450c-b4f8-5e90ca399df4"),
+                            Id = new Guid("ef0af697-604e-4bcb-8eec-a7280db8c3ef"),
                             Name = "Iași"
                         },
                         new
                         {
-                            Id = new Guid("83ec2f8f-e155-4bf9-9ac4-76677ab3cb04"),
+                            Id = new Guid("ad02ed5f-6549-4695-ba64-3fa71778df08"),
                             Name = "Cluj"
                         },
                         new
                         {
-                            Id = new Guid("4ecc2eb5-e5d7-4082-83a5-78bf451fe31f"),
+                            Id = new Guid("803c27ab-9b34-4b2c-8c9f-cb6759ff3ff0"),
                             Name = "Timișoara"
                         });
                 });
@@ -1009,10 +1009,10 @@ Iași",
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e017652f-94a3-4c3c-95a7-5b17619bdd8d"),
+                            Id = new Guid("d9b3c616-8022-4605-ba14-8d0ff1dcdb40"),
                             Email = "DoFestAdmin@gmail.com",
-                            PasswordHash = "2JistaLQHypzhoUDoZ2fjQ==.p3ZQMuXpBDjbCzTn0NYrOOGMn2CYqZOpsOTmnwyVYzk=",
-                            UserTypeId = new Guid("6d98dbc3-0cb5-45c4-a73f-f94597c8d078"),
+                            PasswordHash = "XYbN1Iih6zj4OmdDaK65LA==.Pj1aiXHEF1fzFD1S14SMpncKZI7cVuqSjS7ElIgqqOY=",
+                            UserTypeId = new Guid("62840b02-d31e-4e91-968b-f26f75e91ac3"),
                             Username = "DoFestAdmin"
                         });
                 });
@@ -1039,13 +1039,13 @@ Iași",
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6d98dbc3-0cb5-45c4-a73f-f94597c8d078"),
+                            Id = new Guid("62840b02-d31e-4e91-968b-f26f75e91ac3"),
                             Description = "Full access",
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("0ba8cde7-7749-42ae-8ca7-eb71e1808346"),
+                            Id = new Guid("85fde161-0a1b-4bb7-9945-d3987e8a508c"),
                             Description = "Normal access",
                             Name = "Normal user"
                         });

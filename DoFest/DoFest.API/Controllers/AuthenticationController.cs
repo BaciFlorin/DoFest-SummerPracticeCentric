@@ -33,7 +33,7 @@ namespace DoFest.API.Controllers
             var (_, isFailure, value, error) = await _authenticationService.Register(model);
             if (isFailure)
                 return BadRequest(error);
-            return Created(value.Id.ToString(), null);
+            return Created("", value);
         }
 
         [HttpPut("change-password")]

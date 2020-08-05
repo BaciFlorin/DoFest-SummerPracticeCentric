@@ -12,7 +12,6 @@ namespace DoFest.Persistence.BucketLists
         Task<BucketListActivity> GetBucketListActivityById(Guid bucketlistId, Guid activityId);
         Task<BucketList> GetByIdWithActivities(Guid bucketListId);
         Task<BucketList> GetByUserIdWithActivities(Guid userId);
-
-
+        Task<BucketList> GetByUserId(Guid userId);
     }
 }
