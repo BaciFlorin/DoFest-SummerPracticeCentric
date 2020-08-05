@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService, CitiesService, UserTypesService} from 'src/app/shared/services';
+import { UserService, CitiesService} from 'src/app/shared/services';
 
 import { LoginModel } from '../models/login.model';
 import { RegisterModel } from '../models/register.model';
@@ -21,15 +21,13 @@ export class AuthenticationComponent implements OnInit{
   public isSetRegistered: boolean = false;
   public formGroup: FormGroup;
   public cities: CityModel[];
-  public userTypes: UserTypeModel[];
 
   constructor(
     private readonly router: Router,
     private readonly authenticationService: AuthenticationService,
     private readonly formBuilder: FormBuilder,
     private readonly userService: UserService,
-    private readonly citiesService: CitiesService,
-    private readonly userTypeService: UserTypesService
+    private readonly citiesService: CitiesService
   ) {
     this.formGroup = this.formBuilder.group({
       email: ['',[Validators.required, Validators.email]],
@@ -37,7 +35,6 @@ export class AuthenticationComponent implements OnInit{
       name: ['',[Validators.required]],
       username:['',[Validators.required]],
       city:['', [Validators.required]],
-      userType:['', [Validators.required]],
       age:[18, [Validators.min(18), Validators.max(99), Validators.required]],
       year:[1,[Validators.required, Validators.min(1), Validators.max(6)]],
       bucketlistname:['',[Validators.required, Validators.minLength(6)]]
@@ -50,11 +47,6 @@ export class AuthenticationComponent implements OnInit{
       this.cities = data;
       this.formGroup.get('city').setValue(this.cities[0].id);
     });
-
-    this.userTypeService.getUserTypes().subscribe((data)=>{
-      this.userTypes = data;
-      this.formGroup.get('userType').setValue(this.userTypes[0].id);
-    });
   }
 
   public setRegister(): void {
@@ -63,7 +55,7 @@ export class AuthenticationComponent implements OnInit{
     if(!this.isSetRegistered)
     {
       this.formGroup.markAsUntouched();
-      this.formGroup.setValue({email:'', password:'',name:'', username:'', city:this.cities[0].id, userType: this.userTypes[0].id,age:18, yearStudy:1});
+      this.formGroup.setValue({email:'', password:'',name:'', username:'', city:this.cities[0].id,age:18, yearStudy:1});
     }
   }
 
@@ -83,6 +75,8 @@ export class AuthenticationComponent implements OnInit{
         this.authenticationService.login(data).subscribe((data: HttpResponse<any>) => {
         if(data.status == 200)
         {
+          localStorage.removeItem('userToken');
+          localStorage.setItem('userToken',data.body["token"]);
           localStorage.setItem('identity', JSON.stringify(data.body));
           this.userService.username.next(data.body.username);
           this.router.navigate(['dashboard']);

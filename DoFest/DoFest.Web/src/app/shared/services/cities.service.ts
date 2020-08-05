@@ -7,7 +7,7 @@ import {CityModel} from './../models/city.model'
   providedIn: 'root'
 })
 export class CitiesService {
-  private endpoint:string = "http://192.168.0.102:5002/api/v1/cities";
+  private endpoint:string = "https://192.168.0.102:5002/api/v1/cities";
 
   constructor(private readonly httpClient: HttpClient) { }
 
