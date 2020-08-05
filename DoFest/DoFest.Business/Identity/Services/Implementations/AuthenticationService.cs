@@ -30,7 +30,6 @@ namespace DoFest.Business.Identity.Services.Implementations
         private readonly JwtOptions _config;
         private readonly ICityRepository _cityRepository;
         private readonly IUserTypeRepository _userTypeRepository;
-        private readonly IStudentRepository _studentRepository;
         private readonly IHttpContextAccessor _accessor;
         private readonly IBucketListsRepository _bucketListRepository;
 
@@ -40,7 +39,6 @@ namespace DoFest.Business.Identity.Services.Implementations
             IUserRepository userRepository,
             IUserTypeRepository userTypeRepository, 
             ICityRepository cityRepository,
-            IStudentRepository studentRepository, 
             IHttpContextAccessor accessor,
             IBucketListsRepository bucketListRepository)
         {
@@ -50,7 +48,6 @@ namespace DoFest.Business.Identity.Services.Implementations
             _userRepository = userRepository;
             _userTypeRepository = userTypeRepository;
             _cityRepository = cityRepository;
-            _studentRepository = studentRepository;
             _accessor = accessor;
             _bucketListRepository = bucketListRepository;
         }
@@ -94,10 +91,6 @@ namespace DoFest.Business.Identity.Services.Implementations
                 Year = registerModel.Year
             };
 
-            await _studentRepository.Add(newStudent);
-            await _studentRepository.SaveChanges();
-
-            
             var newUser = new User()
             {
                 Username = registerModel.Username,
@@ -107,6 +100,8 @@ namespace DoFest.Business.Identity.Services.Implementations
                 UserTypeId = userType.Id
             };
 
+            newUser.AddStudent(newStudent);
+
             await _userRepository.Add(newUser);
             await _userRepository.SaveChanges();
 
@@ -115,6 +110,7 @@ namespace DoFest.Business.Identity.Services.Implementations
                 Name = registerModel.BucketListName,
                 UserId = newUser.Id
             };
+
             await _bucketListRepository.Add(newBucketList);
             await _bucketListRepository.SaveChanges();
 

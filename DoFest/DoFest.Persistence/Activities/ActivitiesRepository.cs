@@ -35,5 +35,10 @@ namespace DoFest.Persistence.Activities
         public async Task<Activity> GetByName(string name)
             => await context
             .Activities.Where(activity => activity.Name == name).FirstOrDefaultAsync();
+
+        public async Task<Activity> GetByIdWithNotifications(Guid activityId)
+            => await this.context.Activities
+                .Include(activity => activity.Notifications)
+                .FirstAsync(activity => activity.Id == activityId);
     }
 }

@@ -29,10 +29,10 @@ namespace DoFest.Entities.Activities
         [Required, MaxLength(200)]
         public string Name { get; set; }
 
-        [Required, MaxLength(300)]
+        [Required, MaxLength(1000)]
         public string Address { get; set; }
 
-        [Required, MaxLength(500)] public string Description { get; set; }
+        [Required, MaxLength(2000)] public string Description { get; set; }
 
         public ICollection<Photo> Photos { get;  private set; }
         public ICollection<Comment> Comments { get; private set; }
@@ -93,6 +93,11 @@ namespace DoFest.Entities.Activities
             {
                 Comments.Remove(comment);
             }
+        }
+
+        public void AddNotification(Notification notification)
+        {
+            Notifications.Add(notification);
         }
     }
 }
