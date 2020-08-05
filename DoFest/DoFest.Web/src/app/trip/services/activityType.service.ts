@@ -17,7 +17,7 @@ export class ActivityTypeService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('userToken'))}`
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
     })
   };
 

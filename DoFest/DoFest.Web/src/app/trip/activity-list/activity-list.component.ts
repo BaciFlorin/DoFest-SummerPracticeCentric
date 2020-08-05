@@ -64,8 +64,7 @@ export class TripListComponent implements OnInit {
   public changeActType(type: string): void{
     this.selectedType = type;
 
-    var aux = this.filtredListActivities;
-    var actArray = aux.filter(s => s.activityTypeId === this.selectedType);
+    var actArray = this.tripList.filter(s => s.activityTypeId === this.selectedType);
 
     this.filtredListActivities = actArray;
   }
