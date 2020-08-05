@@ -17,6 +17,7 @@ export class TripListComponent implements OnInit {
   public tripList: ActivityModel[];
   public cities: CityModel[];
   public formGroup: FormGroup;
+  public CitiesToShow: string;
   public selectedCity: string;
 
   constructor(
@@ -30,17 +31,22 @@ export class TripListComponent implements OnInit {
       this.tripList = data;
     });
 
-    this.citiesService.getCities().subscribe((data)=>{
+    this.citiesService.getCities().subscribe((data) => {
       this.cities = data;
       this.formGroup.get('city').setValue(this.cities[0].id);
-      this.selectedCity = 'e2f2c7fa-c583-4014-a336-1988c772fb58';
     });
   }
 
   goToTrip(id: string): void {
     this.router.navigate([`/trip/details/${id}`]);
   }
+
+  public changeCity(): void {
+    this.CitiesToShow = this.selectedCity;
+    console.log("dsagadga");
+  }
 }
+
 
 
 

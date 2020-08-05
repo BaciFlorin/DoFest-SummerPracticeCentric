@@ -5,22 +5,18 @@
 
 
     <label>City</label>
-    <select formControlName="city">
+
+    <select formControlName="city" ng-change="changeCity()">
       <option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</option>
     </select>
-    <input type="checkbox" ng-model="myVar" ng-init="myVar = true">
-
-    <!-- <div *ngIf="selectedCity == 'e2f2c7fa-c583-4014-a336-1988c772fb58'"> -->
 
     <div class="cards" *ngFor="let trip of tripList" (click)="goToTrip(trip.id)">
-        <div *ngIf="trip.cityId == 'e2f2c7fa-c583-4014-a336-1988c772fb58'">
+        <div *ngIf="trip.cityId == CitiesToShow">
 
             <div class="card">{{trip.name}}</div>
             <div class="description">{{trip.description}}</div>
         </div>
     </div>
-
-    <!-- </div> -->
 
 
 

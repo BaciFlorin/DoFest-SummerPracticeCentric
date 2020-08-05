@@ -1,8 +1,9 @@
 @import "../../../assets/styles/layout.scss";
-.cards {
-    display: flex;
-    padding: 32px;
+.app-tile {
+    display: inline-flex;
     flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 32px;
 }
 
 .card {
