@@ -1,6 +1,4 @@
-﻿using DoFest.Entities.Activities;
-
-namespace DoFest.Business.Errors
+﻿namespace DoFest.Business.Errors
 {
     public static class ErrorsList
     {
