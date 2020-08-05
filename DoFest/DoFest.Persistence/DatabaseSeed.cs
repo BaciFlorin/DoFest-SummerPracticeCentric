@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Places;
 using DoFest.Entities.Authentication;
@@ -24,6 +24,18 @@ namespace DoFest.Persistence
             modelBuilder.Entity<UserType>().HasData(userTypes);
             #endregion
 
+            #region Admin
+            var admin = new User()
+            {
+                Email = "DoFestAdmin@gmail.com",
+                Username = "DoFestAdmin",
+                UserTypeId = userTypes[0].Id,
+                PasswordHash = CreateHash("passwordAdmin"),
+                StudentId = null
+            };
+            modelBuilder.Entity<User>().HasData(admin);
+            #endregion
+
             var activityData = JObject.Parse(File.ReadAllText("../DoFest.Persistence/DatabaseData/Activities.json"))["Activities"];
            
             #region City
@@ -39,17 +51,9 @@ namespace DoFest.Persistence
             modelBuilder.Entity<ActivityType>().HasData(activityTypes);
             #endregion
 
-            var cityMap = new Dictionary<string,Guid>();
-            foreach (var city in cities)
-            {
-                cityMap.Add(city.Name, city.Id);
-            }
+            var cityMap = cities.ToDictionary(city => city.Name, city => city.Id);
 
-            var activityTypeMap = new Dictionary<string, Guid>();
-            foreach (var activityType in activityTypes)
-            {
-                activityTypeMap.Add(activityType.Name, activityType.Id);
-            }
+            var activityTypeMap = activityTypes.ToDictionary(aType => aType.Name, aType => aType.Id);
 
             #region Activity
             var activities = activityData!.Select(activity => new Activity()
@@ -62,6 +66,17 @@ namespace DoFest.Persistence
             }).ToList();
             modelBuilder.Entity<Activity>().HasData(activities);
             #endregion
+        }
+
+        private static string CreateHash(string password)
+        {
+            const int saltSize = 16;
+            const int keySize = 32;
+            const int iterations = 1000;
+            using var algorithm = new Rfc2898DeriveBytes(password, saltSize, iterations, HashAlgorithmName.SHA256);
+            var key = Convert.ToBase64String(algorithm.GetBytes(keySize));
+            var salt = Convert.ToBase64String(algorithm.Salt);
+            return $"{salt}.{key}";
         }
     }
 }

@@ -79,9 +79,7 @@ namespace DoFest.Business.Identity.Services.Implementations
             if (city == null)
                 return Result.Failure<UserModel, Error>(ErrorsList.InvalidCity);
 
-            var userType = await _userTypeRepository.GetById(registerModel.UserType); 
-            if(userType == null)
-                return Result.Failure<UserModel, Error>(ErrorsList.InvalidUserType);
+            var userType = await _userTypeRepository.GetByName("Normal user");
 
             var newStudent = new Student()
             {
@@ -151,19 +149,21 @@ namespace DoFest.Business.Identity.Services.Implementations
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.Key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var hours = int.Parse(_config.TokenExpirationInHours);
+            var type = await _userTypeRepository.GetById(user.UserTypeId);
 
             var token = new JwtSecurityToken(_config.Issuer,
                 _config.Audience,
                 new List<Claim>()
                 {
-                    new Claim("userId", user.Id.ToString())
+                    new Claim("userId", user.Id.ToString()),
+                    new Claim("isAdmin", (type.Name == "Admin").ToString())
                 },
                 expires: DateTime.Now.AddHours(hours),
                 signingCredentials: credentials);
 
-            var type = await _userTypeRepository.GetById(user.UserTypeId);
+           
 
-            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), type.Name == "Admin");
+            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault());
         }
     }
 }
