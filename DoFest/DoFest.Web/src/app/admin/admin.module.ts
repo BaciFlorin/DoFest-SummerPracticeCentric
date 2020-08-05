@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     HttpClientModule,
     MatTabsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    FlexLayoutModule
   ]
 })
 export class AdminModule { }
