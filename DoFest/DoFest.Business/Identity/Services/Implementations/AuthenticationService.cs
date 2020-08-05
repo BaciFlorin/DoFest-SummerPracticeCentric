@@ -5,7 +5,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
 using CSharpFunctionalExtensions;
 using DoFest.Business.Errors;
 using DoFest.Business.Identity.Models;
@@ -25,32 +24,27 @@ namespace DoFest.Business.Identity.Services.Implementations
     public sealed class AuthenticationService: IAuthenticationService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IMapper _mapper;
         private readonly IPasswordHasher _passwordHasher;
         private readonly JwtOptions _config;
         private readonly ICityRepository _cityRepository;
         private readonly IUserTypeRepository _userTypeRepository;
-        private readonly IStudentRepository _studentRepository;
         private readonly IHttpContextAccessor _accessor;
-        private readonly IBucketListRepository _bucketListRepository;
+        private readonly IBucketListsRepository _bucketListRepository;
 
-        public AuthenticationService(IMapper mapper,
+        public AuthenticationService(
             IOptions<JwtOptions> config, 
             IPasswordHasher passwordHasher, 
             IUserRepository userRepository,
             IUserTypeRepository userTypeRepository, 
             ICityRepository cityRepository,
-            IStudentRepository studentRepository, 
             IHttpContextAccessor accessor,
-            IBucketListRepository bucketListRepository)
+            IBucketListsRepository bucketListRepository)
         {
-            _mapper = mapper;
             _config = config.Value;
             _passwordHasher = passwordHasher;
             _userRepository = userRepository;
             _userTypeRepository = userTypeRepository;
             _cityRepository = cityRepository;
-            _studentRepository = studentRepository;
             _accessor = accessor;
             _bucketListRepository = bucketListRepository;
         }
@@ -68,23 +62,21 @@ namespace DoFest.Business.Identity.Services.Implementations
             return Result.Success<LoginModelResponse, Error>(await GenerateToken(user));
         }
 
-        public async Task<Result<UserModel, Error>> Register(RegisterModel registerModel)
+        public async Task<Result<string, Error>> Register(RegisterModel registerModel)
         {
             var user = await _userRepository.GetByEmail(registerModel.Email);
             if (user != null)
-                return Result.Failure<UserModel,Error>(ErrorsList.EmailExists);
+                return Result.Failure<string, Error>(ErrorsList.EmailExists);
 
             user = await _userRepository.GetByUsername(registerModel.Username);
             if (user != null)
-                return Result.Failure<UserModel, Error>(ErrorsList.UsernameExists);
+                return Result.Failure<string, Error>(ErrorsList.UsernameExists);
 
             var city = await _cityRepository.GetById(registerModel.City);
             if (city == null)
-                return Result.Failure<UserModel, Error>(ErrorsList.InvalidCity);
+                return Result.Failure<string, Error>(ErrorsList.InvalidCity);
 
-            var userType = await _userTypeRepository.GetById(registerModel.UserType); 
-            if(userType == null)
-                return Result.Failure<UserModel, Error>(ErrorsList.InvalidUserType);
+            var userType = await _userTypeRepository.GetByName("Normal user");
 
             var newStudent = new Student()
             {
@@ -94,10 +86,6 @@ namespace DoFest.Business.Identity.Services.Implementations
                 Year = registerModel.Year
             };
 
-            await _studentRepository.Add(newStudent);
-            await _studentRepository.SaveChanges();
-
-            
             var newUser = new User()
             {
                 Username = registerModel.Username,
@@ -107,6 +95,8 @@ namespace DoFest.Business.Identity.Services.Implementations
                 UserTypeId = userType.Id
             };
 
+            newUser.AddStudent(newStudent);
+
             await _userRepository.Add(newUser);
             await _userRepository.SaveChanges();
 
@@ -115,10 +105,11 @@ namespace DoFest.Business.Identity.Services.Implementations
                 Name = registerModel.BucketListName,
                 UserId = newUser.Id
             };
+
             await _bucketListRepository.Add(newBucketList);
             await _bucketListRepository.SaveChanges();
 
-            return Result.Success<UserModel, Error>(new UserModel(newUser.Id, newUser.Username, newUser.Email, userType.Name, newUser.StudentId.GetValueOrDefault(), newBucketList.Id));
+            return Result.Success<string, Error>("User registered");
         }
 
         public async Task<Result<string, Error>> ChangePassword(NewPasswordModelRequest newPasswordModelRequest)
@@ -138,37 +129,25 @@ namespace DoFest.Business.Identity.Services.Implementations
             return Result.Success<string, Error>("Password changed!");
         }
 
-        public async Task<IList<UserTypeModel>> GetAllUserTypes()
-        {
-            var result = await _userTypeRepository.GetAll();
-            var successRemove = result.Remove(await _userTypeRepository.GetByName("Admin"));
-            if (!successRemove)
-            {
-                return null;
-            }
-
-            return _mapper.Map<IList<UserTypeModel>>(result);
-        }
-
         private async Task<LoginModelResponse> GenerateToken(User user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.Key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var hours = int.Parse(_config.TokenExpirationInHours);
+            var type = await _userTypeRepository.GetById(user.UserTypeId);
+            var bucketList = await _bucketListRepository.GetByUserId(user.Id);
 
             var token = new JwtSecurityToken(_config.Issuer,
                 _config.Audience,
                 new List<Claim>()
                 {
-                    new Claim("userId", user.Id.ToString())
+                    new Claim("userId", user.Id.ToString()),
+                    new Claim("isAdmin", (type.Name == "Admin").ToString())
                 },
                 expires: DateTime.Now.AddHours(hours),
                 signingCredentials: credentials);
 
-            var type = await _userTypeRepository.GetById(user.UserTypeId);
-            var bucketList = await _bucketListRepository.GetByUserId(user.Id);
-
-            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), type.Name == "Admin", bucketList.Id);
+            return new LoginModelResponse(user.Username, user.Email, new JwtSecurityTokenHandler().WriteToken(token), user.StudentId.GetValueOrDefault(), bucketList.Id);
         }
     }
 }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace DoFest.Persistence.BucketLists
 {
 
-    public sealed class BucketListRepository : Repository<BucketList>, IBucketListRepository
+    public sealed class BucketListsRepository : Repository<BucketList>, IBucketListsRepository
     {
-        public BucketListRepository(DoFestContext context) : base(context)
+        public BucketListsRepository(DoFestContext context) : base(context)
         {
 
         }
@@ -29,6 +29,12 @@ namespace DoFest.Persistence.BucketLists
                 .BucketLists
                 .Include(b => b.BucketListActivities)
                 .FirstAsync(bucketList => bucketList.Id == bucketListId);
+
+        public async Task<BucketList> GetByUserIdWithActivities(Guid userId)
+            => await context
+                .BucketLists
+                .Include(b => b.BucketListActivities)
+                .FirstAsync(bucketList => bucketList.UserId == userId);
 
         public async Task<BucketList> GetByUserId(Guid userId)
             => await context

@@ -34,5 +34,7 @@ namespace DoFest.Persistence.Activities
         Task<IList<Activity>> GetActivityLists();
 
         Task<Activity> GetByName(string name);
+
+        Task<Activity> GetByIdWithNotifications(Guid activityId);
     }
 }
