@@ -4,14 +4,15 @@ import { Observable } from 'rxjs';
 
 import { ActivityModel } from '../models';
 import { ActivitiesModel } from '../models/activities.model';
+import { ActivityTypeModel } from '../models/activityType.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActivityService {
+export class ActivityTypeService {
 
-  private endpoint: string = 'http://192.168.100.10:5002/api/v1/activities';
+  private endpoint: string = 'http://192.168.100.10:5002/api/v1/activities/types';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -22,20 +23,12 @@ export class ActivityService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getAll(): Observable<ActivityModel[]> {
-    console.log(JSON.parse(localStorage.getItem('userToken')));
-    return this.http.get<ActivityModel[]>(this.endpoint, this.httpOptions);
+  getAll(): Observable<ActivityTypeModel[]> {
+    console.log(this.httpOptions);
+    return this.http.get<ActivityTypeModel[]>(this.endpoint, this.httpOptions);
   }
 
-  get(id: string): Observable<ActivityModel> {
-    return this.http.get<ActivityModel>(`${this.endpoint}/${id}`, this.httpOptions);
-  }
-
-  post(activity: ActivityModel): Observable<any> {
+  post(activity: ActivityTypeModel): Observable<any> {
     return this.http.post<any>(this.endpoint, activity, this.httpOptions);
-  }
-
-  patch(trip: ActivityModel): Observable<any> {
-    return this.http.patch<any>(`${this.endpoint}/${trip.id}`, trip, this.httpOptions);
   }
 }

@@ -8,7 +8,7 @@ import { UserTypeModel } from '../models/user-type.model';
 })
 export class UserTypesService {
 
-  private endpoint:string = "http://192.168.0.102:5002/api/v1/auth/userTypes";
+  private endpoint:string = "http://192.168.100.10:5002/api/v1/auth/userTypes";
 
   constructor(private readonly httpClient: HttpClient) { }
 

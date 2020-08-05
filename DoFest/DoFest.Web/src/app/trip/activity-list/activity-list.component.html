@@ -6,21 +6,14 @@
 
     <label>City</label>
 
-    <select formControlName="city" ng-change="changeCity()">
+    <select class="form-control" #t (change)="changeCity(t.value)">
       <option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</option>
     </select>
 
-    <div class="cards" *ngFor="let trip of tripList" (click)="goToTrip(trip.id)">
-        <div *ngIf="trip.cityId == CitiesToShow">
-
-            <div class="card">{{trip.name}}</div>
+    <div class="cards">
+        <app-tile *ngFor="let trip of filtredListActivities" label="{{trip.name}}" (click)="goToTrip(trip.id)">
+            <!-- <div class="card">{{trip.name}}</div> -->
             <div class="description">{{trip.description}}</div>
-        </div>
+        </app-tile>
     </div>
-
-
-
-
-
-
 </div>
