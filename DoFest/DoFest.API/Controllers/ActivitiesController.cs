@@ -13,7 +13,6 @@ namespace DoFest.API.Controllers
     [Authorize]
     public class ActivitiesController : ControllerBase
     {
-
         // ****** Servicii folosite de catre controller ******
         private readonly IActivitiesService _activitiesService;
 
