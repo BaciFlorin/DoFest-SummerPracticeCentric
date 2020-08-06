@@ -18,6 +18,7 @@ export class AdminService {
   userDisplayedColumns: string[] = ['Id', 'Username', 'Email', 'UserType'];
   userData: UserModel[] = null;
   userDataSource: MatTableDataSource<UserModel> = null;
+  userTypeInput: string = null;
 
   // ********** City table data **********
   cityDisplayedColumns: string[] = ['Id', 'Name'];
@@ -42,13 +43,6 @@ export class AdminService {
     "users": this.backendEndpoint + "admin"
   };
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer " + localStorage.getItem('userToken')
-    })
-  };
-
   private httpClient: HttpClient = null;
   private cityService: CitiesService = null;
   private activityService: ActivityService = null;
@@ -64,19 +58,57 @@ export class AdminService {
     this.activityService = activityService;
   }
 
-  public getUsers(): Observable<UserModel[]>{
-    return this.httpClient.get<UserModel[]>(this.endpoints["users"] + "/users", this.httpOptions);
+  // ********** Get data lits **********
+
+  public getUsers(): Observable<unknown>{
+    return this.httpClient.get<UserModel[]>(this.endpoints["users"] + "/users");
   }
 
-  public getCities(): Observable<CityModel[]>{
+  public getCities(): Observable<unknown>{
     return this.cityService.getCities();
   }
 
-  public getActivities(): Observable<ActivityModel[]>{
+  public getActivities(): Observable<unknown>{
     return this.activityService.getAll();
   }
 
   public getActivityTypes(): Observable<ActivityTypeModel[]>{
-    return this.httpClient.get<ActivityTypeModel[]>(this.endpoints["activityType"], this.httpOptions);
+    return this.httpClient.get<ActivityTypeModel[]>(this.endpoints["activityType"]);
+  }
+
+  // ********** User admin functions **********
+
+  public updateUserType(userId: string): Observable<unknown>{
+    return this.httpClient.patch(this.endpoints["users"] + `/user/${userId}/usertype/toggle`, {});
+  }
+
+  // ********** City admin functions **********
+
+  public deleteCity(cityId: string): Observable<unknown>{
+    return this.httpClient.delete(this.endpoints["cities"] + `/${cityId}`);
+  }
+
+  public addCity(cityModel: CityModel): Observable<unknown>{
+    return this.httpClient.post<CityModel>(this.endpoints["cities"], cityModel);
+  }
+
+  // ********** Activity admin functions **********
+
+  public deleteActivity(activityId: string): Observable<unknown>{
+    return this.httpClient.delete(this.endpoints["activities"] + `/${activityId}`);
+  }
+
+  public addActivity(activityModel: ActivityModel): Observable<unknown>{
+    return this.httpClient.post<ActivityModel>(this.endpoints["cities"], activityModel);
+  }
+
+  // ********** ActivityType admin functions **********
+
+  public deleteActivityType(activityTypeId: string): Observable<unknown>{
+    return this.httpClient.delete(this.endpoints["activityType"] + `/${activityTypeId}`);
+  }
+
+  public addActivityType(activityTypeModel: ActivityTypeModel): Observable<unknown>{
+    return this.httpClient.post<ActivityTypeModel>(this.endpoints["activityType"], activityTypeModel);
   }
 }

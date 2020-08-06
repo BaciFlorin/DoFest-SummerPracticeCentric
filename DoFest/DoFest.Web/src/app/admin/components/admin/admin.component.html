@@ -24,13 +24,7 @@
                     <mat-label>UserId</mat-label>
                     <input matInput placeholder="Type a userId">
                   </mat-form-field>
-                  <mat-form-field>
-                    <mat-select>
-                      <mat-option>
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <button mat-raised-button color="primary">Update</button>
+                  <button mat-raised-button color="primary" (click)="adminService.getUsers()">Update</button>
                 </div>
               </mat-expansion-panel>
             </div>

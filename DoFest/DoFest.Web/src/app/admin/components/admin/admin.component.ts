@@ -1,8 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {AdminService } from '../../services/admin.service'
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import { UserModel } from '../../models/user/user';
 
 
 @Component({
@@ -16,11 +13,11 @@ import { UserModel } from '../../models/user/user';
 export class AdminComponent implements OnInit {
 
   constructor(
+    public readonly adminService: AdminService
   ) {
 
   }
   ngOnInit(): void {
 
   }
-
 }
