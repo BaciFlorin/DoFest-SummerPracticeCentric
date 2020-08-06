@@ -1,6 +1,5 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginModel } from '../models/login.model';
 import { RegisterModel } from '../models/register.model';

@@ -49,7 +49,6 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<ActivityModel, Error>> Get(Guid activityId)
         {
-
             var activity = await _activitiesRepository.GetById(activityId);
             return activity == null ? Result.Failure<ActivityModel, Error>(ErrorsList.UnavailableActivity) : _mapper.Map<ActivityModel>(activity);
         }

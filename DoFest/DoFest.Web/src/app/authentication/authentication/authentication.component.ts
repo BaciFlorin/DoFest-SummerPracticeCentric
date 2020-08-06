@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService, CitiesService} from 'src/app/shared/services';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 import { LoginModel } from '../models/login.model';
 import { RegisterModel } from '../models/register.model';
@@ -9,6 +10,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { UserTypeModel } from '../../shared/models/user-type.model';
 import { CityModel } from '../../shared/models/city.model';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+
 
 
 @Component({
@@ -27,7 +29,8 @@ export class AuthenticationComponent implements OnInit{
     private readonly authenticationService: AuthenticationService,
     private readonly formBuilder: FormBuilder,
     private readonly userService: UserService,
-    private readonly citiesService: CitiesService
+    private readonly citiesService: CitiesService,
+    private readonly tokenHelper: JwtHelperService
   ) {
     this.formGroup = this.formBuilder.group({
       email: ['',[Validators.required, Validators.email]],
@@ -77,6 +80,8 @@ export class AuthenticationComponent implements OnInit{
         if(data.status == 200)
         {
           localStorage.setItem('userToken', data.body["token"]);
+          let decodat = this.tokenHelper.decodeToken(data.body["token"]);
+          console.log(decodat);
           localStorage.setItem('identity', JSON.stringify(data.body));
           this.userService.username.next(data.body.username);
           this.router.navigate(['dashboard']);

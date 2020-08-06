@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ActivityModel } from '../models';
-import { ActivitiesModel } from '../models/activities.model';
 
 
 @Injectable({

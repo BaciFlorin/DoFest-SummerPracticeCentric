@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../app/guards/auth.guard';
-
 import { ActivityListComponent } from './activity/activity-list/activity-list.component';
 
 const routes: Routes = [
@@ -11,11 +10,19 @@ const routes: Routes = [
     redirectTo: 'authentication',
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then(
+        (m) => m.AdminModule
+      ),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'authentication',
     loadChildren: () =>
       import('./authentication/authentication.module').then(
         (m) => m.AuthenticationModule
-      ),
+      )
   },
   { path: 'list', component: ActivityListComponent, canActivate:[AuthGuard] },
   {
