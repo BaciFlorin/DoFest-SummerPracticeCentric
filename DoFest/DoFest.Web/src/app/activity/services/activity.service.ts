@@ -10,7 +10,7 @@ import { ActivityModel } from '../models';
 })
 export class ActivityService {
 
-  private endpoint: string = 'http://192.168.0.103:5002/api/v1/activities';
+  private endpoint: string = 'https://localhost:5001/api/v1/activities';
 
   constructor(private readonly http: HttpClient) { }
 

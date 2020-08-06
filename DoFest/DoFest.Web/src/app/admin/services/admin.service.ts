@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { CityModel } from 'src/app/shared/models/city.model';
 import { CitiesService } from 'src/app/shared/services';
 import {MatTableDataSource} from '@angular/material/table';
-import { ActivityModel } from 'src/app/activity/models';
+import { ActivityModel } from 'src/app/activity/models/activity.model';
 import { ActivityService } from 'src/app/activity/services/activity.service';
 import {ActivityTypeModel} from "../models/activityType/activityType";
 
@@ -79,7 +79,7 @@ export class AdminService {
   // ********** User admin functions **********
 
   public updateUserType(userId: string): Observable<unknown>{
-    return this.httpClient.patch(this.endpoints["users"] + `/user/${userId}/usertype/toggle`, {});
+    return this.httpClient.patch(this.endpoints["users"] + `/user/${userId}/usertype/toggle`, null);
   }
 
   // ********** City admin functions **********
