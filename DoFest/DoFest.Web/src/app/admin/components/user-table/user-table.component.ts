@@ -24,7 +24,6 @@ export class UserTableComponent implements OnInit {
   ngOnInit(): void {
     this.adminService.getUsers().subscribe((data: UserModel[]) =>{
       this.adminService.userData = data;
-      console.log(this.adminService.userData);
       this.adminService.userDataSource = new MatTableDataSource<UserModel>(this.adminService.userData);
       this.adminService.userDataSource.paginator = this.paginator;
     });

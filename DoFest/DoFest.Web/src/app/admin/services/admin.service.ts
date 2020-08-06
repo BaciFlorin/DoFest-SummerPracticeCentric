@@ -8,6 +8,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ActivityModel } from 'src/app/activity/models/activity.model';
 import { ActivityService } from 'src/app/activity/services/activity.service';
 import {ActivityTypeModel} from "../models/activityType/activityType";
+import { NewActivityTypeModel } from '../models/activityType/newActivityType';
 
 @Injectable({
   providedIn: 'root'
@@ -43,12 +44,6 @@ export class AdminService {
     "users": this.backendEndpoint + "admin"
   };
 
-  private httpOptions = {
-    headers: {
-    "Authorization": "Bearer " + localStorage.getItem("userToken")
-    }
-  }
-
   private httpClient: HttpClient = null;
   private cityService: CitiesService = null;
   private activityService: ActivityService = null;
@@ -67,7 +62,7 @@ export class AdminService {
   // ********** Get data lits **********
 
   public getUsers(): Observable<unknown>{
-    return this.httpClient.get<UserModel[]>(this.endpoints["users"] + "/users", this.httpOptions);
+    return this.httpClient.get<UserModel[]>(this.endpoints["users"] + "/users");
   }
 
   public getCities(): Observable<unknown>{
@@ -114,7 +109,7 @@ export class AdminService {
     return this.httpClient.delete(this.endpoints["activityType"] + `/${activityTypeId}`);
   }
 
-  public addActivityType(activityTypeModel: ActivityTypeModel): Observable<unknown>{
+  public addActivityType(activityTypeModel: NewActivityTypeModel): Observable<unknown>{
     return this.httpClient.post<ActivityTypeModel>(this.endpoints["activityType"], activityTypeModel);
   }
 }

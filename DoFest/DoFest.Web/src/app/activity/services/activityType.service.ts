@@ -12,7 +12,7 @@ import { ActivityTypeModel } from '../models/activityType.model';
 })
 export class ActivityTypeService {
 
-  private endpoint: string = 'http://192.168.0.103:5002/api/v1/activities/types';
+  private endpoint: string = 'https://localhost:5001/api/v1/activities/types';
 
   constructor(private readonly http: HttpClient) { }
 
