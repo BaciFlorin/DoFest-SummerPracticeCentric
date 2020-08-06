@@ -15,23 +15,12 @@ import { UserModel } from '../../models/user/user';
 })
 export class AdminComponent implements OnInit {
 
-  displayedColumns: string[] = ['Id', 'Username', 'Email', 'UserType', "StudentId", "BucketListId"];
-  userData: UserModel[] = null;
-  dataSource: MatTableDataSource<UserModel> = null;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-
   constructor(
-    private readonly adminService: AdminService
   ) {
 
   }
-
   ngOnInit(): void {
-    this.adminService.getUsers().subscribe((data: UserModel[]) =>{
-      this.userData = data;
-    });
-    this.dataSource = new MatTableDataSource<UserModel>(this.userData);
-    this.dataSource.paginator = this.paginator;
+
   }
 
 }

@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
 import { TripDetailsComponent } from './trip/trip-details/trip-details.component';
-import { TripListComponent } from './trip/activity-list/activity-list.component';
 
 const routes: Routes = [
   {
@@ -14,20 +12,23 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () =>
-    import('./admin/admin.module').then(
-      (m) => m.AdminModule
-    ),
+      import('./admin/admin.module').then(
+        (m) => m.AdminModule
+      )
   },
   {
     path: 'authentication',
     loadChildren: () =>
       import('./authentication/authentication.module').then(
         (m) => m.AuthenticationModule
-      ),
+      )
   },
   {
     path: 'list',
-    component: TripListComponent
+    loadChildren: () =>
+      import('./trip/trip.module').then(
+        (m) => m.TripModule
+      )
   },
   {
     path: 'create-trip',
@@ -38,7 +39,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./notifications/notifications.module').then(
         (m) => m.NotificationsModule
-      ),
+      )
   },
   {
     path: 'dashboard',

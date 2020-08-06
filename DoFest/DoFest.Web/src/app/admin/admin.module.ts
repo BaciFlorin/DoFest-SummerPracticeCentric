@@ -15,11 +15,17 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import { CityTableComponent } from './components/city-table/city-table.component';
+import { ActivityTableComponent } from './components/activity-table/activity-table.component';
+import { ActivityTypeTableComponent } from './components/activity-type-table/activity-type-table.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
-    UserTableComponent
+    UserTableComponent,
+    CityTableComponent,
+    ActivityTableComponent,
+    ActivityTypeTableComponent
   ],
   imports: [
     CommonModule,

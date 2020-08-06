@@ -21,7 +21,6 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule
-  ],
-  exports: [AuthenticationComponent],
+  ]
 })
 export class AuthenticationModule {}
