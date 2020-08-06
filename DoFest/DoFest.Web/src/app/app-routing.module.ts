@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../app/guards/auth.guard';
 
-import { AuthenticationComponent } from './authentication/authentication/authentication.component';
 import { TripDetailsComponent } from './trip/trip-details/trip-details.component';
 import { TripListComponent } from './trip/trip-list/trip-list.component';
 
@@ -18,7 +18,7 @@ const routes: Routes = [
         (m) => m.AuthenticationModule
       ),
   },
-  { path: 'list', component: TripListComponent },
+  { path: 'list', component: TripListComponent, canActivate:[AuthGuard] },
   { path: 'create-trip', component: TripDetailsComponent },
   {
     path: 'notifications',
@@ -26,11 +26,13 @@ const routes: Routes = [
       import('./notifications/notifications.module').then(
         (m) => m.NotificationsModule
       ),
+    canActivate:[AuthGuard]
   },
   {
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'trip',

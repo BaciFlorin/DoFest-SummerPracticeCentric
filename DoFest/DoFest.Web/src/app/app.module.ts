@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationInterceptor,
