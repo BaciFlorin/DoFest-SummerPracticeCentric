@@ -1,0 +1,102 @@
+<h1>Activity Details</h1>
+
+<div class="flex-row-space-around">
+  <section class="image-section">
+    <img src="../../assets/images/party.svg" alt="Activity image" />
+  </section>
+  <section class="form-section">
+    <div class="form-group">
+      <h1 id="activity-name">{{ activity.name }}</h1>
+    </div>
+    <div class="form-group">
+      <p>Description: {{ activity.description }}</p>
+    </div>
+
+    <div class="form-group">
+      <p>
+        <mat-icon aria-hidden="false">location_on</mat-icon>{{ city.name }},
+        {{ activity.address }}
+      </p>
+    </div>
+
+    <div class="photos">
+      <label class="photos-title">Photos</label>
+      <div class="add-photos">
+        <input
+          #Image
+          type="file"
+          (change)="handleFileInput($event.target.files)"
+        />
+      </div>
+      <div class="post-photo">
+        <button mat-raised-button (click)="addPhoto()">
+          <span>Post photo</span>
+        </button>
+      </div>
+      <div class="added-photos">
+      <img class="photo-file"
+        *ngFor="let photo of photos"
+        [src]="photo">
+ </div>
+    </div>
+      <div class="comments">
+        <label class="comments-title">Comments</label>
+        <div class="comment-button">
+          <form [formGroup]="formGroup">
+            <textarea
+              class="add-comment"
+              contenteditable="true"
+              formControlName="content"
+            ></textarea>
+          </form>
+          <button mat-raised-button (click)="addComment()">
+            <span>Add comment</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="comment-button">
+        <button mat-raised-button (click)="toggleShowComments()">
+          <span>{{ isShowComments ? "Hide Comments" : "Show Comments" }}</span>
+        </button>
+      </div>
+
+      <div class="comments-list">
+        <div *ngIf="isShowComments">
+          <div *ngIf="comments.length > 0; else noComments">
+            <mat-list>
+              <mat-list-item
+                *ngFor="let comment of comments; last as last">
+                <div class="comment-item"
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: center;
+                    margin-top: 15px;
+                  "
+                >
+                  <p matLine>{{ comment.userId }}</p>
+                  <div>
+                    <!--  *ngIf="comments.userId ==''" -->
+                    <button
+                      mat-mini-fab
+                      color="primary"
+                      (click)="deleteComment(comment.id)"
+                      matLine
+                    >
+                      <mat-icon matListIcon>delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+                <p matLine>{{ comment.content }}</p>
+                <mat-divider *ngIf="!last"></mat-divider>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <ng-template #noComments>
+            <label *ngIf="comments.length === 0">No comments available</label>
+          </ng-template>
+        </div>
+      </div>
+  </section>
+</div>

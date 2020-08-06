@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { ActivityModel } from '../models';
+// import { ActivityModel } from '../models';
 import { TripService } from '../services/trip.service';
 
 @Component({
@@ -49,15 +49,17 @@ export class TripDetailsComponent implements OnInit, OnDestroy {
       this.isAddMode = true;
     } else {
       //Getting id from url
-      this.routeSub = this.activatedRoute.params.subscribe(params => {
+    //this.routeSub = this.activatedRoute.params.subscribe(params => {
         //Getting details for the trip with the id found
-        this.service.get(params['id']).subscribe((data: ActivityModel) => {
-          this.formGroup.patchValue(data);
-        })
-        this.formGroup.disable();
-      });
-      this.isAddMode = false;
-    }
+        // this.service.get(params['id']).subscribe((data: ActivityModel) => {
+        //   this.formGroup.patchValue(data);
+        // }
+      //   )
+      //   this.formGroup.disable();
+      // }
+    //   );
+    //   this.isAddMode = false;
+     }
     this.isAdmin = true;
   }
 
@@ -65,31 +67,31 @@ export class TripDetailsComponent implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
   }
 
-  startUpdating() {
-    this.formGroup.enable();
-  }
+  // startUpdating() {
+  //   this.formGroup.enable();
+  // }
 
-  save() {
-    if (this.isAddMode) {
-      this.service.post(this.formGroup.getRawValue()).subscribe();
-      this.router.navigate(['list']);
-    } else {
-      this.service.patch(this.formGroup.getRawValue()).subscribe();
-    }
+  // save() {
+  //   if (this.isAddMode) {
+  //     this.service.post(this.formGroup.getRawValue()).subscribe();
+  //     this.router.navigate(['list']);
+  //   } else {
+  //     this.service.patch(this.formGroup.getRawValue()).subscribe();
+  //   }
 
-    this.photos.push(this.imageUrl);
-    this.imageUrl = null;
-    this.formGroup.disable();
-  }
+  //   this.photos.push(this.imageUrl);
+  //   this.imageUrl = null;
+  //   this.formGroup.disable();
+  // }
 
-  handleFileInput(file: FileList) {
-    this.fileToUpload = file.item(0);
+  // handleFileInput(file: FileList) {
+  //   this.fileToUpload = file.item(0);
 
-    let reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.imageUrl = event.target.result;
-    }
-    reader.readAsDataURL(this.fileToUpload);
-  }
+  //   let reader = new FileReader();
+  //   reader.onload = (event: any) => {
+  //     this.imageUrl = event.target.result;
+  //   }
+  //   reader.readAsDataURL(this.fileToUpload);
+  // }
 
 }

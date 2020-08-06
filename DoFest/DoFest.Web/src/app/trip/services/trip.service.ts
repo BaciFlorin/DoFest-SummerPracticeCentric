@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ActivityModel } from '../models';
-import { ActivitiesModel } from '../models/activities.model';
+// import { ActivityModel } from '../models';
+// import { ActivitiesModel } from '../models/activities.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,19 +21,19 @@ export class TripService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getAll(): Observable<ActivitiesModel> {
-    return this.http.get<ActivitiesModel>(this.endpoint, this.httpOptions);
-  }
+  // getAll(): Observable<ActivitiesModel> {
+  //   return this.http.get<ActivitiesModel>(this.endpoint, this.httpOptions);
+  // }
 
-  get(id: string): Observable<ActivityModel> {
-    return this.http.get<ActivityModel>(`${this.endpoint}/${id}`, this.httpOptions);
-  }
+  // get(id: string): Observable<ActivityModel> {
+  //   return this.http.get<ActivityModel>(`${this.endpoint}/${id}`, this.httpOptions);
+  // }
 
-  post(trip: ActivityModel): Observable<any> {
-    return this.http.post<any>(this.endpoint, trip, this.httpOptions);
-  }
+  // post(trip: ActivityModel): Observable<any> {
+  //   return this.http.post<any>(this.endpoint, trip, this.httpOptions);
+  // }
 
-  patch(trip: ActivityModel): Observable<any> {
-    return this.http.patch<any>(`${this.endpoint}/${trip.id}`, trip, this.httpOptions);
-  }
+  // patch(trip: ActivityModel): Observable<any> {
+  //   return this.http.patch<any>(`${this.endpoint}/${trip.id}`, trip, this.httpOptions);
+  // }
 }

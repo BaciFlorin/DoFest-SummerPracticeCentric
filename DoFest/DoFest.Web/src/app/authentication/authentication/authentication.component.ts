@@ -84,6 +84,7 @@ export class AuthenticationComponent implements OnInit{
       this.authenticationService.login(data).subscribe((data: HttpResponse<any>) => {
         if(data.status == 200)
         {
+          console.log(data.body);
           localStorage.setItem('userToken', JSON.stringify(data.body.token));
           console.log(localStorage.getItem('userToken'));
           this.userService.username.next(data.body.email);
