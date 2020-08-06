@@ -7,10 +7,6 @@ namespace DoFest.Business.Identity.Validators
     {
         public CreateNotificationModelValidator()
         {
-            RuleFor(n => n.Date)
-                .NotNull()
-                .NotEmpty();
-
             RuleFor(n => n.Description)
                 .NotNull()
                 .MaximumLength(1000)

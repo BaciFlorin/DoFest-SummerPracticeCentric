@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Models.Activity.ActivityType;
 using DoFest.Business.Activities.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
@@ -17,19 +20,45 @@ namespace DoFest.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Get()
         {
-            var activityTypes = await _activityTypesService.Get();
+            var (_, isFailure, value, error) = await _activityTypesService.Get();
 
-            return Ok(activityTypes);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+
+            return Ok(value);
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] CreateActivityTypeModel model)
         {
-            var activityType = await _activityTypesService.Add(model);
+            var (_, isFailure, value, error) = await _activityTypesService.Add(model);
 
-            return Created(activityType.Id.ToString(), null);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+
+            return Created(value.Id.ToString(), null);
+        }
+
+        [HttpDelete("{activityTypeId}")]
+        [Authorize]
+        public async Task<IActionResult> Delete([FromRoute] Guid activityTypeId)
+        {
+            var (_, isFailure, value, error) = await _activityTypesService.Delete(activityTypeId);
+
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+
+            return NoContent();
         }
     }
 }

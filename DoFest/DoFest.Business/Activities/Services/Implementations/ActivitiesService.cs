@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CSharpFunctionalExtensions;
+using DoFest.Business.Activities.Models.Activity;
 using DoFest.Business.Activities.Services.Interfaces;
 using DoFest.Business.Errors;
-using DoFest.Business.Models.Activity;
 using DoFest.Entities.Activities;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Activities.ActivityTypes;
@@ -59,8 +59,8 @@ namespace DoFest.Business.Activities.Services.Implementations
             // Check authority
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var user = await _userRepository.GetById(userId);
-            var userType = await _userTypeRepository.GetById(user.UserTypeId);
-            if (userType.Id != Guid.Parse("481c8896-7b7c-4e92-a101-c1cb82cbd15d"))
+            var userType = await _userTypeRepository.GetByName("Admin");
+            if (userType.Id != user.UserTypeId)
             {
                 return Result.Failure<ActivityModel, Error>(ErrorsList.UnauthorizedUser);
             }
@@ -89,8 +89,8 @@ namespace DoFest.Business.Activities.Services.Implementations
             // Check authority
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var user = await _userRepository.GetById(userId);
-            var userType = await _userTypeRepository.GetById(user.UserTypeId);
-            if (userType.Name != "Admin")
+            var userType = await _userTypeRepository.GetByName("Admin");
+            if (userType.Id != user.UserTypeId)
             {
                 return Result.Failure<ActivityModel, Error>(ErrorsList.UnauthorizedUser);
             }

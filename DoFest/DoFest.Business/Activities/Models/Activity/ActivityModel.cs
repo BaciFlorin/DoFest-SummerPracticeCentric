@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DoFest.Business.Models.Activity
+namespace DoFest.Business.Activities.Models.Activity
 {
     public sealed class ActivityModel
     {
@@ -15,7 +15,6 @@ namespace DoFest.Business.Models.Activity
         public string Address { get; private set; }
 
         public string Description { get; private set; }
-
 
     }
 }

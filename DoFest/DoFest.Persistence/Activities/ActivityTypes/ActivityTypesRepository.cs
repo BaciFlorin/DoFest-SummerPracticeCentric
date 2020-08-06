@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DoFest.Entities.Activities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DoFest.Persistence.Activities.ActivityTypes
 {
@@ -16,5 +17,10 @@ namespace DoFest.Persistence.Activities.ActivityTypes
             => await context
                 .ActivityTypes
                 .ToListAsync();
+
+        public async Task<ActivityType> GetByName(string name)
+        => await context
+            .ActivityTypes
+            .Where(activityType => activityType.Name == name).FirstOrDefaultAsync();
     }
 }

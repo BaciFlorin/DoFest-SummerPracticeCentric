@@ -33,7 +33,7 @@ namespace DoFest.API.Controllers
             var (_, isFailure, value, error) = await _authenticationService.Register(model);
             if (isFailure)
                 return BadRequest(error);
-            return Created(value.Id.ToString(), null);
+            return Created("", value);
         }
 
         [HttpPut("change-password")]
@@ -44,15 +44,6 @@ namespace DoFest.API.Controllers
             if (isFailure)
                 return BadRequest(error);
             return Ok(value);
-        }
-
-        [HttpGet("userTypes")]
-        public async Task<IActionResult> GetUserTypes()
-        {
-            var result = await _authenticationService.GetAllUserTypes();
-            if (result == null)
-                return BadRequest();
-            return Ok(result);
         }
     }
 }

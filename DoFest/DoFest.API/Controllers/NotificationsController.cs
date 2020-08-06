@@ -10,11 +10,11 @@ namespace DoFest.API.Controllers
     [Route("api/v1/notifications")]
     [ApiController]
     [Authorize]
-    public sealed class NotificationController: ControllerBase
+    public sealed class NotificationsController: ControllerBase
     {
         private readonly INotificationService _notificationService;
 
-        public NotificationController(INotificationService notificationService)
+        public NotificationsController(INotificationService notificationService)
         {
             _notificationService = notificationService;
         }
