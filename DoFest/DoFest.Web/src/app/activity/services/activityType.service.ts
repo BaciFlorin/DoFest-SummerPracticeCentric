@@ -12,23 +12,15 @@ import { ActivityTypeModel } from '../models/activityType.model';
 })
 export class ActivityTypeService {
 
-  private endpoint: string = 'http://192.168.100.10:5002/api/v1/activities/types';
-
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
-    })
-  };
+  private endpoint: string = 'http://192.168.0.103:5002/api/v1/activities/types';
 
   constructor(private readonly http: HttpClient) { }
 
   getAll(): Observable<ActivityTypeModel[]> {
-    console.log(this.httpOptions);
-    return this.http.get<ActivityTypeModel[]>(this.endpoint, this.httpOptions);
+    return this.http.get<ActivityTypeModel[]>(this.endpoint);
   }
 
   post(activity: ActivityTypeModel): Observable<any> {
-    return this.http.post<any>(this.endpoint, activity, this.httpOptions);
+    return this.http.post<any>(this.endpoint, activity);
   }
 }

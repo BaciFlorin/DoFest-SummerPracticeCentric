@@ -15,7 +15,7 @@ import { ActivityTypeModel } from '../models/activityType.model';
   styleUrls: ['./activity-list.component.scss'],
   providers: [ActivityService]
 })
-export class TripListComponent implements OnInit {
+export class ActivityListComponent implements OnInit {
   public tripList: ActivityModel[];
   public filtredListActivities: ActivityModel[];
   public cities: CityModel[];
@@ -32,6 +32,7 @@ export class TripListComponent implements OnInit {
     ) { }
 
   public ngOnInit(): void {
+
     this.service.getAll().subscribe((data: ActivityModel[]) => {
       this.tripList = data;
       this.filtredListActivities = data;
@@ -39,7 +40,7 @@ export class TripListComponent implements OnInit {
 
     this.citiesService.getCities().subscribe((data) => {
       this.cities = data;
-      this.formGroup.get('city').setValue(this.cities[0].id);
+      //this.formGroup.get('city').setValue(this.cities[0].id);
     });
 
     this.actTypeService.getAll().subscribe((data) => {
@@ -48,8 +49,8 @@ export class TripListComponent implements OnInit {
 
   }
 
-  goToTrip(id: string): void {
-    this.router.navigate([`/trip/details/${id}`]);
+  goToActivity(id: string): void {
+    this.router.navigate([`/activity/details/${id}`]);
   }
 
   public changeCity(city: string): void {

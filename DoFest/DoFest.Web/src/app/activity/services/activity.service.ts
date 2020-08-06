@@ -11,31 +11,24 @@ import { ActivitiesModel } from '../models/activities.model';
 })
 export class ActivityService {
 
-  private endpoint: string = 'http://192.168.100.10:5002/api/v1/activities';
-
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
-    })
-  };
+  private endpoint: string = 'http://192.168.0.103:5002/api/v1/activities';
 
   constructor(private readonly http: HttpClient) { }
 
   getAll(): Observable<ActivityModel[]> {
 
-    return this.http.get<ActivityModel[]>(this.endpoint, this.httpOptions);
+    return this.http.get<ActivityModel[]>(this.endpoint);
   }
 
   get(id: string): Observable<ActivityModel> {
-    return this.http.get<ActivityModel>(`${this.endpoint}/${id}`, this.httpOptions);
+    return this.http.get<ActivityModel>(`${this.endpoint}/${id}`);
   }
 
   post(activity: ActivityModel): Observable<any> {
-    return this.http.post<any>(this.endpoint, activity, this.httpOptions);
+    return this.http.post<any>(this.endpoint, activity);
   }
 
   patch(trip: ActivityModel): Observable<any> {
-    return this.http.patch<any>(`${this.endpoint}/${trip.id}`, trip, this.httpOptions);
+    return this.http.patch<any>(`${this.endpoint}/${trip.id}`, trip);
   }
 }
