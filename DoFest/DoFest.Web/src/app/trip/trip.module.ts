@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
-import { TripListComponent } from './trip-list/trip-list.component';
+import { TripListComponent } from './activity-list/activity-list.component';
 import { TripRoutingModule } from './trip-routing.module';
 
 @NgModule({

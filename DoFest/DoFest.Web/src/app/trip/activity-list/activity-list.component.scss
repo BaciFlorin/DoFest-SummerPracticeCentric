@@ -1,0 +1,35 @@
+@import "../../../assets/styles/layout.scss";
+.app-tile {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 32px;
+}
+
+.form-control {
+    width: 100px;
+}
+
+.label {
+    transition: transform .2s;
+    color: saddlebrown;
+    text-decoration: sienna;
+}
+
+label:hover {
+    transform: scale(1.2);
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+}
+
+.description {
+    visibility: hidden;
+}
+
+.label:hover+.description {
+    visibility: visible;
+}

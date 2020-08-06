@@ -3,8 +3,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { TripModel } from '../models';
-import { TripService } from '../services/trip.service';
+import { ActivityModel } from '../models';
+import { ActivityService } from '../services/activity.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -35,7 +35,7 @@ export class TripDetailsComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private service: TripService) { }
+    private service: ActivityService) { }
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
@@ -51,7 +51,7 @@ export class TripDetailsComponent implements OnInit, OnDestroy {
       //Getting id from url
       this.routeSub = this.activatedRoute.params.subscribe(params => {
         //Getting details for the trip with the id found
-        this.service.get(params['id']).subscribe((data: TripModel) => {
+        this.service.get(params['id']).subscribe((data: ActivityModel) => {
           this.formGroup.patchValue(data);
         })
         this.formGroup.disable();

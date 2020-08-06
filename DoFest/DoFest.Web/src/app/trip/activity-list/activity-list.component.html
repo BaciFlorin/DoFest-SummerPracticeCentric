@@ -1,0 +1,22 @@
+<div class="page-container">
+    <h1>
+        Activities
+    </h1>
+
+
+    <label>City</label>
+
+    <select class="form-control" #t (change)="changeCity(t.value)">
+      <option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</option>
+    </select>
+    <select class="form-control" #c (change)="changeActType(c.value)">
+      <option *ngFor="let type of activityTypes;" [value]="type.id">{{type.name}}</option>
+    </select>
+
+    <div class="cards">
+        <app-tile *ngFor="let trip of filtredListActivities" label="{{trip.name}}" (click)="goToTrip(trip.id)">
+            <!-- <div class="card">{{trip.name}}</div> -->
+            <div class="description">{{trip.description}}</div>
+        </app-tile>
+    </div>
+</div>
