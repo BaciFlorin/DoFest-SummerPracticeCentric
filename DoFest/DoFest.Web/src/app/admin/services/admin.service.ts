@@ -43,6 +43,12 @@ export class AdminService {
     "users": this.backendEndpoint + "admin"
   };
 
+  private httpOptions = {
+    headers: {
+    "Authorization": "Bearer " + localStorage.getItem("userToken")
+    }
+  }
+
   private httpClient: HttpClient = null;
   private cityService: CitiesService = null;
   private activityService: ActivityService = null;
@@ -61,7 +67,7 @@ export class AdminService {
   // ********** Get data lits **********
 
   public getUsers(): Observable<unknown>{
-    return this.httpClient.get<UserModel[]>(this.endpoints["users"] + "/users");
+    return this.httpClient.get<UserModel[]>(this.endpoints["users"] + "/users", this.httpOptions);
   }
 
   public getCities(): Observable<unknown>{

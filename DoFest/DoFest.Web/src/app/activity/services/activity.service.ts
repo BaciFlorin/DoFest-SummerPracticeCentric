@@ -15,7 +15,6 @@ export class ActivityService {
   constructor(private readonly http: HttpClient) { }
 
   getAll(): Observable<ActivityModel[]> {
-
     return this.http.get<ActivityModel[]>(this.endpoint);
   }
 
