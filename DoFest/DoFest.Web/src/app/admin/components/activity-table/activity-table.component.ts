@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
 import {AdminService } from '../../services/admin.service';
 import { ActivityModel } from 'src/app/trip/models';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,6 +11,8 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ActivityTableComponent implements OnInit {
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   constructor(
     public readonly adminService: AdminService
   ) { }
@@ -19,7 +21,7 @@ export class ActivityTableComponent implements OnInit {
     this.adminService.getActivities().subscribe( (data: ActivityModel[]) => {
       this.adminService.activityData = data;
       this.adminService.activityDataSource = new MatTableDataSource<ActivityModel>(this.adminService.activityData);
-      this.adminService.activityDataSource.paginator = this.adminService.paginator;
+      this.adminService.activityDataSource.paginator = this.paginator;
     });
 
   }

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { UserModel } from '../../models/user/user';
 import {AdminService } from '../../services/admin.service';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-table',
@@ -14,6 +15,8 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class UserTableComponent implements OnInit {
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   constructor(
     public readonly adminService: AdminService
   ) { }
@@ -22,7 +25,7 @@ export class UserTableComponent implements OnInit {
     this.adminService.getUsers().subscribe((data: UserModel[]) =>{
       this.adminService.userData = data;
       this.adminService.userDataSource = new MatTableDataSource<UserModel>(this.adminService.userData);
-      this.adminService.userDataSource.paginator = this.adminService.paginator;
+      this.adminService.userDataSource.paginator = this.paginator;
     });
   }
 }

@@ -1,10 +1,9 @@
-import { Injectable, ViewChild } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserModel } from '../models/user/user';
 import { Observable } from 'rxjs';
 import { CityModel } from 'src/app/shared/models/city.model';
 import { CitiesService } from 'src/app/shared/services';
-import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { ActivityModel } from 'src/app/trip/models';
 import { ActivityService } from 'src/app/trip/services/activity.service';
@@ -34,9 +33,6 @@ export class AdminService {
   activityTypeDisplayedColumns: string[] = ['Id', 'Name'];
   activityTypeData: ActivityTypeModel[] = null;
   activityTypeDataSource: MatTableDataSource<ActivityTypeModel> = null;
-
-
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   private backendEndpoint: string = "https://localhost:5001/api/v1/"
   private endpoints = {
