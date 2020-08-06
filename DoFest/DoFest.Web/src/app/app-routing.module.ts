@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../app/guards/auth.guard';
-
-import { TripDetailsComponent } from './trip/trip-details/trip-details.component';
-import { TripListComponent } from "./trip/activity-list/activity-list.component";
+import { ActivityListComponent } from './activity/activity-list/activity-list.component';
 
 const routes: Routes = [
   {
@@ -16,7 +14,8 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then(
         (m) => m.AdminModule
-      )
+      ),
+    canActivate: [AuthGuard]
   },
   {
     path: 'authentication',
@@ -25,19 +24,7 @@ const routes: Routes = [
         (m) => m.AuthenticationModule
       )
   },
-  {
-    path: 'list',
-    loadChildren: () =>
-      import('./trip/trip.module').then(
-        (m) => m.TripModule
-      )
-  },
-  {
-    path: 'create-trip',
-    component: TripDetailsComponent
-  },
-  { path: 'list', component: TripListComponent, canActivate:[AuthGuard] },
-  { path: 'create-trip', component: TripDetailsComponent },
+  { path: 'list', component: ActivityListComponent, canActivate:[AuthGuard] },
   {
     path: 'notifications',
     loadChildren: () =>
@@ -53,8 +40,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'trip',
-    loadChildren: () => import('./trip/trip.module').then((m) => m.TripModule),
+    path: 'activity',
+    loadChildren: () => import('./activity/activity.module').then((m) => m.ActivityModule),
   },
 ];
 

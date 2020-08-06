@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { CityModel } from 'src/app/shared/models/city.model';
 import { CitiesService } from 'src/app/shared/services';
 import {MatTableDataSource} from '@angular/material/table';
-import { ActivityModel } from 'src/app/trip/models';
-import { ActivityService } from 'src/app/trip/services/activity.service';
+import { ActivityModel } from 'src/app/activity/models';
+import { ActivityService } from 'src/app/activity/services/activity.service';
 import {ActivityTypeModel} from "../models/activityType/activityType";
 
 @Injectable({

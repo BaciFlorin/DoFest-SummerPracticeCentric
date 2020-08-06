@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {AdminService } from '../../services/admin.service';
-import { ActivityModel } from 'src/app/trip/models';
+import { ActivityModel } from 'src/app/activity/models';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
