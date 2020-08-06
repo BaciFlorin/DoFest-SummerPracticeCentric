@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { ActivityModel } from '../models';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,13 +15,14 @@ export class ActivityService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': "Bearer " + localStorage.getItem('userToken')
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
     })
   };
 
   constructor(private readonly http: HttpClient) { }
 
   getAll(): Observable<ActivityModel[]> {
+
     return this.http.get<ActivityModel[]>(this.endpoint, this.httpOptions);
   }
 
