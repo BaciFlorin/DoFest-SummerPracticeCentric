@@ -1,15 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ActivityTypeModel } from '../models/activityType.model';
-
+import { BucketListModel } from '../models/bucketList.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActivityTypeService {
+export class BucketListService {
 
-  private endpoint: string = 'http://192.168.100.10:5002/api/v1/activities/types';
+  private endpoint: string = 'http://192.168.100.10:5002/api/v1/bucketlists';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -20,12 +19,16 @@ export class ActivityTypeService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getAll(): Observable<ActivityTypeModel[]> {
-    console.log(this.httpOptions);
-    return this.http.get<ActivityTypeModel[]>(this.endpoint, this.httpOptions);
+  getAll(): Observable<BucketListModel[]> {
+    return this.http.get<BucketListModel[]>(this.endpoint, this.httpOptions);
   }
 
-  post(activity: ActivityTypeModel): Observable<any> {
+  get(id: string): Observable<BucketListModel> {
+    return this.http.get<BucketListModel>(`${this.endpoint}/${id}`, this.httpOptions);
+  }
+
+  post(activity: BucketListModel): Observable<any> {
     return this.http.post<any>(this.endpoint, activity, this.httpOptions);
   }
+
 }

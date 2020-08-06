@@ -9,12 +9,14 @@
     <select class="form-control" #t (change)="changeCity(t.value)">
       <option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</option>
     </select>
+    <label>Type of activity</label>
     <select class="form-control" #c (change)="changeActType(c.value)">
       <option *ngFor="let type of activityTypes;" [value]="type.id">{{type.name}}</option>
     </select>
+    <input type="submit" value="Apply filters" (click)="applyFilters()" />
 
     <div class="cards">
-        <app-tile *ngFor="let trip of filtredListActivities" label="{{trip.name}}" (click)="goToTrip(trip.id)">
+        <app-tile *ngFor="let trip of filtredListActivities" label="{{trip.name}}" (click)="goToActivity(trip.id)">
             <!-- <div class="card">{{trip.name}}</div> -->
             <div class="description">{{trip.description}}</div>
         </app-tile>

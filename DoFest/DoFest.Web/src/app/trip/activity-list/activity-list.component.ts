@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ActivityModel, ActivitiesModel } from '../models';
+import { ActivityModel } from '../models';
 import { ActivityService } from '../services/activity.service';
 import {ActivityTypeService} from '../services/activityType.service';
 import { CityModel } from '../../shared/models/city.model';
@@ -10,7 +10,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivityTypeModel } from '../models/activityType.model';
 
 @Component({
-  selector: 'app-trip-list',
+  selector: 'app-activity-list',
   templateUrl: './activity-list.component.html',
   styleUrls: ['./activity-list.component.scss'],
   providers: [ActivityService]
@@ -27,7 +27,7 @@ export class TripListComponent implements OnInit {
   constructor(
     private router: Router,
     private service: ActivityService,
-    private readonly citiesService: CitiesService,
+    private citiesService: CitiesService,
     private actTypeService: ActivityTypeService
     ) { }
 
@@ -40,33 +40,34 @@ export class TripListComponent implements OnInit {
     this.citiesService.getCities().subscribe((data) => {
       this.cities = data;
       this.formGroup.get('city').setValue(this.cities[0].id);
+      this.selectedCity = data[1].id;
     });
 
     this.actTypeService.getAll().subscribe((data) => {
       this.activityTypes = data;
-    });
+      this.selectedType = data[1].id;
+     });
 
   }
 
-  goToTrip(id: string): void {
+  goToActivity(id: string): void {
     this.router.navigate([`/trip/details/${id}`]);
   }
 
   public changeCity(city: string): void {
-    this.selectedCity = city;
-
-    var actArray = this.tripList.filter(s => s.cityId === this.selectedCity);
-
-    this.filtredListActivities = actArray;
-
+    this.selectedCity = city; // ce criteriu a selectat user-ul
   }
 
   public changeActType(type: string): void{
-    this.selectedType = type;
+    this.selectedType = type; // ce criteriu a selectat user-ul
+  }
 
-    var actArray = this.tripList.filter(s => s.activityTypeId === this.selectedType);
+  public applyFilters(): void{
+    const filteredByCity = this.tripList.filter(s => s.cityId === this.selectedCity);
 
-    this.filtredListActivities = actArray;
+    const filteredByActivityType = filteredByCity.filter(s => s.activityTypeId === this.selectedType);
+
+    this.filtredListActivities = filteredByActivityType;
   }
 
 }

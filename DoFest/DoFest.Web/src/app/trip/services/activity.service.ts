@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { ActivityModel } from '../models';
-import { ActivitiesModel } from '../models/activities.model';
 
 
 @Injectable({
@@ -23,7 +21,6 @@ export class ActivityService {
   constructor(private readonly http: HttpClient) { }
 
   getAll(): Observable<ActivityModel[]> {
-
     return this.http.get<ActivityModel[]>(this.endpoint, this.httpOptions);
   }
 

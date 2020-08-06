@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationComponent } from './authentication/authentication/authentication.component';
 import { TripDetailsComponent } from './trip/trip-details/trip-details.component';
 import { TripListComponent } from './trip/activity-list/activity-list.component';
+import {BucketListComponent} from './trip/bucket-list/bucket-list.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
     path: 'trip',
     loadChildren: () => import('./trip/trip.module').then((m) => m.TripModule),
   },
+  { path: 'bucketLists', component : BucketListComponent },
 ];
 
 @NgModule({
