@@ -47,6 +47,7 @@ export class AuthenticationComponent implements OnInit{
       this.cities = data;
       this.formGroup.get('city').setValue(this.cities[0].id);
     });
+    localStorage.clear();
   }
 
   public setRegister(): void {
@@ -75,8 +76,7 @@ export class AuthenticationComponent implements OnInit{
         this.authenticationService.login(data).subscribe((data: HttpResponse<any>) => {
         if(data.status == 200)
         {
-          localStorage.removeItem('userToken');
-          localStorage.setItem('userToken',data.body["token"]);
+          localStorage.setItem('userToken', data.body["token"]);
           localStorage.setItem('identity', JSON.stringify(data.body));
           this.userService.username.next(data.body.username);
           this.router.navigate(['dashboard']);

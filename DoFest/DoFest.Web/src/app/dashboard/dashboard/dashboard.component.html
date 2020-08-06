@@ -11,6 +11,7 @@
   <app-tile label="Notifications"
             icon="notifications"
             (click)="goToPage('notifications')"></app-tile>
+
   <ng-container *ngIf="isAdmin()">
     <app-tile label="App management"
         icon="admin"
