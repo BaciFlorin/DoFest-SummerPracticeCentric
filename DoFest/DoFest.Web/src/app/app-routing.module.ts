@@ -43,6 +43,7 @@ const routes: Routes = [
     path: 'activity',
     loadChildren: () => import('./activity/activity.module').then((m) => m.ActivityModule),
   },
+  { path: 'bucketLists', component : BucketListComponent },
 ];
 
 @NgModule({
