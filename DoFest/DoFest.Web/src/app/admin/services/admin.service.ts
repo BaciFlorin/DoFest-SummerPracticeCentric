@@ -36,7 +36,7 @@ export class AdminService {
   activityTypeData: ActivityTypeModel[] = null;
   activityTypeDataSource: MatTableDataSource<ActivityTypeModel> = null;
 
-  private backendEndpoint: string = "https://localhost:5001/api/v1/"
+  private backendEndpoint: string = "http://192.168.0.103:5002/api/v1/"
   private endpoints = {
     "activities": this.backendEndpoint + "activities",
     "activityType": this.backendEndpoint + "activities/types",

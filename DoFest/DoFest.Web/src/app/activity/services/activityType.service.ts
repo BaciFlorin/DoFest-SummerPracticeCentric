@@ -5,22 +5,20 @@ import { Observable } from 'rxjs';
 import { ActivityModel } from '../models';
 import { ActivitiesModel } from '../models/activities.model';
 import { ActivityTypeModel } from '../models/activityType.model';
+import { RouteService } from 'src/app/shared/services';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivityTypeService {
-
-  private endpoint: string = 'https://localhost:5001/api/v1/activities/types';
-
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private readonly routeService: RouteService) { }
 
   getAll(): Observable<ActivityTypeModel[]> {
-    return this.http.get<ActivityTypeModel[]>(this.endpoint);
+    return this.http.get<ActivityTypeModel[]>(this.routeService.getRoute("activityType","get all"));
   }
 
   post(activity: ActivityTypeModel): Observable<any> {
-    return this.http.post<any>(this.endpoint, activity);
+    return this.http.post<any>(this.routeService.getRoute("activityType","add one"), activity);
   }
 }
