@@ -1,7 +1,7 @@
 export type ActivityModel = {
   activityTypeId: string;
   id?: string;
-  title: string;
+  name: string;
   cityId: string;
   description: string;
 };

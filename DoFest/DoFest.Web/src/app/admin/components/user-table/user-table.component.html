@@ -1,4 +1,12 @@
 <div class="table-container-users">
+  <mat-form-field>
+    <mat-label>Email filter</mat-label>
+    <input matInput (keyup)="applyFilterEmail($event)" #input>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Username filter</mat-label>
+    <input matInput (keyup)="applyFilterUsername($event)" #input>
+  </mat-form-field>
   <mat-table [dataSource]="adminService.userDataSource">
 
     <!-- Id Column -->

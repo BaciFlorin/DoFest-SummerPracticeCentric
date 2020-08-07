@@ -23,7 +23,15 @@ export class ActivityTableComponent implements OnInit {
       this.adminService.activityDataSource = new MatTableDataSource<ActivityModel>(this.adminService.activityData);
       this.adminService.activityDataSource.paginator = this.paginator;
     });
+  }
 
+  public applyFilterTitle(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.adminService.activityDataSource.filterPredicate = (data, filter): boolean =>{
+      console.log(data);
+      return data.name.toLowerCase().includes(filter.toLowerCase());
+    };
+    this.adminService.activityDataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

@@ -1,4 +1,8 @@
 <div class="table-container-activity-type">
+  <mat-form-field>
+    <mat-label>Name filter</mat-label>
+    <input matInput (keyup)="applyFilterName($event)" #input>
+  </mat-form-field>
   <mat-table [dataSource]="adminService.activityTypeDataSource">
 
     <!-- Id Column -->
