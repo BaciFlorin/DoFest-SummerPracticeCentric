@@ -4,4 +4,5 @@ export type ActivityModel = {
   name: string;
   cityId: string;
   description: string;
+  address: string;
 };
