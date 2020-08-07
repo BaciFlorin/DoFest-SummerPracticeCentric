@@ -69,7 +69,7 @@ export class AdminComponent implements OnInit {
       name: ""
     };
     cityModel.name = this.cityNameAddControl.value
-    this.adminService.addCity(cityModel).subscribe( (res: HttpResponse<any>) => {
+    this.adminService.addCity(cityModel).subscribe( (res) => {
 
     });
   }
