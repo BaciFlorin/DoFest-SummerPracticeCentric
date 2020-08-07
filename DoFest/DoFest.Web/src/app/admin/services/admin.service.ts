@@ -34,7 +34,7 @@ export class AdminService {
   activityTypeData: ActivityTypeModel[] = null;
   activityTypeDataSource: MatTableDataSource<ActivityTypeModel> = null;
 
-  private backendEndpoint: string = "https://localhost:5001/api/v1/"
+  private backendEndpoint: string = "http://192.168.0.103:5002/api/v1/"
   private endpoints = {
     "activities": this.backendEndpoint + "activities",
     "activityType": this.backendEndpoint + "activities/types",
@@ -42,12 +42,6 @@ export class AdminService {
     "users": this.backendEndpoint + "admin"
   };
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer " + localStorage.getItem('userToken')
-    })
-  };
 
   private httpClient: HttpClient = null;
   private cityService: CitiesService = null;
@@ -65,7 +59,7 @@ export class AdminService {
   }
 
   public getUsers(): Observable<UserModel[]>{
-    return this.httpClient.get<UserModel[]>(this.endpoints["users"] + "/users", this.httpOptions);
+    return this.httpClient.get<UserModel[]>(this.endpoints["users"] + "/users");
   }
 
   public getCities(): Observable<CityModel[]>{
@@ -77,6 +71,6 @@ export class AdminService {
   }
 
   public getActivityTypes(): Observable<ActivityTypeModel[]>{
-    return this.httpClient.get<ActivityTypeModel[]>(this.endpoints["activityType"], this.httpOptions);
+    return this.httpClient.get<ActivityTypeModel[]>(this.endpoints["activityType"]);
   }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ActivityModel } from '../models';
+import { RouteService } from 'src/app/shared/services';
 
 
 @Injectable({
@@ -10,24 +11,18 @@ import { ActivityModel } from '../models';
 })
 export class ActivityService {
 
-  private endpoint: string = 'http://192.168.0.103:5002/api/v1/activities';
-
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private readonly routeService: RouteService) { }
 
   getAll(): Observable<ActivityModel[]> {
 
-    return this.http.get<ActivityModel[]>(this.endpoint);
+    return this.http.get<ActivityModel[]>(this.routeService.getRoute("activity", "get all"));
   }
 
   get(id: string): Observable<ActivityModel> {
-    return this.http.get<ActivityModel>(`${this.endpoint}/${id}`);
+    return this.http.get<ActivityModel>(this.routeService.getRoute("activity","get one", id));
   }
 
   post(activity: ActivityModel): Observable<any> {
-    return this.http.post<any>(this.endpoint, activity);
-  }
-
-  patch(trip: ActivityModel): Observable<any> {
-    return this.http.patch<any>(`${this.endpoint}/${trip.id}`, trip);
+    return this.http.post<any>(this.routeService.getRoute("activity","add one"), activity);
   }
 }

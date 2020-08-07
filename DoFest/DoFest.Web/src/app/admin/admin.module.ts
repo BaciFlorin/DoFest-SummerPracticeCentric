@@ -31,7 +31,6 @@ import { ActivityTypeTableComponent } from './components/activity-type-table/act
     CommonModule,
     AdminRoutingModule,
     SharedModule,
-    HttpClientModule,
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
