@@ -33,6 +33,20 @@ namespace DoFest.API.Controllers
             return Ok(value);
         }
 
+        [HttpGet("/user")]
+        [Authorize]
+        public async Task<IActionResult> GetByUserId([FromRoute] Guid activityId)
+        {
+            var (_, isFailure, value, error) = await _ratingsService.Get(activityId);
+
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+
+            return Ok(value);
+        }
+
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Post([FromRoute] Guid activityId, [FromBody] CreateRatingModel model)
@@ -48,33 +62,6 @@ namespace DoFest.API.Controllers
 
         }
 
-        [HttpDelete("{ratingId}")]
-        [Authorize]
-        public async Task<IActionResult> Delete([FromRoute] Guid activityId, [FromRoute] Guid ratingId)
-        {
-            var (_, isFailure, value, error) = await _ratingsService.Delete(activityId, ratingId);
 
-            if (isFailure)
-            {
-                return BadRequest(error);
-            }
-
-            return NoContent();
-        }
-
-        [HttpPatch("{ratingId}")]
-        [Authorize]
-        public async Task<IActionResult> Patch([FromRoute] Guid activityId, [FromRoute] Guid ratingId,
-            [FromBody] CreateRatingModel model)
-        {
-            var (_, isFailure, value, error) = await this._ratingsService.Update(activityId, ratingId, model);
-
-            if (isFailure)
-            {
-                return BadRequest(error);
-            }
-
-            return NoContent();
-        }
     }
 }
