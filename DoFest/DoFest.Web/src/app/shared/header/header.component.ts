@@ -29,8 +29,7 @@ export class HeaderComponent {
 
   public logout(): void {
     this.router.navigate(['authentication']);
-    localStorage.removeItem('userToken');
-    localStorage.removeItem('identity');
+    sessionStorage.clear();
   }
 
   public onProfileClick(){

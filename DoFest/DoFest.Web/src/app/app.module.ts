@@ -12,7 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
 import { ActivityModule } from './activity/activity.module';
 import { AdminGuard } from './guards/admin.guard';
-
+import { BucketlistModule } from './bucketlist/bucketlist.module';
+import { MatLabel, MatFormField } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +28,7 @@ import { AdminGuard } from './guards/admin.guard';
     ActivityModule,
     JwtModule.forRoot({
       config:{
-        tokenGetter: () => localStorage.getItem('userToken'),
+        tokenGetter: () => sessionStorage.getItem('userToken'),
         allowedDomains: [],
         disallowedRoutes:[]
       }

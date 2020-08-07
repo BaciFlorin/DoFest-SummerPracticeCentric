@@ -105,3 +105,23 @@
   padding: 10px;
 }
 
+
+@media (max-width: 900px) {
+
+  .authentication-container img {
+    display: none;
+  }
+
+  .authentication-content {
+    width: 90%;
+  }
+
+  .authentication-container .authentication-content input {
+    width: 90%;
+  }
+
+  .authentication-container .authentication-content span {
+    width: 90%;
+  }
+}
+

@@ -9,7 +9,7 @@ export class AuthorizationInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const userToken = localStorage.getItem("userToken");
+    const userToken = sessionStorage.getItem("userToken");
     if(userToken)
     {
       const authReq = req.clone({

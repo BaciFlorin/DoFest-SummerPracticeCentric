@@ -50,7 +50,7 @@ export class AuthenticationComponent implements OnInit{
       this.cities = data;
       this.formGroup.get('city').setValue(this.cities[0].id);
     });
-    localStorage.clear();
+    sessionStorage.clear();
   }
 
   public setRegister(): void {
@@ -79,10 +79,8 @@ export class AuthenticationComponent implements OnInit{
         this.authenticationService.login(data).subscribe((data: HttpResponse<any>) => {
         if(data.status == 200)
         {
-          localStorage.setItem('userToken', data.body["token"]);
-          let decodat = this.tokenHelper.decodeToken(data.body["token"]);
-          console.log(decodat);
-          localStorage.setItem('identity', JSON.stringify(data.body));
+          sessionStorage.setItem('userToken', data.body["token"]);
+          sessionStorage.setItem('identity', JSON.stringify(data.body));
           this.userService.username.next(data.body.username);
           this.router.navigate(['dashboard']);
         }

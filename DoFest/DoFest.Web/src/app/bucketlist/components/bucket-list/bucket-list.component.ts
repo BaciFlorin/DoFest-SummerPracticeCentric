@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { BucketListModel } from '../models/bucketList.model';
-import { BucketListService} from '../services/bucketList.service';
+import { BucketListModel } from '../../../bucketlist/models/bucketList.model';
+import { BucketListService} from '../../../bucketlist/services/bucketList.service';
 
 @Component({
   selector: 'app-bucket-list',
@@ -26,11 +26,6 @@ export class BucketListComponent implements OnInit {
   }
 
   goToBucket(id: string): void {
-    this.router.navigate([`/trip/details/${id}`]);
+    this.router.navigate([`bucketlists/${id}`]);
   }
 }
-
-
-
-
-

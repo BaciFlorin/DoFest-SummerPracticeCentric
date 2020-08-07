@@ -8,7 +8,7 @@ export class AdminGuard implements CanActivate{
     constructor(private router: Router, private helper: JwtHelperService) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | import("@angular/router").UrlTree | import("rxjs").Observable<boolean | import("@angular/router").UrlTree> | Promise<boolean | import("@angular/router").UrlTree> {
-        const userToken = localStorage.getItem('userToken');
+        const userToken = sessionStorage.getItem('userToken');
         if(userToken != undefined)
         {
             let decodedToken = this.helper.decodeToken(userToken);

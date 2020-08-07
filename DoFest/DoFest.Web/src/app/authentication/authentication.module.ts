@@ -15,7 +15,6 @@ import { MatInputModule } from '@angular/material/input';
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
-    HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
     MatFormFieldModule,

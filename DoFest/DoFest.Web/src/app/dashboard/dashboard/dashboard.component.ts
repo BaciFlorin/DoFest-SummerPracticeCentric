@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,8 +15,14 @@ export class DashboardComponent {
     this.router.navigate([page]);
   }
 
+  public goToYourBucketList()
+  {
+    let bucketListId = JSON.parse(sessionStorage.getItem('identity'))["bucketListId"];
+    this.router.navigate(["bucketlists",bucketListId]);
+  }
+
   public isAdmin():boolean{
-    var decodedToken = this.helper.decodeToken(localStorage.getItem("userToken"));
+    var decodedToken = this.helper.decodeToken(sessionStorage.getItem("userToken"));
     if("isAdmin" in decodedToken)
     {
       return true;
