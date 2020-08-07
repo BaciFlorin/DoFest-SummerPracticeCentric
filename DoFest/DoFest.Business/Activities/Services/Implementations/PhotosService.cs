@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CSharpFunctionalExtensions;
+using DoFest.Business.Activities.Models.Content.Comment;
 using DoFest.Business.Activities.Models.Content.Photos;
 using DoFest.Business.Activities.Services.Interfaces;
+using DoFest.Business.Errors;
 using DoFest.Entities.Activities.Content;
+using DoFest.Entities.Authentication.Notification;
 using DoFest.Persistence.Activities;
+using DoFest.Persistence.Authentication;
+using DoFest.Persistence.Notifications;
 using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
@@ -14,59 +21,113 @@ namespace DoFest.Business.Activities.Services.Implementations
     public sealed class PhotosService : IPhotosService
     {
         private readonly IMapper _mapper;
-        private readonly IActivitiesRepository _repository;
-        private readonly IHttpContextAccessor _accessor;      //ajuta la extragerea userId-ului
+        private readonly IActivitiesRepository _activitiesRepository;
+        private readonly IHttpContextAccessor _accessor;
+        private readonly INotificationRepository _notificationRepository;
+        private readonly IUserRepository _userRepository;
 
-        public PhotosService(IActivitiesRepository repository, IMapper mapper, IHttpContextAccessor accessor)
+        public PhotosService(IActivitiesRepository activitiesRepository, IMapper mapper, IHttpContextAccessor accessor,
+            INotificationRepository notificationRepository, IUserRepository userRepository)
         {
-            _repository = repository;
+            _activitiesRepository = activitiesRepository;
             _mapper = mapper;
             _accessor = accessor;
+            _notificationRepository = notificationRepository;
+            _userRepository = userRepository;
         }
 
-        public async Task<IEnumerable<PhotoModel>> Get(Guid activityId)
+        public async Task<Result<IEnumerable<PhotoModel>, Error>> Get(Guid activityId)
         {
+            var activityExists = (await _activitiesRepository.GetById(activityId)) != null;
+            if (!activityExists)
+            {
+                return Result.Failure<IEnumerable<PhotoModel>, Error>(ErrorsList.UnavailableActivity);
+            }
 
-            var activity = await _repository.GetByIdWithPhotos(activityId);
+            var activity = await _activitiesRepository.GetByIdWithPhotos(activityId);
+            var photos = activity.Photos;
 
-            return _mapper.Map<IEnumerable<PhotoModel>>(activity.Photos);
+            var photosModel = new List<PhotoModel>();
 
+            foreach (var photo in photos)
+            {
+                var user = await _userRepository.GetById(photo.UserId);
+
+                photosModel.Add(PhotoModel.Create(photo.Id, photo.ActivityId,
+                    photo.UserId, user.Username, photo.Image));
+            }
+
+            return Result.Success<IEnumerable<PhotoModel>, Error>(photosModel);
         }
 
-        public async Task<PhotoModel> Add(Guid activityId, CreatePhotoModel model)
+        public async Task<Result<PhotoModel, Error>> Add(Guid activityId, CreatePhotoModel model)
         {
-            //va fi folosit (impreuna cu [JsonIgnore] asupra campului UserId din model) pentru a extrage user-ul logat
-
-
-            //model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
 
             using var stream = new MemoryStream();
             await model.Image.CopyToAsync(stream);
 
             var photo = new Photo
             {
-                Image = stream.ToArray()
+                Image = stream.ToArray(),
+                UserId= model.UserId
             };
 
-
-            var activity = await _repository.GetById(activityId);
+            var activity = await _activitiesRepository.GetById(activityId);
+            if (activity == null)
+            {
+                return Result.Failure<PhotoModel, Error>(ErrorsList.UnavailableActivity);
+            }
 
             activity.AddPhoto(photo);
-            _repository.Update(activity);
+            _activitiesRepository.Update(activity);
 
-            await _repository.SaveChanges();
+            await _activitiesRepository.SaveChanges();
 
-            return _mapper.Map<PhotoModel>(photo);
+            var user = await _userRepository.GetById(photo.UserId);
+            var notification = new Notification()
+            {
+                ActivityId = activityId,
+                Date = DateTime.Now,
+                Description = $"{user.Username} has added a new photo to activity {activity.Name}."
+            };
+
+            await _notificationRepository.Add(notification);
+            await _notificationRepository.SaveChanges();
+
+            return Result.Success<PhotoModel, Error>(PhotoModel.Create(
+                photo.Id, photo.ActivityId, photo.UserId, user.Username, photo.Image));
         }
 
-        public async Task Delete(Guid activityId, Guid photoId)
+        public async Task<Result<string, Error>> Delete(Guid activityId, Guid photoId)
         {
-            var activity = await _repository.GetByIdWithPhotos(activityId);
+            var activityExists = (await _activitiesRepository.GetById(activityId)) != null;
+            if (!activityExists)
+            {
+                return Result.Failure<string, Error>(ErrorsList.UnavailableActivity);
+            }
+
+            var activity = await _activitiesRepository.GetByIdWithPhotos(activityId);
+          
+            var photo = activity.Photos.FirstOrDefault(p => p.Id == photoId);
+
+            if (photo == null)
+            {
+                return Result.Failure<string, Error>(ErrorsList.UnavailablePhoto);
+            }
+
+            var loggedUserId = Guid.Parse(this._accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            if (loggedUserId != photo.UserId)
+            {
+                return Result.Failure<string, Error>(ErrorsList.DeleteNotAuthorized);
+            }
 
             activity.RemovePhoto(photoId);
-            _repository.Update(activity);
+            _activitiesRepository.Update(activity);
 
-            await _repository.SaveChanges();
+            await _activitiesRepository.SaveChanges();
+
+            return Result.Success<string, Error>("Photo deleted successfully");
         }
     }
 }

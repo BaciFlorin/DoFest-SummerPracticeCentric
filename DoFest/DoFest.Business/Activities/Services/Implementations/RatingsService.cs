@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Models.Content.Ratings;
 using DoFest.Business.Activities.Services.Interfaces;
+using DoFest.Business.Errors;
 using DoFest.Entities.Activities.Content;
+using DoFest.Entities.Authentication.Notification;
 using DoFest.Persistence.Activities;
+using DoFest.Persistence.Authentication;
+using DoFest.Persistence.Notifications;
 using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
@@ -14,51 +20,69 @@ namespace DoFest.Business.Activities.Services.Implementations
     {
 
         private readonly IMapper _mapper;
-        private readonly IActivitiesRepository _repository;
-        private readonly IHttpContextAccessor _accessor;        //ajuta la extragerea userId-ului
+        private readonly IActivitiesRepository _activitiesRepository;
+        private readonly IHttpContextAccessor _accessor;
+        private readonly INotificationRepository _notificationRepository;
+        private readonly IUserRepository _userRepository;
 
-        public RatingsService(IMapper mapper, IActivitiesRepository repository, IHttpContextAccessor accessor)
+        public RatingsService(IMapper mapper, IActivitiesRepository activitiesRepository, IHttpContextAccessor accessor,
+            INotificationRepository notificationRepository, IUserRepository userRepository)
         {
             _mapper = mapper;
-            _repository = repository;
+            _activitiesRepository = activitiesRepository;
             _accessor = accessor;
+            _notificationRepository = notificationRepository;
+            _userRepository = userRepository;
         }
-        public async Task<IEnumerable<RatingModel>> Get(Guid activityId)
+        public async Task<Result<IEnumerable<RatingModel>, Error>> Get(Guid activityId)
         {
-            var activity = await _repository.GetByIdWithRatings(activityId);
+            var activityExists = (await _activitiesRepository.GetById(activityId)) != null;
+            if (!activityExists)
+            {
+                return Result.Failure<IEnumerable<RatingModel>, Error>(ErrorsList.UnavailableActivity);
+            }
 
-            return _mapper.Map<IEnumerable<RatingModel>>(activity.Ratings);
+            var activity = await _activitiesRepository.GetByIdWithRatings(activityId);
+
+            return Result.Success<IEnumerable<RatingModel>, Error>(
+                _mapper.Map<IEnumerable<RatingModel>>(activity.Ratings));
         }
 
-        public async Task<RatingModel> Add(Guid activityId, CreateRatingModel model)
+       
+        public async Task<Result<RatingModel, Error>> Add(Guid activityId, CreateRatingModel model)
         {
 
-            //va fi folosit (impreuna cu [JsonIgnore] asupra campului UserId din model) pentru a extrage user-ul logat
+            model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
 
+            var activity = await _activitiesRepository.GetById(activityId);
 
-            //  model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            if (activity == null)
+            {
+                return Result.Failure<RatingModel, Error>(ErrorsList.UnavailableActivity);
+            }
 
-            var activity = await _repository.GetById(activityId);
             var rating = _mapper.Map<Rating>(model);
 
             activity.AddRating(rating);
 
-            _repository.Update(activity);
+            _activitiesRepository.Update(activity);
 
-            await _repository.SaveChanges();
+            await _activitiesRepository.SaveChanges();
 
-            return _mapper.Map<RatingModel>(rating);
+            var user = await _userRepository.GetById(rating.UserId);
+            var notification = new Notification()
+            {
+                ActivityId = activityId,
+                Date = DateTime.Now,
+                Description = $"{user.Username} has rated activity {activity.Name} with {rating.Stars} stars."
+            };
+
+            await _notificationRepository.Add(notification);
+            await _notificationRepository.SaveChanges();
+
+            return Result.Success<RatingModel, Error>(_mapper.Map<RatingModel>(rating));
         }
 
-        public async Task Delete(Guid activityId, Guid ratingId)
-        {
-            var activity = await _repository.GetByIdWithRatings(activityId);
-
-            activity.RemoveRating(ratingId);
-
-            _repository.Update(activity);
-
-            await _repository.SaveChanges();
-        }
+        
     }
 }

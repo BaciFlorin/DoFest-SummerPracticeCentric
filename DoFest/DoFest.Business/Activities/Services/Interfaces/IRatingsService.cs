@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Models.Content.Ratings;
+using DoFest.Business.Errors;
 
 namespace DoFest.Business.Activities.Services.Interfaces
 {
     public interface IRatingsService
     {
-        Task<IEnumerable<RatingModel>> Get(Guid activityId);
+        Task<Result<IEnumerable<RatingModel>, Error>> Get(Guid activityId);
 
-        Task<RatingModel> Add(Guid activityId, CreateRatingModel model);
 
-        Task Delete(Guid activityId, Guid ratingId);
+        Task<Result<RatingModel, Error>> Add(Guid activityId, CreateRatingModel model);
+
 
     }
 }

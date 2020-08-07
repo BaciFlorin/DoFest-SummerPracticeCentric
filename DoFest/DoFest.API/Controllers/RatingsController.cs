@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Models.Content.Ratings;
 using DoFest.Business.Activities.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoFest.API.Controllers
@@ -18,28 +20,48 @@ namespace DoFest.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Get([FromRoute] Guid activityId)
         {
-            var ratings = await _ratingsService.Get(activityId);
+            var (_, isFailure, value, error) = await _ratingsService.Get(activityId);
 
-            return Ok(ratings);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+
+            return Ok(value);
+        }
+
+        [HttpGet("/user")]
+        [Authorize]
+        public async Task<IActionResult> GetByUserId([FromRoute] Guid activityId)
+        {
+            var (_, isFailure, value, error) = await _ratingsService.Get(activityId);
+
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+
+            return Ok(value);
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromRoute] Guid activityId, [FromBody] CreateRatingModel model)
         {
-            var result = await _ratingsService.Add(activityId, model);
+            var (_, isFailure, value, error) = await _ratingsService.Add(activityId, model);
 
-            return Created(result.Id.ToString(), null);
+            if (isFailure)
+            {
+                return BadRequest(error);
+            }
+
+            return Created(value.Id.ToString(), null);
 
         }
 
-        [HttpDelete("{ratingId}")]
-        public async Task<IActionResult> Delete([FromRoute] Guid activityId, [FromRoute] Guid ratingId)
-        {
-            await _ratingsService.Delete(activityId, ratingId);
 
-            return NoContent();
-        }
     }
 }
