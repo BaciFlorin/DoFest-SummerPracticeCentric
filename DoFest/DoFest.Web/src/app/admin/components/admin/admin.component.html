@@ -6,7 +6,7 @@
       <mat-tab-group mat-align-tabs="center" fxFill>
         <!-- The user tab -->
         <mat-tab label="Users">
-          <div class="content-tab-users" fxLayout="row" fxLayoutAlign="center none" >
+          <div class="content-tab-users" fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="center none" >
             <app-user-table fxFlex="65"></app-user-table>
             <div class="users-tab-content" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center" >
               <mat-expansion-panel>
@@ -33,7 +33,7 @@
 
         <!-- The city tab -->
         <mat-tab label="Cities">
-          <div class="content-tab-cities" fxLayout="row" fxLayoutAlign="space-around center" >
+          <div class="content-tab-cities" fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="space-around center" >
             <app-city-table fxFlex="60"></app-city-table>
             <div class="cities-tab-content" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center" >
               <mat-expansion-panel>
@@ -76,7 +76,7 @@
 
         <!-- The activities tab -->
         <mat-tab label="Activities">
-          <div class="content-tab-activities" fxLayout="row" fxLayoutAlign="space-around center" >
+          <div class="content-tab-activities" fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="space-around center" >
             <app-activity-table fxFlex="60"></app-activity-table>
             <div class="activities-tab-content" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center" >
               <mat-expansion-panel>
@@ -152,7 +152,7 @@
 
         <!-- The activityTypes tab -->
         <mat-tab label="ActivityTypes">
-          <div class="content-tab-activitytypes" fxLayout="row" fxLayoutAlign="space-around center" >
+          <div class="content-tab-activitytypes" fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="space-around center" >
             <app-activity-type-table fxFlex="60"></app-activity-type-table>
             <div class="activitytypes-tab-content" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center" >
               <mat-expansion-panel>

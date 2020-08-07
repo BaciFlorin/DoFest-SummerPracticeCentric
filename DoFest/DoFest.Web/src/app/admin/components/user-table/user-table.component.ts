@@ -9,7 +9,7 @@ import { UserTypeModel } from 'src/app/shared/models/city.model';
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.css'],
+  styleUrls: ['./user-table.component.scss'],
   providers: [
     AdminService
   ]
@@ -23,17 +23,19 @@ export class UserTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Request the usertypes from the backend
     this.adminService.getUserTypes().subscribe((data: UserTypeModel[]) =>{
       this.adminService.userTypeData = data;
-    });
-    this.adminService.getUsers().subscribe((data: UserModel[]) =>{
-      this.adminService.userData = data;
-      this.adminService.userData.map(elementUser => {
-        const obj = this.adminService.userTypeData.find( o => o.id == elementUser.userTypeId)
-        elementUser.userType = obj.name;
+      // When the usertype data is received request the user data
+      this.adminService.getUsers().subscribe((data: UserModel[]) =>{
+        this.adminService.userData = data;
+        this.adminService.userData.map(elementUser => {
+          const obj = this.adminService.userTypeData.find( o => o.id == elementUser.userTypeId)
+          elementUser.userType = obj.name;
+        });
+        this.adminService.userDataSource = new MatTableDataSource<UserModel>(this.adminService.userData);
+        this.adminService.userDataSource.paginator = this.paginator;
       });
-      this.adminService.userDataSource = new MatTableDataSource<UserModel>(this.adminService.userData);
-      this.adminService.userDataSource.paginator = this.paginator;
     });
   }
 

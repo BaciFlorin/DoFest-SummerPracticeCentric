@@ -11,7 +11,7 @@ import { ActivityTypeModel } from 'src/app/activity/models/activityType.model';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css'],
+  styleUrls: ['./admin.component.scss'],
   providers: [
     AdminService
   ]

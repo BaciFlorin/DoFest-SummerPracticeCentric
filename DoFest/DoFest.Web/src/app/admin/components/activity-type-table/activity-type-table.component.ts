@@ -7,7 +7,7 @@ import {MatPaginator} from '@angular/material/paginator';
 @Component({
   selector: 'app-activity-type-table',
   templateUrl: './activity-type-table.component.html',
-  styleUrls: ['./activity-type-table.component.css']
+  styleUrls: ['./activity-type-table.component.scss']
 })
 export class ActivityTypeTableComponent implements OnInit {
 
