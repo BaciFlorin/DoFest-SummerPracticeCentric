@@ -13,7 +13,6 @@ export class AuthGuard implements CanActivate{
         {
             this.router.navigate(['authentication']);
             return false;
-            
         }
         if(this.helper.isTokenExpired(userToken))
         {

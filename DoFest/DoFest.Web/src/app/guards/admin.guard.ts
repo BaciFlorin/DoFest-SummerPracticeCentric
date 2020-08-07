@@ -11,7 +11,12 @@ export class AdminGuard implements CanActivate{
         const userToken = localStorage.getItem('userToken');
         if(userToken != undefined)
         {
-            
+            let decodedToken = this.helper.decodeToken(userToken);
+            if("isAdmin" in decodedToken)
+            {
+                return true;
+            }
+            return false;
         }
         return false;
     }

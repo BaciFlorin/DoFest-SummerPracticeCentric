@@ -1,9 +1,13 @@
-<h1>Notifications</h1>
-
 <div class="notifications-container">
   <img src="assets/images/notifications.svg">
   <ul>
-    <li>Notification 1</li>
-    <li>Notification 2</li>
+    <li *ngFor="let notification of notifications;"><img src="assets/images/notification.png" class="notification-image">
+      <div class="notification-time">
+        {{getPromptDate(notification.date)}}
+      </div>
+      <div class="notification-content">
+        {{notification.description}}
+      </div>
+    </li>
   </ul>
 </div>
