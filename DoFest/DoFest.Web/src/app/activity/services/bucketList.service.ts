@@ -2,33 +2,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BucketListModel } from '../models/bucketList.model';
+import { RouteService } from 'src/app/shared/services';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BucketListService {
 
-  private endpoint: string = 'http://192.168.100.10:5002/api/v1/bucketlists';
-
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
-    })
-  };
-
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private readonly routeService: RouteService) { }
 
   getAll(): Observable<BucketListModel[]> {
-    return this.http.get<BucketListModel[]>(this.endpoint, this.httpOptions);
+    return this.http.get<BucketListModel[]>(this.routeService.getRoute("bucketlist", "get all"));
   }
 
   get(id: string): Observable<BucketListModel> {
-    return this.http.get<BucketListModel>(`${this.endpoint}/${id}`, this.httpOptions);
+    return this.http.get<BucketListModel>(this.routeService.getRoute("bucketlist", "get one", id));
   }
-
-  post(activity: BucketListModel): Observable<any> {
-    return this.http.post<any>(this.endpoint, activity, this.httpOptions);
-  }
-
 }

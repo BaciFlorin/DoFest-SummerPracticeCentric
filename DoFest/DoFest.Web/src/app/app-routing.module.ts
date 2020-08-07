@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../app/guards/auth.guard';
+import { AdminGuard } from '../app/guards/admin.guard';
 import { ActivityListComponent } from './activity/activity-list/activity-list.component';
+import { BucketListComponent } from './activity/bucket-list/bucket-list.component';
 
 const routes: Routes = [
   {
@@ -15,7 +17,7 @@ const routes: Routes = [
       import('./admin/admin.module').then(
         (m) => m.AdminModule
       ),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'authentication',
@@ -43,7 +45,7 @@ const routes: Routes = [
     path: 'activity',
     loadChildren: () => import('./activity/activity.module').then((m) => m.ActivityModule),
   },
-  { path: 'bucketLists', component : BucketListComponent },
+  { path: 'bucketLists', component : BucketListComponent, canActivate:[AuthGuard]},
 ];
 
 @NgModule({

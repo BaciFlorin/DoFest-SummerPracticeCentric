@@ -22,7 +22,6 @@ export class BucketListComponent implements OnInit {
   public ngOnInit(): void {
     this.service.getAll().subscribe((data: BucketListModel[]) => {
       this.bucketList = data;
-      console.log("am ajuns aici");
     });
   }
 

@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
 import { ActivityModule } from './activity/activity.module';
+import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ActivityModule } from './activity/activity.module';
   ],
   providers: [
     AuthGuard,
+    AdminGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationInterceptor,
