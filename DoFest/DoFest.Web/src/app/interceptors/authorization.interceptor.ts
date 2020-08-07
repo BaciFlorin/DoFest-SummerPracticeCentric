@@ -2,13 +2,12 @@ import {Injectable} from '@angular/core';
 import {HttpEvent, HttpInterceptor, HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import { HttpHandler, HttpRequest } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthorizationInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}
-  
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const userToken = localStorage.getItem("userToken");
     if(userToken)

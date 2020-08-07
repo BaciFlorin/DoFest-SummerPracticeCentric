@@ -28,4 +28,20 @@ export class UserTableComponent implements OnInit {
       this.adminService.userDataSource.paginator = this.paginator;
     });
   }
+
+  public applyFilterEmail(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.adminService.userDataSource.filterPredicate = (data, filter): boolean =>{
+      return data.email.toLowerCase().includes(filter.toLowerCase());
+    };
+    this.adminService.userDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  public applyFilterUsername(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.adminService.userDataSource.filterPredicate = (data, filter): boolean =>{
+      return data.username.toLowerCase().includes(filter.toLowerCase());
+    };
+    this.adminService.userDataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

@@ -25,4 +25,12 @@ export class ActivityTypeTableComponent implements OnInit {
     });
   }
 
+  public applyFilterName(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.adminService.activityTypeDataSource.filterPredicate = (data, filter): boolean =>{
+      return data.name.toLowerCase().includes(filter.toLowerCase());
+    };
+    this.adminService.activityTypeDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }

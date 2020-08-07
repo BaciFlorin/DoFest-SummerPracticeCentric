@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { SharedModule } from '../shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -18,6 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { CityTableComponent } from './components/city-table/city-table.component';
 import { ActivityTableComponent } from './components/activity-table/activity-table.component';
 import { ActivityTypeTableComponent } from './components/activity-type-table/activity-type-table.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { ActivityTypeTableComponent } from './components/activity-type-table/act
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

@@ -7,7 +7,7 @@
         <!-- The user tab -->
         <mat-tab label="Users">
           <div class="content-tab-users" fxLayout="row" fxLayoutAlign="center none" >
-            <app-user-table fxFlex="70"></app-user-table>
+            <app-user-table fxFlex="65"></app-user-table>
             <div class="users-tab-content" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center" >
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -22,15 +22,9 @@
                 <div fxLayout="column" fxLayoutAlign="space-evenly center">
                   <mat-form-field class="example-full-width">
                     <mat-label>UserId</mat-label>
-                    <input matInput placeholder="Type a userId">
+                    <input matInput placeholder="Type a userId" type="text" [formControl]="userTypeControl">
                   </mat-form-field>
-                  <mat-form-field>
-                    <mat-select>
-                      <mat-option>
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <button mat-raised-button color="primary">Update</button>
+                  <button mat-raised-button color="primary" (click)="updateUserType()">Update</button>
                 </div>
               </mat-expansion-panel>
             </div>
@@ -54,30 +48,9 @@
                 <div fxLayout="column" fxLayoutAlign="space-evenly center">
                   <mat-form-field class="example-full-width">
                     <mat-label>CityId</mat-label>
-                    <input matInput placeholder="Type a cityId">
+                    <input matInput placeholder="Type a cityId" type="text" [formControl]="cityIdDeleteControl">
                   </mat-form-field>
-                  <button mat-raised-button color="primary">Delete</button>
-                </div>
-              </mat-expansion-panel>
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Update City
-                  </mat-panel-title>
-                  <mat-panel-description>
-                    <mat-icon aria-hidden="false">location_city</mat-icon>
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-                <div fxLayout="column" fxLayoutAlign="space-evenly center">
-                  <mat-form-field>
-                    <mat-label>CityId</mat-label>
-                    <input matInput placeholder="Type a cityId">
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>City name</mat-label>
-                    <input matInput placeholder="Type a city name">
-                  </mat-form-field>
-                  <button mat-raised-button color="primary">Update</button>
+                  <button mat-raised-button color="primary" (click)="deleteCity()">Delete</button>
                 </div>
               </mat-expansion-panel>
               <mat-expansion-panel>
@@ -92,9 +65,9 @@
                 <div fxLayout="column" fxLayoutAlign="space-evenly center">
                   <mat-form-field class="example-full-width">
                     <mat-label>City name</mat-label>
-                    <input matInput placeholder="Type a new city name">
+                    <input matInput placeholder="Type a new city name" type="text" [formControl]="cityNameAddControl">
                   </mat-form-field>
-                  <button mat-raised-button color="primary">Add</button>
+                  <button mat-raised-button color="primary" (click)="addCity()">Add</button>
                 </div>
               </mat-expansion-panel>
             </div>
@@ -118,9 +91,9 @@
                 <div fxLayout="column" fxLayoutAlign="space-evenly center">
                   <mat-form-field class="example-full-width">
                     <mat-label>ActivityId</mat-label>
-                    <input matInput placeholder="Type activityId">
+                    <input matInput placeholder="Type activityId" type="text" [formControl]="activityDeleteControl">
                   </mat-form-field>
-                  <button mat-raised-button color="primary">Delete</button>
+                  <button mat-raised-button color="primary" (click)="deleteActivity()">Delete</button>
                 </div>
               </mat-expansion-panel>
               <mat-expansion-panel>
@@ -178,30 +151,9 @@
                 <div fxLayout="column" fxLayoutAlign="space-evenly center">
                   <mat-form-field>
                     <mat-label>ActivityTypeId</mat-label>
-                    <input matInput placeholder="Type an ActivityTypeId">
+                    <input matInput placeholder="Type an ActivityTypeId" type="text" [formControl]="activityTypeDeleteControl">
                   </mat-form-field>
-                  <button mat-raised-button color="primary">Delete</button>
-                </div>
-              </mat-expansion-panel>
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Update ActivityType
-                  </mat-panel-title>
-                  <mat-panel-description>
-                    <mat-icon aria-hidden="false">sports_handball</mat-icon>
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-                <div fxLayout="column" fxLayoutAlign="space-evenly center">
-                  <mat-form-field class="example-full-width">
-                    <mat-label>ActivityTypeId</mat-label>
-                    <input matInput placeholder="Type an ActivityTypeId">
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>New name</mat-label>
-                    <input matInput placeholder="Type a new name">
-                  </mat-form-field>
-                  <button mat-raised-button color="primary">Update</button>
+                  <button mat-raised-button color="primary" (click)="deleteActivityType()">Delete</button>
                 </div>
               </mat-expansion-panel>
               <mat-expansion-panel>
@@ -216,9 +168,9 @@
                 <div fxLayout="column" fxLayoutAlign="space-evenly center">
                   <mat-form-field class="example-full-width">
                     <mat-label>Activity name</mat-label>
-                    <input matInput placeholder="Type an activity name">
+                    <input matInput placeholder="Type an activity name" type="text" [formControl]="activityTypeAddControl">
                   </mat-form-field>
-                  <button mat-raised-button color="primary">Add</button>
+                  <button mat-raised-button color="primary" (click)="addActivityType()">Add</button>
                 </div>
               </mat-expansion-panel>
             </div>
