@@ -8,6 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BarRatingModule } from "ngx-bar-rating";
 
 @NgModule({
   declarations: [ActivityDetailsComponent],
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatDividerModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BarRatingModule
   ],
   exports: [ActivityDetailsComponent]
 })

@@ -9,11 +9,11 @@ h1 {
 }
 
 .image-section img {
-  width: 70%;
+  width: 80%;
 }
 
 .form-section {
-  width: 50%;
+  width: 60%;
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -34,8 +34,6 @@ h1 {
 }
 
 .photos {
-  display: flex;
-  flex-direction: column;
 
   .photos-title, .add-photos, .post-photo {
     margin-bottom: 15px;
@@ -52,7 +50,7 @@ h1 {
   }
 }
 
-.comment-button{
+.comment-button, .show-photo{
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -64,6 +62,11 @@ h1 {
   font-weight: 200;
 }
 
+.all-photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
 
 @media (max-width: 900px) {
   .flex-row-space-around {
@@ -72,5 +75,15 @@ h1 {
 
   img {
     max-width: 100%;
+  }
+
+  .all-photos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+  .header{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }

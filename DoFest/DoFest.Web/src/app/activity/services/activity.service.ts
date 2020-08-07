@@ -11,12 +11,10 @@ import { CommentModel } from '../models/comment.model';
 export class ActivityService {
   private endpoint: string = 'https://127.0.0.1:5001/api/v1/activities';
 
-
-
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+      'Authorization': `Bearer `+localStorage.getItem('userToken')
     })
   };
 
