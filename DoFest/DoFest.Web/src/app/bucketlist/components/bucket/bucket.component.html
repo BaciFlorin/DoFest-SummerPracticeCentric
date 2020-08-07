@@ -1,0 +1,39 @@
+<div class="page-container">
+    <div class="image-container">
+        <img src="assets/images/bucket-activity.png">
+    </div>
+    <div class="content-container">
+        <div class="identity-container">
+            <h1>{{bucketlist.name}}</h1> by {{bucketlist.username}} 
+        </div>
+        <div class="activity-container">
+            <ul class="list-activities">
+                <li *ngFor="let activity of bucketlist.activities; let indx = index;">
+                    <ng-container *ngIf="forDelete(activity.activityId)">
+                        <mat-icon>clear</mat-icon>
+                    </ng-container>
+                    {{activity.name}} 
+                    <ng-container *ngIf="myBucket;else normalBucket">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Status</mat-label>
+                            <mat-select [value]="activity.status" [disabled] = "forDelete(activity.activityId)" (selectionChange)="addForToggle(activity.activityId, $event)">
+                                <mat-option value="On hold">On hold</mat-option>
+                                <mat-option value="Completed">Completed</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <ng-container *ngIf="forDelete(activity.activityId); else toDelete">
+                            <button mat-button color="accent" (click)="undoActivity(activity.activityId)">Undo</button>
+                        </ng-container>
+                        <ng-template #toDelete>
+                            <button mat-button color="accent" (click)="deleteActivity(activity.activityId)">Delete</button>
+                        </ng-template>
+                    </ng-container>
+                    <ng-template #normalBucket>
+                        Status: {{activity.status}}
+                    </ng-template>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

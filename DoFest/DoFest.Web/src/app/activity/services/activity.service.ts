@@ -1,28 +1,28 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { ActivityModel } from '../models/activity.model';
-import { Observable, Subscription } from 'rxjs';
-import { CommentModel } from '../models/comment.model';
+import { ActivityModel } from '../models';
+import { RouteService } from 'src/app/shared/services';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivityService {
-  private endpoint: string = 'https://127.0.0.1:5001/api/v1/activities';
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer `+localStorage.getItem('userToken')
-    })
-  };
+  constructor(private readonly http: HttpClient, private readonly routeService: RouteService) { }
 
-  constructor(private readonly http: HttpClient) { }
+  getAll(): Observable<ActivityModel[]> {
 
-  get(id: string): Observable<ActivityModel> {
-    return this.http.get<ActivityModel>(`${this.endpoint}/${id}`, this.httpOptions);
+    return this.http.get<ActivityModel[]>(this.routeService.getRoute("activity", "get all"));
   }
 
+  get(id: string): Observable<ActivityModel> {
+    return this.http.get<ActivityModel>(this.routeService.getRoute("activity","get one", id));
+  }
 
+  post(activity: ActivityModel): Observable<any> {
+    return this.http.post<any>(this.routeService.getRoute("activity","add one"), activity);
+  }
 }

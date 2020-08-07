@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ActivityRoutingModule } from './activity-routing.module';
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
+import { ActivityListComponent } from './activity-list/activity-list.component';
+import { ActivityRoutingModule } from './activity-routing.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BarRatingModule } from "ngx-bar-rating";
-
 @NgModule({
-  declarations: [ActivityDetailsComponent],
+  declarations: [ActivityDetailsComponent, ActivityListComponent],
   imports: [
     CommonModule,
     ActivityRoutingModule,
@@ -20,8 +20,10 @@ import { BarRatingModule } from "ngx-bar-rating";
     MatDividerModule,
     MatIconModule,
     ReactiveFormsModule,
-    BarRatingModule
+    BarRatingModule,
+	SharedModule,
+	FormsModule
   ],
-  exports: [ActivityDetailsComponent]
+  exports: [ActivityDetailsComponent, ActivityListComponent]
 })
 export class ActivityModule { }

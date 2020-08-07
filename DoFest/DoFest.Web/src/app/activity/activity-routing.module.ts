@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ActivityDetailsComponent } from './activity-details/activity-details.component';
+import { RouterModule, Routes } from '@angular/router';
+
+import { ActivityListComponent } from './activity-list/activity-list.component';
 
 const routes: Routes = [
   {
     path: 'details/:id',
+  {
+    path: 'list',
     pathMatch: 'full',
-    component: ActivityDetailsComponent,
+    component: ActivityListComponent,
   }
-];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
