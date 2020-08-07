@@ -21,9 +21,6 @@ namespace DoFest.Business.Identity.Validators
             RuleFor(x => x.Username)
                 .NotNull();
 
-            RuleFor(x => x.UserType)
-                .NotNull();
-
             RuleFor(x => x.Age)
                 .NotNull()
                 .Must(a => a > 0 && a < 99);
@@ -34,6 +31,12 @@ namespace DoFest.Business.Identity.Validators
 
             RuleFor(x => x.City)
                 .NotNull();
+
+            RuleFor(x => x.BucketListName)
+                .NotEmpty()
+                .NotNull()
+                .MinimumLength(6);
+
         }
     }
 }

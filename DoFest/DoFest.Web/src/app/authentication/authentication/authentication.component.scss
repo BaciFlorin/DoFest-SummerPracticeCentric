@@ -88,3 +88,19 @@
     flex-direction: column;
   }
 }
+
+.authentication-container .authentication-content input.ng-invalid.ng-touched.ng-dirty{
+  border-left: 10px solid #a94442;
+}
+
+.authentication-container .authentication-content input.ng-valid.ng-touched.ng-dirty{
+  border-left: 10px solid #42A948;
+}
+
+.authentication-container .authentication-content .error-alert{
+  background-color: pink;
+  color: red;
+  border-radius: 8px;
+  display: flexbox;
+  padding: 10px;
+}

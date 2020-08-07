@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CSharpFunctionalExtensions;
 using DoFest.Business.Activities.Models.Content.Comment;
+using DoFest.Business.Errors;
 
 namespace DoFest.Business.Activities.Services.Interfaces
 {
@@ -15,7 +17,7 @@ namespace DoFest.Business.Activities.Services.Interfaces
         /// </summary>
         /// <param name="activityId"> Id-ul activitatii cautate. </param>
         /// <returns> O lista cu toate comentariile unei activitati. </returns>
-        Task<IList<CommentModel>> GetComments(Guid activityId);
+        Task<Result<IList<CommentModel>, Error>> GetComments(Guid activityId);
 
         /// <summary>
         /// Metoda de adaugare a unui comentariu.
@@ -23,8 +25,7 @@ namespace DoFest.Business.Activities.Services.Interfaces
         /// <param name="activityId"> Id-ul activitatii careia ii va fi adaugat comentariul. </param>
         /// <param name="commentModel"> Modelul business atribuit comentariului ce va fi adaugat. </param>
         /// <returns> Un model business cu comentariul adaugat. </returns>
-        /// TODO: schimba datele returnate
-        Task<CommentModel> AddComment(Guid activityId, NewCommentModel commentModel);
+        Task<Result<CommentModel, Error>> AddComment(Guid activityId, NewCommentModel commentModel);
 
         /// <summary>
         /// Metoda de delete a unui comentariu existent in db.
@@ -32,7 +33,6 @@ namespace DoFest.Business.Activities.Services.Interfaces
         /// <param name="activityId"> Id-ul activitatii careia este asociat comentariul. </param>
         /// <param name="commentId"> Id-ul cometariului care urmeaza sa fie sters. </param>
         /// <returns> Un model business cu comentariul sters. </returns>
-        /// TODO: schimba datele returnate
-        Task<CommentModel> DeleteComment(Guid activityId, Guid commentId);
+        Task<Result<CommentModel, Error>> DeleteComment(Guid activityId, Guid commentId);
     }
 }

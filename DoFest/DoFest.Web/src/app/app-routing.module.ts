@@ -5,6 +5,8 @@ import { AuthenticationComponent } from './authentication/authentication/authent
 import { TripDetailsComponent } from './trip/trip-details/trip-details.component';
 import { TripListComponent } from './trip/trip-list/trip-list.component';
 
+import { ActivityDetailsComponent } from './activity/activity-details/activity-details.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -33,8 +35,8 @@ const routes: Routes = [
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
-    path: 'trip',
-    loadChildren: () => import('./trip/trip.module').then((m) => m.TripModule),
+    path: 'activity',
+    loadChildren: () => import('./activity/activity.module').then((m) => m.ActivityModule),
   },
 ];
 

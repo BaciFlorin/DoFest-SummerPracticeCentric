@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TripModel, TripsModel } from '../models';
+// import { ActivityModel, ActivitiesModel } from '../models';
 import { TripService } from '../services/trip.service';
 
 @Component({
@@ -11,16 +11,18 @@ import { TripService } from '../services/trip.service';
   providers: [TripService]
 })
 export class TripListComponent implements OnInit {
-  public tripList: TripModel[];
+  //public tripList: ActivityModel[];
 
   constructor(
     private router: Router,
     private service: TripService) { }
 
   public ngOnInit(): void {
-    this.service.getAll().subscribe((data: TripsModel) => {
-      this.tripList = data.results;
-    });
+    // this.service.getAll().subscribe((data: ActivitiesModel) => {
+      // this.tripList = data.results;}
+   // );
+
+    console.log("Am ajuns aici");
   }
 
   goToTrip(id: string): void {

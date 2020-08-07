@@ -1,2 +1,2 @@
-export * from './trip.model';
-export * from './trips.model';
+// export * from './activities.model';
+// export * from './activity.model';

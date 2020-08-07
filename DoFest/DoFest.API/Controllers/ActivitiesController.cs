@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace DoFest.API.Controllers
 {
     [Route("/api/v1/activities")]
-    [ApiController] 
+    [ApiController]
     [Authorize]
     public class ActivitiesController : ControllerBase
     {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DoFest.Business.Activities.Models.Activity;
+using DoFest.Business.Activities.Models.Activity.ActivityType;
 using DoFest.Business.Activities.Models.BucketList;
 using DoFest.Business.Activities.Models.Content.Comment;
 using DoFest.Business.Activities.Models.Content.Photos;
@@ -30,9 +31,13 @@ namespace DoFest.Business.Activities
             CreateMap<Comment, CommentModel>();
 
             CreateMap<Activity, ActivityModel>();
+            CreateMap<CreateActivityModel, Activity>();
             CreateMap<BucketList, BucketListModel>();
 
             CreateMap<User, BucketListModel>();
+
+            CreateMap<ActivityType, ActivityTypeModel>();
+            CreateMap<CreateActivityTypeModel, ActivityType>();
         }
     }
 }

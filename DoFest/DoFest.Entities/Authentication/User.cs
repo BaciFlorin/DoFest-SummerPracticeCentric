@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using DoFest.Entities.Activities.Content;
-using DoFest.Entities.Lists;
 
 namespace DoFest.Entities.Authentication
 {
@@ -16,7 +15,6 @@ namespace DoFest.Entities.Authentication
             Photos = new List<Photo>();
             Comments = new List<Comment>();
             Ratings = new List<Rating>();
-            Notes = new List<Note>();
         }
 
         [Required, MaxLength(50)]
@@ -33,13 +31,18 @@ namespace DoFest.Entities.Authentication
 
         [AllowNull]
         public Guid? StudentId { get; set; }
+        public Student Student { get; private set; }
 
-        public ICollection<Photo> Photos { get; set; }
+        public ICollection<Photo> Photos { get; private set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Comment> Comments { get; private set; }
 
-        public ICollection<Rating> Ratings { get; set; }
+        public ICollection<Rating> Ratings { get; private set; }
 
-        public ICollection<Note> Notes { get; set; }
+        public void AddStudent(Student student)
+        {
+            Student = student;
+        }
+
     }
 }

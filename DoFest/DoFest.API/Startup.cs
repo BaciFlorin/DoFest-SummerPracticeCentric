@@ -15,12 +15,12 @@ using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Business.Identity.Validators;
 using DoFest.Persistence;
 using DoFest.Persistence.Activities;
+using DoFest.Persistence.Activities.ActivityTypes;
 using DoFest.Persistence.Activities.Places;
 using DoFest.Persistence.Authentication;
 using DoFest.Persistence.Authentication.Type;
 using FluentValidation;
 using DoFest.Persistence.BucketLists;
-using DoFest.Persistence.Notifications;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -64,10 +64,13 @@ namespace DoFest.API
                 .AddScoped<INotificationService, NotificationService>()
                 .AddScoped<IPasswordHasher, PasswordHasher>()
                 .AddScoped<IActivitiesService, ActivitiesService>()
-                .AddScoped<IBucketListService, BucketListService>()
+                .AddScoped<IBucketListService, BucketListsService>()
                 .AddScoped<ICommentsService, CommentsService>()
                 .AddScoped<IPhotosService, PhotosService>()
-                .AddScoped<IRatingsService, RatingsService>();
+                .AddScoped<IRatingsService, RatingsService>()
+                .AddScoped<ICityService, CityService>()
+                .AddScoped<IActivityTypesService, ActivityTypesService>()
+                .AddScoped<IAdminService, AdminService>();
 
 
             // ****** Add Repositories and DbContext ******
@@ -76,11 +79,9 @@ namespace DoFest.API
                 .AddScoped<IUserRepository, UserRepository>()
                 .AddScoped<IUserTypeRepository, UserTypeRepository>()
                 .AddScoped<ICityRepository, CityRepository>()
-                .AddScoped<IStudentRepository, StudentRepository>()
-                .AddScoped<INotificationRepository, NotificationRepository>()
                 .AddScoped<IActivitiesRepository, ActivitiesRepository>()
-                .AddScoped<IBucketListRepository, BucketListRepository>();
-
+                .AddScoped<IBucketListsRepository, BucketListsRepository>()
+                .AddScoped<IActivityTypesRepository, ActivityTypesRepository>();
 
             // ****** Add Mapper profiles ******
             services
@@ -89,6 +90,7 @@ namespace DoFest.API
                     config.AddProfile<AuthenticationMappingProfile>();
                     config.AddProfile<NotificationMappingProfile>();
                     config.AddProfile<ActivitiesMappingProfile>();
+                    config.AddProfile<CityMappingProfile>();
                 });
                 
             
@@ -118,7 +120,7 @@ namespace DoFest.API
             app
                 .UseHttpsRedirection()
                 .UseRouting()
-                .UseCors(options => options.AllowAnyOrigin().AllowAnyMethod())
+                .UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())
                 .UseAuthentication()
                 .UseAuthorization()
                 .UseEndpoints(endpoints => endpoints.MapControllers())
