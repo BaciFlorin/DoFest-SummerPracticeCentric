@@ -10,6 +10,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import { BarRatingModule } from "ngx-bar-rating";
+import { SharedModule } from '../shared/shared.module';
+
 @NgModule({
   declarations: [ActivityDetailsComponent, ActivityListComponent],
   imports: [
@@ -21,8 +23,8 @@ import { BarRatingModule } from "ngx-bar-rating";
     MatIconModule,
     ReactiveFormsModule,
     BarRatingModule,
-	SharedModule,
-	FormsModule
+    SharedModule,
+  	FormsModule
   ],
   exports: [ActivityDetailsComponent, ActivityListComponent]
 })

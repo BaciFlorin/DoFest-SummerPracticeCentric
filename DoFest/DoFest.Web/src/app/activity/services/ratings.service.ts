@@ -1,29 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpResponse, HttpClient } from '@angular/common/http';
+import { HttpResponse, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RatingModel } from '../models/rating.model';
+import { RouteService } from '../../shared/services/route.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RatingsService {
-  private endpoint: string = 'https://127.0.0.1:5001/api/v1/activities';
 
-
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('userToken')}`
-    })
-  };
-
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private readonly routeService:RouteService) { }
 
   get(id:string): Observable<RatingModel[]> {
-    return this.http.get<RatingModel[]>(`${this.endpoint}/${id}/ratings`, this.httpOptions);
+    return this.http.get<RatingModel[]>(this.routeService.getRoute("rating", "get all", id));
   }
 
-  post(activityId:string,rating:string ):Observable<HttpResponse<unknown>>{
-    return this.http.post<any>(`${this.endpoint}/${activityId}/ratings`,rating, this.httpOptions);
+  post(activityId:string,rating:any ):Observable<HttpResponse<unknown>>{
+    return this.http.post<any>(this.routeService.getRoute("rating", "add one",activityId), rating);
   }
 }

@@ -64,7 +64,10 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
     this.isShowComments = false;
     this.isShowPhotos = false;
     this.hasUserRated = false;
-    this.rate="No ratings yet";
+    this.rate = 'No ratings yet';
+    this.photos = [];
+    this.comments = [];
+    this.city = null;
 
     this.routeSub = this.activatedRoute.params.subscribe((params) => {
       this.activityService
@@ -77,7 +80,7 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
           });
         });
     });
-    this.userId = jwt_decode(localStorage.getItem('userToken')).userId;
+    this.userId = jwt_decode(sessionStorage.getItem('userToken')).userId;
     this.calculateRating();
   }
 
@@ -86,16 +89,16 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
   }
 
   addPhoto() {
-    var formData = new FormData();
-    this.routeSub = this.activatedRoute.params.subscribe((params) => {
-      formData.append('image', this.fileToUpload);
+    if (this.fileToUpload != null) {
+      var formData = new FormData();
+      this.routeSub = this.activatedRoute.params.subscribe((params) => {
+        formData.append('image', this.fileToUpload);
 
-      this.photosService
-        .post(params['id'], formData)
-        .subscribe((res: HttpResponse<any>) => {
-          console.log(res);
-        });
-    });
+        this.photosService
+          .post(params['id'], formData)
+          .subscribe((res: HttpResponse<any>) => {});
+      });
+    }
   }
 
   toggleShowPhotos() {
@@ -108,7 +111,6 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
   deletePhoto(photoId) {
     this.routeSub = this.activatedRoute.params.subscribe((params) => {
       this.photosService.delete(params['id'], photoId).subscribe((response) => {
-        console.log(response);
         this.getPhotos();
         this.isShowPhotos = true;
       });
@@ -116,7 +118,6 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
   }
 
   addComment() {
-    console.log(this.comment);
     if (this.comment != '') {
       this.routeSub = this.activatedRoute.params.subscribe((params) => {
         this.formGroup.patchValue({ activityId: params['id'] });
@@ -124,7 +125,6 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
         this.commentsService
           .post(params['id'], this.formGroup.getRawValue())
           .subscribe((response) => {
-            console.log(response.body);
             this.getComments(); //facem o noua cerere pt a aduce si noul comentariu
             this.isShowComments = true;
           });
@@ -172,41 +172,39 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
   private calculateRating() {
     this.routeSub = this.activatedRoute.params.subscribe((params) => {
       this.ratingsService.get(params['id']).subscribe((data: RatingModel[]) => {
-        if(data.length){
-        let calcRate = data
-        .map((rating) => rating.stars)
-        .reduce((sum, current) => sum + current);
-      calcRate /= data.length;
-      this.rate = calcRate.toFixed(2);
-      let userRatingModel = data.find((r) => r.userId == this.userId);
-      this.hasUserRated = userRatingModel != null;
+        if (data.length) {
+          let calcRate = data
+            .map((rating) => rating.stars)
+            .reduce((sum, current) => sum + current);
+          calcRate /= data.length;
+          this.rate = calcRate.toFixed(2);
 
-      this.userRating = (this.hasUserRated)?userRatingModel.stars.toFixed(2):"You haven't rated yet";
-
-        }
-        else{
-          this.rate="No ratings yet";
+          let userRatingModel = data.find((r) => r.userId == this.userId);
+          this.hasUserRated = userRatingModel != null;
+          this.userRating = this.hasUserRated
+            ? userRatingModel.stars.toFixed(2)
+            : "You haven't rated yet";
+        } else {
+          this.rate = 'No ratings yet';
           this.userRating = "You haven't rated yet";
         }
       });
       this.rating.update(this.rate);
     });
-
   }
 
   saveRating(value) {
     if (!this.hasUserRated) {
       this.hasUserRated = true;
-      this.userRating = value;
+      this.userRating = value.toFixed(2);
       this.routeSub = this.activatedRoute.params.subscribe((params) => {
         this.ratingsService
-          .post(params['id'], JSON.stringify({ stars: value }))
+          .post(params['id'], { stars: value })
           .subscribe((response) => {
-            console.log(response);
+            this.calculateRating();
           });
       });
     }
-    this.calculateRating();
   }
 
   ngOnDestroy(): void {

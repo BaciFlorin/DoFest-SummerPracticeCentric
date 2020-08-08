@@ -26,7 +26,7 @@
     </div>
 
     <div class="form-group">
-      <p>
+      <p *ngIf="city!=null">
         <mat-icon aria-hidden="false">location_on</mat-icon>{{ city.name }},
         {{ activity.address }}
       </p>
