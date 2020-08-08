@@ -1,0 +1,25 @@
+@media only screen and (max-width: 1000px) {
+  .mat-table {
+    border: 0;
+    vertical-align: middle;
+    box-shadow: 0px 0px 8px rgba(0, 23, 87, 0.08);
+  }
+
+  .mat-table .mat-header-cell {
+    font-size: 1em;
+  }
+
+  .mat-table .mat-row {
+    display: block;
+  }
+  .mat-table .mat-cell {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    box-shadow: 0px 0px 8px rgba(0, 23, 87, 0.08);
+  }
+}
+
+.table-container-users {
+  box-shadow: 0px 0px 8px rgba(0, 23, 87, 0.08);
+}

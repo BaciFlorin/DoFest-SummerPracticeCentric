@@ -8,7 +8,7 @@ import {MatPaginator} from '@angular/material/paginator';
 @Component({
   selector: 'app-city-table',
   templateUrl: './city-table.component.html',
-  styleUrls: ['./city-table.component.css']
+  styleUrls: ['./city-table.component.scss']
 })
 export class CityTableComponent implements OnInit {
 
@@ -24,6 +24,13 @@ export class CityTableComponent implements OnInit {
       this.adminService.cityDataSource = new MatTableDataSource<CityModel>(this.adminService.cityData);
       this.adminService.cityDataSource.paginator = this.paginator;
     });
+  }
+  public applyFilterName(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.adminService.cityDataSource.filterPredicate = (data, filter): boolean =>{
+      return data.name.toLowerCase().includes(filter.toLowerCase());
+    };
+    this.adminService.cityDataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

@@ -9,13 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Business", "02.Business"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Persistence", "03.Persistence", "{37FAF453-E7C0-41A8-B807-23823EC45149}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoFest.API", "DoFest.API\DoFest.API.csproj", "{8E1F9377-69EE-4B7D-891C-28C603C7A552}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoFest.API", "DoFest.API\DoFest.API.csproj", "{8E1F9377-69EE-4B7D-891C-28C603C7A552}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoFest.Business", "DoFest.Business\DoFest.Business.csproj", "{8E676843-7398-4B65-ACE9-278D440A3879}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoFest.Business", "DoFest.Business\DoFest.Business.csproj", "{8E676843-7398-4B65-ACE9-278D440A3879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoFest.Entities", "DoFest.Entities\DoFest.Entities.csproj", "{E0183876-4797-4CE4-A397-4E250571FEC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoFest.Entities", "DoFest.Entities\DoFest.Entities.csproj", "{E0183876-4797-4CE4-A397-4E250571FEC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoFest.Persistence", "DoFest.Persistence\DoFest.Persistence.csproj", "{26C967BF-46D4-41FF-BBEE-CF4D8B25A87B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoFest.Persistence", "DoFest.Persistence\DoFest.Persistence.csproj", "{26C967BF-46D4-41FF-BBEE-CF4D8B25A87B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.Tests", "99.Tests", "{2FB6D3ED-CC9C-4F6B-B892-771A7042DBCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoFest.UnitTests", "DoFest.UnitTests\DoFest.UnitTests.csproj", "{C8B94CB2-EA6D-404A-BB8E-D431E51AF3C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,10 @@ Global
 		{26C967BF-46D4-41FF-BBEE-CF4D8B25A87B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26C967BF-46D4-41FF-BBEE-CF4D8B25A87B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26C967BF-46D4-41FF-BBEE-CF4D8B25A87B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8B94CB2-EA6D-404A-BB8E-D431E51AF3C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8B94CB2-EA6D-404A-BB8E-D431E51AF3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8B94CB2-EA6D-404A-BB8E-D431E51AF3C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8B94CB2-EA6D-404A-BB8E-D431E51AF3C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +56,7 @@ Global
 		{8E676843-7398-4B65-ACE9-278D440A3879} = {67F0E701-4828-4625-8FE9-80701A6FB992}
 		{E0183876-4797-4CE4-A397-4E250571FEC0} = {37FAF453-E7C0-41A8-B807-23823EC45149}
 		{26C967BF-46D4-41FF-BBEE-CF4D8B25A87B} = {37FAF453-E7C0-41A8-B807-23823EC45149}
+		{C8B94CB2-EA6D-404A-BB8E-D431E51AF3C5} = {2FB6D3ED-CC9C-4F6B-B892-771A7042DBCD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {35DF354A-B113-4130-99E9-B4072B01EA98}

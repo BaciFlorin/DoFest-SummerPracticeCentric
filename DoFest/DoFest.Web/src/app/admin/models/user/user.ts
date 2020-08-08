@@ -3,6 +3,7 @@ export type UserModel = {
   username: string;
   email: string;
   userType: string;
+  userTypeId: string;
   studentId?: string;
   bucketListId?: string;
 }
