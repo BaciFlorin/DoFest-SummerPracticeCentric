@@ -6,14 +6,17 @@ namespace DoFest.Business.Activities.Models.Activity
     {
         public Guid ActivityId { get; private set; }
 
+        public string Name { get; private set; }
+
         public string Status { get; private set; }
 
-        public static ActivityWithStatusModel Create(Guid activityId, string status)
+        public static ActivityWithStatusModel Create(Guid activityId, string status, string name)
         {
             return new ActivityWithStatusModel
             {
                 ActivityId = activityId,
-                Status = status
+                Status = status,
+                Name = name
             };
         }
     }
