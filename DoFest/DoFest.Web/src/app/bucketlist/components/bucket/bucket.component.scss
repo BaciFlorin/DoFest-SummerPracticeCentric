@@ -27,11 +27,26 @@
     width: 80%;
     padding: 30px;
     display: inline-block;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(118, 179, 240);
+    border-radius: 10px;
+    margin: 10px 0;
 }
 
-h1{
+.identity-container input{
     display: inline-block;
     width: 70%;
+    color: white;
+    background-color: rgb(118, 179, 240);
+    font-size: 30px;
+}
+
+.identity-container h1{
+    display: inline-block;
+    width: 70%;
+    font-weight: bold;
 }
 
 ul {
@@ -44,7 +59,7 @@ ul::-webkit-scrollbar {
 }
 
 .activity-container ul li {
-    width: 80%;
+    width: 100%;
     text-align: center;
     padding: 10px 0;
 }
@@ -56,4 +71,40 @@ ul::-webkit-scrollbar {
     display: inline-block;
     box-shadow: 0px 0px 8px rgba(34, 37, 44, 0.08);
 }
+
+.activity-name {
+    display: inline-block;
+    width: 40%;
+    font-weight: bold;
+    padding: 10px 0;
+    font-size: 20px;
+}
+
+.activity-status{
+    display: inline-block;
+    width: 60%;
+}
+
+.activity-status button {
+    margin-left: 20px;
+}
+
+.save-changes{
+    margin: 20px;
+}
+
+.empty {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
 

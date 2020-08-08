@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService, CitiesService} from 'src/app/shared/services';
@@ -10,6 +10,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { UserTypeModel } from '../../shared/models/user-type.model';
 import { CityModel } from '../../shared/models/city.model';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 
 
@@ -19,10 +20,11 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./authentication.component.scss'],
   providers: [AuthenticationService],
 })
-export class AuthenticationComponent implements OnInit{
+export class AuthenticationComponent implements OnInit, OnDestroy{
   public isSetRegistered: boolean = false;
   public formGroup: FormGroup;
   public cities: CityModel[];
+  private subs: Subscription[];
 
   constructor(
     private readonly router: Router,
@@ -43,6 +45,12 @@ export class AuthenticationComponent implements OnInit{
       bucketlistname:['',[Validators.required, Validators.minLength(6)]]
     });
     this.userService.username.next('');
+    this.subs = new Array<Subscription>();
+  }
+  ngOnDestroy(): void {
+   this.subs.forEach((sub)=>{
+     sub.unsubscribe();
+   })
   }
 
   ngOnInit(): void {
@@ -66,17 +74,17 @@ export class AuthenticationComponent implements OnInit{
   public authenticate(): void {
     if (this.isSetRegistered) {
       const data: RegisterModel = this.formGroup.getRawValue();
-      this.authenticationService.register(data).subscribe((registerData: HttpResponse<any>) => {
-        if(registerData.status == 201)
+      this.subs.push(this.authenticationService.register(data).subscribe((data: HttpResponse<any>) => {
+        if(data.status == 201)
         {
           this.setRegister();
           document.getElementById('successful-register').innerHTML = "Successful register user, please log in!";
         }
-      }, this.handleError);
+      }, this.handleError));
     }
     else {
         const data: LoginModel = this.formGroup.getRawValue();
-        this.authenticationService.login(data).subscribe((data: HttpResponse<any>) => {
+        this.subs.push(this.authenticationService.login(data).subscribe((data: HttpResponse<any>) => {
         if(data.status == 200)
         {
           sessionStorage.setItem('userToken', data.body["token"]);
@@ -84,7 +92,7 @@ export class AuthenticationComponent implements OnInit{
           this.userService.username.next(data.body.username);
           this.router.navigate(['dashboard']);
         }
-        }, this.handleError);
+        }, this.handleError));
       }
     }
 
