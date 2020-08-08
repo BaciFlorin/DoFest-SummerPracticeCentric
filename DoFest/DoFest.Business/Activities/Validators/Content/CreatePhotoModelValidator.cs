@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DoFest.Business.Activities.Models.Content.Photos;
+﻿using DoFest.Business.Activities.Models.Content.Photos;
 using FluentValidation;
 
 namespace DoFest.Business.Activities.Validators.Content
