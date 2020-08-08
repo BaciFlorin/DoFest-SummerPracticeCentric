@@ -4,7 +4,6 @@ import { AuthGuard } from '../app/guards/auth.guard';
 import { AdminGuard } from '../app/guards/admin.guard';
 import { ActivityListComponent } from './activity/activity-list/activity-list.component';
 
-import { ActivityDetailsComponent } from './activity/activity-details/activity-details.component';
 
 const routes: Routes = [
   {

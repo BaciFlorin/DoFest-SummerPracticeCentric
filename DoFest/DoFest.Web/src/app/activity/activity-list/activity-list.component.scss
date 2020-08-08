@@ -33,3 +33,13 @@
 input {
     width: 5%;
 }
+
+.filter-container {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+}
+
+.filter-container mat-form-field {
+    margin: 0 40px;
+}

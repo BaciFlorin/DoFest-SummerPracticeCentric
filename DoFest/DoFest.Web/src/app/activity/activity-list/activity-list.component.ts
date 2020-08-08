@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ActivityModel } from '../models';
@@ -8,6 +8,10 @@ import { CityModel } from '../../shared/models/city.model';
 import { CitiesService } from 'src/app/shared/services';
 import { FormGroup } from '@angular/forms';
 import { ActivityTypeModel } from '../models/activityType.model';
+import { MatSelectChange } from '@angular/material/select';
+import { ActivityModule } from '../activity.module';
+import { BucketListService } from 'src/app/bucketlist/services/bucketList.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-activity-list',
@@ -15,62 +19,112 @@ import { ActivityTypeModel } from '../models/activityType.model';
   styleUrls: ['./activity-list.component.scss'],
   providers: [ActivityService]
 })
-export class ActivityListComponent implements OnInit {
+export class ActivityListComponent implements OnInit, OnDestroy {
   public tripList: ActivityModel[];
   public filtredListActivities: ActivityModel[];
-  public cities: CityModel[];
+  public cities: CityModel[]= new Array<CityModel>();
   public formGroup: FormGroup;
   public selectedCity: string;
   public selectedType: string;
   public activityTypes: ActivityTypeModel[];
+  public bucketListId:string = '';
+  public activitiesInBucket: Array<string> = new Array<string>();
+  public subscriptions : Array<Subscription> = new Array<Subscription>();
 
   constructor(
     private router: Router,
     private service: ActivityService,
     private citiesService: CitiesService,
-    private actTypeService: ActivityTypeService
+    private actTypeService: ActivityTypeService,
+    private bucketService: BucketListService
     ) { }
 
-  public ngOnInit(): void {
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub)=>{
+      sub.unsubscribe();
+    })
+  }
 
-    this.service.getAll().subscribe((data: ActivityModel[]) => {
+  public ngOnInit(): void {
+    this.bucketListId = JSON.parse(sessionStorage.getItem('identity'))["bucketListId"];
+    this.subscriptions.push(this.bucketService.get(this.bucketListId).subscribe((data)=>{
+      this.activitiesInBucket = data.activities.map((act)=> act.activityId);
+    }));
+
+    this.subscriptions.push(this.service.getAll().subscribe((data: ActivityModel[]) => {
       this.tripList = data;
       this.filtredListActivities = data;
-    });
+    }));
 
-    this.citiesService.getCities().subscribe((data) => {
+    this.subscriptions.push(this.citiesService.getCities().subscribe((data) => {
       this.cities = data;
-      this.formGroup.get('city').setValue(this.cities[0].id);
-      this.selectedCity = data[1].id;
-    });
+    }));
 
-    this.actTypeService.getAll().subscribe((data) => {
+    this.subscriptions.push(this.actTypeService.getAll().subscribe((data) => {
       this.activityTypes = data;
-      this.selectedType = data[1].id;
-     });
-
+    }));
+    this.selectedType = "None";
+    this.selectedCity = "None";
   }
 
   goToActivity(id: string): void {
     this.router.navigate([`/activity/details/${id}`]);
   }
 
-  public changeCity(city: string): void {
-    this.selectedCity = city; // ce criteriu a selectat user-ul
+  public changeCity(cityEvent: MatSelectChange): void {
+    this.selectedCity = cityEvent.value; // ce criteriu a selectat user-ul
   }
 
-  public changeActType(type: string): void{
-    this.selectedType = type; // ce criteriu a selectat user-ul
+  public changeType(type: MatSelectChange): void{
+    this.selectedType = type.value; // ce criteriu a selectat user-ul
   }
 
   public applyFilters(): void{
-    const filteredByCity = this.tripList.filter(s => s.cityId === this.selectedCity);
+    let filters = new Array<Function>();
+    if(this.selectedCity != "None")
+    {
+      filters.push((act:ActivityModel)=> act.cityId === this.selectedCity);
+    }
+    if(this.selectedType != "None")
+    {
+      filters.push((act:ActivityModel)=> act.activityTypeId === this.selectedType);
+    }
 
-    const filteredByActivityType = filteredByCity.filter(s => s.activityTypeId === this.selectedType);
-
-    this.filtredListActivities = filteredByActivityType;
+    if(filters.length > 0)
+    {
+      this.filtredListActivities = this.tripList.filter(s => {
+        let result: boolean = true;
+        filters.forEach((filter)=> result = result && filter(s));
+        return result;
+      });
+    }
+    else
+    {
+      this.filtredListActivities = this.tripList;
+    }
   }
 
+  getCityName(id:string):string
+  {
+    if(this.cities.length == 0)
+    {
+      return '';
+    }
+    return this.cities.find((city)=> city.id === id).name;
+  }
+
+  addToBucket(id:string)
+  {
+    this.activitiesInBucket.push(id);
+    this.subscriptions.push(this.bucketService.add(this.bucketListId, id).subscribe((data)=>{
+      
+    }));
+  }
+
+  inBucket(id:string):boolean
+  {
+    return this.activitiesInBucket.find((actId)=> actId === id) != undefined;
+  }
 }
 
 

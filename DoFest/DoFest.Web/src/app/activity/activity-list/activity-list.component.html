@@ -2,23 +2,29 @@
     <h1>
         Activities
     </h1>
+    <div class="filter-container">
+      <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <mat-select (selectionChange)="changeCity($event)" value="None">
+          <mat-option value="None">None</mat-option>
+            <mat-option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
+      <mat-form-field appearance="fill">
+        <mat-label>Type</mat-label>
+        <mat-select (selectionChange)="changeType($event)" value="None">
+            <mat-option value="None">None</mat-option>
+            <mat-option *ngFor="let type of activityTypes;" [value]="type.id">{{type.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <label>City</label>
-
-    <select class="form-control" #t (change)="changeCity(t.value)">
-      <option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</option>
-    </select>
-    <label>Type of activity</label>
-    <select class="form-control" #c (change)="changeActType(c.value)">
-      <option *ngFor="let type of activityTypes;" [value]="type.id">{{type.name}}</option>
-    </select>
-    <input type="submit" value="Apply filters" (click)="applyFilters()" />
+      <button mat-raised-button color="primary" (click)="applyFilters()">Filter</button>
+    </div>
 
     <div class="cards">
-        <app-tile *ngFor="let trip of filtredListActivities" label="{{trip.name}}" (click)="goToActivity(trip.id)">
-            <!-- <div class="card">{{trip.name}}</div> -->
-            <div class="description">{{trip.description}}</div>
-        </app-tile>
+        <app-activitytile *ngFor="let trip of filtredListActivities" icon="local_activity" label="{{trip.name}}" (goToAct)="goToActivity(trip.id)" (addBucket)="addToBucket(trip.id)" [location]="getCityName(trip.cityId)" [inBucket]="!inBucket(trip.id)">
+
+        </app-activitytile>
     </div>
 </div>

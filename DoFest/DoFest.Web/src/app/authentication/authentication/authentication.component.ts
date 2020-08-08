@@ -7,7 +7,6 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { LoginModel } from '../models/login.model';
 import { RegisterModel } from '../models/register.model';
 import { AuthenticationService } from '../services/authentication.service';
-import { UserTypeModel } from '../../shared/models/user-type.model';
 import { CityModel } from '../../shared/models/city.model';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
@@ -54,10 +53,10 @@ export class AuthenticationComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.citiesService.getCities().subscribe((data)=>{
+    this.subs.push(this.citiesService.getCities().subscribe((data)=>{
       this.cities = data;
       this.formGroup.get('city').setValue(this.cities[0].id);
-    });
+    }));
     sessionStorage.clear();
   }
 
@@ -85,13 +84,13 @@ export class AuthenticationComponent implements OnInit, OnDestroy{
     else {
         const data: LoginModel = this.formGroup.getRawValue();
         this.subs.push(this.authenticationService.login(data).subscribe((data: HttpResponse<any>) => {
-        if(data.status == 200)
-        {
-          sessionStorage.setItem('userToken', data.body["token"]);
-          sessionStorage.setItem('identity', JSON.stringify(data.body));
-          this.userService.username.next(data.body.username);
-          this.router.navigate(['dashboard']);
-        }
+          if(data.status == 200)
+          {
+            sessionStorage.setItem('userToken', data.body["token"]);
+            sessionStorage.setItem('identity', JSON.stringify(data.body));
+            this.userService.username.next(data.body.username);
+            this.router.navigate(['dashboard']);
+          }
         }, this.handleError));
       }
     }

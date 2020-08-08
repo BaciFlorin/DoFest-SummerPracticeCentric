@@ -14,7 +14,7 @@ export class NotificationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.notificationService.getAll().subscribe((data:NotificationModel[])=>{
-      this.notifications = data.sort((a,b) => new Date(a.date).getTime() - new Date(b.date).getTime() );
+      this.notifications = data.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime() );
     });
   }
 

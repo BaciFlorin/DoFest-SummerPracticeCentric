@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { RouteService } from '../../shared/services/route.service';
 import { Observable } from 'rxjs';
 import { BucketListModel } from '../models/bucketList.model';
-import { RouteService } from 'src/app/shared/services';
 import { BucketListWithActivitiesModel } from '../models/bucketListWithActivities.model';
 import { UpdateBucketListModel } from '../models/updateBucketList.model';
 
@@ -24,5 +24,10 @@ export class BucketListService {
   update(updateModel: UpdateBucketListModel, id:string):Observable<HttpResponse<any>>
   {
     return this.http.put<HttpResponse<any>>(this.routeService.getRoute("bucketlist","change", id), updateModel, {observe:'response'});
+  }
+
+  add(bucketId:string, activityId:string):Observable<HttpResponse<any>>
+  {
+    return this.http.post<HttpResponse<any>>(this.routeService.getRoute("bucketlist","add one", bucketId,activityId),{observe:'response'});
   }
 }

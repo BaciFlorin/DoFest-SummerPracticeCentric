@@ -25,4 +25,6 @@ export class ActivityService {
   post(activity: ActivityModel): Observable<any> {
     return this.http.post<any>(this.routeService.getRoute("activity","add one"), activity);
   }
+
+  
 }

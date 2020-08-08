@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { BucketListModel } from '../../../bucketlist/models/bucketList.model';
-import { BucketListService} from '../../../bucketlist/services/bucketList.service';
+import { BucketListService} from '../../services/bucketList.service';
 
 @Component({
   selector: 'app-bucket-list',
