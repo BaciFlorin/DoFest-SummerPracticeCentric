@@ -11,7 +11,11 @@ namespace DoFest.Business.Activities.Validators.Content
         public NewCommentModelValidator()
         {
             RuleFor(x => x.Content)
+                .MaximumLength(1_000)
                 .NotNull()
+                .NotEmpty();
+
+            RuleFor(x => x.UserId)
                 .NotEmpty();
         }
     }
