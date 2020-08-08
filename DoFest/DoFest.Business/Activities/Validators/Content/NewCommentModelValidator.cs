@@ -14,9 +14,6 @@ namespace DoFest.Business.Activities.Validators.Content
                 .MaximumLength(1_000)
                 .NotNull()
                 .NotEmpty();
-
-            RuleFor(x => x.UserId)
-                .NotEmpty();
         }
     }
 }
