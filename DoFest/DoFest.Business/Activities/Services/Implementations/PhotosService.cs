@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CSharpFunctionalExtensions;
+using DoFest.Business.Activities.Models.Content.Comment;
 using DoFest.Business.Activities.Models.Content.Photos;
 using DoFest.Business.Activities.Services.Interfaces;
 using DoFest.Business.Errors;
@@ -12,6 +13,7 @@ using DoFest.Entities.Activities.Content;
 using DoFest.Entities.Authentication.Notification;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Authentication;
+using DoFest.Persistence.Notifications;
 using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
@@ -21,14 +23,16 @@ namespace DoFest.Business.Activities.Services.Implementations
         private readonly IMapper _mapper;
         private readonly IActivitiesRepository _activitiesRepository;
         private readonly IHttpContextAccessor _accessor;
+        private readonly INotificationRepository _notificationRepository;
         private readonly IUserRepository _userRepository;
 
         public PhotosService(IActivitiesRepository activitiesRepository, IMapper mapper, IHttpContextAccessor accessor,
-             IUserRepository userRepository)
+            INotificationRepository notificationRepository, IUserRepository userRepository)
         {
             _activitiesRepository = activitiesRepository;
             _mapper = mapper;
             _accessor = accessor;
+            _notificationRepository = notificationRepository;
             _userRepository = userRepository;
         }
 
@@ -41,9 +45,19 @@ namespace DoFest.Business.Activities.Services.Implementations
             }
 
             var activity = await _activitiesRepository.GetByIdWithPhotos(activityId);
+            var photos = activity.Photos;
 
-            return Result.Success<IEnumerable<PhotoModel>, Error>(_mapper.Map<IEnumerable<PhotoModel>>(activity.Photos));
+            var photosModel = new List<PhotoModel>();
 
+            foreach (var photo in photos)
+            {
+                var user = await _userRepository.GetById(photo.UserId);
+
+                photosModel.Add(PhotoModel.Create(photo.Id, photo.ActivityId,
+                    photo.UserId, user.Username, photo.Image));
+            }
+
+            return Result.Success<IEnumerable<PhotoModel>, Error>(photosModel);
         }
 
         public async Task<Result<PhotoModel, Error>> Add(Guid activityId, CreatePhotoModel model)
@@ -55,7 +69,8 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             var photo = new Photo
             {
-                Image = stream.ToArray()
+                Image = stream.ToArray(),
+                UserId= model.UserId
             };
 
             var activity = await _activitiesRepository.GetById(activityId);
@@ -65,7 +80,10 @@ namespace DoFest.Business.Activities.Services.Implementations
             }
 
             activity.AddPhoto(photo);
-            
+            _activitiesRepository.Update(activity);
+
+            await _activitiesRepository.SaveChanges();
+
             var user = await _userRepository.GetById(photo.UserId);
             var notification = new Notification()
             {
@@ -74,13 +92,11 @@ namespace DoFest.Business.Activities.Services.Implementations
                 Description = $"{user.Username} has added a new photo to activity {activity.Name}."
             };
 
-            activity.AddNotification(notification);
+            await _notificationRepository.Add(notification);
+            await _notificationRepository.SaveChanges();
 
-            _activitiesRepository.Update(activity);
-
-            await _activitiesRepository.SaveChanges();
-
-            return Result.Success<PhotoModel, Error>(_mapper.Map<PhotoModel>(photo));
+            return Result.Success<PhotoModel, Error>(PhotoModel.Create(
+                photo.Id, photo.ActivityId, photo.UserId, user.Username, photo.Image));
         }
 
         public async Task<Result<string, Error>> Delete(Guid activityId, Guid photoId)

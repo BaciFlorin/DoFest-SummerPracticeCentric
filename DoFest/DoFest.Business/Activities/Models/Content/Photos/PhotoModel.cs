@@ -10,7 +10,21 @@ namespace DoFest.Business.Activities.Models.Content.Photos
 
         public Guid UserId { get; private set; }
 
+        public string Username { get; private set; }
+
         public byte[] Image { get; private set; }
+
+        public static PhotoModel Create(Guid id, Guid activityId, Guid userId, string username, byte[] image)
+        {
+            return new PhotoModel
+            {
+                Id = id,
+                ActivityId = activityId,
+                UserId = userId,
+                Username = username,
+                Image = image
+            };
+        }
 
     }
 }

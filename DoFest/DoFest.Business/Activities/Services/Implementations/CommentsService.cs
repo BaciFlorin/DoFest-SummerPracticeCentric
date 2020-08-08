@@ -11,6 +11,7 @@ using DoFest.Entities.Activities.Content;
 using DoFest.Entities.Authentication.Notification;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Authentication;
+using DoFest.Persistence.Notifications;
 using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
@@ -24,6 +25,8 @@ namespace DoFest.Business.Activities.Services.Implementations
         private readonly IActivitiesRepository _activitiesRepository;
         private readonly IHttpContextAccessor _accessor;
         private readonly IUserRepository _userRepository;
+        private readonly INotificationRepository _notificationRepository;
+
 
         /// <summary>
         /// Constructor public default.
@@ -32,12 +35,13 @@ namespace DoFest.Business.Activities.Services.Implementations
         /// <param name="repository"> Repository-ul atribuit activitatilor. </param>
         /// <param name="accessor"> Un accesor pentru accesarea campurilor requestului HTTP. </param>
         public CommentsService(IMapper mapper, IActivitiesRepository activitiesRepository, IHttpContextAccessor accessor,
-            IUserRepository userRepository)
+            IUserRepository userRepository, INotificationRepository notificationRepository)
         {
             _mapper = mapper;
             _activitiesRepository = activitiesRepository;
             _accessor = accessor;
             _userRepository = userRepository;
+            _notificationRepository = notificationRepository;
         }
 
         public async Task<Result<IList<CommentModel>, Error>> GetComments(Guid activityId)
@@ -48,9 +52,19 @@ namespace DoFest.Business.Activities.Services.Implementations
                 return Result.Failure<IList<CommentModel>, Error>(ErrorsList.UnavailableActivity);
             }
 
-            var comments = await _activitiesRepository.GetByIdWithComments(activityId);
+            var comments = (await _activitiesRepository.GetByIdWithComments(activityId)).Comments;
 
-            return _mapper.Map<List<CommentModel>>(comments.Comments);
+            var commentsModel = new List<CommentModel>();
+
+            foreach (var comment in comments)
+            {
+                var user = await _userRepository.GetById(comment.UserId);
+
+                commentsModel.Add(CommentModel.Create(comment.Id, comment.ActivityId,
+                    comment.UserId, user.Username, comment.Content));
+            }
+
+            return Result.Success<IList<CommentModel>, Error>(commentsModel);
         }
 
         public async Task<Result<CommentModel, Error>> AddComment(Guid activityId, NewCommentModel commentModel)
@@ -65,7 +79,9 @@ namespace DoFest.Business.Activities.Services.Implementations
             var comment = _mapper.Map<Comment>(commentModel);
 
             activity.AddComment(comment);
-            
+            _activitiesRepository.Update(activity);
+            await _activitiesRepository.SaveChanges();
+
             var user = await _userRepository.GetById(commentModel.UserId);
             var notification = new Notification()
             {
@@ -74,12 +90,11 @@ namespace DoFest.Business.Activities.Services.Implementations
                 Description = $" {user.Username} has added a comment to activity {activity.Name} : {comment.Content}."
             };
 
-            activity.AddNotification(notification);
-
-            _activitiesRepository.Update(activity);
+            await _notificationRepository.Add(notification);
             await _activitiesRepository.SaveChanges();
 
-            return _mapper.Map<CommentModel>(comment);
+            return Result.Success < CommentModel, Error >(CommentModel.Create(comment.Id, comment.ActivityId,
+                comment.UserId, user.Username, comment.Content));
         }
 
         public async Task<Result<CommentModel, Error>> DeleteComment(Guid activityId, Guid commentId)

@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 export class RouteService {
   constructor() { }
 
-  private scheme:string = "http";
-  private host:string = "192.168.0.103";
-  private port: string = "5002";
+  private scheme:string = "https";
+  private host:string = "127.0.0.1";
+  private port: string = "5001";
   private version: string = "v1";
 
   private routes = {
@@ -60,10 +60,8 @@ export class RouteService {
     },
     "rating": {
       "get all" : (activityId:string) => `activities/${activityId}/ratings`,
-      "add one" : (activityId:string) => `activities/${activityId}/ratings`,
-      "delete" : (activityId:string, commentId:string) => `activities/${activityId}/ratings/${commentId}`,
-      "change" : (activityId:string, commentId:string) => `activities/${activityId}/ratings/${commentId}`
-    }
+      "add one" : (activityId:string) => `activities/${activityId}/ratings`
+      }
   }
 
   public getRoute(entity:string, operation:string, id1:string = "", id2:string = ""):string

@@ -10,6 +10,7 @@ namespace DoFest.API.Controllers
 {
     [Route("api/v1/activities/{activityId}/photos")]
     [ApiController]
+    
     public class PhotosController : ControllerBase
     {
         private readonly IPhotosService _photosService;
@@ -36,7 +37,7 @@ namespace DoFest.API.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Add([FromRoute] Guid activityId, [FromBody] CreatePhotoModel model)
+        public async Task<IActionResult> Add([FromRoute] Guid activityId, [FromForm] CreatePhotoModel model)
         {
             var (_, isFailure, value, error) = await _photosService.Add(activityId, model);
             if (isFailure)
