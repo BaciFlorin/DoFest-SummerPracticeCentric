@@ -36,9 +36,8 @@ export class RouteService {
     "bucketlist" : {
       "get all" : "bucketlists",
       "get one" : (bucketlistId:string) => `bucketlists/${bucketlistId}`,
-      "delete" : (bucketlistId:string, activityId:string) => `bucketlists/${bucketlistId}/activities/${activityId}`,
       "add one" : (bucketlistId:string, activityId:string) => `bucketlists/${bucketlistId}/activities/${activityId}`,
-      "change status" : (bucketlistId:string, activityId:string) => `bucketlists/${bucketlistId}/activities/${activityId}/toggle`
+      "change" : (bucketlistId:string) => `bucketlists/${bucketlistId}/activities`
     },
     "city" :{
       "get all" : "cities",

@@ -12,10 +12,10 @@ export class AuthenticationService {
   constructor(private readonly httpClient: HttpClient, private readonly routeService: RouteService) {}
 
   public login(data: LoginModel): Observable<HttpResponse<unknown>> {
-    return this.httpClient.post(this.routeService.getRoute("authentication","login"),data,{observe:"response"});
+    return this.httpClient.post(this.routeService.getRoute("authentication","login"),data, {observe:"response"});
   }
 
-  public register(data: RegisterModel): Observable<unknown> {
-    return this.httpClient.post(this.routeService.getRoute("authentication","register"), data, {observe:"response"});
+  public register(data: RegisterModel): Observable<HttpResponse<any>> {
+    return this.httpClient.post<HttpResponse<any>>(this.routeService.getRoute("authentication","register"), data, {observe:"response"});
   }
 }

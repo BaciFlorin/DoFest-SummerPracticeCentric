@@ -4,16 +4,33 @@
     </div>
     <div class="content-container">
         <div class="identity-container">
-            <h1>{{bucketlist.name}}</h1> by {{bucketlist.username}} 
+            <ng-container *ngIf="myBucket;else simpleName">
+                <input id="bucketlist-name" type="text" value="{{bucketlist.name}}">
+            </ng-container>
+            
+            <ng-template #simpleName>
+                <h1>
+                    {{bucketlist.name}}
+                </h1>
+            </ng-template>
+             by {{bucketlist.username}} 
         </div>
         <div class="activity-container">
+            <ng-container *ngIf="myBucket">
+                <button class="save-changes" mat-raised-button color="primary" (click)="updateBucketList()">Save changes</button>
+            </ng-container>
             <ul class="list-activities">
                 <li *ngFor="let activity of bucketlist.activities; let indx = index;">
-                    <ng-container *ngIf="forDelete(activity.activityId)">
-                        <mat-icon>clear</mat-icon>
-                    </ng-container>
-                    {{activity.name}} 
+                    <div class="activity-name" (click)="goToActivity(activity.activityId)">
+                        <ng-container *ngIf="forDelete(activity.activityId)">
+                            <mat-icon>clear</mat-icon>
+                        </ng-container>
+                        {{activity.name}} 
+                    </div>
+                    
+                    <div class="activity-status">
                     <ng-container *ngIf="myBucket;else normalBucket">
+
                         <mat-form-field appearance="fill">
                             <mat-label>Status</mat-label>
                             <mat-select [value]="activity.status" [disabled] = "forDelete(activity.activityId)" (selectionChange)="addForToggle(activity.activityId, $event)">
@@ -23,17 +40,23 @@
                         </mat-form-field>
 
                         <ng-container *ngIf="forDelete(activity.activityId); else toDelete">
-                            <button mat-button color="accent" (click)="undoActivity(activity.activityId)">Undo</button>
+                            <button mat-raised-button color="primary" (click)="undoActivity(activity.activityId)">Undo</button>
                         </ng-container>
                         <ng-template #toDelete>
-                            <button mat-button color="accent" (click)="deleteActivity(activity.activityId)">Delete</button>
+                            <button mat-raised-button color="warn" (click)="deleteActivity(activity.activityId)">Delete</button>
                         </ng-template>
                     </ng-container>
                     <ng-template #normalBucket>
                         Status: {{activity.status}}
                     </ng-template>
+                </div>
                 </li>
             </ul>
+            <ng-container *ngIf="bucketlist.activities.length == 0">
+                <div class="empty">
+                    Empty
+                </div>
+            </ng-container>
         </div>
     </div>
 </div>

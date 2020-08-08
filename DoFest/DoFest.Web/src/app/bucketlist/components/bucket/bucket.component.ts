@@ -4,6 +4,8 @@ import { BucketListWithActivitiesModel } from '../../models/bucketListWithActivi
 import { BucketListService } from '../../services/bucketList.service';
 import { MatSelectChange } from '@angular/material/select';
 import { ActivityModule } from 'src/app/activity/activity.module';
+import { UpdateBucketListModel } from '../../models/updateBucketList.model';
+import { HttpResponse, HttpHandler } from '@angular/common/http';
 
 @Component({
   selector: 'app-bucket',
@@ -76,4 +78,29 @@ export class BucketComponent implements OnInit {
     return result;
   }
 
+  public updateBucketList()
+  {
+    let newName = (<HTMLInputElement> document.getElementById("bucketlist-name")).value;
+    this.activityForToggle = this.activityForToggle.filter((activityId)=> this.activityToDelete.find((deleteId)=> deleteId == activityId) == undefined );
+    if(this.activityForToggle.length > 0 || this.activityToDelete.length > 0 || newName != this.bucketlist.name)
+    {
+      let updateBucket: UpdateBucketListModel = {
+        name: newName,
+        activitiesForDelete: this.activityToDelete,
+        activitiesForToggle: this.activityForToggle
+      };
+
+      this.bucketListService.update(updateBucket,this.bucketListId).subscribe((data:HttpResponse<any>)=>{
+        if(data.status == 200)
+        {
+          window.location.reload();
+        }
+      });
+    }
+  }
+
+  public goToActivity(id:string)
+  {
+    this.route.navigate(["activity","details",id]);
+  }
 }
