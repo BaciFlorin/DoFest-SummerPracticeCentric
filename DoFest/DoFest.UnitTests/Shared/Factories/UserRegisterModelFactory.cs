@@ -1,7 +1,6 @@
 ﻿using DoFest.Business.Identity.Models;
 using DoFest.UnitTests.Shared.Extensions;
 using System;
-using System.Runtime.CompilerServices;
 
 namespace DoFest.UnitTests.Shared.Factories
 {

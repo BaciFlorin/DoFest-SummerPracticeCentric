@@ -17,4 +17,3 @@ namespace DoFest.UnitTests.Shared.Extensions
         }
     }
 }
-}
