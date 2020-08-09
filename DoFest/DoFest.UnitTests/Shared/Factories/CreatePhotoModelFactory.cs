@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using DoFest.Business.Activities.Models.Content.Photos;
 using DoFest.UnitTests.Shared.Extensions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
-using Moq;
 
 namespace DoFest.UnitTests.Shared.Factories
 {

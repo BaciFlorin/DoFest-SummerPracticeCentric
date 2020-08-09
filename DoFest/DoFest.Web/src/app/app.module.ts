@@ -14,6 +14,8 @@ import { ActivityModule } from './activity/activity.module';
 import { AdminGuard } from './guards/admin.guard';
 import { BucketlistModule } from './bucketlist/bucketlist.module';
 import { MatLabel, MatFormField } from '@angular/material/form-field';
+import { UserModule } from './user/user.module';
+
 @NgModule({
   declarations: [
     AppComponent
