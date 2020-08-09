@@ -41,9 +41,9 @@ namespace DoFest.IntegrationTests
         public async Task CleanUpDataBase(DoFestContext doFestContext)
         {
             doFestContext.Users.RemoveRange(doFestContext.Users);
-            // doFestContext.UserTypes.RemoveRange(doFestContext.UserTypes);
+            doFestContext.UserTypes.RemoveRange(doFestContext.UserTypes);
             doFestContext.BucketLists.RemoveRange(doFestContext.BucketLists);
-            //doFestContext.Cities.RemoveRange(doFestContext.Cities);
+            doFestContext.Cities.RemoveRange(doFestContext.Cities);
             doFestContext.Activities.RemoveRange(doFestContext.Activities);
             doFestContext.ActivityTypes.RemoveRange(doFestContext.ActivityTypes);
             doFestContext.BucketListActivities.RemoveRange(doFestContext.BucketListActivities);
@@ -81,13 +81,11 @@ namespace DoFest.IntegrationTests
                 Email = "test@gmail.com",
                 Name = "testName",
                 Password = "testPass",
-                UserType = new Guid("0a7540b5-4ce8-4881-9849-e87065cc521e"),
                 Year = 3
             };
             var userRegisterResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/register", userRegisterModel);
             userRegisterResponse.IsSuccessStatusCode.Should().BeTrue();
             AuthenticatedUserId = new Guid(userRegisterResponse.Headers.Location.OriginalString);
-            var user = new User("test@gmail.com", "testPass");
             var authenticateModel = new LoginModelRequest
             {
                 Email = userRegisterModel.Email,

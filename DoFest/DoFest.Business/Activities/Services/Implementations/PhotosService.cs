@@ -65,12 +65,7 @@ namespace DoFest.Business.Activities.Services.Implementations
             using var stream = new MemoryStream();
             await model.Image.CopyToAsync(stream);
 
-            var photo = new Photo()
-            {
-                ActivityId = activityId,
-                UserId = model.UserId,
-                Image = stream.ToArray()
-            };
+            var photo = new Photo(activityId, model.UserId, stream.ToArray());
 
             var activity = await _activitiesRepository.GetById(activityId);
             if (activity == null)
@@ -82,12 +77,10 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             var user = await _userRepository.GetById(photo.UserId);
 
-            var notification = new Notification()
-            {
-                ActivityId = activityId,
-                Date = DateTime.Now,
-                Description = $"{user.Username} has added a new photo to activity {activity.Name}."
-            };
+            var notification = new Notification(activityId, 
+                                                DateTime.Now, 
+                                                $"{user.Username} has added a new photo to activity {activity.Name}."
+                                                );
 
             activity.AddNotification(notification);
 

@@ -9,22 +9,25 @@ namespace DoFest.Entities.Lists
     [Table("BucketList")]
     public class BucketList:Entity
     {
-        public BucketList():base()
+        public BucketList(
+            Guid UserId,
+            string Name
+            ) : base()
         {
+            this.UserId = UserId;
+            this.Name = Name;
             BucketListActivities = new List<BucketListActivity>();
         }
 
         [Required]
-        public Guid UserId { get; set; }
+        public Guid UserId { get; private set; }
 
         [Required, MaxLength(100)]
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public ICollection<BucketListActivity> BucketListActivities { get; set; }
+        public ICollection<BucketListActivity> BucketListActivities { get; private set; }
         public void AddBucketListActivity(BucketListActivity activity)
-        {
-            this.BucketListActivities.Add(activity);
-        }
+            => this.BucketListActivities.Add(activity);
 
         public void RemoveActivity(Guid activityId)
         {
@@ -37,9 +40,9 @@ namespace DoFest.Entities.Lists
         }
 
         public void RemoveActivities(List<Guid> activities)
-        {
-            activities.ForEach(RemoveActivity);
-        }
+            => activities.ForEach(RemoveActivity);
 
+        public void UpdateName(string name)
+            => this.Name = name;
     }
 }

@@ -21,28 +21,22 @@ namespace DoFest.Persistence
             #region UserType
             var userTypes = new List<UserType>()
             {
-                new UserType() {Name = "Admin", Description = "Full access"},
-                new UserType() {Name = "Normal user", Description = "Normal access"},
+                new UserType("Admin", "Full access"),
+                new UserType("Normal user", "Normal access"),
             };
             modelBuilder.Entity<UserType>().HasData(userTypes);
             #endregion
 
             #region Admin
-            var admin = new User()
-            {
-                Email = "DoFestAdmin@gmail.com",
-                Username = "DoFestAdmin",
-                UserTypeId = userTypes[0].Id,
-                PasswordHash = CreateHash("passwordAdmin"),
-                StudentId = null
-            };
+            var admin = new User("DoFestAdmin",
+                                 "DoFestAdmin@gmail.com",
+                                 CreateHash("passwordAdmin"), 
+                                 userTypes[0].Id, 
+                                 null
+                                 );
             modelBuilder.Entity<User>().HasData(admin);
 
-            var bucketListAdmin = new BucketList()
-            {
-                UserId = admin.Id,
-                Name = "Admin bucketList"
-            };
+            var bucketListAdmin = new BucketList(admin.Id, "Admin bucketList");
             modelBuilder.Entity<BucketList>().HasData(bucketListAdmin);
             #endregion
 
@@ -61,14 +55,14 @@ namespace DoFest.Persistence
            
             #region City
             var citiesData = (from activity in activityData select (string) activity["Location"]).Distinct();
-            var cities = citiesData.Select(cityName => new City() {Name = cityName}).ToList();
+            var cities = citiesData.Select(cityName => new City(cityName)).ToList();
             modelBuilder.Entity<City>().HasData(cities);
             #endregion
 
             #region ActivityType
             var activityTypeData = (from activity in activityData select (string) activity["Category"]).Distinct();
             var activityTypes =
-                activityTypeData.Select(activityTypeName => new ActivityType() {Name = activityTypeName}).ToList();
+                activityTypeData.Select(activityTypeName => new ActivityType(activityTypeName)).ToList();
             modelBuilder.Entity<ActivityType>().HasData(activityTypes);
             #endregion
 
@@ -77,14 +71,13 @@ namespace DoFest.Persistence
             var activityTypeMap = activityTypes.ToDictionary(aType => aType.Name, aType => aType.Id);
 
             #region Activity
-            var activities = activityData!.Select(activity => new Activity()
-            {
-                Name = (string)activity["Name"],
-                ActivityTypeId = activityTypeMap[((string)activity["Category"])!],
-                CityId = cityMap[((string)activity["Location"])!],
-                Address = (string) activity["Address"],
-                Description = (string) activity["Description"],
-            }).ToList();
+            var activities = activityData!
+                .Select(activity => new Activity(activityTypeMap[((string)activity["Category"])!],
+                                                 cityMap[((string)activity["Location"])!], 
+                                                 (string)activity["Name"], 
+                                                 (string) activity["Address"],
+                                                 (string)activity["Description"]
+                                                  )).ToList();
             modelBuilder.Entity<Activity>().HasData(activities);
             #endregion
         }

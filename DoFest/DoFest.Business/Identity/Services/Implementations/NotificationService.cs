@@ -55,12 +55,10 @@ namespace DoFest.Business.Identity.Services.Implementations
                 return Result.Failure<NewNotificationModel, Error>(ErrorsList.UnavailableActivity);
             }
 
-            var notification = new Notification()
-            {
-                ActivityId =  model.ActivityId,
-                Date = DateTime.Now,
-                Description = model.Description
-            };
+            var notification = new Notification(model.ActivityId,
+                                                DateTime.Now, 
+                                                model.Description
+                                                );
 
             activity.AddNotification(notification);
             _activitiesRepository.Update(activity);

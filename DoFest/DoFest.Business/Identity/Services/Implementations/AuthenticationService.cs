@@ -15,7 +15,6 @@ using DoFest.Persistence.Activities.Places;
 using DoFest.Persistence.Authentication;
 using DoFest.Persistence.Authentication.Type;
 using DoFest.Persistence.BucketLists;
-using DoFest.Persistence.Config.Lists;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -79,33 +78,27 @@ namespace DoFest.Business.Identity.Services.Implementations
 
             var userType = await _userTypeRepository.GetByName("Normal user");
 
-            var newStudent = new Student()
-            {
-                Age = registerModel.Age,
-                CityId = city.Id,
-                Name = registerModel.Name,
-                Year = registerModel.Year
-            };
+            var newStudent = new Student(registerModel.Name,
+                                        registerModel.Age, 
+                                        registerModel.Year, 
+                                        city.Id
+                                        );
 
-            var newUser = new User()
-            {
-                Username = registerModel.Username,
-                Email = registerModel.Email,
-                PasswordHash = _passwordHasher.CreateHash(registerModel.Password),
-                StudentId = newStudent.Id,
-                UserTypeId = userType.Id
-            };
+            var newUser = new User(registerModel.Username, 
+                                    registerModel.Email, 
+                                    _passwordHasher.CreateHash(registerModel.Password), 
+                                    newStudent.Id, 
+                                    userType.Id
+                                    );
 
             newUser.AddStudent(newStudent);
 
             await _userRepository.Add(newUser);
             await _userRepository.SaveChanges();
 
-            var newBucketList = new BucketList()
-            {
-                Name = registerModel.BucketListName,
-                UserId = newUser.Id
-            };
+            var newBucketList = new BucketList(newUser.Id,
+                                               registerModel.BucketListName
+                                               );
 
             await _bucketListRepository.Add(newBucketList);
             await _bucketListRepository.SaveChanges();
@@ -122,7 +115,7 @@ namespace DoFest.Business.Identity.Services.Implementations
             {
                 return Result.Failure<string, Error>(ErrorsList.SamePassword);
             }
-            user.PasswordHash = _passwordHasher.CreateHash(newPasswordModelRequest.NewPassword);
+            user.UpdatePassword(_passwordHasher.CreateHash(newPasswordModelRequest.NewPassword));
             
             _userRepository.Update(user);
             await _userRepository.SaveChanges();

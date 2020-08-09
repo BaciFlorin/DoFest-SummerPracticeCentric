@@ -7,19 +7,25 @@ namespace DoFest.Entities.Authentication.Notification
     [Table("Notification")]
     public class Notification:Entity
     {
-        public Notification():base()
+        public Notification(
+            Guid ActivityId,
+            DateTime Date,
+            string Description
+            ) : base()
         {
-            
+            this.ActivityId = ActivityId;
+            this.Date = Date;
+            this.Description = Description;
         }
 
-        
+
         [Required]
-        public Guid ActivityId { get; set; }
+        public Guid ActivityId { get; private set; }
 
         [DataType(DataType.DateTime), Required]
-        public DateTime Date { get; set; }
+        public DateTime Date { get; private set; }
 
         [Required, MaxLength(1000)]
-        public string Description { get; set; }
+        public string Description { get; private set; }
     }
 }

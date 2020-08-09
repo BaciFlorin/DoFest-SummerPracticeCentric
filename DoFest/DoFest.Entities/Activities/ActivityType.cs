@@ -7,14 +7,17 @@ namespace DoFest.Entities.Activities
     [Table("ActivityType")]
     public class ActivityType:Entity
     {
-        public ActivityType():base()
+        public ActivityType(
+            string Name
+            ) : base()
         {
+            this.Name = Name;
             Activities = new List<Activity>();
         }
 
         [MaxLength(50), Required]
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public ICollection<Activity> Activities { get; set; }
+        public ICollection<Activity> Activities { get; private set; }
     }
 }

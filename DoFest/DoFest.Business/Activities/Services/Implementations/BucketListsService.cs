@@ -13,7 +13,6 @@ using DoFest.Persistence.Activities;
 using DoFest.Persistence.Authentication;
 using DoFest.Persistence.Authentication.Type;
 using DoFest.Persistence.BucketLists;
-using DoFest.Persistence.Config.Lists;
 using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
@@ -113,10 +112,7 @@ namespace DoFest.Business.Activities.Services.Implementations
                 return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableActivity);
             }
 
-            var bucketListActivity = new BucketListActivity
-            {
-                BucketListId = bucketListId, ActivityId = activityId, Status = "On hold"
-            };
+            var bucketListActivity = new BucketListActivity(bucketListId, activityId);
 
             bucketList.AddBucketListActivity(bucketListActivity);
 
@@ -199,7 +195,7 @@ namespace DoFest.Business.Activities.Services.Implementations
                 bucketListActivity.UpdateStatus();
             }
 
-            bucketList.Name = updateModel.Name;
+            bucketList.UpdateName(updateModel.Name);
 
             _bucketListRepository.Update(bucketList);
             await _bucketListRepository.SaveChanges();

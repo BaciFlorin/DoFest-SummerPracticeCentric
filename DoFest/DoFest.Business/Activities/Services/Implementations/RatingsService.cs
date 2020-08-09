@@ -62,12 +62,10 @@ namespace DoFest.Business.Activities.Services.Implementations
             activity.AddRating(rating);
 
             var user = await _userRepository.GetById(rating.UserId);
-            var notification = new Notification()
-            {
-                ActivityId = activityId,
-                Date = DateTime.Now,
-                Description = $"{user.Username} has rated activity {activity.Name} with {rating.Stars} stars."
-            };
+            var notification = new Notification(activityId,
+                                                DateTime.Now, 
+                                                $"{user.Username} has rated activity {activity.Name} with {rating.Stars} stars."
+                                                );
 
             activity.AddNotification(notification);
 

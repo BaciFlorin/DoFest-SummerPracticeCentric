@@ -8,19 +8,23 @@ namespace DoFest.Entities.Lists
     [Table("BucketListActivity")]
     public class BucketListActivity
     {
-        public BucketListActivity()
+        public BucketListActivity(
+            Guid BucketListId,
+            Guid ActivityId
+        )
         {
-            
+            this.BucketListId = BucketListId;
+            this.ActivityId = ActivityId;
         }
 
         [Required]
-        public Guid BucketListId { get; set; }
+        public Guid BucketListId { get; private set; }
 
         [Required]
-        public Guid ActivityId { get; set; }
+        public Guid ActivityId { get; private set; }
 
         [DefaultValue("On hold")]
-        public string Status { get; set; }
+        public string Status { get; private set; }
 
         public void UpdateStatus()
         {

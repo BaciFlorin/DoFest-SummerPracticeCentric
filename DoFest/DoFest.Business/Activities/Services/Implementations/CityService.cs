@@ -55,10 +55,7 @@ namespace DoFest.Business.Activities.Services.Implementations
                 return Result.Failure<CityModel, Error>(ErrorsList.UnauthorizedUser);
             }
 
-            var newCity = new City()
-            {
-                Name = cityModel.Name
-            };
+            var newCity = new City(cityModel.Name);
             await _cityRepository.Add(newCity);
             await _cityRepository.SaveChanges();
 

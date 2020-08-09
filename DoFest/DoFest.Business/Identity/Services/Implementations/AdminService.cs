@@ -67,9 +67,9 @@ namespace DoFest.Business.Identity.Services.Implementations
             var user = await _userRepository.GetById(userId);
             var userTypesDictionary = (await _userTypeRepository.GetAll()).ToDictionary(x => x.Name, x => x.Id);
 
-            user.UserTypeId = user.UserTypeId == userTypesDictionary["Admin"] 
+            user.UpdateUserType(user.UserTypeId == userTypesDictionary["Admin"] 
                 ? userTypesDictionary["Normal user"] 
-                : userTypesDictionary["Admin"];
+                : userTypesDictionary["Admin"]);
             
             _userRepository.Update(user);
 

@@ -12,8 +12,20 @@ namespace DoFest.Entities.Activities
     [Table("Activity")]
     public class Activity : Entity
     {
-        public Activity() : base()
+        public Activity(
+            Guid ActivityTypeId,
+            Guid CityId,
+            string Name,
+            string Address,
+            string Description
+            ) : base()
         {
+            this.ActivityTypeId = ActivityTypeId;
+            this.CityId = CityId;
+            this.Name = Name;
+            this.Address = Address;
+            this.Description = Description;
+
             Photos = new List<Photo>();
             Comments = new List<Comment>();
             Ratings = new List<Rating>();
@@ -21,18 +33,19 @@ namespace DoFest.Entities.Activities
             Notifications = new List<Notification>();
         }
 
-        [Required] public Guid ActivityTypeId { get; set; }
+        [Required] public Guid ActivityTypeId { get; private set; }
 
         [Required]
-        public Guid CityId { get; set; }
+        public Guid CityId { get; private set; }
 
         [Required, MaxLength(200)]
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         [Required, MaxLength(1000)]
-        public string Address { get; set; }
+        public string Address { get; private set; }
 
-        [Required, MaxLength(2000)] public string Description { get; set; }
+        [Required, MaxLength(2000)] 
+        public string Description { get; private set; }
 
         public ICollection<Photo> Photos { get;  private set; }
         public ICollection<Comment> Comments { get; private set; }

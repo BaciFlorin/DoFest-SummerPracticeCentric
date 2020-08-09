@@ -7,18 +7,23 @@ namespace DoFest.Entities.Authentication
     [Table("UserType")]
     public class UserType:Entity
     {
-        public UserType():base()
+        public UserType(
+            string Name,
+            string Description
+            ) : base()
         {
+            this.Name = Name;
+            this.Description = Description;
             Users = new List<User>();
         }
 
         [Required, MaxLength(100)]
-        public string Name { get;  set; }
+        public string Name { get; private set; }
 
         [Required, MaxLength(200)]
-        public string Description { get;  set; }
+        public string Description { get; private set; }
 
-        public ICollection<User> Users { get;  set; }
+        public ICollection<User> Users { get; private set; }
 
     }
 }

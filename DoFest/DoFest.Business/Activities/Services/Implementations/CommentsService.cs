@@ -78,12 +78,10 @@ namespace DoFest.Business.Activities.Services.Implementations
             activity.AddComment(comment);
 
             var user = await _userRepository.GetById(commentModel.UserId);
-            var notification = new Notification()
-            {
-                ActivityId = activityId,
-                Date = DateTime.Now,
-                Description = $" {user.Username} has added a comment to activity {activity.Name} : {comment.Content}."
-            };
+            var notification = new Notification(activityId,
+                                                DateTime.Now, 
+                                                $" {user.Username} has added a comment to activity {activity.Name} : {comment.Content}."
+                                                );
 
             activity.AddNotification(notification);
 
