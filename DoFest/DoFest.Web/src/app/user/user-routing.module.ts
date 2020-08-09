@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserInfoComponent } from './user-info/user-info.component';
 
-const routes: Routes = [{
-  path: '',
-  pathMatch: 'full',
-  component: UserInfoComponent,
-}];
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: UserInfoComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UserRoutingModule { }
+export class UserRoutingModule {}

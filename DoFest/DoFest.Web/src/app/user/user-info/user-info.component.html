@@ -17,10 +17,7 @@
       <label>Confirm password</label>
       <input formControlName="confirmPassword" type="password" />
 
-      <div
-        *ngIf="invalidConfirmPass()"
-        class="error-alert"
-      >
+      <div *ngIf="invalidConfirmPass()" class="error-alert">
         Passwords do not match
       </div>
 
@@ -28,14 +25,8 @@
         Change password
       </button>
 
-      <div id="response">
-
-      </div>
-      <div id="error-list">
-
-      </div>
+      <div id="response"></div>
+      <div id="error-list"></div>
     </form>
-
-
   </section>
 </div>

@@ -1,7 +1,6 @@
-
 @import "../../../assets/styles/layout.scss";
 
-h1{
+h1 {
   padding-left: 30px;
 }
 .flex-row-space-around {
@@ -12,11 +11,11 @@ h1{
   width: 80%;
 }
 
-.form-section{
-  width: 60%;;
+.form-section {
+  width: 60%;
 }
 .change-password-content {
-  padding:50px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,8 +26,7 @@ h1{
   box-shadow: 0px 0px 8px rgba(0, 23, 87, 0.08);
 }
 
-
-.change-password-content input{
+.change-password-content input {
   width: 50%;
   height: 30px;
   margin-bottom: 20px;
@@ -38,7 +36,7 @@ h1{
   outline: none;
 }
 
-.change-password-content button{
+.change-password-content button {
   margin-top: 20px;
   margin-bottom: 20px;
   width: 40%;
@@ -52,10 +50,9 @@ h1{
   display: flexbox;
   padding: 10px;
 }
-#error-list{
+#error-list {
   color: red;
 }
-
 
 @media (max-width: 900px) {
   .flex-row-space-around {
@@ -66,15 +63,13 @@ h1{
     max-width: 100%;
   }
 
-  .form-section{
+  .form-section {
     width: 90%;
   }
   .change-password-content {
-
-    button, input{
+    button,
+    input {
       width: 80%;
-
     }
   }
-
 }
