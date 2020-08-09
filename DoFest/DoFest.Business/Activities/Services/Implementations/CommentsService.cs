@@ -11,7 +11,6 @@ using DoFest.Entities.Activities.Content;
 using DoFest.Entities.Authentication.Notification;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Authentication;
-using DoFest.Persistence.Notifications;
 using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
@@ -25,7 +24,6 @@ namespace DoFest.Business.Activities.Services.Implementations
         private readonly IActivitiesRepository _activitiesRepository;
         private readonly IHttpContextAccessor _accessor;
         private readonly IUserRepository _userRepository;
-        private readonly INotificationRepository _notificationRepository;
 
 
         /// <summary>
@@ -35,13 +33,12 @@ namespace DoFest.Business.Activities.Services.Implementations
         /// <param name="repository"> Repository-ul atribuit activitatilor. </param>
         /// <param name="accessor"> Un accesor pentru accesarea campurilor requestului HTTP. </param>
         public CommentsService(IMapper mapper, IActivitiesRepository activitiesRepository, IHttpContextAccessor accessor,
-            IUserRepository userRepository, INotificationRepository notificationRepository)
+            IUserRepository userRepository)
         {
             _mapper = mapper;
             _activitiesRepository = activitiesRepository;
             _accessor = accessor;
             _userRepository = userRepository;
-            _notificationRepository = notificationRepository;
         }
 
         public async Task<Result<IList<CommentModel>, Error>> GetComments(Guid activityId)
@@ -79,8 +76,7 @@ namespace DoFest.Business.Activities.Services.Implementations
             var comment = _mapper.Map<Comment>(commentModel);
 
             activity.AddComment(comment);
-            _activitiesRepository.Update(activity);
-            await _activitiesRepository.SaveChanges();
+            
 
             var user = await _userRepository.GetById(commentModel.UserId);
             var notification = new Notification()
@@ -90,7 +86,9 @@ namespace DoFest.Business.Activities.Services.Implementations
                 Description = $" {user.Username} has added a comment to activity {activity.Name} : {comment.Content}."
             };
 
-            await _notificationRepository.Add(notification);
+            activity.AddNotification(notification);
+
+            _activitiesRepository.Update(activity);
             await _activitiesRepository.SaveChanges();
 
             return Result.Success < CommentModel, Error >(CommentModel.Create(comment.Id, comment.ActivityId,

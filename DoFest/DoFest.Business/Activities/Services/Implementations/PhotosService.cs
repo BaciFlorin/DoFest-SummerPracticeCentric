@@ -13,7 +13,6 @@ using DoFest.Entities.Activities.Content;
 using DoFest.Entities.Authentication.Notification;
 using DoFest.Persistence.Activities;
 using DoFest.Persistence.Authentication;
-using DoFest.Persistence.Notifications;
 using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
@@ -23,16 +22,14 @@ namespace DoFest.Business.Activities.Services.Implementations
         private readonly IMapper _mapper;
         private readonly IActivitiesRepository _activitiesRepository;
         private readonly IHttpContextAccessor _accessor;
-        private readonly INotificationRepository _notificationRepository;
         private readonly IUserRepository _userRepository;
 
         public PhotosService(IActivitiesRepository activitiesRepository, IMapper mapper, IHttpContextAccessor accessor,
-            INotificationRepository notificationRepository, IUserRepository userRepository)
+             IUserRepository userRepository)
         {
             _activitiesRepository = activitiesRepository;
             _mapper = mapper;
             _accessor = accessor;
-            _notificationRepository = notificationRepository;
             _userRepository = userRepository;
         }
 
@@ -80,9 +77,7 @@ namespace DoFest.Business.Activities.Services.Implementations
             }
 
             activity.AddPhoto(photo);
-            _activitiesRepository.Update(activity);
-
-            await _activitiesRepository.SaveChanges();
+            
 
             var user = await _userRepository.GetById(photo.UserId);
             var notification = new Notification()
@@ -92,8 +87,11 @@ namespace DoFest.Business.Activities.Services.Implementations
                 Description = $"{user.Username} has added a new photo to activity {activity.Name}."
             };
 
-            await _notificationRepository.Add(notification);
-            await _notificationRepository.SaveChanges();
+            activity.AddNotification(notification);
+
+            _activitiesRepository.Update(activity);
+
+            await _activitiesRepository.SaveChanges();
 
             return Result.Success<PhotoModel, Error>(PhotoModel.Create(
                 photo.Id, photo.ActivityId, photo.UserId, user.Username, photo.Image));
