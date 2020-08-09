@@ -42,8 +42,19 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             var activity = await _activitiesRepository.GetByIdWithPhotos(activityId);
 
-            return Result.Success<IEnumerable<PhotoModel>, Error>(
-                _mapper.Map<IEnumerable<PhotoModel>>(activity.Photos));
+            var photos = activity.Photos;
+
+            var photosModel = new List<PhotoModel>();
+
+            foreach (var photo in photos)
+            {
+                var user = await _userRepository.GetById(photo.UserId);
+
+                photosModel.Add(PhotoModel.Create(photo.Id, photo.ActivityId,
+                    photo.UserId, user.Username, photo.Image));
+            }
+
+            return Result.Success<IEnumerable<PhotoModel>, Error>(photosModel);
 
         }
 
@@ -84,7 +95,8 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             await _activitiesRepository.SaveChanges();
 
-            return Result.Success<PhotoModel, Error>(_mapper.Map<PhotoModel>(photo));
+            return Result.Success<PhotoModel, Error>(PhotoModel.Create(
+                photo.Id, photo.ActivityId, photo.UserId, user.Username, photo.Image));
         }
 
         public async Task<Result<string, Error>> Delete(Guid activityId, Guid photoId)

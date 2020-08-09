@@ -48,9 +48,20 @@ namespace DoFest.Business.Activities.Services.Implementations
                 return Result.Failure<IList<CommentModel>, Error>(ErrorsList.UnavailableActivity);
             }
 
-            var comments = await _activitiesRepository.GetByIdWithComments(activityId);
 
-            return _mapper.Map<List<CommentModel>>(comments.Comments);
+            var comments = (await _activitiesRepository.GetByIdWithComments(activityId)).Comments;
+
+            var commentsModel = new List<CommentModel>();
+
+            foreach (var comment in comments)
+            {
+                var user = await _userRepository.GetById(comment.UserId);
+
+                commentsModel.Add(CommentModel.Create(comment.Id, comment.ActivityId,
+                    comment.UserId, user.Username, comment.Content));
+            }
+
+            return Result.Success<IList<CommentModel>, Error>(commentsModel);
         }
 
         public async Task<Result<CommentModel, Error>> AddComment(Guid activityId, NewCommentModel commentModel)
@@ -79,7 +90,8 @@ namespace DoFest.Business.Activities.Services.Implementations
             _activitiesRepository.Update(activity);
             await _activitiesRepository.SaveChanges();
 
-            return _mapper.Map<CommentModel>(comment);
+            return Result.Success<CommentModel, Error>(CommentModel.Create(comment.Id, comment.ActivityId,
+                comment.UserId, user.Username, comment.Content));
         }
 
         public async Task<Result<CommentModel, Error>> DeleteComment(Guid activityId, Guid commentId)

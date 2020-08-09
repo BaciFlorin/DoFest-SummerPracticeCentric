@@ -6,13 +6,13 @@ h1,h2, h3, h4, h5, label, p, div, span, input{
 .flex-row-start{
   display:flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .flex-row-end{
   display:flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .flex-row-center{

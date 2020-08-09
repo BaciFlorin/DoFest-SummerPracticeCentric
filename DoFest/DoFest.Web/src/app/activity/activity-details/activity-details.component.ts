@@ -95,7 +95,9 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
 
         this.photosService
           .post(params['id'], formData)
-          .subscribe((res: HttpResponse<any>) => {});
+          .subscribe((res: HttpResponse<any>) => {
+            this.fileToUpload=null;
+          });
       });
     }
   }
@@ -195,7 +197,7 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
   saveRating(value) {
     if (!this.hasUserRated) {
       this.hasUserRated = true;
-      this.userRating = value.toFixed(2);
+      this.userRating = parseFloat(value).toFixed(2);
       this.routeSub = this.activatedRoute.params.subscribe((params) => {
         this.ratingsService
           .post(params['id'], { stars: value })
