@@ -1,14 +1,12 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {AdminService } from '../../services/admin.service'
-import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { HttpResponse} from '@angular/common/http';
+import { FormControl, FormGroup, } from '@angular/forms';
+import { HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import { CityModel } from 'src/app/shared/models/city.model';
-import { NewActivityTypeModel } from '../../models/activityType/newActivityType';
 import { ActivityModel } from 'src/app/activity/models';
 import { ActivityTypeModel } from 'src/app/activity/models/activityType.model';
 import { Subscription } from 'rxjs';
-import { UserModel } from '../../models/user/user';
-import { MatTableDataSource } from '@angular/material/table';
+
 
 
 @Component({
@@ -37,7 +35,6 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   constructor(
     public readonly adminService: AdminService,
-    private changeDetectorRefs: ChangeDetectorRef
   ) {
     this.userTypeControl = new FormControl("");
 
@@ -76,8 +73,10 @@ export class AdminComponent implements OnInit, OnDestroy {
       if(res.status == 200)
       {
         alert("UserType changed!");
-
+        window.location.reload();
       }
+    }, () => {
+      alert("Bad request! Try Again!");
     }));
   }
 
@@ -86,7 +85,10 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.subs.push(this.adminService.deleteCity(data).subscribe( (res: HttpResponse<any>) => {
       if(res.status == 200){
         alert("City deleted!");
+        window.location.reload();
       }
+    }, () => {
+      alert("Bad request! Try Again!");
     }));
   }
 
@@ -99,7 +101,10 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.subs.push(this.adminService.addCity(cityModel).subscribe( (res: HttpResponse<any>) => {
       if(res.status == 200){
         alert("City added!");
+        window.location.reload();
       }
+    }, () => {
+      alert("Bad request! Try Again!");
     }));
   }
 
@@ -108,7 +113,10 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.subs.push(this.adminService.deleteActivityType(data).subscribe( (res: HttpResponse<any>) =>{
       if(res.status == 200){
         alert("ActivityType deleted!");
+        window.location.reload();
       }
+    }, () => {
+      alert("Bad request! Try Again!");
     }));
   }
 
@@ -119,7 +127,10 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.subs.push(this.adminService.addActivityType(activityTypeModel).subscribe( (res: HttpResponse<any>) =>{
       if(res.status == 200){
         alert("ActivityType added!");
+        window.location.reload();
       }
+    }, () => {
+      alert("Bad request! Try Again!");
     }));
   }
 
@@ -128,7 +139,10 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.subs.push(this.adminService.deleteActivity(data).subscribe( (res: HttpResponse<any>) => {
       if(res.status == 200){
         alert("Activity deleted!");
+        window.location.reload();
       }
+    }, () => {
+      alert("Bad request! Try Again!");
     }));
   }
 
@@ -137,7 +151,10 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.subs.push(this.adminService.addActivity(activityModel).subscribe( (res: HttpResponse<any>) =>{
       if(res.status == 200){
         alert("Activity added!");
+        window.location.reload();
       }
+    }, () => {
+      alert("Bad request! Try Again!");
     }));
   }
 }
