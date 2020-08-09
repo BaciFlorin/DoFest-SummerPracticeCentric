@@ -36,5 +36,10 @@ namespace DoFest.Entities.Lists
             }
         }
 
+        public void RemoveActivities(List<Guid> activities)
+        {
+            activities.ForEach(RemoveActivity);
+        }
+
     }
 }

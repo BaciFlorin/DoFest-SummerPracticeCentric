@@ -15,6 +15,7 @@ using DoFest.Persistence.Activities.Places;
 using DoFest.Persistence.Authentication;
 using DoFest.Persistence.Authentication.Type;
 using DoFest.Persistence.BucketLists;
+using DoFest.Persistence.Config.Lists;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -137,13 +138,19 @@ namespace DoFest.Business.Identity.Services.Implementations
             var type = await _userTypeRepository.GetById(user.UserTypeId);
             var bucketList = await _bucketListRepository.GetByUserId(user.Id);
 
-            var token = new JwtSecurityToken(_config.Issuer,
-                _config.Audience,
+            var claims = (type.Name != "Admin") ? new List<Claim>()
+                {
+                    new Claim("userId", user.Id.ToString())
+                } :
                 new List<Claim>()
                 {
                     new Claim("userId", user.Id.ToString()),
-                    new Claim("isAdmin", (type.Name == "Admin").ToString())
-                },
+                    new Claim("isAdmin", "true")
+                };
+
+            var token = new JwtSecurityToken(_config.Issuer,
+                _config.Audience,
+                claims,
                 expires: DateTime.Now.AddHours(hours),
                 signingCredentials: credentials);
 

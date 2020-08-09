@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CSharpFunctionalExtensions;
+using DoFest.Business.Activities.Models.Content.Comment;
 using DoFest.Business.Activities.Models.Content.Photos;
 using DoFest.Business.Activities.Services.Interfaces;
 using DoFest.Business.Errors;
@@ -41,9 +42,19 @@ namespace DoFest.Business.Activities.Services.Implementations
             }
 
             var activity = await _activitiesRepository.GetByIdWithPhotos(activityId);
+            var photos = activity.Photos;
 
-            return Result.Success<IEnumerable<PhotoModel>, Error>(_mapper.Map<IEnumerable<PhotoModel>>(activity.Photos));
+            var photosModel = new List<PhotoModel>();
 
+            foreach (var photo in photos)
+            {
+                var user = await _userRepository.GetById(photo.UserId);
+
+                photosModel.Add(PhotoModel.Create(photo.Id, photo.ActivityId,
+                    photo.UserId, user.Username, photo.Image));
+            }
+
+            return Result.Success<IEnumerable<PhotoModel>, Error>(photosModel);
         }
 
         public async Task<Result<PhotoModel, Error>> Add(Guid activityId, CreatePhotoModel model)
@@ -55,7 +66,8 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             var photo = new Photo
             {
-                Image = stream.ToArray()
+                Image = stream.ToArray(),
+                UserId= model.UserId
             };
 
             var activity = await _activitiesRepository.GetById(activityId);
@@ -66,6 +78,7 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             activity.AddPhoto(photo);
             
+
             var user = await _userRepository.GetById(photo.UserId);
             var notification = new Notification()
             {
@@ -80,7 +93,8 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             await _activitiesRepository.SaveChanges();
 
-            return Result.Success<PhotoModel, Error>(_mapper.Map<PhotoModel>(photo));
+            return Result.Success<PhotoModel, Error>(PhotoModel.Create(
+                photo.Id, photo.ActivityId, photo.UserId, user.Username, photo.Image));
         }
 
         public async Task<Result<string, Error>> Delete(Guid activityId, Guid photoId)

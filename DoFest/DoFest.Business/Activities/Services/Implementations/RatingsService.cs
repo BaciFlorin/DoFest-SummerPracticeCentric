@@ -24,7 +24,7 @@ namespace DoFest.Business.Activities.Services.Implementations
         private readonly IUserRepository _userRepository;
 
         public RatingsService(IMapper mapper, IActivitiesRepository activitiesRepository, IHttpContextAccessor accessor,
-            IUserRepository userRepository)
+             IUserRepository userRepository)
         {
             _mapper = mapper;
             _activitiesRepository = activitiesRepository;
@@ -45,6 +45,7 @@ namespace DoFest.Business.Activities.Services.Implementations
                 _mapper.Map<IEnumerable<RatingModel>>(activity.Ratings));
         }
 
+       
         public async Task<Result<RatingModel, Error>> Add(Guid activityId, CreateRatingModel model)
         {
 
@@ -72,72 +73,9 @@ namespace DoFest.Business.Activities.Services.Implementations
             activity.AddNotification(notification);
 
             _activitiesRepository.Update(activity);
-
             await _activitiesRepository.SaveChanges();
+
             return Result.Success<RatingModel, Error>(_mapper.Map<RatingModel>(rating));
-        }
-
-        public async Task<Result<string, Error>> Delete(Guid activityId, Guid ratingId)
-        {
-            var activityExists = (await _activitiesRepository.GetById(activityId)) != null;
-            if (!activityExists)
-            {
-                return Result.Failure<string, Error>(ErrorsList.UnavailableActivity);
-            }
-
-            var activity = await _activitiesRepository.GetByIdWithRatings(activityId);
-
-            var rating = activity.Ratings.FirstOrDefault(r => r.Id == ratingId) ;
-
-            if (rating == null)
-            {
-                return Result.Failure<string, Error>(ErrorsList.UnavailableRating);
-            }
-
-            var loggedUserId = Guid.Parse(this._accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
-            if (loggedUserId != rating.UserId)
-            {
-                return Result.Failure<string, Error>(ErrorsList.DeleteNotAuthorized);
-            }
-
-            activity.RemoveRating(ratingId);
-
-            _activitiesRepository.Update(activity);
-            await _activitiesRepository.SaveChanges();
-
-            return Result.Success<string, Error>("Rating deleted successfully");
-        }
-
-        public async Task<Result<RatingModel, Error>> Update(Guid activityId, Guid ratingId, CreateRatingModel model)
-        {
-            var activityExists = (await _activitiesRepository.GetById(activityId)) != null;
-            if (!activityExists)
-            {
-                return Result.Failure<RatingModel, Error>(ErrorsList.UnavailableActivity);
-            }
-
-            var activity = await this._activitiesRepository.GetByIdWithRatings(activityId);
-
-            model.UserId = Guid.Parse(this._accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
-
-            var rating = activity.Ratings.FirstOrDefault(r => r.Id == ratingId);
-
-            if (rating == null)
-            {
-                return Result.Failure<RatingModel, Error>(ErrorsList.UnavailableRating);
-            }
-
-            if (model.UserId != rating.UserId)
-            {
-                return Result.Failure<RatingModel, Error>(ErrorsList.UpdateNotAuthorized);
-            }
-
-            rating.Stars = model.Stars;
-
-            this._activitiesRepository.Update(activity);
-            await this._activitiesRepository.SaveChanges();
-
-            return Result.Success<RatingModel, Error>(this._mapper.Map<RatingModel>(rating));
         }
     }
 }

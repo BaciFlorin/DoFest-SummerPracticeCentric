@@ -1,0 +1,45 @@
+@import "../../../assets/styles/layout.scss";
+.app-tile {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 32px;
+}
+
+.form-control {
+    width: 100px;
+}
+
+// .label {
+//     transition: transform .2s;
+// }
+// label:hover {
+//     transform: scale(1.2);
+// }
+.page-container {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+}
+
+.description {
+    visibility: hidden;
+}
+
+.label:hover+.description {
+    visibility: visible;
+}
+
+input {
+    width: 5%;
+}
+
+.filter-container {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+}
+
+.filter-container mat-form-field {
+    margin: 0 40px;
+}

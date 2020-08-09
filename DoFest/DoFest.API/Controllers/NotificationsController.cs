@@ -25,17 +25,5 @@ namespace DoFest.API.Controllers
             var result = await _notificationService.FindAllNotifications();
             return Ok(result);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateNotification([FromBody] CreateNotificationModel notificationModel)
-        {
-            var (_, isFailure, value, error) = await _notificationService.CreateNotification(notificationModel);
-            if (isFailure)
-            {
-                return BadRequest(error);
-            }
-
-            return Created(value.Id.ToString(),null);
-        }
     }
 }

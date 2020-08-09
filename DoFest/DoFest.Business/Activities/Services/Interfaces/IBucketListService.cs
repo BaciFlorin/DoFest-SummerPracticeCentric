@@ -12,8 +12,8 @@ namespace DoFest.Business.Activities.Services.Interfaces
         public Task<Result<BucketListWithActivityIdModel, Error>> Get(Guid bucketListId);
         public Task<Result<IList<BucketListModel>, Error>> GetBucketLists();
         public Task<Result<BucketListModel, Error>> Add(Guid bucketListId, Guid activityId);
-        public Task<Result<BucketListModel, Error>> DeleteActivity(Guid bucketList, Guid activityId);
-        public Task<Result<BucketListModel, Error>> ToggleStatus(Guid bucketListId, Guid activityId);
+        //public Task<Result<BucketListModel, Error>> DeleteActivity(Guid bucketList, Guid activityId);
+        public Task<Result<string, Error>> UpdateBucketList(Guid bucketListId, BucketListUpdateModel updateModel);
 
     }
 }

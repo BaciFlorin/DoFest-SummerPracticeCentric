@@ -1,0 +1,23 @@
+    <div class="identity-container">
+            <h1>
+                {{bucketlist.name}}
+            </h1>
+         by {{bucketlist.username}} 
+    </div>
+    <div class="activity-container">
+        <ul class="list-activities">
+            <li *ngFor="let activity of bucketlist.activities;">
+                <div class="activity-name" (click)="goToActivity(activity.activityId)">
+                    {{activity.name}} 
+                </div>
+                <div class="activity-status">
+                    Status: {{activity.status}}
+                </div>
+            </li>
+        </ul>
+        <ng-container *ngIf="bucketlist.activities.length == 0">
+            <div class="empty">
+                Empty
+            </div>
+        </ng-container>
+    </div>

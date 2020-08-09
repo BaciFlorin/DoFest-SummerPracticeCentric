@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Places;
 using DoFest.Entities.Authentication;
+using DoFest.Entities.Lists;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 
@@ -34,6 +35,13 @@ namespace DoFest.Persistence
                 StudentId = null
             };
             modelBuilder.Entity<User>().HasData(admin);
+
+            var bucketListAdmin = new BucketList()
+            {
+                UserId = admin.Id,
+                Name = "Admin bucketList"
+            };
+            modelBuilder.Entity<BucketList>().HasData(bucketListAdmin);
             #endregion
 
             var activityData = JObject.Parse(File.ReadAllText("../DoFest.Persistence/DatabaseData/Activities.json"))["Activities"];

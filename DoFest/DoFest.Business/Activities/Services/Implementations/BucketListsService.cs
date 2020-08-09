@@ -13,6 +13,7 @@ using DoFest.Persistence.Activities;
 using DoFest.Persistence.Authentication;
 using DoFest.Persistence.Authentication.Type;
 using DoFest.Persistence.BucketLists;
+using DoFest.Persistence.Config.Lists;
 using Microsoft.AspNetCore.Http;
 
 namespace DoFest.Business.Activities.Services.Implementations
@@ -53,11 +54,15 @@ namespace DoFest.Business.Activities.Services.Implementations
 
             var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
             var user = await _userRepository.GetById(bucketList.UserId);
-
             var bucketListActivities = bucketList.BucketListActivities.ToList();
-            var activities = bucketListActivities.Select(activity => ActivityWithStatusModel.Create(activity.ActivityId, activity.Status)).ToList();
+            var activities = new List<ActivityWithStatusModel>();
+            foreach(var bucketListActivity in bucketListActivities)
+            {
+                var activity = await _activitiesRepository.GetById(bucketListActivity.ActivityId);
+                activities.Add(ActivityWithStatusModel.Create(bucketListActivity.ActivityId, bucketListActivity.Status, activity.Name));
+            }
 
-            return BucketListWithActivityIdModel.Create(bucketList.Id, activities, bucketList.Name, user.Username);
+            return BucketListWithActivityIdModel.Create(activities, bucketList.Name, user.Username);
         }
 
         public async Task<Result<IList<BucketListModel>, Error>> GetBucketLists()
@@ -123,86 +128,83 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         }
 
-        /// <summary>
-        /// Disociaza o activitate inclusa intr-un bucket list.
-        /// </summary>
-        /// <param name="bucketListId"> Id-ul bucket list-ului. </param>
-        /// <param name="activityId"> Id-ul activitatii. </param>
-        /// <returns></returns>
-        public async Task<Result<BucketListModel, Error>> DeleteActivity(Guid bucketListId, Guid activityId)
-        {
-            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
-            var bucketListExists = (await _bucketListRepository.GetById(bucketListId)) != null;
-            if (!bucketListExists)
-            {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
-            }
+        ///// <summary>
+        ///// Disociaza o activitate inclusa intr-un bucket list.
+        ///// </summary>
+        ///// <param name="bucketListId"> Id-ul bucket list-ului. </param>
+        ///// <param name="activityId"> Id-ul activitatii. </param>
+        ///// <returns></returns>
+        //public async Task<Result<BucketListModel, Error>> DeleteActivity(Guid bucketListId, Guid activityId)
+        //{
+        //    var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+        //    var bucketListExists = (await _bucketListRepository.GetById(bucketListId)) != null;
+        //    if (!bucketListExists)
+        //    {
+        //        return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
+        //    }
 
-            var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
+        //    var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
 
-            var user = await _userRepository.GetById(bucketList.UserId);
+        //    var user = await _userRepository.GetById(bucketList.UserId);
 
-            if (userId != bucketList.UserId)
-            {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UnauthorizedUser);
-            }
+        //    if (userId != bucketList.UserId)
+        //    {
+        //        return Result.Failure<BucketListModel, Error>(ErrorsList.UnauthorizedUser);
+        //    }
 
-            var activity = bucketList
-                .BucketListActivities
-                .FirstOrDefault(activityQuery => activityQuery.ActivityId == activityId);
-            if (activity == null)
-            {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableActivity);
-            }
+        //    var activity = bucketList
+        //        .BucketListActivities
+        //        .FirstOrDefault(activityQuery => activityQuery.ActivityId == activityId);
+        //    if (activity == null)
+        //    {
+        //        return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableActivity);
+        //    }
 
-            bucketList
-                .BucketListActivities
-                .Remove(activity);
+        //    bucketList
+        //        .BucketListActivities
+        //        .Remove(activity);
 
-            _bucketListRepository.Update(bucketList);
-            await _bucketListRepository.SaveChanges();
+        //    _bucketListRepository.Update(bucketList);
+        //    await _bucketListRepository.SaveChanges();
 
-            return BucketListModel.Create(bucketList.Id, bucketList.Name, user.Username);
-        }
+        //    return BucketListModel.Create(bucketList.Id, bucketList.Name, user.Username);
+        //}
 
         /// <summary>
         /// Schimba statusul unei activitati din bucket list: Completed/On hold.
         /// </summary>
         /// <param name="bucketListId"> Id-ul bucket list-ului. </param>
-        /// <param name="activityId"> Id-ul activitatii. </param>
+        /// <param name="updateModel"> Modelul care contine informatiile pentru update. </param>
         /// <returns> Modelul bucket list-ului care a fost updatat sau null. </returns>
-        public async Task<Result<BucketListModel, Error>> ToggleStatus(Guid bucketListId, Guid activityId)
+        public async Task<Result<string, Error>> UpdateBucketList(Guid bucketListId, BucketListUpdateModel updateModel)
         {
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
-            var activity = await _activitiesRepository.GetById(activityId);
-            if (activity == null)
-            {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableActivity);
-            }
-            var bucketList = await _bucketListRepository.GetById(bucketListId);
+            var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
             if (bucketList == null)
             {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketList);
+                return Result.Failure<string, Error>(ErrorsList.UnavailableBucketList);
             }
 
             var user = await _userRepository.GetById(bucketList.UserId);
             if (userId != bucketList.UserId)
             {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UnauthorizedUser);
+                return Result.Failure<string, Error>(ErrorsList.UnauthorizedUser);
             }
 
-            var bucketListActivity = await _bucketListRepository.GetBucketListActivityById(bucketListId, activityId);
-            if (bucketListActivity == null )
+            bucketList.RemoveActivities(updateModel.ActivitiesForDelete);
+
+            foreach (var activityId in updateModel.ActivitiesForToggle)
             {
-                return Result.Failure<BucketListModel, Error>(ErrorsList.UnavailableBucketListActivity);
+                var bucketListActivity = bucketList.BucketListActivities.First((bucketAct) => bucketAct.ActivityId == activityId);
+                bucketListActivity.UpdateStatus();
             }
 
-            bucketListActivity.UpdateStatus();
-            _bucketListRepository.Update(bucketList);
+            bucketList.Name = updateModel.Name;
 
+            _bucketListRepository.Update(bucketList);
             await _bucketListRepository.SaveChanges();
 
-            return BucketListModel.Create(bucketList.Id, bucketList.Name, user.Username);
+            return Result.Success<string,Error>("Bucketlist updated");
         }
 
     }

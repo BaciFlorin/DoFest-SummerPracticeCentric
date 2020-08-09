@@ -18,6 +18,7 @@ namespace DoFest.Entities.Activities.Content
         [Required]
         public Guid UserId { get; set; }
 
+        [Required]
         public byte[] Image { get; set; }
     }
 }
