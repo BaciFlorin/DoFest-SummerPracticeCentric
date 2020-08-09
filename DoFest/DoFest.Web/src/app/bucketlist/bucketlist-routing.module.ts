@@ -6,7 +6,6 @@ import { BucketComponent } from './components/bucket/bucket.component';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: BucketListComponent,
   },
   {

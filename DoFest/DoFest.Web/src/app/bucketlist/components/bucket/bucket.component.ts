@@ -2,10 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { BucketListWithActivitiesModel } from '../../models/bucketListWithActivities.model';
 import { BucketListService } from '../../services/bucketList.service';
-import { MatSelectChange } from '@angular/material/select';
-import { ActivityModule } from 'src/app/activity/activity.module';
-import { UpdateBucketListModel } from '../../models/updateBucketList.model';
-import { HttpResponse, HttpHandler } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -22,7 +18,10 @@ export class BucketComponent implements OnInit, OnDestroy{
    }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    if(this.sub!= undefined)
+    {
+      this.sub.unsubscribe();
+    }
   }
 
   public bucketListId:string;

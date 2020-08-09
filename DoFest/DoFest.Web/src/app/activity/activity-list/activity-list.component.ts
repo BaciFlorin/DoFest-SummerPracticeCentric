@@ -9,7 +9,6 @@ import { CitiesService } from 'src/app/shared/services';
 import { FormGroup } from '@angular/forms';
 import { ActivityTypeModel } from '../models/activityType.model';
 import { MatSelectChange } from '@angular/material/select';
-import { ActivityModule } from '../activity.module';
 import { BucketListService } from 'src/app/bucketlist/services/bucketList.service';
 import { Subscription } from 'rxjs';
 

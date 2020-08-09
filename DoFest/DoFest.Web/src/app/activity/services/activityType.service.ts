@@ -1,9 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ActivityModel } from '../models';
-import { ActivitiesModel } from '../models/activities.model';
 import { ActivityTypeModel } from '../models/activityType.model';
 import { RouteService } from 'src/app/shared/services';
 
