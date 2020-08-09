@@ -53,8 +53,9 @@ namespace DoFest.Persistence
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             using (StreamReader reader = new StreamReader(stream))
             {
-                result = 
+                result = reader.ReadToEnd();
             }
+
 
             var activityData = JObject.Parse(result)["Activities"];
            

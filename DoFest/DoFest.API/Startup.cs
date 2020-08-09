@@ -100,7 +100,6 @@ namespace DoFest.API
             services.AddTransient<IValidator<RegisterModel>, UserRegisterModelValidator>()
                 .AddTransient<IValidator<NewPasswordModelRequest>, NewPasswordModelValidator>()
                 .AddTransient<IValidator<LoginModelRequest>, LoginModelValidator>()
-                .AddTransient<IValidator<CreateNotificationModel>, CreateNotificationModelValidator>()
                 .AddTransient<IValidator<NewCommentModel>, NewCommentModelValidator>()
                 .AddTransient<IValidator<CreateRatingModel>, CreateRatingModelValidator>()
                 .AddTransient<IValidator<CreatePhotoModel>, CreatePhotoModelValidator>();

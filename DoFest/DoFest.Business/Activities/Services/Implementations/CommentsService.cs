@@ -18,13 +18,12 @@ namespace DoFest.Business.Activities.Services.Implementations
     /// <summary>
     /// Implementarea serviciului pentru comentarii.
     /// </summary>
-    public sealed class CommentsService: ICommentsService
+    public sealed class CommentsService : ICommentsService
     {
         private readonly IMapper _mapper;
         private readonly IActivitiesRepository _activitiesRepository;
         private readonly IHttpContextAccessor _accessor;
         private readonly IUserRepository _userRepository;
-
 
         /// <summary>
         /// Constructor public default.
@@ -49,19 +48,9 @@ namespace DoFest.Business.Activities.Services.Implementations
                 return Result.Failure<IList<CommentModel>, Error>(ErrorsList.UnavailableActivity);
             }
 
-            var comments = (await _activitiesRepository.GetByIdWithComments(activityId)).Comments;
+            var comments = await _activitiesRepository.GetByIdWithComments(activityId);
 
-            var commentsModel = new List<CommentModel>();
-
-            foreach (var comment in comments)
-            {
-                var user = await _userRepository.GetById(comment.UserId);
-
-                commentsModel.Add(CommentModel.Create(comment.Id, comment.ActivityId,
-                    comment.UserId, user.Username, comment.Content));
-            }
-
-            return Result.Success<IList<CommentModel>, Error>(commentsModel);
+            return _mapper.Map<List<CommentModel>>(comments.Comments);
         }
 
         public async Task<Result<CommentModel, Error>> AddComment(Guid activityId, NewCommentModel commentModel)
@@ -76,7 +65,6 @@ namespace DoFest.Business.Activities.Services.Implementations
             var comment = _mapper.Map<Comment>(commentModel);
 
             activity.AddComment(comment);
-            
 
             var user = await _userRepository.GetById(commentModel.UserId);
             var notification = new Notification()
@@ -91,8 +79,7 @@ namespace DoFest.Business.Activities.Services.Implementations
             _activitiesRepository.Update(activity);
             await _activitiesRepository.SaveChanges();
 
-            return Result.Success < CommentModel, Error >(CommentModel.Create(comment.Id, comment.ActivityId,
-                comment.UserId, user.Username, comment.Content));
+            return _mapper.Map<CommentModel>(comment);
         }
 
         public async Task<Result<CommentModel, Error>> DeleteComment(Guid activityId, Guid commentId)
