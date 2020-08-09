@@ -10,11 +10,20 @@ namespace DoFest.Entities.Authentication
     [Table("User")]
     public class User:Entity
     {
+        private string v1;
+        private string v2;
+
         public User():base()
         {
             Photos = new List<Photo>();
             Comments = new List<Comment>();
             Ratings = new List<Rating>();
+        }
+
+        public User(string v1, string v2)
+        {
+            this.v1 = v1;
+            this.v2 = v2;
         }
 
         [Required, MaxLength(50)]

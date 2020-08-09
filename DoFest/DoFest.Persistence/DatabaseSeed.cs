@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Places;
 using DoFest.Entities.Authentication;
@@ -24,19 +25,17 @@ namespace DoFest.Persistence
             modelBuilder.Entity<UserType>().HasData(userTypes);
             #endregion
 
-            #region Admin
-            var admin = new User()
-            {
-                Email = "DoFestAdmin@gmail.com",
-                Username = "DoFestAdmin",
-                UserTypeId = userTypes[0].Id,
-                PasswordHash = CreateHash("passwordAdmin"),
-                StudentId = null
-            };
-            modelBuilder.Entity<User>().HasData(admin);
-            #endregion
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("Activities.json"));
+            string result = string.Empty;
 
-            var activityData = JObject.Parse(File.ReadAllText("../DoFest.Persistence/DatabaseData/Activities.json"))["Activities"];
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                result = reader.ReadToEnd();
+            }
+
+            var activityData = JObject.Parse(result)["Activities"];
            
             #region City
             var citiesData = (from activity in activityData select (string) activity["Location"]).Distinct();
