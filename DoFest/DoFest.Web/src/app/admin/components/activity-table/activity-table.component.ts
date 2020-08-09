@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-activity-table',
   templateUrl: './activity-table.component.html',
-  styleUrls: ['./activity-table.component.css']
+  styleUrls: ['./activity-table.component.scss']
 })
 export class ActivityTableComponent implements OnInit {
 

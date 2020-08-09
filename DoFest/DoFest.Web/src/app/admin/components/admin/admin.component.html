@@ -6,7 +6,7 @@
       <mat-tab-group mat-align-tabs="center" fxFill>
         <!-- The user tab -->
         <mat-tab label="Users">
-          <div class="content-tab-users" fxLayout="row" fxLayoutAlign="center none" >
+          <div class="content-tab-users" fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="center none" >
             <app-user-table fxFlex="65"></app-user-table>
             <div class="users-tab-content" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center" >
               <mat-expansion-panel>
@@ -33,7 +33,7 @@
 
         <!-- The city tab -->
         <mat-tab label="Cities">
-          <div class="content-tab-cities" fxLayout="row" fxLayoutAlign="space-around center" >
+          <div class="content-tab-cities" fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="space-around center" >
             <app-city-table fxFlex="60"></app-city-table>
             <div class="cities-tab-content" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center" >
               <mat-expansion-panel>
@@ -76,7 +76,7 @@
 
         <!-- The activities tab -->
         <mat-tab label="Activities">
-          <div class="content-tab-activities" fxLayout="row" fxLayoutAlign="space-around center" >
+          <div class="content-tab-activities" fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="space-around center" >
             <app-activity-table fxFlex="60"></app-activity-table>
             <div class="activities-tab-content" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center" >
               <mat-expansion-panel>
@@ -122,12 +122,28 @@
                     <mat-icon aria-hidden="false">nature_people</mat-icon>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
-                <div fxLayout="column" fxLayoutAlign="space-evenly center">
-                  <mat-form-field class="example-full-width">
-                    <mat-label>ActivityId</mat-label>
-                    <input matInput placeholder="Type activityId">
+                <div fxLayout="column" fxLayoutAlign="space-evenly center" [formGroup]="activityAddGroup">
+                  <mat-form-field>
+                    <mat-label>Activity name</mat-label>
+                    <input matInput placeholder="Type an activity name" type="text" formControlName="name">
                   </mat-form-field>
-                  <button mat-raised-button color="primary">Add</button>
+                  <mat-form-field>
+                    <mat-label>Activity typeId</mat-label>
+                    <input matInput placeholder="Type an activity typeId" type="text" formControlName="activityTypeId">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Activity adress</mat-label>
+                    <input matInput placeholder="Type an activity adress" type="text" formControlName="address">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Activity cityId</mat-label>
+                    <input matInput placeholder="Type an activity cityId" type="text" formControlName="cityId">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Activity description</mat-label>
+                    <input matInput placeholder="Type an activity description" type="text" formControlName="description">
+                  </mat-form-field>
+                  <button mat-raised-button color="primary" (click)="addActivity()">Add</button>
                 </div>
               </mat-expansion-panel>
             </div>
@@ -136,7 +152,7 @@
 
         <!-- The activityTypes tab -->
         <mat-tab label="ActivityTypes">
-          <div class="content-tab-activitytypes" fxLayout="row" fxLayoutAlign="space-around center" >
+          <div class="content-tab-activitytypes" fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="space-around center" >
             <app-activity-type-table fxFlex="60"></app-activity-type-table>
             <div class="activitytypes-tab-content" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center" >
               <mat-expansion-panel>
@@ -166,7 +182,7 @@
                   </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div fxLayout="column" fxLayoutAlign="space-evenly center">
-                  <mat-form-field class="example-full-width">
+                  <mat-form-field>
                     <mat-label>Activity name</mat-label>
                     <input matInput placeholder="Type an activity name" type="text" [formControl]="activityTypeAddControl">
                   </mat-form-field>

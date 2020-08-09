@@ -4,12 +4,14 @@ import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from
 import { HttpResponse} from '@angular/common/http';
 import { CityModel } from 'src/app/shared/models/city.model';
 import { NewActivityTypeModel } from '../../models/activityType/newActivityType';
+import { ActivityModel } from 'src/app/activity/models';
+import { ActivityTypeModel } from 'src/app/activity/models/activityType.model';
 
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css'],
+  styleUrls: ['./admin.component.scss'],
   providers: [
     AdminService
   ]
@@ -25,6 +27,7 @@ export class AdminComponent implements OnInit {
   public activityTypeAddControl: FormControl = null;
 
   public activityDeleteControl: FormControl = null;
+  public activityAddGroup: FormGroup = null;
 
 
   constructor(
@@ -36,9 +39,17 @@ export class AdminComponent implements OnInit {
     this.cityNameAddControl = new FormControl("");
 
     this.activityTypeAddControl = new FormControl("");
+
     this.activityTypeDeleteControl = new FormControl("");
 
     this.activityDeleteControl = new FormControl("");
+    this.activityAddGroup = new FormGroup({
+      name: new FormControl(""),
+      activityTypeId: new FormControl(""),
+      address: new FormControl(""),
+      cityId: new FormControl(""),
+      description: new FormControl("")
+    });
   }
 
   ngOnInit(): void {
@@ -82,7 +93,7 @@ export class AdminComponent implements OnInit {
   }
 
   public addActivityType(): void{
-    let activityTypeModel: NewActivityTypeModel = {
+    let activityTypeModel: ActivityTypeModel = {
       name: this.activityTypeAddControl.value
     };
     this.adminService.addActivityType(activityTypeModel).subscribe( (res: HttpResponse<any>) =>{
@@ -94,6 +105,13 @@ export class AdminComponent implements OnInit {
     const data: string = this.activityDeleteControl.value;
     this.adminService.deleteActivity(data).subscribe( (res: HttpResponse<any>) => {
 
+    });
+  }
+
+  public addActivity(): void{
+    const activityModel: ActivityModel = this.activityAddGroup.getRawValue();
+    this.adminService.addActivity(activityModel).subscribe( (res: HttpResponse<any>) =>{
+      console.log(res);
     });
   }
 }

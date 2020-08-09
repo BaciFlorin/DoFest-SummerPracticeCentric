@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserModel } from '../models/user/user';
 import { Observable } from 'rxjs';
-import { CityModel } from 'src/app/shared/models/city.model';
+import { CityModel, UserTypeModel } from 'src/app/shared/models/city.model';
 import { CitiesService, RouteService } from 'src/app/shared/services';
 import {MatTableDataSource} from '@angular/material/table';
 import { ActivityModel } from 'src/app/activity/models/activity.model';
@@ -18,6 +18,7 @@ export class AdminService {
   // ********** User table data **********
   userDisplayedColumns: string[] = ['Id', 'Username', 'Email', 'UserType'];
   userData: UserModel[] = null;
+  userTypeData: UserTypeModel[] = null;
   userDataSource: MatTableDataSource<UserModel> = null;
   userTypeInput: string = null;
 
@@ -35,14 +36,6 @@ export class AdminService {
   activityTypeDisplayedColumns: string[] = ['Id', 'Name'];
   activityTypeData: ActivityTypeModel[] = null;
   activityTypeDataSource: MatTableDataSource<ActivityTypeModel> = null;
-
-  private backendEndpoint: string = "http://192.168.0.103:5002/api/v1/"
-  private endpoints = {
-    "activities": this.backendEndpoint + "activities",
-    "activityType": this.backendEndpoint + "activities/types",
-    "cities": this.backendEndpoint + "cities",
-    "users": this.backendEndpoint + "admin"
-  };
 
   private httpClient: HttpClient = null;
   private cityService: CitiesService = null;
@@ -63,6 +56,10 @@ export class AdminService {
   }
 
   // ********** Get data lits **********
+
+  public getUserTypes(): Observable<unknown>{
+    return this.httpClient.get<UserTypeModel[]>(this.routeService.getRoute("admin", "get userTypes"));
+  }
 
   public getUsers(): Observable<unknown>{
     return this.httpClient.get<UserModel[]>(this.routeService.getRoute("admin", "get users"));
