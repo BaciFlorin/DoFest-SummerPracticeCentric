@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Places;
@@ -44,7 +46,17 @@ namespace DoFest.Persistence
             modelBuilder.Entity<BucketList>().HasData(bucketListAdmin);
             #endregion
 
-            var activityData = JObject.Parse(File.ReadAllText("../DoFest.Persistence/DatabaseData/Activities.json"))["Activities"];
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("Activities.json"));
+            string result = string.Empty;
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                result = 
+            }
+
+            var activityData = JObject.Parse(result)["Activities"];
            
             #region City
             var citiesData = (from activity in activityData select (string) activity["Location"]).Distinct();

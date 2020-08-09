@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoFest.Persistence", "DoFes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.Tests", "99.Tests", "{2FB6D3ED-CC9C-4F6B-B892-771A7042DBCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoFest.UnitTests", "DoFest.UnitTests\DoFest.UnitTests.csproj", "{C8B94CB2-EA6D-404A-BB8E-D431E51AF3C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoFest.UnitTests", "DoFest.UnitTests\DoFest.UnitTests.csproj", "{C8B94CB2-EA6D-404A-BB8E-D431E51AF3C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
