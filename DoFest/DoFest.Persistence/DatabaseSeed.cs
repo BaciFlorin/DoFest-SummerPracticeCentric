@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Places;
 using DoFest.Entities.Authentication;

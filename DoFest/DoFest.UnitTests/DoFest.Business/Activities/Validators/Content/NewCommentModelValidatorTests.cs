@@ -22,18 +22,6 @@ namespace DoFest.UnitTests.DoFest.Business.Activities.Validators.Content
         }
 
         [Fact]
-        public void GivenValidate_WhenHavingAnEmptyUserId_ThenResultShouldBeInvalid()
-        {
-            var model = NewCommentModelFactory.Default().WithUserId(Guid.Empty);
-            var validator = new NewCommentModelValidator();
-
-            var result = validator.Validate(model);
-
-            result.IsValid.Should().BeFalse();
-            result.Errors.Count.Should().Be(1);
-        }
-
-        [Fact]
         public void GivenValidate_WhenHavingAnEmptyContent_ThenResultShouldBeInvalid()
         {
             var model = NewCommentModelFactory.Default().WithContent("");
