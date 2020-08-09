@@ -53,8 +53,8 @@ export class AuthenticationComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.subs.push(this.citiesService.getCities().subscribe((data)=>{
-      this.cities = data;
+    this.subs.push(this.citiesService.getCities().subscribe((data: HttpResponse<any>)=>{
+      this.cities = data.body;
       this.formGroup.get('city').setValue(this.cities[0].id);
     }));
     sessionStorage.clear();

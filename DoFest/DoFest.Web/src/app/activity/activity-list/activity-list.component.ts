@@ -11,6 +11,7 @@ import { ActivityTypeModel } from '../models/activityType.model';
 import { MatSelectChange } from '@angular/material/select';
 import { BucketListService } from 'src/app/bucketlist/services/bucketList.service';
 import { Subscription } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-activity-list',
@@ -50,13 +51,13 @@ export class ActivityListComponent implements OnInit, OnDestroy {
       this.activitiesInBucket = data.activities.map((act)=> act.activityId);
     }));
 
-    this.subscriptions.push(this.service.getAll().subscribe((data: ActivityModel[]) => {
-      this.tripList = data;
-      this.filtredListActivities = data;
+    this.subscriptions.push(this.service.getAll().subscribe((data: HttpResponse<any>) => {
+      this.tripList = data.body;
+      this.filtredListActivities = data.body;
     }));
 
-    this.subscriptions.push(this.citiesService.getCities().subscribe((data) => {
-      this.cities = data;
+    this.subscriptions.push(this.citiesService.getCities().subscribe((data: HttpResponse<any>) => {
+      this.cities = data.body;
     }));
 
     this.subscriptions.push(this.actTypeService.getAll().subscribe((data) => {
@@ -116,7 +117,7 @@ export class ActivityListComponent implements OnInit, OnDestroy {
   {
     this.activitiesInBucket.push(id);
     this.subscriptions.push(this.bucketService.add(this.bucketListId, id).subscribe((data)=>{
-      
+
     }));
   }
 

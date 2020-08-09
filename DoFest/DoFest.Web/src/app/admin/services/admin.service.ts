@@ -58,11 +58,11 @@ export class AdminService {
   // ********** Get data lits **********
 
   public getUserTypes(): Observable<unknown>{
-    return this.httpClient.get<UserTypeModel[]>(this.routeService.getRoute("admin", "get userTypes"));
+    return this.httpClient.get<UserTypeModel[]>(this.routeService.getRoute("admin", "get userTypes"), {observe:"response"});
   }
 
   public getUsers(): Observable<unknown>{
-    return this.httpClient.get<UserModel[]>(this.routeService.getRoute("admin", "get users"));
+    return this.httpClient.get<UserModel[]>(this.routeService.getRoute("admin", "get users"), {observe:"response"});
   }
 
   public getCities(): Observable<unknown>{
@@ -73,43 +73,43 @@ export class AdminService {
     return this.activityService.getAll();
   }
 
-  public getActivityTypes(): Observable<ActivityTypeModel[]>{
-    return this.httpClient.get<ActivityTypeModel[]>(this.routeService.getRoute("activityType", "get all"));
+  public getActivityTypes(): Observable<unknown>{
+    return this.httpClient.get<ActivityTypeModel[]>(this.routeService.getRoute("activityType", "get all"), {observe:"response"});
   }
 
   // ********** User admin functions **********
 
   public updateUserType(userId: string): Observable<unknown>{
-    return this.httpClient.patch(this.routeService.getRoute("admin", "change userType", userId), null);
+    return this.httpClient.patch(this.routeService.getRoute("admin", "change userType", userId), null, {observe:"response"});
   }
 
   // ********** City admin functions **********
 
   public deleteCity(cityId: string): Observable<unknown>{
-    return this.httpClient.delete(this.routeService.getRoute("city", "delete", cityId));
+    return this.httpClient.delete(this.routeService.getRoute("city", "delete", cityId), {observe:"response"});
   }
 
   public addCity(cityModel: CityModel): Observable<unknown>{
-    return this.httpClient.post<CityModel>(this.routeService.getRoute("city", "add one"), cityModel);
+    return this.httpClient.post<CityModel>(this.routeService.getRoute("city", "add one"), cityModel, {observe:"response"});
   }
 
   // ********** Activity admin functions **********
 
   public deleteActivity(activityId: string): Observable<unknown>{
-    return this.httpClient.delete(this.routeService.getRoute("activity", "delete", activityId));
+    return this.httpClient.delete(this.routeService.getRoute("activity", "delete", activityId), {observe:"response"});
   }
 
   public addActivity(activityModel: ActivityModel): Observable<unknown>{
-    return this.httpClient.post<ActivityModel>(this.routeService.getRoute("activity", "add one"), activityModel);
+    return this.httpClient.post<ActivityModel>(this.routeService.getRoute("activity", "add one"), activityModel, {observe:"response"});
   }
 
   // ********** ActivityType admin functions **********
 
   public deleteActivityType(activityTypeId: string): Observable<unknown>{
-    return this.httpClient.delete(this.routeService.getRoute("activityType", "delete", activityTypeId));
+    return this.httpClient.delete(this.routeService.getRoute("activityType", "delete", activityTypeId), {observe:"response"});
   }
 
   public addActivityType(activityTypeModel: NewActivityTypeModel): Observable<unknown>{
-    return this.httpClient.post<ActivityTypeModel>(this.routeService.getRoute("activityType", "add one"), activityTypeModel);
+    return this.httpClient.post<ActivityTypeModel>(this.routeService.getRoute("activityType", "add one"), activityTypeModel, {observe:"response"});
   }
 }

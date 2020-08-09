@@ -12,7 +12,7 @@ import { RatingsService } from '../services/ratings.service';
 import { CityModel } from 'src/app/shared/models/city.model';
 import { CommentModel } from '../models/comment.model';
 import { PhotoModel } from '../models/photo.model';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpClient } from '@angular/common/http';
 import * as jwt_decode from 'jwt-decode';
 import { RatingModel } from '../models/rating.model';
 
@@ -71,11 +71,11 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
     this.routeSub = this.activatedRoute.params.subscribe((params) => {
       this.activityService
         .get(params['id'])
-        .subscribe((data: ActivityModel) => {
-          this.activity = data;
+        .subscribe((data: HttpResponse<any>) => {
+          this.activity = data.body;
 
-          this.citiesService.getCities().subscribe((cities: CityModel[]) => {
-            this.city = cities.find((c) => c.id == this.activity.cityId);
+          this.citiesService.getCities().subscribe((cities: HttpResponse<any>) => {
+            this.city = cities.body.find((c) => c.id == this.activity.cityId);
           });
         });
     });
