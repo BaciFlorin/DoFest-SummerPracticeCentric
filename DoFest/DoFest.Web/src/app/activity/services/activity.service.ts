@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -13,18 +13,18 @@ export class ActivityService {
 
   constructor(private readonly http: HttpClient, private readonly routeService: RouteService) { }
 
-  getAll(): Observable<ActivityModel[]> {
+  getAll():Observable<HttpResponse<unknown>> {
 
-    return this.http.get<ActivityModel[]>(this.routeService.getRoute("activity", "get all"));
+    return this.http.get<HttpResponse<unknown>>(this.routeService.getRoute("activity", "get all"), {observe:"response"});
   }
 
-  get(id: string): Observable<ActivityModel> {
-    return this.http.get<ActivityModel>(this.routeService.getRoute("activity","get one", id));
+  get(id: string): Observable<HttpResponse<unknown>> {
+    return this.http.get<HttpResponse<unknown>>(this.routeService.getRoute("activity","get one", id), {observe:"response"});
   }
 
-  post(activity: ActivityModel): Observable<any> {
-    return this.http.post<any>(this.routeService.getRoute("activity","add one"), activity);
+  post(activity: ActivityModel): Observable<HttpResponse<unknown>> {
+    return this.http.post<HttpResponse<unknown>>(this.routeService.getRoute("activity","add one"), activity, {observe:"response"});
   }
 
-  
+
 }
