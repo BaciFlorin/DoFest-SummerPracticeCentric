@@ -3,6 +3,7 @@ using AutoMapper;
 using DoFest.API.Extensions;
 using DoFest.Business.Activities;
 using DoFest.Business.Activities.Models.Content.Comment;
+using DoFest.Business.Activities.Models.Content.Photos;
 using DoFest.Business.Activities.Models.Content.Ratings;
 using DoFest.Business.Activities.Services.Implementations;
 using DoFest.Business.Activities.Services.Interfaces;
@@ -101,7 +102,8 @@ namespace DoFest.API
                 .AddTransient<IValidator<LoginModelRequest>, LoginModelValidator>()
                 .AddTransient<IValidator<CreateNotificationModel>, CreateNotificationModelValidator>()
                 .AddTransient<IValidator<NewCommentModel>, NewCommentModelValidator>()
-                .AddTransient<IValidator<CreateRatingModel>, CreateRatingModelValidator>();
+                .AddTransient<IValidator<CreateRatingModel>, CreateRatingModelValidator>()
+                .AddTransient<IValidator<CreatePhotoModel>, CreatePhotoModelValidator>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

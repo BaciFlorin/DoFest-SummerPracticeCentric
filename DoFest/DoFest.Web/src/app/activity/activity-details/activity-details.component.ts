@@ -64,7 +64,6 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
     this.isShowComments = false;
     this.isShowPhotos = false;
     this.hasUserRated = false;
-    this.rate = 'No ratings yet';
     this.photos = [];
     this.comments = [];
     this.city = null;
@@ -188,8 +187,8 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
           this.rate = 'No ratings yet';
           this.userRating = "You haven't rated yet";
         }
+        this.rating.update(this.rate);
       });
-      this.rating.update(this.rate);
     });
   }
 
@@ -204,6 +203,9 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
             this.calculateRating();
           });
       });
+    }
+    else{
+      this.calculateRating();
     }
   }
 

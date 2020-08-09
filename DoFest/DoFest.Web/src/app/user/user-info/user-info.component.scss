@@ -1,0 +1,75 @@
+@import "../../../assets/styles/layout.scss";
+
+h1 {
+  padding-left: 30px;
+}
+.flex-row-space-around {
+  margin: 8%;
+}
+
+.image-section img {
+  width: 80%;
+}
+
+.form-section {
+  width: 60%;
+}
+.change-password-content {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Open Sans";
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px rgba(0, 23, 87, 0.08);
+}
+
+.change-password-content input {
+  width: 50%;
+  height: 30px;
+  margin-bottom: 20px;
+  font-family: "Open Sans";
+  border: 1px solid #e3e9f7;
+  border-radius: 8px;
+  outline: none;
+}
+
+.change-password-content button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 40%;
+  border-radius: 8px;
+}
+
+.error-alert {
+  background-color: pink;
+  color: red;
+  border-radius: 8px;
+  display: flexbox;
+  padding: 10px;
+}
+#error-list {
+  color: red;
+}
+
+@media (max-width: 900px) {
+  .flex-row-space-around {
+    flex-direction: column;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .form-section {
+    width: 90%;
+  }
+  .change-password-content {
+    button,
+    input {
+      width: 80%;
+    }
+  }
+}

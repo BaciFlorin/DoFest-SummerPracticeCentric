@@ -24,7 +24,7 @@ namespace DoFest.Business.Activities.Services.Implementations
         private readonly IUserRepository _userRepository;
 
         public RatingsService(IMapper mapper, IActivitiesRepository activitiesRepository, IHttpContextAccessor accessor,
-             IUserRepository userRepository)
+            IUserRepository userRepository)
         {
             _mapper = mapper;
             _activitiesRepository = activitiesRepository;
@@ -45,7 +45,6 @@ namespace DoFest.Business.Activities.Services.Implementations
                 _mapper.Map<IEnumerable<RatingModel>>(activity.Ratings));
         }
 
-       
         public async Task<Result<RatingModel, Error>> Add(Guid activityId, CreateRatingModel model)
         {
 
@@ -73,9 +72,10 @@ namespace DoFest.Business.Activities.Services.Implementations
             activity.AddNotification(notification);
 
             _activitiesRepository.Update(activity);
-            await _activitiesRepository.SaveChanges();
 
+            await _activitiesRepository.SaveChanges();
             return Result.Success<RatingModel, Error>(_mapper.Map<RatingModel>(rating));
         }
+
     }
 }

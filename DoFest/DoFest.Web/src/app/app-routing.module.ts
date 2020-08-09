@@ -4,6 +4,7 @@ import { AuthGuard } from '../app/guards/auth.guard';
 import { AdminGuard } from '../app/guards/admin.guard';
 import { ActivityListComponent } from './activity/activity-list/activity-list.component';
 
+import { ActivityDetailsComponent } from './activity/activity-details/activity-details.component';
 
 const routes: Routes = [
   {
@@ -43,12 +44,20 @@ const routes: Routes = [
   },
   {
     path: 'activity',
-    loadChildren: () => import('./activity/activity.module').then((m) => m.ActivityModule),
+    loadChildren: () =>
+    import('./activity/activity.module').then((m) => m.ActivityModule),
+  canActivate: [AuthGuard]
   },
   {
     path: 'bucketlists',
     loadChildren: () =>
       import('./bucketlist/bucketlist.module').then((m) => m.BucketlistModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'userInfo',
+    loadChildren: () =>
+      import('./user/user.module').then((m) => m.UserModule),
     canActivate: [AuthGuard]
   }
 ];

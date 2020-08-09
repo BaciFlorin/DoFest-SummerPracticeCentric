@@ -43,7 +43,7 @@ namespace DoFest.API.Controllers
             var(_, isFailure, value, error) = await _authenticationService.ChangePassword(modelRequest);
             if (isFailure)
                 return BadRequest(error);
-            return Ok(value);
+            return Ok(new{value});
         }
     }
 }

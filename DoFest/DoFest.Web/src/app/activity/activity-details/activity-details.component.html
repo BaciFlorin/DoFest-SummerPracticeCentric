@@ -5,35 +5,36 @@
     <img src="../../assets/images/party.svg" alt="Activity image" />
   </section>
   <section class="form-section" *ngIf="activity!=null ">
-    <div class="form-group">
-      <div class="header">
+    <div class="header">
       <div><h1 id="activity-name">{{ activity.name }}</h1></div>
-      <div >
+      <div class="rating">
+        <div>
         <bar-rating #rating
           [rate]="'rate'"
           [max]="5"
           (rateChange)="saveRating($event)"
           >
         </bar-rating>
-        <p>Current rating: {{rate}}</p>
-        <p >Your rating: {{ userRating }}</p>
       </div>
-    </div>
+      <div> <p>Current rating: {{rate}}</p>
+        <p >Your rating: {{ userRating }}</p></div>
+
+      </div>
   </div>
 
-    <div class="form-group">
-      <p>Description: {{ activity.description }}</p>
-    </div>
+  <div >
+    <p *ngIf="city!=null">
+      <mat-icon aria-hidden="false">location_on</mat-icon>{{ city.name }},
+      {{ activity.address }}
+    </p>
+  </div>
 
-    <div class="form-group">
-      <p *ngIf="city!=null">
-        <mat-icon aria-hidden="false">location_on</mat-icon>{{ city.name }},
-        {{ activity.address }}
-      </p>
+    <div >
+      <p><b>Description: </b>{{ activity.description }}</p>
     </div>
 
     <div class="photos">
-      <label class="photos-title">Photos</label>
+      <label class="photos-title"><b>Photos</b></label>
       <div class="add-photos">
         <input
           #Image
@@ -82,7 +83,7 @@
       </div>
     </div>
     <div class="comments">
-      <label class="comments-title">Comments</label>
+      <label class="comments-title"><b>Comments</b></label>
       <div class="comment-button">
         <form [formGroup]="formGroup">
           <textarea
@@ -91,7 +92,7 @@
             formControlName="content"
           ></textarea>
         </form>
-        <button mat-raised-button (click)="addComment()">
+        <button mat-raised-button (click)="addComment()" >
           <span>Add comment</span>
         </button>
       </div>

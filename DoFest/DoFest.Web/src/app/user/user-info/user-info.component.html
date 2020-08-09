@@ -1,0 +1,32 @@
+<h1>User Info</h1>
+
+<div class="flex-row-space-around">
+  <section class="image-section">
+    <img src="../../assets/images/change_password.svg" alt="Activity image" />
+  </section>
+  <section class="form-section">
+    <form class="change-password-content" [formGroup]="formGroup">
+      <span><h1>* Change Password</h1></span>
+
+      <label>New password</label>
+      <input formControlName="newPassword" type="password" />
+      <div *ngIf="isInvalid(formGroup.get('newPassword'))" class="error-alert">
+        Password must have minumum 8 characters
+      </div>
+
+      <label>Confirm password</label>
+      <input formControlName="confirmPassword" type="password" />
+
+      <div *ngIf="invalidConfirmPass()" class="error-alert">
+        Passwords do not match
+      </div>
+
+      <button mat-raised-button color="primary" (click)="changePassword()">
+        Change password
+      </button>
+
+      <div id="response"></div>
+      <div id="error-list"></div>
+    </form>
+  </section>
+</div>
