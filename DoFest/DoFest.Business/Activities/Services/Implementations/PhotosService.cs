@@ -54,8 +54,10 @@ namespace DoFest.Business.Activities.Services.Implementations
             using var stream = new MemoryStream();
             await model.Image.CopyToAsync(stream);
 
-            var photo = new Photo
+            var photo = new Photo()
             {
+                ActivityId = activityId,
+                UserId = model.UserId,
                 Image = stream.ToArray()
             };
 
@@ -68,6 +70,7 @@ namespace DoFest.Business.Activities.Services.Implementations
             activity.AddPhoto(photo);
 
             var user = await _userRepository.GetById(photo.UserId);
+
             var notification = new Notification()
             {
                 ActivityId = activityId,
