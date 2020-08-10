@@ -9,7 +9,7 @@ namespace DoFest.Entities.Authentication
     [Table("Student")]
     public class Student:Entity
     {
-        public Student() : base()
+        private Student() : base()
         {
         }
 

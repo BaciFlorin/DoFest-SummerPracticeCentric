@@ -7,6 +7,11 @@ namespace DoFest.Entities.Activities.Content
     [Table("Photo")]
     public class Photo:Entity
     {
+        private Photo():base()
+        {
+
+        }
+
         public Photo(
             Guid ActivityId,
             Guid UserId,

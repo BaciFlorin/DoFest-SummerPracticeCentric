@@ -7,13 +7,20 @@ namespace DoFest.Entities.Activities.Content
     [Table("Comment")]
     public class Comment:Entity
     {
+        private Comment():base()
+        {
+            
+        }
+
         public Comment(
             Guid ActivityId,
-            Guid UserId
+            Guid UserId,
+            string content
             ) : base()
         {
             this.ActivityId = ActivityId;
             this.UserId = UserId;
+            this.Content = content;
         }
 
         [Required]

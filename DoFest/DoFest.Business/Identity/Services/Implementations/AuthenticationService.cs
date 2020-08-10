@@ -86,9 +86,9 @@ namespace DoFest.Business.Identity.Services.Implementations
 
             var newUser = new User(registerModel.Username, 
                                     registerModel.Email, 
-                                    _passwordHasher.CreateHash(registerModel.Password), 
-                                    newStudent.Id, 
-                                    userType.Id
+                                    _passwordHasher.CreateHash(registerModel.Password),
+                                    userType.Id,
+                                    newStudent.Id
                                     );
 
             newUser.AddStudent(newStudent);

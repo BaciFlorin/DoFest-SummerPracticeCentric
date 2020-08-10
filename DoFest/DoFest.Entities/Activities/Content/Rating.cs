@@ -7,6 +7,10 @@ namespace DoFest.Entities.Activities.Content
     [Table("Rating")]
     public class Rating : Entity
     {
+        private Rating():base()
+        { 
+        }
+
         public Rating(
             Guid ActivityId,
             Guid UserId,

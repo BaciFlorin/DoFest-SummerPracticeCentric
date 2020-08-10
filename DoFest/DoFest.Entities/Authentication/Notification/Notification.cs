@@ -7,6 +7,11 @@ namespace DoFest.Entities.Authentication.Notification
     [Table("Notification")]
     public class Notification:Entity
     {
+        private Notification():base()
+        {
+
+        }
+
         public Notification(
             Guid ActivityId,
             DateTime Date,

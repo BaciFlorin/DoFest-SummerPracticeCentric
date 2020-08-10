@@ -7,6 +7,11 @@ namespace DoFest.Entities.Activities
     [Table("ActivityType")]
     public class ActivityType:Entity
     {
+        private ActivityType():base()
+        {
+            Activities = new List<Activity>();
+        }
+
         public ActivityType(
             string Name
             ) : base()

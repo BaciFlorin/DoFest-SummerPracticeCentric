@@ -9,6 +9,11 @@ namespace DoFest.Entities.Lists
     [Table("BucketList")]
     public class BucketList:Entity
     {
+        private BucketList():base()
+        {
+            BucketListActivities = new List<BucketListActivity>();
+        }
+
         public BucketList(
             Guid UserId,
             string Name
