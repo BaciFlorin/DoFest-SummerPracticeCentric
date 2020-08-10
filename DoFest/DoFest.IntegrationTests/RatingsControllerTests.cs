@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -90,6 +91,38 @@ namespace DoFest.IntegrationTests
 
             existingRating.Should().NotBeNull();
             existingRating.Id.Should().Be(createdRatingId);
+        }
+
+        [Fact]
+        public async Task GetInvalidActivityRatings()
+        {
+            //Arrange
+           
+
+            //Act
+            var response = await HttpClient.GetAsync($"api/v1/activities/{new Guid()}/ratings");
+
+            // Assert
+            response.IsSuccessStatusCode.Should().BeFalse();
+
+        }
+
+
+        [Fact]
+        public async Task AddRatingToInvalidActivity()
+        {
+
+            var createRatingModel = new CreateRatingModel
+            {
+                Stars = 5
+            };
+
+            //Act
+            var response = await HttpClient.PostAsJsonAsync($"api/v1/activities/{new Guid()}/ratings",
+                createRatingModel);
+
+            //Assert
+            response.IsSuccessStatusCode.Should().BeFalse();
         }
     }
 }
