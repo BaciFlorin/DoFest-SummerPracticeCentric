@@ -125,7 +125,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       name: this.activityTypeAddControl.value
     };
     this.subs.push(this.adminService.addActivityType(activityTypeModel).subscribe( (res: HttpResponse<any>) =>{
-      if(res.status == 200){
+      if(res.status == 201){
         alert("ActivityType added!");
         window.location.reload();
       }
@@ -149,7 +149,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   public addActivity(): void{
     const activityModel: ActivityModel = this.activityAddGroup.getRawValue();
     this.subs.push(this.adminService.addActivity(activityModel).subscribe( (res: HttpResponse<any>) =>{
-      if(res.status == 200){
+      if(res.status == 201){
         alert("Activity added!");
         window.location.reload();
       }
