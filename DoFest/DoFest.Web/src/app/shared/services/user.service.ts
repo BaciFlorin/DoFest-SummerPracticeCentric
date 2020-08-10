@@ -5,9 +5,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  public username: Subject<string>;
+  public username: string = null;
 
   constructor() {
-    this.username = new Subject<string>();
+
   }
 }
