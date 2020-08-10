@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using DoFest.Business.Activities.Models.Content.Photos;
 using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Content;
+using DoFest.IntegrationTests.Shared.Extensions;
+using DoFest.IntegrationTests.Shared.Factories;
 using FluentAssertions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
@@ -22,13 +23,8 @@ namespace DoFest.IntegrationTests
         public async Task GetActivityPhotos()
         {
             //Arrange
-            var activityType = new ActivityType("Petrecere Tematica");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Petrecere anii '20",
-                "Adresa locatie",
-                "Petrecerea impune un dress-code in stilul anilor '20.");
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
 
             var photo = new Photo(activity.Id, AuthenticatedUserId, new byte[1]);
 
@@ -54,13 +50,8 @@ namespace DoFest.IntegrationTests
         [Fact]
         public async Task AddPhotoToActivity()
         {
-            var activityType = new ActivityType("Petrecere Tematica");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Petrecere anii '20",
-                "Adresa locatie",
-                "Petrecerea impune un dress-code in stilul anilor '20.");
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
 
 
             await ExecuteDatabaseAction(async (doFestContext) =>
@@ -99,13 +90,8 @@ namespace DoFest.IntegrationTests
         public async Task DeletePhotoFromActivity()
         {
             //Arrange
-            var activityType = new ActivityType("Petrecere Tematica");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Petrecere anii '20",
-                "Adresa locatie",
-                "Petrecerea impune un dress-code in stilul anilor '20.");
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
 
             var photo = new Photo(activity.Id, AuthenticatedUserId, new byte[1]);
 
@@ -173,13 +159,8 @@ namespace DoFest.IntegrationTests
         public async Task DeleteInvalidPhotoFromActivity()
         {
             //Arrange
-            var activityType = new ActivityType("Petrecere Tematica");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Petrecere anii '20",
-                "Adresa locatie",
-                "Petrecerea impune un dress-code in stilul anilor '20.");
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
 
 
             await ExecuteDatabaseAction(async (doFestContext) =>

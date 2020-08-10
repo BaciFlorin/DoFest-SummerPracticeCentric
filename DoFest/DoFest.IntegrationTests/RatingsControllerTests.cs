@@ -4,8 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using DoFest.Business.Activities.Models.Content.Ratings;
-using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Content;
+using DoFest.IntegrationTests.Shared.Extensions;
+using DoFest.IntegrationTests.Shared.Factories;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -18,13 +19,8 @@ namespace DoFest.IntegrationTests
         public async Task GetActivityRatings()
         {
             //Arrange
-            var activityType = new ActivityType("Petrecere Tematica");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Petrecere anii '20",
-                "Adresa locatie",
-                "Petrecerea impune un dress-code in stilul anilor '20.");
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
 
             var rating= new Rating(activityType.Id, this.AuthenticatedUserId, 5);
 
@@ -50,15 +46,9 @@ namespace DoFest.IntegrationTests
         [Fact]
         public async Task AddRatingToActivity()
         {
-            var activityType = new ActivityType("Petrecere Tematica");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Petrecere anii '20",
-                "Adresa locatie",
-                "Petrecerea impune un dress-code in stilul anilor '20.");
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
 
-           
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
                 await doFestContext.ActivityTypes.AddAsync(activityType);
