@@ -1,6 +1,5 @@
 ﻿using DoFest.Business.Activities.Models.Activity;
 using DoFest.Entities.Activities;
-using DoFest.Entities.Activities.Places;
 using DoFest.IntegrationTests.Shared.Extensions;
 using DoFest.IntegrationTests.Shared.Factories;
 using FluentAssertions;
