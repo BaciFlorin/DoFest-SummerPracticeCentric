@@ -1,10 +1,22 @@
-﻿using System;
+﻿using DoFest.Entities.Activities.Places;
+using System;
 
 namespace DoFest.Business.Activities.Models.Activity
 {
     public sealed class ActivityModel
     {
-        public Guid? ActivityTypeId { get; private set; }
+        public ActivityModel(Guid id, Guid activityTypeId, string name, Guid cityId, string address, string description, int trending)
+        {
+            Id = id;
+            ActivityTypeId = activityTypeId;
+            Name = name;
+            CityId = cityId;
+            Address = address;
+            Description = description;
+            Trending = trending;
+        }
+
+        public Guid ActivityTypeId { get; private set; }
 
         public string Name { get; private set; }
 
@@ -15,6 +27,8 @@ namespace DoFest.Business.Activities.Models.Activity
         public string Address { get; private set; }
 
         public string Description { get; private set; }
+
+        public int Trending { get; private set; }
 
     }
 }
