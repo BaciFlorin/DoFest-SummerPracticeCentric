@@ -20,6 +20,7 @@ namespace DoFest.Entities.Lists
         {
             this.BucketListId = BucketListId;
             this.ActivityId = ActivityId;
+            this.Status = "On hold";
         }
 
         [Required]

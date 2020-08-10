@@ -49,7 +49,7 @@ namespace DoFest.API.Controllers
                 return BadRequest(error);
             }
 
-            return Ok(value);
+            return Ok(new { value });
         }
     }
 }

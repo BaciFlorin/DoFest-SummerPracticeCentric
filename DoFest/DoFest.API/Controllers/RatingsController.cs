@@ -33,7 +33,7 @@ namespace DoFest.API.Controllers
             return Ok(value);
         }
 
-        [HttpGet("/user")]
+        [HttpGet("user")]
         [Authorize]
         public async Task<IActionResult> GetByUserId([FromRoute] Guid activityId)
         {

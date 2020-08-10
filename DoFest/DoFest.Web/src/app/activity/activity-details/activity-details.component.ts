@@ -74,9 +74,11 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
         .subscribe((data: HttpResponse<any>) => {
           this.activity = data.body;
 
-          this.citiesService.getCities().subscribe((cities: HttpResponse<any>) => {
-            this.city = cities.body.find((c) => c.id == this.activity.cityId);
-          });
+          this.citiesService
+            .getCities()
+            .subscribe((cities: HttpResponse<any>) => {
+              this.city = cities.body.find((c) => c.id == this.activity.cityId);
+            });
         });
     });
     this.userId = jwt_decode(sessionStorage.getItem('userToken')).userId;
@@ -96,7 +98,7 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
         this.photosService
           .post(params['id'], formData)
           .subscribe((res: HttpResponse<any>) => {
-            this.fileToUpload=null;
+            this.fileToUpload = null;
           });
       });
     }
@@ -185,11 +187,13 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
           this.userRating = this.hasUserRated
             ? userRatingModel.stars.toFixed(2)
             : "You haven't rated yet";
+
+          this.rating.update(this.rate);
+
         } else {
           this.rate = 'No ratings yet';
           this.userRating = "You haven't rated yet";
         }
-        this.rating.update(this.rate);
       });
     });
   }
@@ -205,8 +209,7 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
             this.calculateRating();
           });
       });
-    }
-    else{
+    } else {
       this.calculateRating();
     }
   }
