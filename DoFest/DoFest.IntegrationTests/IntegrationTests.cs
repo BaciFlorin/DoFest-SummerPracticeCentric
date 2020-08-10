@@ -100,7 +100,7 @@ namespace DoFest.IntegrationTests
             
             var userRegisterResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/register", userRegisterModel);
             userRegisterResponse.IsSuccessStatusCode.Should().BeTrue();
-            AuthenticatedUserId = new Guid(userRegisterResponse.Headers.Location.OriginalString);
+            
             
             var authenticateModel = new LoginModelRequest
             {
@@ -109,6 +109,7 @@ namespace DoFest.IntegrationTests
             };
             var userAuthenticateResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/login", authenticateModel);
             userAuthenticateResponse.IsSuccessStatusCode.Should().BeTrue();
+            AuthenticatedUserId = new Guid();
             var authenticationResponseContent = await userAuthenticateResponse.Content.ReadAsAsync<LoginModelResponse>();
 
             AuthenticationToken = authenticationResponseContent.Token;
