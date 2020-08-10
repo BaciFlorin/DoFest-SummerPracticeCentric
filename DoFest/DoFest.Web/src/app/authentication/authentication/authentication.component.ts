@@ -31,6 +31,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy{
     private readonly formBuilder: FormBuilder,
     private readonly userService: UserService,
     private readonly citiesService: CitiesService,
+    private readonly tokenHelper: JwtHelperService
   ) {
     this.formGroup = this.formBuilder.group({
       email: ['',[Validators.required, Validators.email, Validators.maxLength(200)]],
@@ -40,7 +41,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy{
       city:['', [Validators.required]],
       age:[18, [Validators.min(18), Validators.max(99), Validators.required]],
       year:[1,[Validators.required, Validators.min(1), Validators.max(6)]],
-      bucketlistname:['',[Validators.required, Validators.minLength(6), Validators.maxLength(100)]]
+      bucketlistname:['',[Validators.required, Validators.minLength(6),Validators.maxLength(100)]]
     });
     this.userService.username = "";
     this.subs = new Array<Subscription>();

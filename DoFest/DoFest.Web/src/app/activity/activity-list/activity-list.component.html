@@ -1,7 +1,7 @@
 <div class="page-container">
-    <h1>
+    <h1><b>
         Activities
-    </h1>
+      </b></h1>
     <div class="filter-container">
       <mat-form-field appearance="fill">
         <mat-label>City</mat-label>
@@ -18,9 +18,9 @@
             <mat-option *ngFor="let type of activityTypes;" [value]="type.id">{{type.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-
-      <button mat-raised-button color="primary" (click)="applyFilters()">Filter</button>
-    </div>
+        <button class="button" mat-raised-button color="primary" (click)="applyFilters()">Filter</button>
+      
+      </div>
 
     <div class="cards">
         <app-activitytile *ngFor="let activity of filtredListActivities" icon="local_activity" label="{{activity.name}}" (goToAct)="goToActivity(activity.id)" 

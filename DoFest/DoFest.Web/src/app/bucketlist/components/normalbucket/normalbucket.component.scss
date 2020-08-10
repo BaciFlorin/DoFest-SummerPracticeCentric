@@ -1,22 +1,22 @@
 @import "../../../../assets/styles/layout.scss";
 
 .identity-container{
-    width: 80%;
+    width: 94%;
     padding: 30px;
     display: inline-block;
     font-size: 20px;
     color: white;
     font-weight: bold;
-    background-color: rgb(118, 179, 240);
+    background-color: #63D4FF;
     border-radius: 10px;
     margin: 10px 0;
 }
 
 .identity-container input{
     display: inline-block;
-    width: 70%;
+    width: 40%;
     color: white;
-    background-color: rgb(118, 179, 240);
+    background-color: #63D4FF;
     font-size: 30px;
 }
 

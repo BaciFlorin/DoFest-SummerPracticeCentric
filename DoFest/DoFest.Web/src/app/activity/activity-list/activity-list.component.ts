@@ -117,7 +117,7 @@ export class ActivityListComponent implements OnInit, OnDestroy {
   {
     this.activitiesInBucket.push(id);
     this.subscriptions.push(this.bucketService.add(this.bucketListId, id).subscribe((data)=>{
-
+        this.filtredListActivities.find((activity)=> activity.id == id).trending += 1;
     }));
   }
 

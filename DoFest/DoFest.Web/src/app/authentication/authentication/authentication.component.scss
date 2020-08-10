@@ -125,3 +125,12 @@
   }
 }
 
+.authentication-container .register-content {
+  height: 700px;
+  overflow: scroll;
+}
+
+.authentication-container .register-content::-webkit-scrollbar { 
+  display: none; 
+}
+

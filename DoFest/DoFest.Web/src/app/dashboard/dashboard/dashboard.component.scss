@@ -23,9 +23,22 @@ body {
 .container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
   align-items: center;
 }
 
 app-tile :hover {
   transform: scale(1.1);
+}
+
+@media (max-width: 850px) {
+  .container {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }
