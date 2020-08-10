@@ -79,9 +79,13 @@ export class YourbucketComponent implements OnInit, OnDestroy {
 
   public updateBucketList()
   {
-    if(!this.inputName.invalid)
+    if(!(this.inputName.invalid && this.inputName.touched))
     {
-      let newName = (<HTMLInputElement> document.getElementById("bucketlist-name")).value;
+      let newName = this.inputName.value;
+      if(newName == '')
+      {
+        newName = this.bucketlist.name;
+      }
       this.activityForToggle = this.activityForToggle.filter((activityId)=> this.activityToDelete.find((deleteId)=> deleteId == activityId) == undefined );
       if(this.activityForToggle.length > 0 || this.activityToDelete.length > 0 || newName != this.bucketlist.name)
       {

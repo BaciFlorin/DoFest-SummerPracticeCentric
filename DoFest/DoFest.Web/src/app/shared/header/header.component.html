@@ -12,15 +12,17 @@
   </section>
 
   <section
-    *ngIf="userService.username"
+    *ngIf="userService.username | async as username"
     class="flex-row-end"
   >
+    <ng-container *ngIf="userService.username != ''">
     <img src="../../assets/images/profile.png" (click)="onProfileClick()" matTooltip="Go to your account"/>
-    <h3 class="flex-row-end">Welcome, {{ userService.username }}</h3>
+    <h3 class="flex-row-end">Welcome, {{ username }}</h3>
     <img
       class="logout"
       src="../../assets/images/logout.svg"
       (click)="logout()"
     />
+  </ng-container>
   </section>
 </header>
