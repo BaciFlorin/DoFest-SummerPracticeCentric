@@ -13,6 +13,10 @@ namespace DoFest.IntegrationTests
 {
     public class CitiesControllerTests: IntegrationTests
     {
+        public CitiesControllerTests() : base(true)
+        {
+
+        }
         [Fact]
         public async Task GetCitiesTest()
         {
@@ -66,9 +70,9 @@ namespace DoFest.IntegrationTests
             response.IsSuccessStatusCode.Should().BeTrue();
             City existingCity = null;
             await ExecuteDatabaseAction(async (doFestContext) => {
-                existingCity = await doFestContext.Cities.FirstAsync(entity => entity.Name == city.Name);
+                existingCity = await doFestContext.Cities.FirstOrDefaultAsync(entity => entity.Name == city.Name);
             });
-            existingCity.Name.Should().BeNull();
+            existingCity.Should().BeNull();
         }
     }
 }
