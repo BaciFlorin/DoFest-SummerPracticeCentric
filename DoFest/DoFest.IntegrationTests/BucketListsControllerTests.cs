@@ -1,13 +1,8 @@
-﻿using DoFest.Business.Activities.Models.BucketList;
-using DoFest.Entities.Activities;
+﻿using DoFest.Entities.Activities;
 using DoFest.Entities.Lists;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
