@@ -2,6 +2,7 @@
 using DoFest.Business.Identity.Models;
 using DoFest.Entities.Activities.Places;
 using DoFest.Entities.Authentication;
+using DoFest.IntegrationTests.Shared.Factories;
 using DoFest.Persistence;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -79,9 +80,8 @@ namespace DoFest.IntegrationTests
         }
         private async Task SetAuthenticationToken()
         {
-            
-            UserType userType = new UserType("Normal user", "access");
-            City city = new City("Bucuresti");
+            UserType userType = UserTypeFactory.Default();
+            City city = CityFactory.Default();
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
                 await doFestContext.UserTypes.AddAsync(userType);
@@ -113,6 +113,7 @@ namespace DoFest.IntegrationTests
             };
             var userAuthenticateResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/login", authenticateModel);
             userAuthenticateResponse.IsSuccessStatusCode.Should().BeTrue();
+            AuthenticatedUserId = new Guid();
             var authenticationResponseContent = await userAuthenticateResponse.Content.ReadAsAsync<LoginModelResponse>();
 
             var stream = authenticationResponseContent.Token;
