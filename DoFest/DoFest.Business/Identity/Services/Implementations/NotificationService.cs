@@ -46,25 +46,5 @@ namespace DoFest.Business.Identity.Services.Implementations
             }
             return _mapper.Map<IList<NotificationModel>>(notifications);
         }
-
-        public async Task<Result<NewNotificationModel, Error>> CreateNotification(CreateNotificationModel model)
-        {
-            var activity = await _activitiesRepository.GetById(model.ActivityId);
-            if (activity == null)
-            {
-                return Result.Failure<NewNotificationModel, Error>(ErrorsList.UnavailableActivity);
-            }
-
-            var notification = new Notification(model.ActivityId,
-                                                DateTime.Now, 
-                                                model.Description
-                                                );
-
-            activity.AddNotification(notification);
-            _activitiesRepository.Update(activity);
-            await _activitiesRepository.SaveChanges();
-
-            return Result.Success<NewNotificationModel,Error>(_mapper.Map<NewNotificationModel>(notification));
-        }
     }
 }

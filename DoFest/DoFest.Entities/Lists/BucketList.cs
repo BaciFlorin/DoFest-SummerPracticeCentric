@@ -22,7 +22,7 @@ namespace DoFest.Entities.Lists
         [Required]
         public Guid UserId { get; private set; }
 
-        [Required, MaxLength(100)]
+        [Required, MaxLength(100), MinLength(6)]
         public string Name { get; private set; }
 
         public ICollection<BucketListActivity> BucketListActivities { get; private set; }

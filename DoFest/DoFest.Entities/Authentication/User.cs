@@ -28,10 +28,10 @@ namespace DoFest.Entities.Authentication
             Ratings = new List<Rating>();
         }
 
-        [Required, MaxLength(50)]
+        [Required, MaxLength(50), MinLength(6)]
         public string Username { get; private set; }
         
-        [Required, DataType(DataType.EmailAddress)]
+        [Required, DataType(DataType.EmailAddress), MaxLength(200)]
         public string Email { get; private set; }
 
         [Required, DataType(DataType.Password)]

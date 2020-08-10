@@ -9,6 +9,5 @@ namespace DoFest.Business.Identity.Services.Interfaces
     public interface INotificationService
     {
         Task<IList<NotificationModel>> FindAllNotifications();
-        Task<Result<NewNotificationModel, Error>> CreateNotification(CreateNotificationModel model);
     }
 }

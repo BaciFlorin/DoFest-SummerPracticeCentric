@@ -9,11 +9,13 @@ namespace DoFest.Business.Identity.Validators
         {
             RuleFor(x => x.Email)
                 .NotNull()
-                .EmailAddress();
+                .EmailAddress()
+                .MaximumLength(200);
 
             RuleFor(x => x.Password)
                 .NotNull()
-                .MinimumLength(8);
+                .MinimumLength(8)
+                .MaximumLength(60);
         }
     }
 }

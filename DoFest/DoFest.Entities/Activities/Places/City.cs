@@ -13,7 +13,6 @@ namespace DoFest.Entities.Activities.Places
             ) : base()
         {
             this.Name = Name;
-
             Students = new List<Student>();
             Activities = new List<Activity>();
         }

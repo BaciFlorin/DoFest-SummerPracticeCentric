@@ -26,7 +26,7 @@ namespace DoFest.Entities.Authentication
             this.CityId = CityId;
         }
 
-        [Required, MaxLength(50)]
+        [Required, MaxLength(150)]
         public string Name { get; private set; }
 
         [Required, Range(18,99)]
