@@ -16,6 +16,11 @@ namespace DoFest.Business.Activities.Models.Activity
             Trending = trending;
         }
 
+        private ActivityModel()
+        {
+
+        }
+
         public Guid ActivityTypeId { get; private set; }
 
         public string Name { get; private set; }
