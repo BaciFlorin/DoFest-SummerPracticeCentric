@@ -1,6 +1,8 @@
 ﻿using DoFest.Business.Activities.Models.Activity;
 using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Places;
+using DoFest.IntegrationTests.Shared.Extensions;
+using DoFest.IntegrationTests.Shared.Factories;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
@@ -12,17 +14,16 @@ namespace DoFest.IntegrationTests
 {
     public class ActivitiesControllerTests : IntegrationTests
     {
+        public ActivitiesControllerTests() : base(true)
+        {
+
+        }
+
         [Fact]
         public async Task GetActivities()
         {
-            var activityType = new ActivityType("gratar");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Nume activitate",
-                "Adresa activitate",
-                "Descriere activitate"
-                );
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
 
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
@@ -41,14 +42,8 @@ namespace DoFest.IntegrationTests
         [Fact]
         public async Task GetActivityById()
         {
-            var activityType = new ActivityType("gratar");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Nume activitate",
-                "Adresa activitate",
-                "Descriere activitate"
-                );
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
 
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
@@ -58,7 +53,7 @@ namespace DoFest.IntegrationTests
             });
 
             var response = await HttpClient.GetAsync($"/api/v1/activities/{activity.Id}");
-           // var response = await HttpClient.GetStreamAsync($"/api/v1/activities/{activity.Id}");
+            // var response = await HttpClient.GetStreamAsync($"/api/v1/activities/{activity.Id}");
 
             response.IsSuccessStatusCode.Should().BeTrue();
             var activities = await response.Content.ReadAsAsync<Activity>();
@@ -69,8 +64,14 @@ namespace DoFest.IntegrationTests
         [Fact]
         public async Task AddNewActivity()
         {
-            var activityType = new ActivityType("gratar");
-            City city = new City("Iasi");
+            var activityType = ActivityTypeFactory.Default();
+            var city = CityFactory.Default();
+            await ExecuteDatabaseAction(async (doFestContext) =>
+            {
+                await doFestContext.ActivityTypes.AddAsync(activityType);
+                await doFestContext.Cities.AddAsync(city);
+                await doFestContext.SaveChangesAsync();
+            });
             var activity = new CreateActivityModel()
             {
                 ActivityTypeId = activityType.Id,
@@ -80,7 +81,9 @@ namespace DoFest.IntegrationTests
                 Name = "test name"
             };
 
-            var response = await HttpClient.PostAsJsonAsync($"/api/v1/activities",activity);
+
+
+            var response = await HttpClient.PostAsJsonAsync($"/api/v1/activities", activity);
 
             response.IsSuccessStatusCode.Should().BeTrue();
         }
@@ -88,9 +91,9 @@ namespace DoFest.IntegrationTests
         [Fact]
         public async Task GetActivityByIdError()
         {
-            var id = Guid.NewGuid();
+            var activity = Guid.NewGuid();
 
-            var response = await HttpClient.GetAsync($"/api/v1/activities/{id}");
+            var response = await HttpClient.GetAsync($"/api/v1/activities/{activity}");
             // var response = await HttpClient.GetStreamAsync($"/api/v1/activities/{activity.Id}");
 
             response.IsSuccessStatusCode.Should().BeFalse();
