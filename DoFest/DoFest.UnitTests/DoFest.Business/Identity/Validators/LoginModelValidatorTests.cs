@@ -82,7 +82,7 @@ namespace DoFest.UnitTests.DoFest.Business.Identity.Validators
         }
 
         [Fact]
-        public void GivenValidate_WhenHavingPasswordLengthEqual8_ThenResultShouldBeInvalid()
+        public void GivenValidate_WhenHavingPasswordLengthEqual8_ThenResultShouldBeValid()
         {
             var loginModel = LoginModelFactory.Default().WithPassword("12345678");
             var validator = new LoginModelValidator();
@@ -90,6 +90,54 @@ namespace DoFest.UnitTests.DoFest.Business.Identity.Validators
             var result = validator.Validate(loginModel);
 
             result.IsValid.Should().BeTrue();
+        }
+
+        [Fact]
+        public void GivenValidate_WhenHavingPasswordLengthMoreThan60_ThenResultShouldBeInvalid()
+        {
+            var loginModel = LoginModelFactory.Default().WithPassword(string.Create(61,'1',(colector, input)=>colector.Fill(input)));
+            var validator = new LoginModelValidator();
+
+            var result = validator.Validate(loginModel);
+
+            result.IsValid.Should().BeFalse();
+            result.Errors.Count.Should().Be(1);
+        }
+
+        [Fact]
+        public void GivenValidate_WhenHavingPasswordLengthEqualWith60_ThenResultShouldBeValid()
+        {
+            var loginModel = LoginModelFactory.Default().WithPassword(string.Create(60, '1', (colector, input) => colector.Fill(input)));
+            var validator = new LoginModelValidator();
+
+            var result = validator.Validate(loginModel);
+
+            result.IsValid.Should().BeTrue();
+            result.Errors.Count.Should().Be(0);
+        }
+
+        [Fact]
+        public void GivenValidate_WhenHavingEmailLengthMoreThan300_ThenResultShouldBeInvalid()
+        {
+            var loginModel = LoginModelFactory.Default().WithEmail(string.Create(191, '1', (colector, input) => colector.Fill(input)) + "@gmail.com");
+            var validator = new LoginModelValidator();
+
+            var result = validator.Validate(loginModel);
+
+            result.IsValid.Should().BeFalse();
+            result.Errors.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void GivenValidate_WhenHavingEmailLengthEqualWith300_ThenResultShouldBeValid()
+        {
+            var loginModel = LoginModelFactory.Default().WithEmail(string.Create(190, '1', (colector, input) => colector.Fill(input)) + "@gmail.com");
+            var validator = new LoginModelValidator();
+
+            var result = validator.Validate(loginModel);
+
+            result.IsValid.Should().BeTrue();
+            result.Errors.Should().HaveCount(0);
         }
     }
 }

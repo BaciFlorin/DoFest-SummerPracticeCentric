@@ -7,6 +7,11 @@ namespace DoFest.Entities.Authentication
     [Table("UserType")]
     public class UserType:Entity
     {
+        private UserType():base()
+        {
+            Users = new List<User>();
+        }
+
         public UserType(
             string Name,
             string Description

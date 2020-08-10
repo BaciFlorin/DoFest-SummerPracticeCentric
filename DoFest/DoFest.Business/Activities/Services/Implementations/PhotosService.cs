@@ -65,14 +65,13 @@ namespace DoFest.Business.Activities.Services.Implementations
             using var stream = new MemoryStream();
             await model.Image.CopyToAsync(stream);
 
-            var photo = new Photo(activityId, model.UserId, stream.ToArray());
-
             var activity = await _activitiesRepository.GetById(activityId);
             if (activity == null)
             {
                 return Result.Failure<PhotoModel, Error>(ErrorsList.UnavailableActivity);
             }
 
+            var photo = new Photo(activityId, model.UserId, stream.ToArray());
             activity.AddPhoto(photo);
 
             var user = await _userRepository.GetById(photo.UserId);

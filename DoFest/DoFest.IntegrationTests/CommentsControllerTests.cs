@@ -29,7 +29,7 @@ namespace DoFest.IntegrationTests
             var comment = new Comment(
                 activity.Id,
                 this.AuthenticatedUserId,
-                "comment"
+                "Com"
                 );
             activity.AddComment(comment);
 

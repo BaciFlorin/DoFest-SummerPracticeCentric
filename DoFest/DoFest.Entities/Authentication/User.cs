@@ -10,6 +10,13 @@ namespace DoFest.Entities.Authentication
     [Table("User")]
     public class User:Entity
     {
+        private User():base()
+        {
+            Photos = new List<Photo>();
+            Comments = new List<Comment>();
+            Ratings = new List<Rating>();
+        }
+
         public User(
             string Username,
             string Email,
@@ -28,10 +35,10 @@ namespace DoFest.Entities.Authentication
             Ratings = new List<Rating>();
         }
 
-        [Required, MaxLength(50)]
+        [Required, MaxLength(50), MinLength(6)]
         public string Username { get; private set; }
         
-        [Required, DataType(DataType.EmailAddress)]
+        [Required, DataType(DataType.EmailAddress), MaxLength(200)]
         public string Email { get; private set; }
 
         [Required, DataType(DataType.Password)]

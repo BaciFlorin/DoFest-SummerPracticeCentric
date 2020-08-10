@@ -9,7 +9,7 @@ namespace DoFest.Entities.Authentication
     [Table("Student")]
     public class Student:Entity
     {
-        public Student() : base()
+        private Student() : base()
         {
         }
 
@@ -26,7 +26,7 @@ namespace DoFest.Entities.Authentication
             this.CityId = CityId;
         }
 
-        [Required, MaxLength(50)]
+        [Required, MaxLength(150)]
         public string Name { get; private set; }
 
         [Required, Range(18,99)]

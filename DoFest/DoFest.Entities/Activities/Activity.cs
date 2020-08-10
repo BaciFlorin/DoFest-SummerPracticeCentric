@@ -12,6 +12,15 @@ namespace DoFest.Entities.Activities
     [Table("Activity")]
     public class Activity : Entity
     {
+        private Activity():base()
+        {
+            Photos = new List<Photo>();
+            Comments = new List<Comment>();
+            Ratings = new List<Rating>();
+            BucketListActivities = new List<BucketListActivity>();
+            Notifications = new List<Notification>();
+        }
+
         public Activity(
             Guid ActivityTypeId,
             Guid CityId,

@@ -8,6 +8,11 @@ namespace DoFest.Entities.Lists
     [Table("BucketListActivity")]
     public class BucketListActivity
     {
+        private BucketListActivity():base()
+        {
+
+        }
+
         public BucketListActivity(
             Guid BucketListId,
             Guid ActivityId
@@ -15,6 +20,7 @@ namespace DoFest.Entities.Lists
         {
             this.BucketListId = BucketListId;
             this.ActivityId = ActivityId;
+            this.Status = "On hold";
         }
 
         [Required]

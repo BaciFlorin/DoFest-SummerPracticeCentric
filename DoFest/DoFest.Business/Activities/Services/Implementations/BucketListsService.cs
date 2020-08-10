@@ -45,13 +45,12 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<BucketListWithActivityIdModel, Error>> Get(Guid bucketListId)
         {
-            var bucketListExists = (await _bucketListRepository.GetById(bucketListId)) != null;
-            if (!bucketListExists)
+            var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
+            if (bucketList == null)
             {
                 return Result.Failure<BucketListWithActivityIdModel, Error>(ErrorsList.UnavailableBucketList);
             }
 
-            var bucketList = await _bucketListRepository.GetByIdWithActivities(bucketListId);
             var user = await _userRepository.GetById(bucketList.UserId);
             var bucketListActivities = bucketList.BucketListActivities.ToList();
             var activities = new List<ActivityWithStatusModel>();

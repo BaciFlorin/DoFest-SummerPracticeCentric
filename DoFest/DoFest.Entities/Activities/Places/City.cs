@@ -8,12 +8,17 @@ namespace DoFest.Entities.Activities.Places
     [Table("City")]
     public class City:Entity
     {
+        private City():base()
+        {
+            Students = new List<Student>();
+            Activities = new List<Activity>();
+        }
+
         public City(
             string Name
             ) : base()
         {
             this.Name = Name;
-
             Students = new List<Student>();
             Activities = new List<Activity>();
         }

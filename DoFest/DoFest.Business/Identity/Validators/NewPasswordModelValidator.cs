@@ -9,7 +9,8 @@ namespace DoFest.Business.Identity.Validators
         {
             RuleFor(x => x.NewPassword)
                 .MinimumLength(8)
-                .NotNull();
+                .NotNull()
+                .MaximumLength(60);
         }
     }
 }
