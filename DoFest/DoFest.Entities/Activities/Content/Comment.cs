@@ -9,11 +9,13 @@ namespace DoFest.Entities.Activities.Content
     {
         public Comment(
             Guid ActivityId,
-            Guid UserId
+            Guid UserId,
+            string Content
             ) : base()
         {
             this.ActivityId = ActivityId;
             this.UserId = UserId;
+            this.Content = Content;
         }
 
         [Required]

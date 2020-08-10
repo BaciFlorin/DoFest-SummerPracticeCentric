@@ -18,27 +18,30 @@ namespace DoFest.IntegrationTests
         public async Task GetActivityComments()
         {
             // Arrange
+            var activityType = new ActivityType("gratar");
             var activity = new Activity(
-                Guid.NewGuid(),
-                Guid.NewGuid(),
+                activityType.Id,
+                CityId,
                 "Nume activitate",
                 "Adresa activitate",
                 "Descriere activitate"
                 );
             var comment = new Comment(
                 activity.Id,
-                this.AuthenticatedUserId
+                this.AuthenticatedUserId,
+                "comment"
                 );
             activity.AddComment(comment);
 
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
+                await doFestContext.ActivityTypes.AddAsync(activityType);
                 await doFestContext.Activities.AddAsync(activity);
                 await doFestContext.SaveChangesAsync();
             });
 
             // Act
-            var response = await HttpClient.GetAsync($"api/v1/activities/{activity.Id}/comments");
+            var response = await HttpClient.GetAsync($"/api/v1/activities/{activity.Id}/comments");
 
             // Assert
             response.IsSuccessStatusCode.Should().BeTrue();
@@ -100,7 +103,8 @@ namespace DoFest.IntegrationTests
                 );
             var comment = new Comment(
                 activity.Id,
-                this.AuthenticatedUserId
+                this.AuthenticatedUserId,
+                "comment"
                 );
             activity.AddComment(comment);
             await ExecuteDatabaseAction(async (doFestContext) =>

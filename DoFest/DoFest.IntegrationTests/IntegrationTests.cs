@@ -1,5 +1,6 @@
 ﻿using DoFest.API;
 using DoFest.Business.Identity.Models;
+using DoFest.Entities.Activities.Places;
 using DoFest.Entities.Authentication;
 using DoFest.Persistence;
 using FluentAssertions;
@@ -21,6 +22,8 @@ namespace DoFest.IntegrationTests
         protected string AuthenticationToken { get; private set; }
         public Guid AuthenticatedUserId { get; private set; }
 
+        public Guid CityId { get; private set; }
+
         public IntegrationTests()
         {
             _webApplicationFactory = new WebApplicationFactory<Startup>().WithWebHostBuilder(builder => { });
@@ -40,6 +43,7 @@ namespace DoFest.IntegrationTests
 
         public async Task CleanUpDataBase(DoFestContext doFestContext)
         {
+            
             doFestContext.Users.RemoveRange(doFestContext.Users);
             doFestContext.UserTypes.RemoveRange(doFestContext.UserTypes);
             doFestContext.BucketLists.RemoveRange(doFestContext.BucketLists);
@@ -49,6 +53,7 @@ namespace DoFest.IntegrationTests
             doFestContext.BucketListActivities.RemoveRange(doFestContext.BucketListActivities);
 
             await doFestContext.SaveChangesAsync();
+            
         }
 
         public async Task InitializeAsync()
@@ -72,20 +77,31 @@ namespace DoFest.IntegrationTests
         }
         private async Task SetAuthenticationToken()
         {
+            UserType userType = new UserType("Normal user", "access");
+            City city = new City("Bucuresti");
+            await ExecuteDatabaseAction(async (doFestContext) =>
+            {
+                await doFestContext.UserTypes.AddAsync(userType);
+                await doFestContext.Cities.AddAsync(city);
+                await doFestContext.SaveChangesAsync();
+                CityId = city.Id;
+            });
             var userRegisterModel = new RegisterModel
             {
-                Username = "test",
-                Age = 10,
-                BucketListName = "testBKlist",
-                City = new Guid("e4e03caf-b93a-4d38-9305-04f71483a2ab"),
-                Email = "test@gmail.com",
-                Name = "testName",
-                Password = "testPass",
+                Username = "testtest",
+                Age = 20,
+                BucketListName = "testtesttest",
+                City = city.Id,
+                Email = "testeesttest@gmail.com",
+                Name = "testtesttest",
+                Password = "passwordAdmin",
                 Year = 3
             };
+            
             var userRegisterResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/register", userRegisterModel);
             userRegisterResponse.IsSuccessStatusCode.Should().BeTrue();
             AuthenticatedUserId = new Guid(userRegisterResponse.Headers.Location.OriginalString);
+            
             var authenticateModel = new LoginModelRequest
             {
                 Email = userRegisterModel.Email,
