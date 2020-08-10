@@ -16,7 +16,7 @@ import { UserService } from '../services';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   public username: string;
   @Output() private profileCLick: EventEmitter<string>;
 
@@ -28,6 +28,9 @@ export class HeaderComponent {
     this.profileCLick = new EventEmitter<string>();
   }
 
+  public ngOnInit(): void{
+    this.getUserName();
+  }
   public logout(): void {
     this.router.navigate(['authentication']);
     sessionStorage.clear();
@@ -35,5 +38,9 @@ export class HeaderComponent {
 
   public onProfileClick(){
     this.router.navigate(['userInfo']);
+  }
+
+  public getUserName(): void{
+    this.userService.username = JSON.parse(sessionStorage.getItem("identity"))["username"];
   }
 }
