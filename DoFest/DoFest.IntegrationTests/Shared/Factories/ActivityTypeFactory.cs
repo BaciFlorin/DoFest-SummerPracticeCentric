@@ -1,5 +1,4 @@
 ﻿using DoFest.Entities.Activities;
-using System;
 
 namespace DoFest.IntegrationTests.Shared.Factories
 {
