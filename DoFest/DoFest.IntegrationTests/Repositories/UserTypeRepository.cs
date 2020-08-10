@@ -7,9 +7,9 @@ namespace DoFest.IntegrationTests.Repositories
 {
     internal class UserTypeRepository
     {
-        private readonly IntegrationsTestsDbContext context;
+        private readonly IntegrationTestsDbConextUserType context;
 
-        public UserTypeRepository(IntegrationsTestsDbContext context)
+        public UserTypeRepository(IntegrationTestsDbConextUserType context)
         {
             this.context = context;
         }

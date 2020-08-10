@@ -12,5 +12,6 @@ namespace DoFest.IntegrationTests.Repositories
         }
 
         public DbSet<FakeUser> Users { get; set; }
+
     }
 }

@@ -34,6 +34,8 @@ namespace DoFest.IntegrationTests
 
         private IntegrationsTestsDbContext dbContext;
 
+        private IntegrationTestsDbConextUserType userTypeDbContext;
+
         public IntegrationTests(bool isAdmin = false)
         {
             _webApplicationFactory = new WebApplicationFactory<Startup>().WithWebHostBuilder(builder => { });
@@ -42,6 +44,10 @@ namespace DoFest.IntegrationTests
             var optionsBuilder = new DbContextOptionsBuilder<IntegrationsTestsDbContext>();
             optionsBuilder.UseSqlServer("Server=localhost;Database=DoFest;Trusted_Connection=True;");
             dbContext = new IntegrationsTestsDbContext(optionsBuilder.Options);
+
+            var optionBuilder2 = new DbContextOptionsBuilder<IntegrationTestsDbConextUserType>();
+            optionBuilder2.UseSqlServer("Server=localhost;Database=DoFest;Trusted_Connection=True;");
+            userTypeDbContext = new IntegrationTestsDbConextUserType(optionBuilder2.Options);
         }
 
         protected async Task ExecuteDatabaseAction(Func<DoFestContext, Task> databaseAction)
@@ -119,7 +125,7 @@ namespace DoFest.IntegrationTests
             if (_isAdmin == true)
             {
                 var userRespository = new UserRepository(dbContext);
-                var userTypeRepository = new UserTypeRepository(dbContext);
+                var userTypeRepository = new UserTypeRepository(userTypeDbContext);
                 var userTypeAdmin = await userTypeRepository.GetByName("Admin");
                 var user = await userRespository.GetByEmail(userRegisterModel.Email);
                 user.UserTypeId = userTypeAdmin.Id;

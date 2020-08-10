@@ -82,7 +82,6 @@ namespace DoFest.IntegrationTests
             };
 
 
-
             var response = await HttpClient.PostAsJsonAsync($"/api/v1/activities", activity);
 
             response.IsSuccessStatusCode.Should().BeTrue();
