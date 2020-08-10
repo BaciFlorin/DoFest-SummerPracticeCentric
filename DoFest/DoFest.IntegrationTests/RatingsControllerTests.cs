@@ -1,0 +1,95 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using DoFest.Business.Activities.Models.Content.Ratings;
+using DoFest.Entities.Activities;
+using DoFest.Entities.Activities.Content;
+using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
+using Xunit;
+
+namespace DoFest.IntegrationTests
+{
+    public class RatingsControllerTests: IntegrationTests
+    {
+        [Fact]
+        public async Task GetActivityRatings()
+        {
+            //Arrange
+            var activityType = new ActivityType("Petrecere Tematica");
+            var activity = new Activity(
+                activityType.Id,
+                CityId,
+                "Petrecere anii '20",
+                "Adresa locatie",
+                "Petrecerea impune un dress-code in stilul anilor '20.");
+
+            var rating= new Rating(activityType.Id, this.AuthenticatedUserId, 5);
+
+            activity.AddRating(rating);
+
+            await ExecuteDatabaseAction(async (doFestContext) =>
+            {
+                await doFestContext.ActivityTypes.AddAsync(activityType);
+                await doFestContext.Activities.AddAsync(activity);
+                await doFestContext.SaveChangesAsync();
+            });
+
+            //Act
+            var response = await HttpClient.GetAsync($"api/v1/activities/{activity.Id}/ratings");
+
+            // Assert
+            response.IsSuccessStatusCode.Should().BeTrue();
+            var ratings = await response.Content.ReadAsAsync<IList<RatingModel>>();
+            ratings.Should().HaveCount(1);
+
+        }
+
+        [Fact]
+        public async Task AddRatingToActivity()
+        {
+            var activityType = new ActivityType("Petrecere Tematica");
+            var activity = new Activity(
+                activityType.Id,
+                CityId,
+                "Petrecere anii '20",
+                "Adresa locatie",
+                "Petrecerea impune un dress-code in stilul anilor '20.");
+
+           
+            await ExecuteDatabaseAction(async (doFestContext) =>
+            {
+                await doFestContext.ActivityTypes.AddAsync(activityType);
+                await doFestContext.Activities.AddAsync(activity);
+                await doFestContext.SaveChangesAsync();
+            });
+
+            var createRatingModel = new CreateRatingModel
+            {
+                Stars = 5
+            };
+
+            //Act
+            var response = await HttpClient.PostAsJsonAsync($"api/v1/activities/{activity.Id}/ratings",
+                createRatingModel);
+
+            //Assert
+            response.IsSuccessStatusCode.Should().BeTrue();
+
+            var createdRatingId = response.Headers.Location.OriginalString;
+            Rating existingRating = null;
+            await ExecuteDatabaseAction(async (doFestContext) =>
+            {
+                var existingActivity = await doFestContext.Activities
+                    .Include(entity => entity.Ratings)
+                    .FirstAsync(entity => entity.Id == activity.Id);
+
+                existingRating = existingActivity.Ratings.FirstOrDefault();
+            });
+
+            existingRating.Should().NotBeNull();
+            existingRating.Id.Should().Be(createdRatingId);
+        }
+    }
+}
