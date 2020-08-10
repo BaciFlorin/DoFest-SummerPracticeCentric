@@ -53,9 +53,9 @@ mat-icon {
 }
 
 .tile.job .header {
-  background: linear-gradient(to bottom right, #27ae60, #87bc27);
+  background: linear-gradient(to bottom right, #008080,#ADD8E6);
 }
 
 .tile.job .body {
-  color: #27ae60;
+  color:#008080;
 }

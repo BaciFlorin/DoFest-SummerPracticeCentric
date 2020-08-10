@@ -20,7 +20,7 @@ export class ActivitytileComponent implements OnInit {
     if (this.background) {
       this.background = "url('" + this.background + "')";
     } else {
-      this.background = "linear-gradient(to bottom right, blue, #70A3CC)";
+      this.background = "linear-gradient(to bottom right,#008080,#ADD8E6)";
     }
   }
 
