@@ -3,6 +3,8 @@ using DoFest.IntegrationTests.Shared.Extensions;
 using DoFest.IntegrationTests.Shared.Factories;
 using DoFest.Persistence;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -31,7 +33,6 @@ namespace DoFest.IntegrationTests
             {
                 var existingBkList = await DoFestContext
                                         .BucketLists
-                                        .Include(entity => entity.BucketListActivities)
                                         .FirstAsync(entity => entity.UserId == AuthenticatedUserId);
 
                 existingBkListId = existingBkList.Id;

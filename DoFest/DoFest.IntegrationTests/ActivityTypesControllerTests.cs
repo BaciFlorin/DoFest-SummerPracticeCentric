@@ -15,6 +15,8 @@ namespace DoFest.IntegrationTests
 {
     public class ActivityTypesControllerTests: IntegrationTests
     {
+        public ActivityTypesControllerTests() : base(true){}
+
         [Fact]
         public async Task GetActivityTypesTest()
         {
@@ -26,7 +28,7 @@ namespace DoFest.IntegrationTests
                 await doFestContext.SaveChangesAsync();
             });
 
-            var response = await HttpClient.GetAsync($"/api/v1/activities");
+            var response = await HttpClient.GetAsync($"api/v1/activities/types");
 
             response.IsSuccessStatusCode.Should().BeTrue();
             var activityTypes = await response.Content.ReadAsAsync<IEnumerable<ActivityType>>();
@@ -41,17 +43,16 @@ namespace DoFest.IntegrationTests
                 Name = "activitate test"
             };
 
-            var response = await HttpClient.PostAsJsonAsync($"/api/v1/activities", activityTypeModel);
+            var response = await HttpClient.PostAsJsonAsync($"api/v1/activities/types", activityTypeModel);
 
             response.IsSuccessStatusCode.Should().BeTrue();
-            var activityTypeId = await response.Content.ReadAsAsync<string>();
-            var activityTypeIdGuid = new Guid(activityTypeId);
+            var activityTypeId = new Guid(response.Headers.Location.OriginalString);
             ActivityType activityTypeEntity = null;
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
                 activityTypeEntity = await doFestContext
                     .ActivityTypes
-                    .FirstOrDefaultAsync(entity => entity.Id == activityTypeIdGuid);
+                    .FirstOrDefaultAsync(entity => entity.Id == activityTypeId);
                 await doFestContext.SaveChangesAsync();
             });
             activityTypeEntity.Should().NotBeNull();
