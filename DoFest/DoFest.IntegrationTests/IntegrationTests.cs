@@ -118,16 +118,11 @@ namespace DoFest.IntegrationTests
             userRegisterResponse.IsSuccessStatusCode.Should().BeTrue();
             if (_isAdmin == true)
             {
-                UserType entity = null;
-
-                await ExecuteDatabaseAction(async (doFestContext) =>
-                {
-                    entity = await doFestContext.UserTypes.FirstOrDefaultAsync(x => x.Name == "Admin");
-                });
-
                 var userRespository = new UserRepository(dbContext);
+                var userTypeRepository = new UserTypeRepository(dbContext);
+                var userTypeAdmin = await userTypeRepository.GetByName("Admin");
                 var user = await userRespository.GetByEmail(userRegisterModel.Email);
-                user.UserTypeId = entity.Id;
+                user.UserTypeId = userTypeAdmin.Id;
                 userRespository.Update(user);
                 await userRespository.SaveChanges();
             }
