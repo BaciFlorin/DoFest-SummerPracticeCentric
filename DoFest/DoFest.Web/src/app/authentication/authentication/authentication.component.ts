@@ -43,7 +43,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy{
       year:[1,[Validators.required, Validators.min(1), Validators.max(6)]],
       bucketlistname:['',[Validators.required, Validators.minLength(6),Validators.maxLength(100)]]
     });
-    this.userService.username.next(' ');
+    this.userService.username = "";
     this.subs = new Array<Subscription>();
   }
   ngOnDestroy(): void {
@@ -88,7 +88,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy{
           {
             sessionStorage.setItem('userToken', data.body["token"]);
             sessionStorage.setItem('identity', JSON.stringify(data.body));
-            this.userService.username.next(data.body.username);
+            this.userService.username = data.body.username;
             this.router.navigate(['dashboard']);
           }
         }, this.handleError));

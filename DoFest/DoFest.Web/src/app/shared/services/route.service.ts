@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 export class RouteService {
   constructor() { }
 
-  private scheme:string = "http";
-  private host:string = "192.168.0.103";
-  private port: string = "5002";
+  private scheme:string = "https";
+  private host:string = "localhost";
+  private port: string = "5001";
   private version: string = "v1";
 
   private routes = {
