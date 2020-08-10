@@ -4,6 +4,7 @@ using DoFest.IntegrationTests.Shared.Extensions;
 using DoFest.IntegrationTests.Shared.Factories;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -73,6 +74,38 @@ namespace DoFest.IntegrationTests
                 existingCity = await doFestContext.Cities.FirstOrDefaultAsync(entity => entity.Name == city.Name);
             });
             existingCity.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task DeleteInvalidCityTest()
+        {
+            //Arrange
+            var cityId = Guid.NewGuid();
+
+            // Act
+            var response = await HttpClient.DeleteAsync($"/api/v1/cities/{cityId}");
+
+            // Assert
+            response.IsSuccessStatusCode.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task CreateInvalidCityTest()
+        {
+            //Arrange
+            var cityModel = new CreateCityModel()
+            {
+                Name = "Buzau"
+            };
+
+            // Act
+            var firstResponse = await HttpClient.PostAsJsonAsync("/api/v1/cities", cityModel);
+
+            var secondResponse = await HttpClient.PostAsJsonAsync("/api/v1/cities", cityModel);
+
+            // Assert
+            firstResponse.IsSuccessStatusCode.Should().BeTrue();
+            secondResponse.IsSuccessStatusCode.Should().BeFalse();
         }
     }
 }

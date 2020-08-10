@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CSharpFunctionalExtensions;
-using DoFest.Business.Errors;
 using DoFest.Business.Identity.Models.Notifications;
 using DoFest.Business.Identity.Services.Interfaces;
 using DoFest.Entities.Authentication.Notification;

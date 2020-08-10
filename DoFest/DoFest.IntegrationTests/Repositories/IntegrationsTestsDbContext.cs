@@ -1,5 +1,4 @@
-﻿using DoFest.Entities.Authentication;
-using DoFest.IntegrationTests.Entities;
+﻿using DoFest.IntegrationTests.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoFest.IntegrationTests.Repositories
