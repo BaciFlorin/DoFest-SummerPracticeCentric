@@ -58,7 +58,7 @@ namespace DoFest.API.Controllers
             {
                 return BadRequest(error);
             }
-            return Ok(result);
+            return Created(result.Id.ToString(), result);
         }
 
         [HttpDelete("{activityId}")]

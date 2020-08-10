@@ -44,7 +44,7 @@ namespace DoFest.API.Controllers
                 return BadRequest(error);
             }
 
-            return Created(value.Id.ToString(), null);
+            return Created(value.Id.ToString(), value);
         }
 
         [HttpDelete("{activityTypeId}")]
@@ -58,7 +58,7 @@ namespace DoFest.API.Controllers
                 return BadRequest(error);
             }
 
-            return NoContent();
+            return Ok(new { value });
         }
     }
 }
