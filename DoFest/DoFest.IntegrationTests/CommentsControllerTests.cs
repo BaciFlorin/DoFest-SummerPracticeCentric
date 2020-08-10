@@ -1,6 +1,8 @@
 ﻿using DoFest.Business.Activities.Models.Content.Comment;
 using DoFest.Entities.Activities;
 using DoFest.Entities.Activities.Content;
+using DoFest.IntegrationTests.Shared.Extensions;
+using DoFest.IntegrationTests.Shared.Factories;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,19 +20,9 @@ namespace DoFest.IntegrationTests
         public async Task GetActivityComments()
         {
             // Arrange
-            var activityType = new ActivityType("gratar");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Nume activitate",
-                "Adresa activitate",
-                "Descriere activitate"
-                );
-            var comment = new Comment(
-                activity.Id,
-                this.AuthenticatedUserId,
-                "Com"
-                );
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
+            var comment = CommentFactory.Default(activity.Id, AuthenticatedUserId);
             activity.AddComment(comment);
 
             await ExecuteDatabaseAction(async (doFestContext) =>
@@ -45,7 +37,7 @@ namespace DoFest.IntegrationTests
 
             // Assert
             response.IsSuccessStatusCode.Should().BeTrue();
-            var comments = await response.Content.ReadAsAsync<IList<CommentModel>>();
+            var comments = await response.Content.ReadAsAsync<IList<Comment>>();
             comments.Should().HaveCount(1);
         }
 
@@ -53,14 +45,8 @@ namespace DoFest.IntegrationTests
         public async Task AddCommentsToActivity()
         {
             // Arrange
-            var activityType = new ActivityType("gratar");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Nume activitate",
-                "Adresa activitate",
-                "Descriere activitate"
-                );
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
                 await doFestContext.ActivityTypes.AddAsync(activityType);
@@ -96,19 +82,9 @@ namespace DoFest.IntegrationTests
         public async Task DeleteCommentFromActivity()
         {
             // Arrange
-            var activityType = new ActivityType("gratar");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Nume activitate",
-                "Adresa activitate",
-                "Descriere activitate"
-                );
-            var comment = new Comment(
-                activity.Id,
-                this.AuthenticatedUserId,
-                "comment"
-                );
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
+            var comment = CommentFactory.Default(activity.Id, AuthenticatedUserId);
             activity.AddComment(comment);
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
@@ -140,19 +116,9 @@ namespace DoFest.IntegrationTests
         public async Task DeleteInvalidCommentFromAcvtivity()
         {
             // Arrange
-            var activityType = new ActivityType("gratar");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Nume activitate",
-                "Adresa activitate",
-                "Descriere activitate"
-                );
-            var comment = new Comment(
-                activity.Id,
-                this.AuthenticatedUserId,
-                "comment"
-                );
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
+            var comment = CommentFactory.Default(activity.Id, AuthenticatedUserId);
             activity.AddComment(comment);
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
@@ -172,14 +138,8 @@ namespace DoFest.IntegrationTests
         public async Task AddCommentsToInvalidActivityId()
         {
             // Arrange
-            var activityType = new ActivityType("gratar");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Nume activitate",
-                "Adresa activitate",
-                "Descriere activitate"
-                );
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
                 await doFestContext.ActivityTypes.AddAsync(activityType);
@@ -203,19 +163,9 @@ namespace DoFest.IntegrationTests
         public async Task GetInvalidActivityIdComments()
         {
             // Arrange
-            var activityType = new ActivityType("gratar");
-            var activity = new Activity(
-                activityType.Id,
-                CityId,
-                "Nume activitate",
-                "Adresa activitate",
-                "Descriere activitate"
-                );
-            var comment = new Comment(
-                activity.Id,
-                this.AuthenticatedUserId,
-                "Com"
-                );
+            var activityType = ActivityTypeFactory.Default();
+            var activity = ActivityFactory.Default(CityId, activityType.Id);
+            var comment = CommentFactory.Default(activity.Id, AuthenticatedUserId);
             activity.AddComment(comment);
 
             await ExecuteDatabaseAction(async (doFestContext) =>
