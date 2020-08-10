@@ -1,7 +1,8 @@
 <div class="authentication-container">
     <img src="assets/images/sign_in.svg">
-    <form class="authentication-content" [formGroup]="formGroup">
+    <form [class]="isSetRegistered ? 'authentication-content register-content' : 'authentication-content'" [formGroup]="formGroup">
         <span class="login-label">{{isSetRegistered? 'Register': 'Log in'}} </span>
+        
         <label>Email</label>
         <input formControlName="email" type="email" />
 

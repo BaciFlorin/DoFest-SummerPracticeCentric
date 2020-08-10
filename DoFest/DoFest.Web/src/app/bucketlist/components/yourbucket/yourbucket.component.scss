@@ -103,4 +103,14 @@ input {
     font-weight: bold;
 }
 
+@media(max-width:900)
+{
+    .activity-name{
+        font-size: 15px;
+    }
+
+    mat-select {
+        width: 40px;
+    }
+}
 
