@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ActivitytileComponent implements OnInit {
 
+  @Input() public numberBuckets: number = 0;
   @Input() public label: string = '';
   @Input() public background: string = '';
   @Input() public location: string = '';
@@ -20,7 +21,7 @@ export class ActivitytileComponent implements OnInit {
     if (this.background) {
       this.background = "url('" + this.background + "')";
     } else {
-      this.background = "linear-gradient(to bottom right, blue, #70A3CC)";
+      this.background = "linear-gradient(to bottom right, #4493C7, #70A3CC)";
     }
   }
 

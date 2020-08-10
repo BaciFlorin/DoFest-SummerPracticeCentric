@@ -1,6 +1,6 @@
 .tile {
     width: 260px;
-    height: 220px;
+    height: 240px;
     border-radius: 4px;
     box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.15);
     margin-top: 40px;
@@ -35,7 +35,7 @@ mat-icon{
   }
   
   .tile .body {
-    height: 140px;
+    height: 160px;
     border-radius: 0 0 4px 4px;
     color: #333333;
     background-color: white;
@@ -68,3 +68,10 @@ mat-icon{
     margin-left: 15px;
   }
   
+  .trending {
+    width: 100%;
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+  }

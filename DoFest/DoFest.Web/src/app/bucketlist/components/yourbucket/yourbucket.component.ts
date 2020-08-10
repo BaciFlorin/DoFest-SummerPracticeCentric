@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UpdateBucketListModel } from '../../models/updateBucketList.model';
 import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-yourbucket',
@@ -19,10 +20,10 @@ export class YourbucketComponent implements OnInit, OnDestroy {
   private activityToDelete: Array<string>;
   @Input() private bucketListId:string;
   private sub:Subscription;
+  public inputName: FormControl;
 
-  constructor(private route:Router, private readonly bucketListService: BucketListService) {
-    this.activityForToggle = new Array<string>();
-    this.activityToDelete = new Array<string>();
+  constructor(private route:Router, private readonly bucketListService: BucketListService,   private readonly formBuilder: FormBuilder) {
+    
   }
 
   ngOnDestroy(): void {
@@ -33,6 +34,9 @@ export class YourbucketComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.activityForToggle = new Array<string>();
+    this.activityToDelete = new Array<string>();
+    this.inputName = this.formBuilder.control('',[Validators.required, Validators.minLength(6), Validators.maxLength(100)]);
   }
   
   public addForToggle(id:string, event:MatSelectChange)
@@ -50,6 +54,7 @@ export class YourbucketComponent implements OnInit, OnDestroy {
         return activityModel != id;
       });
     }
+    document.getElementById("response-message").innerHTML = "";
   }
 
   public deleteActivity(id:string)
@@ -58,7 +63,7 @@ export class YourbucketComponent implements OnInit, OnDestroy {
     {
       this.activityToDelete.push(id);
     }
-    console.log(this.activityToDelete);
+    document.getElementById("response-message").innerHTML = "";
   }
 
   public undoActivity(id:string)
@@ -74,22 +79,32 @@ export class YourbucketComponent implements OnInit, OnDestroy {
 
   public updateBucketList()
   {
-    let newName = (<HTMLInputElement> document.getElementById("bucketlist-name")).value;
-    this.activityForToggle = this.activityForToggle.filter((activityId)=> this.activityToDelete.find((deleteId)=> deleteId == activityId) == undefined );
-    if(this.activityForToggle.length > 0 || this.activityToDelete.length > 0 || newName != this.bucketlist.name)
+    if(!this.inputName.invalid)
     {
-      let updateBucket: UpdateBucketListModel = {
-        name: newName,
-        activitiesForDelete: this.activityToDelete,
-        activitiesForToggle: this.activityForToggle
-      };
+      let newName = (<HTMLInputElement> document.getElementById("bucketlist-name")).value;
+      this.activityForToggle = this.activityForToggle.filter((activityId)=> this.activityToDelete.find((deleteId)=> deleteId == activityId) == undefined );
+      if(this.activityForToggle.length > 0 || this.activityToDelete.length > 0 || newName != this.bucketlist.name)
+      {
+        let updateBucket: UpdateBucketListModel = {
+          name: newName,
+          activitiesForDelete: this.activityToDelete,
+          activitiesForToggle: this.activityForToggle
+        };
 
-      this.sub = this.bucketListService.update(updateBucket, this.bucketListId).subscribe((data:HttpResponse<any>)=>{
-        if(data.status == 200)
-        {
-          window.location.reload();
-        }
-      });
+        this.activityForToggle = [];
+        this.activityToDelete = [];
+
+        this.sub = this.bucketListService.update(updateBucket, this.bucketListId).subscribe((data:HttpResponse<any>)=>{
+          if(data.status == 200)
+          {
+            this.bucketlist.activities = this.bucketlist.activities.filter((activity)=>{
+              return updateBucket.activitiesForDelete.find((id)=> id == activity.activityId) == undefined;
+            });
+          
+            document.getElementById("response-message").innerHTML = "Changes saved!"
+          }
+        });
+      }
     }
   }
 

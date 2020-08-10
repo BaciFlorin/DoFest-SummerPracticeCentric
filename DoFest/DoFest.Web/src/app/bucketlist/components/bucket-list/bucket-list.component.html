@@ -4,7 +4,7 @@
     </h1>
 
     <div class="cards">
-        <app-tile *ngFor="let list of bucketList" label="{{list.name}}" (click)="goToBucket(list.id)">
+        <app-tile *ngFor="let list of bucketList" icon="format_list_bulleted" label="{{list.name}}" (click)="goToBucket(list.id)">
             <div class="description">{{list.name}}</div>
         </app-tile>
     </div>

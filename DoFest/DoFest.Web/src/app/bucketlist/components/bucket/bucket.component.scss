@@ -110,3 +110,12 @@ input {
 }
 
 
+@media only screen and (max-width: 1000px) {
+    .page-container .image-container {
+        display: none;
+    }
+
+    .content-container {
+        width: 100%;
+    }
+}

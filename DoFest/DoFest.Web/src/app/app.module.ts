@@ -26,7 +26,6 @@ import { UserModule } from './user/user.module';
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-    ReactiveFormsModule,
     ActivityModule,
     JwtModule.forRoot({
       config:{

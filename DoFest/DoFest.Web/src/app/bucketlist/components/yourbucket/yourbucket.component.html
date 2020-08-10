@@ -1,9 +1,17 @@
     <div class="identity-container">
-        <input id="bucketlist-name" type="text" value="{{bucketlist.name}}">
+        <input [formControl]="inputName" type="text" value={{bucketlist.name}}>
          by {{bucketlist.username}} 
     </div>
+    <ng-container *ngIf="inputName.invalid && inputName.touched">
+        <div class="error-message">
+            BucketList name must have between 6 and 100 characters!
+        </div>
+    </ng-container>
     <div class="activity-container">
             <button class="save-changes" mat-raised-button color="primary" (click)="updateBucketList()">Save changes</button>
+            <div id="response-message">
+
+            </div>
         <ul class="list-activities">
             <li *ngFor="let activity of bucketlist.activities;">
                 <div class="activity-name" (click)="goToActivity(activity.activityId)">

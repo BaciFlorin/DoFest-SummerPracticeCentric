@@ -13,15 +13,23 @@
         <input formControlName="password" type="password" />
 
         <div *ngIf="isInvalid(formGroup.get('password'))" class="error-alert">
-            Password must have minumum 8 characters
+            Password must have between 8 and 60 characters
         </div>
 
         <ng-container *ngIf="isSetRegistered">
             <label>Full name</label>
             <input formControlName="name" type="text" />
 
+            <div *ngIf="isInvalid(formGroup.get('name'))" class="error-alert">
+                Name must have below 150 characters
+            </div>
+
             <label>Username</label>
             <input formControlName="username" type="text">
+
+            <div *ngIf="isInvalid(formGroup.get('username'))" class="error-alert">
+                Username must have between 6 and 50 characters
+            </div>
 
             <mat-form-field appearance="fill">
                 <mat-label>City</mat-label>
@@ -47,7 +55,7 @@
             <label>BucketList name</label>
             <input type="text" formControlName="bucketlistname">
             <div *ngIf="isInvalid(formGroup.get('bucketlistname'))" class="error-alert">
-                Name must have minimum 6 characters
+                BucketList name must have between 6 and 100 characters
             </div>
         </ng-container>
 

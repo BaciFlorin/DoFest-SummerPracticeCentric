@@ -23,7 +23,8 @@
     </div>
 
     <div class="cards">
-        <app-activitytile *ngFor="let trip of filtredListActivities" icon="local_activity" label="{{trip.name}}" (goToAct)="goToActivity(trip.id)" (addBucket)="addToBucket(trip.id)" [location]="getCityName(trip.cityId)" [inBucket]="!inBucket(trip.id)">
+        <app-activitytile *ngFor="let activity of filtredListActivities" icon="local_activity" label="{{activity.name}}" (goToAct)="goToActivity(activity.id)" 
+        (addBucket)="addToBucket(activity.id)" [location]="getCityName(activity.cityId)" [inBucket]="!inBucket(activity.id)" [numberBuckets]="activity.trending">
 
         </app-activitytile>
     </div>
