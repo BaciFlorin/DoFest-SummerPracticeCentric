@@ -1,9 +1,9 @@
 ﻿using DoFest.Business.Activities.Models.Activity;
 using DoFest.Entities.Activities;
-using DoFest.Entities.Activities.Places;
 using DoFest.IntegrationTests.Shared.Extensions;
 using DoFest.IntegrationTests.Shared.Factories;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -96,6 +96,29 @@ namespace DoFest.IntegrationTests
             // var response = await HttpClient.GetStreamAsync($"/api/v1/activities/{activity.Id}");
 
             response.IsSuccessStatusCode.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task DeleteActivity()
+        {
+            var activityType = ActivityTypeFactory.Default();
+            var city = CityFactory.Default();
+            await ExecuteDatabaseAction(async (doFestContext) =>
+            {
+                await doFestContext.ActivityTypes.AddAsync(activityType);
+                await doFestContext.Cities.AddAsync(city);
+                await doFestContext.SaveChangesAsync();
+            });
+            var activity = new Activity(activityType.Id, city.Id, "test name",  "test description", "test address");
+            await ExecuteDatabaseAction(async (doFestContext) =>
+            {
+                await doFestContext.Activities.AddAsync(activity);
+                await doFestContext.SaveChangesAsync();
+            });
+
+            var response = await HttpClient.DeleteAsync($"/api/v1/activities/{activity.Id}");
+
+            response.IsSuccessStatusCode.Should().BeTrue();
         }
     }
 }

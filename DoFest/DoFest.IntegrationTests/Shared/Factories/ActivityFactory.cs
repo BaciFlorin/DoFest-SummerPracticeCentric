@@ -15,5 +15,10 @@ namespace DoFest.IntegrationTests.Shared.Extensions
                 "Descriere activitate"
                 );
         }
+
+        internal static object Default(object cityId, Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
