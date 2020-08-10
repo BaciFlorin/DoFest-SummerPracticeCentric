@@ -31,11 +31,7 @@ namespace DoFest.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetActivities()
         {
-            var (_, isFailure, result, error) = await _activitiesService.GetActivityLists();
-            if (isFailure)
-            {
-                return BadRequest(error);
-            }
+            var (_, _, result, _) = await _activitiesService.GetActivityLists();
             return Ok(result);
         }
 

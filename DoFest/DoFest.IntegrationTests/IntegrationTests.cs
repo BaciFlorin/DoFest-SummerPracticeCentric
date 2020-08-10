@@ -79,6 +79,7 @@ namespace DoFest.IntegrationTests
         }
         private async Task SetAuthenticationToken()
         {
+            
             UserType userType = new UserType("Normal user", "access");
             City city = new City("Bucuresti");
             await ExecuteDatabaseAction(async (doFestContext) =>
@@ -88,14 +89,15 @@ namespace DoFest.IntegrationTests
                 await doFestContext.SaveChangesAsync();
                 CityId = city.Id;
             });
+            
             var userRegisterModel = new RegisterModel
             {
                 Username = "testtest",
                 Age = 20,
-                BucketListName = "testtesttest",
+                BucketListName = "test bucketlist",
                 City = city.Id,
                 Email = "testeesttest@gmail.com",
-                Name = "testtesttest",
+                Name = "testtest",
                 Password = "passwordAdmin",
                 Year = 3
             };
@@ -112,7 +114,6 @@ namespace DoFest.IntegrationTests
             var userAuthenticateResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/login", authenticateModel);
             userAuthenticateResponse.IsSuccessStatusCode.Should().BeTrue();
             var authenticationResponseContent = await userAuthenticateResponse.Content.ReadAsAsync<LoginModelResponse>();
-            
 
             var stream = authenticationResponseContent.Token;
             var handler = new JwtSecurityTokenHandler();
