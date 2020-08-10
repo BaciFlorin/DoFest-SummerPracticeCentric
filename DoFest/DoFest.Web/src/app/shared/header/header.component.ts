@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public getUserName(): void{
-    this.userService.username = JSON.parse(sessionStorage.getItem("identity"))["username"];
+    if(sessionStorage.getItem("identity") != null)
+      this.userService.username = JSON.parse(sessionStorage.getItem("identity"))["username"];
   }
 }
