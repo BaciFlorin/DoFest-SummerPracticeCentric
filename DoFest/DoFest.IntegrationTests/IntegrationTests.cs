@@ -7,6 +7,8 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -100,7 +102,7 @@ namespace DoFest.IntegrationTests
             
             var userRegisterResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/register", userRegisterModel);
             userRegisterResponse.IsSuccessStatusCode.Should().BeTrue();
-            AuthenticatedUserId = new Guid(userRegisterResponse.Headers.Location.OriginalString);
+
             
             var authenticateModel = new LoginModelRequest
             {
@@ -110,6 +112,14 @@ namespace DoFest.IntegrationTests
             var userAuthenticateResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/login", authenticateModel);
             userAuthenticateResponse.IsSuccessStatusCode.Should().BeTrue();
             var authenticationResponseContent = await userAuthenticateResponse.Content.ReadAsAsync<LoginModelResponse>();
+            
+
+            var stream = authenticationResponseContent.Token;
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(stream);
+            var tokenS = handler.ReadToken(stream) as JwtSecurityToken;
+
+            AuthenticatedUserId = new Guid(tokenS.Claims.First(x => x.Type == "userId").Value);
 
             AuthenticationToken = authenticationResponseContent.Token;
         }

@@ -53,15 +53,17 @@ namespace DoFest.IntegrationTests
         public async Task AddCommentsToActivity()
         {
             // Arrange
+            var activityType = new ActivityType("gratar");
             var activity = new Activity(
-                Guid.NewGuid(),
-                Guid.NewGuid(),
+                activityType.Id,
+                CityId,
                 "Nume activitate",
                 "Adresa activitate",
                 "Descriere activitate"
                 );
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
+                await doFestContext.ActivityTypes.AddAsync(activityType);
                 await doFestContext.Activities.AddAsync(activity);
                 await doFestContext.SaveChangesAsync();
             });
@@ -94,9 +96,10 @@ namespace DoFest.IntegrationTests
         public async Task DeleteCommentFromActivity()
         {
             // Arrange
+            var activityType = new ActivityType("gratar");
             var activity = new Activity(
-                Guid.NewGuid(),
-                Guid.NewGuid(),
+                activityType.Id,
+                CityId,
                 "Nume activitate",
                 "Adresa activitate",
                 "Descriere activitate"
@@ -109,6 +112,7 @@ namespace DoFest.IntegrationTests
             activity.AddComment(comment);
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
+                await doFestContext.ActivityTypes.AddAsync(activityType);
                 await doFestContext.Activities.AddAsync(activity);
                 await doFestContext.SaveChangesAsync();
             });
