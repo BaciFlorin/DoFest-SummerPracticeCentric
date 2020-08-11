@@ -1,26 +1,19 @@
 <header>
-  <section>
-    <a routerLink="dashboard">
-      <img src="../../assets/images/navigator.svg" />
-    </a>
-  </section>
+    <section>
+        <a routerLink="dashboard" href="/dashboard">
+            <img src="../../assets/images/navigator.svg" />
+        </a>
+    </section>
 
-  <section id="project-title">
-    <h2>
-      DoFest
-    </h2>
-  </section>
+    <section id="project-title">
+        <h2>
+            DoFest
+        </h2>
+    </section>
 
-  <section
-    *ngIf="userService.username"
-    class="flex-row-end"
-  >
-    <img src="../../assets/images/profile.png" (click)="onProfileClick()" matTooltip="Go to your account"/>
-    <h3 class="flex-row-end">Welcome, {{ userService.username }}</h3>
-    <img
-      class="logout"
-      src="../../assets/images/logout.svg"
-      (click)="logout()"
-    />
-  </section>
+    <section *ngIf="userService.username" class="flex-row-end">
+        <img src="../../assets/images/profile.png" (click)="onProfileClick()" matTooltip="Go to your account" />
+        <h3 class="flex-row-end">Welcome, {{ userService.username }}</h3>
+        <img class="logout" src="../../assets/images/logout.svg" (click)="logout()" />
+    </section>
 </header>
