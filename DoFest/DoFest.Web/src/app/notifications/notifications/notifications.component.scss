@@ -37,6 +37,10 @@ ul li img.notification-image{
   display: inline-block;
 }
 
+#big-image{
+  margin-left: 40px;
+}
+
 ul li div.notification-time{
   width: 20%;
   display: flexbox;
@@ -52,9 +56,6 @@ ul li div.notification-content{
   font-weight: bold;
 }
 
-.notifications-container img {
-  margin-left: 40px;
-}
 
 @media (max-width: 1250px) {
   .notifications-container img {

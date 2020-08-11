@@ -91,4 +91,11 @@ input {
     border: none;
 }
 
+@media (max-width: 600px)
+{
+    .identity-container{
+        width: 80%;
+    }
+}
+
 

@@ -37,6 +37,7 @@ ul {
   list-style-type: none;
   overflow: scroll;
   height: 650px;
+  padding-inline-start: 10px;
 }
 
 ul::-webkit-scrollbar {
@@ -46,6 +47,9 @@ ul::-webkit-scrollbar {
 .activity-container ul li {
     width: 95%;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 10px 0;
     box-shadow: 0px 0px 8px rgba(34, 37, 44, 0.08);
     margin: 10px 0px;
@@ -103,14 +107,16 @@ input {
     font-weight: bold;
 }
 
-@media(max-width:900)
+
+@media (max-width:600px)
 {
-    .activity-name{
-        font-size: 15px;
+    .identity-container {
+        width: 80%;
     }
 
-    mat-select {
-        width: 40px;
+    .activity-container ul li  {
+        flex-direction: column;
     }
 }
+
 
