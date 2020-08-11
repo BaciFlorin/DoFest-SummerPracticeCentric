@@ -42,7 +42,7 @@
 .authentication-content {
   display: flex;
   width: 50%;
-  max-height: 80%;
+  max-height: 700px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -66,7 +66,7 @@
 }
 
 .authentication-container .authentication-content button {
-  background-color: #27ae60;
+  background-color: rgb(102, 141, 212);
   border: 0;
   outline: 0;
   cursor: pointer;
@@ -89,15 +89,19 @@
   }
 }
 
-.authentication-container .authentication-content input.ng-invalid.ng-touched.ng-dirty{
+.authentication-container
+  .authentication-content
+  input.ng-invalid.ng-touched.ng-dirty {
   border-left: 10px solid #a94442;
 }
 
-.authentication-container .authentication-content input.ng-valid.ng-touched.ng-dirty{
-  border-left: 10px solid #42A948;
+.authentication-container
+  .authentication-content
+  input.ng-valid.ng-touched.ng-dirty {
+  border-left: 10px solid #42a948;
 }
 
-.authentication-container .authentication-content .error-alert{
+.authentication-container .authentication-content .error-alert {
   background-color: pink;
   color: red;
   border-radius: 8px;
@@ -105,9 +109,7 @@
   padding: 10px;
 }
 
-
 @media (max-width: 900px) {
-
   .authentication-container img {
     display: none;
   }
@@ -125,3 +127,32 @@
   }
 }
 
+.authentication-container .register-content {
+  height: 700px;
+  overflow: scroll;
+}
+
+.authentication-container .register-content::-webkit-scrollbar {
+  display: none;
+}
+
+.authentification-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.authentication-container .authentification-item .item {
+  width: 50%;
+  padding: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.authentication-container .authentification-item .item label,
+.authentication-container .authentification-item .item input {
+  width: 100%;
+  text-align: center;
+}

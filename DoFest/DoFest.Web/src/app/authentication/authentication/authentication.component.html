@@ -1,66 +1,98 @@
 <div class="authentication-container">
-    <img src="assets/images/sign_in.svg">
-    <form class="authentication-content" [formGroup]="formGroup">
-        <span class="login-label">{{isSetRegistered? 'Register': 'Log in'}} </span>
-        <label>Email</label>
-        <input formControlName="email" type="email" />
-
-        <div *ngIf="isInvalid(formGroup.get('email'))" class="error-alert">
-            Email is invalid
-        </div>
-
-        <label>Password</label>
-        <input formControlName="password" type="password" />
-
-        <div *ngIf="isInvalid(formGroup.get('password'))" class="error-alert">
-            Password must have minumum 8 characters
-        </div>
-
-        <ng-container *ngIf="isSetRegistered">
-            <label>Full name</label>
-            <input formControlName="name" type="text" />
-
-            <label>Username</label>
-            <input formControlName="username" type="text">
-
-            <mat-form-field appearance="fill">
-                <mat-label>City</mat-label>
-                <mat-select [(value)]="cities[0].id" formControlName="city">
-                    <mat-option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <label>Age</label>
-            <input type="number" formControlName="age">
-            <div *ngIf="isInvalid(formGroup.get('age'))" class="error-alert">
-                Age must be between 18 and 99
-            </div>
-
-            <label>Year of study</label>
-            <input type="number" formControlName="year">
-            <div *ngIf="isInvalid(formGroup.get('year'))" class="error-alert">
-                Year of study must be between 1 and 6
-            </div>
-
-
-
-            <label>BucketList name</label>
-            <input type="text" formControlName="bucketlistname">
-            <div *ngIf="isInvalid(formGroup.get('bucketlistname'))" class="error-alert">
-                Name must have minimum 6 characters
-            </div>
-        </ng-container>
-
-        <span class="not-registered"><input type="checkbox"
-             (click)="setRegister()" />
-      <p>{{isSetRegistered? 'Go back to log in': 'I am not registered yet'}}</p>
+  <img src="assets/images/sign_in.svg" />
+  <form
+    [class]="
+      isSetRegistered
+        ? 'authentication-content register-content'
+        : 'authentication-content'
+    "
+    [formGroup]="formGroup"
+  >
+    <span class="login-label"
+      >{{ isSetRegistered ? "Register" : "Log in" }}
     </span>
-        <div id="successful-register">
 
-        </div>
-        <div id="error-list">
+    <label>Email</label>
+    <input formControlName="email" type="email" />
 
+    <div *ngIf="isInvalid(formGroup.get('email'))" class="error-alert">
+      Email is invalid
+    </div>
+
+    <label>Password</label>
+    <input formControlName="password" type="password" />
+
+    <div *ngIf="isInvalid(formGroup.get('password'))" class="error-alert">
+      Password must have between 8 and 60 characters
+    </div>
+
+    <ng-container *ngIf="isSetRegistered">
+      <div class="authentification-item">
+        <div class="item">
+          <label>Full name</label>
+          <input formControlName="name" type="text" />
+
+          <div *ngIf="isInvalid(formGroup.get('name'))" class="error-alert">
+            Name must have below 150 characters
+          </div>
         </div>
-        <button type="button" (click)="authenticate()"><span>{{isSetRegistered? 'Register': 'Login'}}</span></button>
-    </form>
+        <div class="item">
+          <label>Username</label>
+          <input formControlName="username" type="text" />
+
+          <div *ngIf="isInvalid(formGroup.get('username'))" class="error-alert">
+            Username must have between 6 and 50 characters
+          </div>
+        </div>
+      </div>
+
+      <div class="authentification-item">
+        <div class="item">
+          <label>Age</label>
+          <input type="number" formControlName="age" />
+          <div *ngIf="isInvalid(formGroup.get('age'))" class="error-alert">
+            Age must be between 18 and 99
+          </div>
+        </div>
+
+        <div class="item">
+          <label>Year of study</label>
+          <input type="number" formControlName="year" />
+          <div *ngIf="isInvalid(formGroup.get('year'))" class="error-alert">
+            Year of study must be between 1 and 6
+          </div>
+        </div>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <mat-select [(value)]="cities[0].id" formControlName="city">
+          <mat-option *ngFor="let city of cities" [value]="city.id">{{
+            city.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <label>BucketList name</label>
+      <input type="text" formControlName="bucketlistname" />
+      <div
+        *ngIf="isInvalid(formGroup.get('bucketlistname'))"
+        class="error-alert"
+      >
+        BucketList name must have between 6 and 100 characters
+      </div>
+    </ng-container>
+
+    <span class="not-registered"
+      ><input type="checkbox" (click)="setRegister()" />
+      <p>
+        {{ isSetRegistered ? "Go back to log in" : "I am not registered yet" }}
+      </p>
+    </span>
+    <div id="successful-register"></div>
+    <div id="error-list"></div>
+    <button type="button" (click)="authenticate()">
+      <span>{{ isSetRegistered ? "Register" : "Login" }}</span>
+    </button>
+  </form>
 </div>

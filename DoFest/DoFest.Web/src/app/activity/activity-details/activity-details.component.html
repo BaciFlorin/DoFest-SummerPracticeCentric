@@ -1,35 +1,39 @@
-<h1>Activity Details</h1>
+<h1><b>Activity Details</b></h1>
 
 <div class="flex-row-space-around">
   <section class="image-section">
     <img src="../../assets/images/party.svg" alt="Activity image" />
   </section>
-  <section class="form-section" *ngIf="activity!=null ">
+  <section class="form-section" *ngIf="activity != null">
     <div class="header">
-      <div><h1 id="activity-name">{{ activity.name }}</h1></div>
+      <div>
+        <h1 id="activity-name">{{ activity.name }}</h1>
+      </div>
       <div class="rating">
         <div>
-        <bar-rating #rating
-          [rate]="'rate'"
-          [max]="5"
-          (rateChange)="saveRating($event)"
+          <bar-rating
+            #rating
+            [rate]="'rate'"
+            [max]="5"
+            (rateChange)="saveRating($event)"
           >
-        </bar-rating>
+          </bar-rating>
+        </div>
+        <div>
+          <p>Current rating: {{ rate }}</p>
+          <p>Your rating: {{ userRating }}</p>
+        </div>
       </div>
-      <div> <p>Current rating: {{rate}}</p>
-        <p >Your rating: {{ userRating }}</p></div>
+    </div>
 
-      </div>
-  </div>
+    <div>
+      <p *ngIf="city != null">
+        <mat-icon aria-hidden="false">location_on</mat-icon>{{ city.name }},
+        {{ activity.address }}
+      </p>
+    </div>
 
-  <div >
-    <p *ngIf="city!=null">
-      <mat-icon aria-hidden="false">location_on</mat-icon>{{ city.name }},
-      {{ activity.address }}
-    </p>
-  </div>
-
-    <div >
+    <div>
       <p><b>Description: </b>{{ activity.description }}</p>
     </div>
 
@@ -37,7 +41,7 @@
       <label class="photos-title"><b>Photos</b></label>
       <div class="add-photos">
         <input
-        #Image
+          #Image
           type="file"
           (change)="handleFileInput($event.target.files)"
         />
@@ -92,7 +96,7 @@
             formControlName="content"
           ></textarea>
         </form>
-        <button mat-raised-button (click)="addComment()" >
+        <button mat-raised-button (click)="addComment()">
           <span>Add comment</span>
         </button>
       </div>

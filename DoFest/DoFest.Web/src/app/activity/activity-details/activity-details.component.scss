@@ -3,10 +3,10 @@
 h1 {
   margin-left: 20px;
 }
-.header{
+.header {
   text-align: center;
 }
-.rating{
+.rating {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,14 +42,14 @@ h1 {
 }
 
 .photos {
-
-  .photos-title, .add-photos, .post-photo {
+  .photos-title,
+  .add-photos,
+  .post-photo {
     margin-bottom: 15px;
   }
-  .add-photos{
+  .add-photos {
     margin-top: 15px;
   }
-
 }
 
 .comments {
@@ -61,7 +61,8 @@ h1 {
   }
 }
 
-.comment-button, .show-photo{
+.comment-button,
+.show-photo {
   margin-top: 15px;
   margin-bottom: 10px;
 }
@@ -80,7 +81,6 @@ h1 {
   grid-gap: 10px;
 }
 
-
 @media (max-width: 900px) {
   .flex-row-space-around {
     flex-direction: column;
@@ -95,6 +95,4 @@ h1 {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
   }
-
-
 }

@@ -31,7 +31,7 @@ namespace DoFest.Persistence.Activities
         /// <returns> O entitate activity. </returns>
         Task<Activity> GetByIdWithComments(Guid id);
 
-        Task<IList<Activity>> GetActivityLists();
+        Task<IList<Activity>> GetActivityListsWithBucketListActivity();
 
         Task<Activity> GetByName(string name);
 

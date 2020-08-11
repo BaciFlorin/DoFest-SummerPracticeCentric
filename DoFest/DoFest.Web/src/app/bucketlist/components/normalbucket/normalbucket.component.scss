@@ -1,94 +1,107 @@
 @import "../../../../assets/styles/layout.scss";
 
-.identity-container{
-    width: 80%;
-    padding: 30px;
-    display: inline-block;
-    font-size: 20px;
-    color: white;
-    font-weight: bold;
-    background-color: rgb(118, 179, 240);
-    border-radius: 10px;
-    margin: 10px 0;
+.identity-container {
+  width: 94%;
+  padding: 30px;
+  display: inline-block;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  background-color: #63d4ff;
+  border-radius: 10px;
+  margin: 10px 0;
 }
 
-.identity-container input{
-    display: inline-block;
-    width: 70%;
-    color: white;
-    background-color: rgb(118, 179, 240);
-    font-size: 30px;
+.identity-container input {
+  display: inline-block;
+  width: 40%;
+  color: white;
+  background-color: #63d4ff;
+  font-size: 30px;
 }
 
-.identity-container h1{
-    display: inline-block;
-    width: 70%;
-    font-weight: bold;
+.identity-container h1 {
+  display: inline-block;
+  width: 70%;
+  font-weight: bold;
 }
 
 .content-container {
-    width: 55%;
-    height: 100%;
-    padding: 20px;
-    border-radius: 10px;
+  width: 55%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 ul {
   list-style-type: none;
   overflow: scroll;
+  display: flex;
+  overflow: scroll;
+  height: 650px;
+  flex-direction: column;
+  align-items: center;
+  padding-inline-start: 0px;
 }
 
 ul::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .activity-container ul li {
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
+  width: 90%;
+  text-align: center;
+  padding: 10px 0;
+  padding: 10px 0;
+  box-shadow: 0px 0px 8px rgba(34, 37, 44, 0.08);
+  margin: 10px 0px;
 }
 
-.activity-container{
-    width: 100%;
-    background-color: white;
-    border-radius: 10px;
-    display: inline-block;
-    box-shadow: 0px 0px 8px rgba(34, 37, 44, 0.08);
+.activity-container {
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  display: inline-block;
+  box-shadow: 0px 0px 8px rgba(34, 37, 44, 0.08);
 }
 
 .activity-name {
-    display: inline-block;
-    width: 40%;
-    font-weight: bold;
-    padding: 10px 0;
-    font-size: 20px;
+  display: inline-block;
+  width: 40%;
+  font-weight: bold;
+  padding: 10px 0;
+  font-size: 20px;
 }
 
-.activity-status{
-    display: inline-block;
-    width: 60%;
+.activity-status {
+  display: inline-block;
+  width: 60%;
 }
 
 .activity-status button {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
-.save-changes{
-    margin: 20px;
+.save-changes {
+  margin: 20px;
 }
 
 .empty {
-    display: inline-block;
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 20px;
-    font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 input {
-    outline: none;
-    border: none;
+  outline: none;
+  border: none;
 }
 
-
+@media (max-width: 600px) {
+  .identity-container {
+    width: 80%;
+  }
+}

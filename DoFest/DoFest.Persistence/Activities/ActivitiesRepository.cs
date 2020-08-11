@@ -28,10 +28,12 @@ namespace DoFest.Persistence.Activities
                .Activities
                .Include(activity => activity.Comments)
                .FirstAsync(activity => activity.Id == id);
-        public async Task<IList<Activity>> GetActivityLists()
+        public async Task<IList<Activity>> GetActivityListsWithBucketListActivity()
              => await context
                 .Activities
+                .Include(a=>a.BucketListActivities)
                 .ToListAsync();
+
         public async Task<Activity> GetByName(string name)
             => await context
             .Activities.Where(activity => activity.Name == name).FirstOrDefaultAsync();

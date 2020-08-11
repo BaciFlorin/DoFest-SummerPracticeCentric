@@ -9,12 +9,13 @@ const routes: Routes = [
     component: BucketListComponent,
   },
   {
-    path: ':bucketListId', component: BucketComponent
-  }
-]
+    path: ':bucketListId',
+    component: BucketComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class BucketlistRoutingModule { }
+export class BucketlistRoutingModule {}

@@ -15,55 +15,52 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () =>
-      import('./admin/admin.module').then(
-        (m) => m.AdminModule
-      ),
-    canActivate: [AuthGuard, AdminGuard]
+      import('./admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'authentication',
     loadChildren: () =>
       import('./authentication/authentication.module').then(
         (m) => m.AuthenticationModule
-      )
+      ),
   },
-  { path: 'list', component: ActivityListComponent, canActivate:[AuthGuard] },
+  { path: 'list', component: ActivityListComponent, canActivate: [AuthGuard] },
   {
     path: 'notifications',
     loadChildren: () =>
       import('./notifications/notifications.module').then(
         (m) => m.NotificationsModule
       ),
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'activity',
     loadChildren: () =>
-    import('./activity/activity.module').then((m) => m.ActivityModule),
-  canActivate: [AuthGuard]
+      import('./activity/activity.module').then((m) => m.ActivityModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'bucketlists',
     loadChildren: () =>
       import('./bucketlist/bucketlist.module').then((m) => m.BucketlistModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
-    path:'userInfo',
-    loadChildren: () =>
-      import('./user/user.module').then((m) => m.UserModule),
-    canActivate: [AuthGuard]
-  }
+    path: 'userInfo',
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

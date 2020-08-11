@@ -1,12 +1,12 @@
 ::ng-deep html {
   width: 100%;
   height: 100vh;
-  background-color: #edeff7;
+  background-color: rgb(232, 247, 253);
 }
-::ng-deep body{
+::ng-deep body {
   height: calc(100vh - 60px);
 }
 
-app-header{
+app-header {
   background: white;
 }
