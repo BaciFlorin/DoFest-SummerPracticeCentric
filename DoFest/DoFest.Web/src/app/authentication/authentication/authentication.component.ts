@@ -101,7 +101,8 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
         username: '',
         city: this.cities[0].id,
         age: 18,
-        yearStudy: 1,
+        year: 1,
+        bucketlistname: ''
       });
     }
   }
