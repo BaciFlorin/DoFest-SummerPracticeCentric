@@ -1,4 +1,5 @@
-﻿using DoFest.Entities.Lists;
+﻿using DoFest.Business.Activities.Models.BucketList;
+using DoFest.Entities.Lists;
 using DoFest.IntegrationTests.Shared.Extensions;
 using DoFest.IntegrationTests.Shared.Factories;
 using DoFest.Persistence;
@@ -140,6 +141,23 @@ namespace DoFest.IntegrationTests
             response.IsSuccessStatusCode.Should().BeFalse();
         }
 
+        [Fact]
+        public async Task UpdateBucketList()
+        {
+            var activityType = ActivityTypeFactory.Default();
+            var city = CityFactory.Default();
+            var activity = ActivityFactory.Default(city.Id, activityType.Id);
+            BucketList bucket = null;
+            var updateModel = new BucketListUpdateModel();
+            
+
+            await ExecuteDatabaseAction(async (doFestContext) =>
+            {
+                bucket = await doFestContext
+                            .BucketLists
+                            .FirstOrDefaultAsync(x => x.UserId == AuthenticatedUserId);
+            });
+        }
     }
 
 }

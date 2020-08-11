@@ -166,5 +166,18 @@ namespace DoFest.IntegrationTests
             //Assert
             response.IsSuccessStatusCode.Should().BeFalse();
         }
+
+        [Fact]
+        public async Task DeleteActivityInvalidID()
+        {
+            //Arrange
+
+            //Act
+
+            var response = await HttpClient.DeleteAsync($"/api/v1/activities/{new Guid()}");
+
+            //Assert
+            response.IsSuccessStatusCode.Should().BeFalse();
+        }
     }
 }

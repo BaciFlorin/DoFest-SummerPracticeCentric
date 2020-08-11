@@ -97,7 +97,7 @@ namespace DoFest.API.Controllers
         {
             var (_, isFailure, result, error) = await _bucketListService.Add(bucketlistId, activityId);
             if (isFailure)
-            {
+            { 
                 return BadRequest(error);
             }
             return Ok(result);
