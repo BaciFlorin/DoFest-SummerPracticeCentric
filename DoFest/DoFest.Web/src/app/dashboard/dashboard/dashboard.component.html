@@ -1,20 +1,30 @@
 <div class="container">
-  <app-tile label="All Activities"
-            icon="list"
-            (click)="goToPage('list')"></app-tile>
-  <app-tile label="Your bucketlist"
-            icon="bucketlist"
-            (click)="goToYourBucketList()"></app-tile>
-  <app-tile label="Bucket lists"
-            icon="community"
-            (click)="goToPage('bucketlists')"></app-tile>
-  <app-tile label="Notifications"
-            icon="notifications"
-            (click)="goToPage('notifications')"></app-tile>
+  <app-tile
+    label="All Activities"
+    icon="list"
+    (click)="goToPage('list')"
+  ></app-tile>
+  <app-tile
+    label="Your bucketlist"
+    icon="rule"
+    (click)="goToYourBucketList()"
+  ></app-tile>
+  <app-tile
+    label="Bucket lists"
+    icon="view_module"
+    (click)="goToPage('bucketlists')"
+  ></app-tile>
+  <app-tile
+    label="Notifications"
+    icon="notifications"
+    (click)="goToPage('notifications')"
+  ></app-tile>
 
   <ng-container *ngIf="isAdmin()">
-    <app-tile label="App management"
-        icon="admin"
-        (click)="goToPage('admin')"></app-tile>
+    <app-tile
+      label="App management"
+      icon="admin_panel_settings"
+      (click)="goToPage('admin')"
+    ></app-tile>
   </ng-container>
 </div>

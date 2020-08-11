@@ -78,9 +78,15 @@ namespace DoFest.Business.Activities.Services.Implementations
 
         public async Task<Result<IList<ActivityModel>,Error>> GetActivityLists()
         {
-            var activityList = await _activitiesRepository.GetActivityLists();
+            var activityList = await _activitiesRepository.GetActivityListsWithBucketListActivity();
+            var returnList = activityList.OrderBy((a) => a.BucketListActivities.Count())
+                .Reverse()
+                .ToList()
+                .Select((activity) => new ActivityModel(activity.Id,activity.ActivityTypeId, 
+                                                        activity.Name, activity.CityId, activity.Address, 
+                                                        activity.Description, activity.BucketListActivities.Count())).ToList();
 
-            return _mapper.Map<List<ActivityModel>>(activityList);
+            return Result.Success<IList<ActivityModel>, Error>(returnList);
         }
 
         public async Task<Result<ActivityModel, Error>> Add(CreateActivityModel model)

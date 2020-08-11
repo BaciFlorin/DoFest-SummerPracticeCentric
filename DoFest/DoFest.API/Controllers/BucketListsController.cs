@@ -53,23 +53,6 @@ namespace DoFest.API.Controllers
         }
 
         /// <summary>
-        /// Metoda expusa pe web care disociaza o activitate de un bucket list.
-        /// </summary>
-        /// <param name="bucketlistId"> Id-ul bucket list-ului. </param>
-        /// <param name="activityId"> Id-ul activitatii. </param>
-        /// <returns> Un model de BucketList care a fost updatat sau un mesaj de eroare. </returns>
-        //[HttpDelete("{bucketlistId}/activities/{activityId}")]
-        //public async Task<IActionResult> Delete([FromRoute] Guid bucketlistId, [FromRoute] Guid activityId)
-        //{
-        //    var (_, isFailure, result, error) = await _bucketListService.DeleteActivity(bucketlistId, activityId);
-        //    if (isFailure)
-        //    {
-        //        return BadRequest(error);
-        //    }
-        //    return Ok(result);
-        //}
-
-        /// <summary>
         /// Metoda expusa pe web care modifica starea activitatilor din bucket list.
         /// </summary>
         /// <param name="bucketlistId"> Id-ul bucket list-ului. </param>

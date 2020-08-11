@@ -6,14 +6,20 @@ import { BucketListComponent } from './components/bucket-list/bucket-list.compon
 import { SharedModule } from '../shared/shared.module';
 import { BucketComponent } from './components/bucket/bucket.component';
 import { MatButtonModule } from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { YourbucketComponent } from './components/yourbucket/yourbucket.component';
 import { NormalbucketComponent } from './components/normalbucket/normalbucket.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ BucketListComponent, BucketComponent, YourbucketComponent, NormalbucketComponent ],
+  declarations: [
+    BucketListComponent,
+    BucketComponent,
+    YourbucketComponent,
+    NormalbucketComponent,
+  ],
   imports: [
     CommonModule,
     BucketlistRoutingModule,
@@ -21,8 +27,9 @@ import { NormalbucketComponent } from './components/normalbucket/normalbucket.co
     MatButtonModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
   ],
-  exports: [ BucketListComponent ]
+  exports: [BucketListComponent],
 })
-export class BucketlistModule { }
+export class BucketlistModule {}

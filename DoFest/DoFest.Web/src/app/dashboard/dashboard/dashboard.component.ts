@@ -8,22 +8,27 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  constructor(private router: Router, private readonly helper:JwtHelperService) {}
+  constructor(
+    private router: Router,
+    private readonly helper: JwtHelperService
+  ) {}
 
   public goToPage(page: string): void {
     this.router.navigate([page]);
   }
 
-  public goToYourBucketList()
-  {
-    let bucketListId = JSON.parse(sessionStorage.getItem('identity'))["bucketListId"];
-    this.router.navigate(["bucketlists",bucketListId]);
+  public goToYourBucketList() {
+    let bucketListId = JSON.parse(sessionStorage.getItem('identity'))[
+      'bucketListId'
+    ];
+    this.router.navigate(['bucketlists', bucketListId]);
   }
 
-  public isAdmin():boolean{
-    var decodedToken = this.helper.decodeToken(sessionStorage.getItem("userToken"));
-    if("isAdmin" in decodedToken)
-    {
+  public isAdmin(): boolean {
+    var decodedToken = this.helper.decodeToken(
+      sessionStorage.getItem('userToken')
+    );
+    if ('isAdmin' in decodedToken) {
       return true;
     }
     return false;

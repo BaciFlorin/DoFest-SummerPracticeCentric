@@ -1,13 +1,13 @@
 @import "../../../../assets/styles/layout.scss";
 .app-tile {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    padding: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: 32px;
 }
 
 .form-control {
-    width: 100px;
+  width: 100px;
 }
 
 // .label {
@@ -17,19 +17,19 @@
 //     transform: scale(1.2);
 // }
 .page-container {
-    display: flex;
-    flex-direction: column;
-    padding: 32px;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
 }
 
 .description {
-    visibility: hidden;
+  visibility: hidden;
 }
 
-.label:hover+.description {
-    visibility: visible;
+.label:hover + .description {
+  visibility: visible;
 }
 
 input {
-    width: 5%;
+  width: 5%;
 }

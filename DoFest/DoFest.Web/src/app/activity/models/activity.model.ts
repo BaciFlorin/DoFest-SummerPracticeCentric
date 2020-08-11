@@ -5,4 +5,5 @@ export type ActivityModel={
   cityId:string;
   address:string;
   description:string;
+  trending: number;
 };
