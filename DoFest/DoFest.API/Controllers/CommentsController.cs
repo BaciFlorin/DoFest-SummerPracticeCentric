@@ -56,7 +56,7 @@ namespace DoFest.API.Controllers
             {
                 return BadRequest(error);
             }
-            return Ok(newComment);
+            return Created(newComment.Id.ToString(), null);
         }
 
         /// <summary>

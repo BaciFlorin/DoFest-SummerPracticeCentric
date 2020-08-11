@@ -25,11 +25,6 @@ namespace DoFest.API.Controllers
         {
             var (_, isFailure, value, error) = await _activityTypesService.Get();
 
-            if (isFailure)
-            {
-                return BadRequest(error);
-            }
-
             return Ok(value);
         }
 

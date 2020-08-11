@@ -32,11 +32,7 @@ namespace DoFest.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetBucketList()
         {
-            var (_, isFailure, result, error) = await _bucketListService.GetBucketLists();
-            if (isFailure)
-            {
-                return BadRequest(error);
-            }
+            var (_, _, result, _) = await _bucketListService.GetBucketLists();
             return Ok(result);
         }
 
@@ -84,7 +80,7 @@ namespace DoFest.API.Controllers
         {
             var (_, isFailure, result, error) = await _bucketListService.Add(bucketlistId, activityId);
             if (isFailure)
-            {
+            { 
                 return BadRequest(error);
             }
             return Ok(result);

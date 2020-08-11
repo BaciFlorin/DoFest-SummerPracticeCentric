@@ -33,19 +33,6 @@ namespace DoFest.API.Controllers
             return Ok(value);
         }
 
-        [HttpGet("user")]
-        [Authorize]
-        public async Task<IActionResult> GetByUserId([FromRoute] Guid activityId)
-        {
-            var (_, isFailure, value, error) = await _ratingsService.Get(activityId);
-
-            if (isFailure)
-            {
-                return BadRequest(error);
-            }
-
-            return Ok(value);
-        }
 
         [HttpPost]
         [Authorize]
