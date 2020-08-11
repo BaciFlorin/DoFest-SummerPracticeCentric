@@ -1,6 +1,4 @@
-﻿using AutoMapper.Mappers;
-using DoFest.Business.Activities.Models.Activity;
-using DoFest.Business.Activities.Models.Activity.ActivityType;
+﻿using DoFest.Business.Activities.Models.Activity.ActivityType;
 using DoFest.Entities.Activities;
 using DoFest.IntegrationTests.Shared.Factories;
 using FluentAssertions;
@@ -61,6 +59,44 @@ namespace DoFest.IntegrationTests
         [Fact]
         public async Task DeleteActivityTypeTest()
         {
+
+            var activityType = ActivityTypeFactory.Default();
+
+            await ExecuteDatabaseAction(async (doFestContext) =>
+            {
+                await doFestContext.ActivityTypes.AddAsync(activityType);
+                await doFestContext.SaveChangesAsync();
+            });
+
+            var response = await HttpClient.DeleteAsync($"api/v1/activities/types/{activityType.Id}");
+
+            response.IsSuccessStatusCode.Should().BeTrue();
+
+        }
+
+        [Fact]
+        public async Task PostInvalidActivityTypeTest()
+        {
+            var activityTypeModel = new CreateActivityTypeModel()
+            {
+                Name = "activitate test"
+            };
+
+            var response = await HttpClient.PostAsJsonAsync($"api/v1/activities/types", activityTypeModel);
+
+            var secondResponse = await HttpClient.PostAsJsonAsync($"api/v1/activities/types", activityTypeModel);
+
+            response.IsSuccessStatusCode.Should().BeTrue();
+            secondResponse.IsSuccessStatusCode.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task DeleteInvalidActivityTypeTest()
+        {
+
+            var response = await HttpClient.DeleteAsync($"api/v1/activities/types/{new Guid()}");
+
+            response.IsSuccessStatusCode.Should().BeFalse();
 
         }
     }

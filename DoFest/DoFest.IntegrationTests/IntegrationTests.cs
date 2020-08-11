@@ -144,7 +144,6 @@ namespace DoFest.IntegrationTests
 
             var stream = authenticationResponseContent.Token;
             var handler = new JwtSecurityTokenHandler();
-            var jsonToken = handler.ReadToken(stream);
             var tokenS = handler.ReadToken(stream) as JwtSecurityToken;
 
             AuthenticatedUserId = new Guid(tokenS.Claims.First(x => x.Type == "userId").Value);
