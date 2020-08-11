@@ -1,14 +1,26 @@
 <div class="notifications-container">
   <img src="assets/images/notifications.svg" id="big-image" />
   <ul>
-    <li *ngFor="let notification of notifications">
-      <img src="assets/images/notification.png" class="notification-image" />
-      <div class="notification-time">
-        {{ getPromptDate(notification.date) }}
-      </div>
-      <div class="notification-content">
-        {{ notification.description }}
-      </div>
-    </li>
+    <ng-container *ngIf="notifications != undefined">
+      <ng-container *ngIf="notifications.length != 0; else empty">
+        <li *ngFor="let notification of notifications">
+          <img
+            src="assets/images/notification.png"
+            class="notification-image"
+          />
+          <div class="notification-time">
+            {{ getPromptDate(notification.date) }}
+          </div>
+          <div class="notification-content">
+            {{ notification.description }}
+          </div>
+        </li>
+      </ng-container>
+      <ng-template #empty>
+        <div class="empty">
+          Empty
+        </div>
+      </ng-template>
+    </ng-container>
   </ul>
 </div>
