@@ -125,7 +125,9 @@ namespace DoFest.IntegrationTests
             BucketList bucket = null;
             var updateModel = new BucketListUpdateModel()
             {
-                Name = "bucketlist test"
+                Name = "bucketlist test",
+                ActivitiesForDelete = new List<Guid>(),
+                ActivitiesForToggle = new List<Guid>()            
             };
             await ExecuteDatabaseAction(async (doFestContext) =>
             {
