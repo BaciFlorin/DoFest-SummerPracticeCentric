@@ -21,7 +21,11 @@ namespace DoFest.AutomationTests.PageObjects.Login
 
         [FindsBy(How = How.CssSelector, Using = "[type='button']")]
         public IWebElement ButtonLogin { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = "error-item")]
+        public IWebElement ErrorMessage { get; set; }
         #endregion
+
 
         public void Login(string email, string password)
         {

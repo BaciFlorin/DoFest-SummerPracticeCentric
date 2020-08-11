@@ -11,7 +11,7 @@ namespace DoFest.AutomationTests.PageObjects
 
         public void WaitForPageToLoad(string selector)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(selector)));
         }
     }
