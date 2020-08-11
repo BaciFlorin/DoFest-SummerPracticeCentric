@@ -35,7 +35,7 @@ namespace DoFest.API.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Post([FromBody] CreateActivityTypeModel model)
+        public async Task<IActionResult> Add([FromBody] CreateActivityTypeModel model)
         {
             var (_, isFailure, value, error) = await _activityTypesService.Add(model);
 
