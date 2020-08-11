@@ -89,15 +89,19 @@
   }
 }
 
-.authentication-container .authentication-content input.ng-invalid.ng-touched.ng-dirty{
+.authentication-container
+  .authentication-content
+  input.ng-invalid.ng-touched.ng-dirty {
   border-left: 10px solid #a94442;
 }
 
-.authentication-container .authentication-content input.ng-valid.ng-touched.ng-dirty{
-  border-left: 10px solid #42A948;
+.authentication-container
+  .authentication-content
+  input.ng-valid.ng-touched.ng-dirty {
+  border-left: 10px solid #42a948;
 }
 
-.authentication-container .authentication-content .error-alert{
+.authentication-container .authentication-content .error-alert {
   background-color: pink;
   color: red;
   border-radius: 8px;
@@ -105,9 +109,7 @@
   padding: 10px;
 }
 
-
 @media (max-width: 900px) {
-
   .authentication-container img {
     display: none;
   }
@@ -130,13 +132,11 @@
   overflow: scroll;
 }
 
-.authentication-container .register-content::-webkit-scrollbar { 
-  display: none; 
+.authentication-container .register-content::-webkit-scrollbar {
+  display: none;
 }
 
-
-.authentification-item
-{
+.authentification-item {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -151,9 +151,8 @@
   flex-direction: column;
 }
 
-.authentication-container .authentification-item  .item label,.authentication-container .authentification-item  .item input {
+.authentication-container .authentification-item .item label,
+.authentication-container .authentification-item .item input {
   width: 100%;
   text-align: center;
 }
-
-

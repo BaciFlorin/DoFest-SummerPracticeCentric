@@ -1,77 +1,76 @@
 .tile {
-    width: 260px;
-    height: 240px;
-    border-radius: 4px;
-    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.15);
-    margin-top: 40px;
-    margin-left: 20px;
-    float: left;
-    cursor: pointer;
+  width: 260px;
+  height: 240px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.15);
+  margin-top: 40px;
+  margin-left: 20px;
+  float: left;
+  cursor: pointer;
 }
-  
+
 .tile .header {
-    height: 80px;
-    background-color: #f4f4f4;
-    border-radius: 4px 4px 0 0;
-    color: white;
+  height: 80px;
+  background-color: #f4f4f4;
+  border-radius: 4px 4px 0 0;
+  color: white;
   font-weight: 300;
 }
 
-mat-icon{
+mat-icon {
   font-size: 80px;
 }
-  
-  .tile .header .count {
-    font-size: 64px;
-    margin: auto;
-    padding: 40px 0;
-  
-    display: flex;
-    justify-content: center;
-  }
-  
-  .tile .header .title {
-    font-size: 20px;
-  }
-  
-  .tile .body {
-    height: 160px;
-    border-radius: 0 0 4px 4px;
-    color: #333333;
-    background-color: white;
-    padding-top: 20px;
-  }
-  
-  .tile .body .title {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    padding-top: 12px;
-    font-size: 20px;
-    padding-top: 2%;
-    font-weight: bold;
-  }
-  
-  .tile .body .location {
-    width: 100%;
-    margin-top: 10px;
-    padding-left: 20px;
-  }
-  
-  
-  .tile.job .body {
-    color: rgb(0, 107, 139);
-    font-weight: normal;
-  }
 
-  .body button {
-    margin-left: 15px;
-  }
-  
-  .trending {
-    width: 100%;
-    display: inline-block;
-    margin-top: 20px;
-    text-align: center;
-    font-weight: bold;
-  }
+.tile .header .count {
+  font-size: 64px;
+  margin: auto;
+  padding: 40px 0;
+
+  display: flex;
+  justify-content: center;
+}
+
+.tile .header .title {
+  font-size: 20px;
+}
+
+.tile .body {
+  height: 160px;
+  border-radius: 0 0 4px 4px;
+  color: #333333;
+  background-color: white;
+  padding-top: 20px;
+}
+
+.tile .body .title {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding-top: 12px;
+  font-size: 20px;
+  padding-top: 2%;
+  font-weight: bold;
+}
+
+.tile .body .location {
+  width: 100%;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.tile.job .body {
+  color: rgb(0, 107, 139);
+  font-weight: normal;
+}
+
+.body button {
+  margin-left: 15px;
+}
+
+.trending {
+  width: 100%;
+  display: inline-block;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+}

@@ -1,47 +1,68 @@
-    <div class="identity-container">
-        <input [formControl]="inputName" type="text" value={{bucketlist.name}}>
-         by {{bucketlist.username}} 
-    </div>
-    <ng-container *ngIf="inputName.invalid && inputName.touched">
-        <div class="error-message">
-            BucketList name must have between 6 and 100 characters!
-        </div>
-    </ng-container>
-    <div class="activity-container">
-            <button class="save-changes" mat-raised-button color="primary" (click)="updateBucketList()">Save changes</button>
-            <div id="response-message">
-
-            </div>
-        <ul class="list-activities">
-            <li *ngFor="let activity of bucketlist.activities;">
-                <div class="activity-name" (click)="goToActivity(activity.activityId)">
-                    <ng-container *ngIf="forDelete(activity.activityId)">
-                        <mat-icon>clear</mat-icon>
-                    </ng-container>
-                    {{activity.name}} 
-                </div>
-                
-                <div class="activity-status">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Status</mat-label>
-                        <mat-select [value]="activity.status" [disabled] = "forDelete(activity.activityId)" (selectionChange)="addForToggle(activity.activityId, $event)">
-                            <mat-option value="On hold">On hold</mat-option>
-                            <mat-option value="Completed">Completed</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <ng-container *ngIf="forDelete(activity.activityId); else toDelete">
-                        <button mat-raised-button color="primary" (click)="undoActivity(activity.activityId)">Undo</button>
-                    </ng-container>
-                    <ng-template #toDelete>
-                        <button mat-raised-button color="warn" (click)="deleteActivity(activity.activityId)">Delete</button>
-                    </ng-template>
-                </div>
-            </li>
-        </ul>
-        <ng-container *ngIf="bucketlist.activities.length == 0">
-            <div class="empty">
-                Empty
-            </div>
+<div class="identity-container">
+  <input [formControl]="inputName" type="text" value="{{ bucketlist.name }}" />
+  by {{ bucketlist.username }}
+</div>
+<ng-container *ngIf="inputName.invalid && inputName.touched">
+  <div class="error-message">
+    BucketList name must have between 6 and 100 characters!
+  </div>
+</ng-container>
+<div class="activity-container">
+  <button
+    class="save-changes"
+    mat-raised-button
+    color="primary"
+    (click)="updateBucketList()"
+  >
+    Save changes
+  </button>
+  <div id="response-message"></div>
+  <ul class="list-activities">
+    <li *ngFor="let activity of bucketlist.activities">
+      <div class="activity-name" (click)="goToActivity(activity.activityId)">
+        <ng-container *ngIf="forDelete(activity.activityId)">
+          <mat-icon>clear</mat-icon>
         </ng-container>
+        {{ activity.name }}
+      </div>
+
+      <div class="activity-status">
+        <mat-form-field appearance="fill">
+          <mat-label>Status</mat-label>
+          <mat-select
+            [value]="activity.status"
+            [disabled]="forDelete(activity.activityId)"
+            (selectionChange)="addForToggle(activity.activityId, $event)"
+          >
+            <mat-option value="On hold">On hold</mat-option>
+            <mat-option value="Completed">Completed</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <ng-container *ngIf="forDelete(activity.activityId); else toDelete">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="undoActivity(activity.activityId)"
+          >
+            Undo
+          </button>
+        </ng-container>
+        <ng-template #toDelete>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="deleteActivity(activity.activityId)"
+          >
+            Delete
+          </button>
+        </ng-template>
+      </div>
+    </li>
+  </ul>
+  <ng-container *ngIf="bucketlist.activities.length == 0">
+    <div class="empty">
+      Empty
     </div>
+  </ng-container>
+</div>

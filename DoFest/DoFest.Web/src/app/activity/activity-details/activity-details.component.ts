@@ -189,7 +189,6 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
             : "You haven't rated yet";
 
           this.rating.update(this.rate);
-
         } else {
           this.rate = 'No ratings yet';
           this.userRating = "You haven't rated yet";

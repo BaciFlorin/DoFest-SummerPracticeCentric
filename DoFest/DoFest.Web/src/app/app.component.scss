@@ -3,10 +3,10 @@
   height: 100vh;
   background-color: rgb(232, 247, 253);
 }
-::ng-deep body{
+::ng-deep body {
   height: calc(100vh - 60px);
 }
 
-app-header{
+app-header {
   background: white;
 }

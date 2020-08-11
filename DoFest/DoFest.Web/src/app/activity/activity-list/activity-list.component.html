@@ -1,31 +1,50 @@
 <div class="page-container">
-      <h1><b>
-        Activities
-      </b></h1>
-    <div class="filter-container">
-      <mat-form-field appearance="fill">
-        <mat-label>City</mat-label>
-        <mat-select (selectionChange)="changeCity($event)" value="None">
-          <mat-option value="None">None</mat-option>
-            <mat-option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <h1>
+    <b>
+      Activities
+    </b>
+  </h1>
+  <div class="filter-container">
+    <mat-form-field appearance="fill">
+      <mat-label>City</mat-label>
+      <mat-select (selectionChange)="changeCity($event)" value="None">
+        <mat-option value="None">None</mat-option>
+        <mat-option *ngFor="let city of cities" [value]="city.id">{{
+          city.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Type</mat-label>
-        <mat-select (selectionChange)="changeType($event)" value="None">
-            <mat-option value="None">None</mat-option>
-            <mat-option *ngFor="let type of activityTypes;" [value]="type.id">{{type.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-        <button class="button" mat-raised-button color="primary" (click)="applyFilters()">Filter</button>
-      
-      </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select (selectionChange)="changeType($event)" value="None">
+        <mat-option value="None">None</mat-option>
+        <mat-option *ngFor="let type of activityTypes" [value]="type.id">{{
+          type.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      class="button"
+      mat-raised-button
+      color="primary"
+      (click)="applyFilters()"
+    >
+      Filter
+    </button>
+  </div>
 
-    <div class="cards">
-        <app-activitytile *ngFor="let activity of filtredListActivities" icon="local_activity" label="{{activity.name}}" (goToAct)="goToActivity(activity.id)" 
-        (addBucket)="addToBucket(activity.id)" [location]="getCityName(activity.cityId)" [inBucket]="!inBucket(activity.id)" [numberBuckets]="activity.trending">
-
-        </app-activitytile>
-    </div>
+  <div class="cards">
+    <app-activitytile
+      *ngFor="let activity of filtredListActivities"
+      icon="local_activity"
+      label="{{ activity.name }}"
+      (goToAct)="goToActivity(activity.id)"
+      (addBucket)="addToBucket(activity.id)"
+      [location]="getCityName(activity.cityId)"
+      [inBucket]="!inBucket(activity.id)"
+      [numberBuckets]="activity.trending"
+    >
+    </app-activitytile>
+  </div>
 </div>

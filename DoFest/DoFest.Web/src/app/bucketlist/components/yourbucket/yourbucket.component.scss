@@ -1,122 +1,121 @@
 @import "../../../../assets/styles/layout.scss";
 
-.identity-container{
-    width: 94%;
-    padding: 30px;
-    display: inline-block;
-    font-size: 20px;
-    color: white;
-    font-weight: bold;
-    background-color: #63D4FF;
-    border-radius: 10px;
-    margin: 10px 0;
+.identity-container {
+  width: 94%;
+  padding: 30px;
+  display: inline-block;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  background-color: #63d4ff;
+  border-radius: 10px;
+  margin: 10px 0;
 }
 
-.identity-container input{
-    display: inline-block;
-    width: 40%;
-    color: white;
-    background-color: #63D4FF;
-    font-size: 30px;
+.identity-container input {
+  display: inline-block;
+  width: 40%;
+  color: white;
+  background-color: #63d4ff;
+  font-size: 30px;
 }
 
-.identity-container h1{
-    display: inline-block;
-    width: 70%;
-    font-weight: bold;
+.identity-container h1 {
+  display: inline-block;
+  width: 70%;
+  font-weight: bold;
 }
 
 .content-container {
-    width: 55%;
-    height: 100%;
-    padding: 20px;
-    border-radius: 10px;
+  width: 55%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 ul {
   list-style-type: none;
   overflow: scroll;
   height: 650px;
-  padding-inline-start: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-inline-start: 0px;
 }
 
 ul::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .activity-container ul li {
-    width: 95%;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 0;
-    box-shadow: 0px 0px 8px rgba(34, 37, 44, 0.08);
-    margin: 10px 0px;
+  width: 95%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0;
+  box-shadow: 0px 0px 8px rgba(34, 37, 44, 0.08);
+  margin: 10px 0px;
 }
 
-.activity-container{
-    width: 100%;
-    height: 770px;
-    background-color: white;
-    border-radius: 10px;
-    display: inline-block;
-    box-shadow: 0px 0px 8px rgba(34, 37, 44, 0.08);
+.activity-container {
+  width: 100%;
+  height: 770px;
+  background-color: white;
+  border-radius: 10px;
+  display: inline-block;
+  box-shadow: 0px 0px 8px rgba(34, 37, 44, 0.08);
 }
 
 .activity-name {
-    display: inline-block;
-    width: 40%;
-    font-weight: bold;
-    padding: 10px 0;
-    font-size: 20px;
+  display: inline-block;
+  width: 40%;
+  font-weight: bold;
+  padding: 10px 0;
+  font-size: 20px;
 }
 
-.activity-status{
-    display: inline-block;
-    width: 60%;
+.activity-status {
+  display: inline-block;
+  width: 60%;
 }
 
 .activity-status button {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
-.save-changes{
-    margin: 20px;
+.save-changes {
+  margin: 20px;
 }
 
 .empty {
-    display: inline-block;
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 20px;
-    font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 input {
-    outline: none;
-    border: none;
+  outline: none;
+  border: none;
 }
 
-#response-message{
-    width: 20%;
-    display: inline-block;
-    color: rgb(4, 84, 104);
-    margin-left: 40px;
-    font-weight: bold;
+#response-message {
+  width: 20%;
+  display: inline-block;
+  color: rgb(4, 84, 104);
+  margin-left: 40px;
+  font-weight: bold;
 }
 
+@media (max-width: 600px) {
+  .identity-container {
+    width: 80%;
+  }
 
-@media (max-width:600px)
-{
-    .identity-container {
-        width: 80%;
-    }
-
-    .activity-container ul li  {
-        flex-direction: column;
-    }
+  .activity-container ul li {
+    flex-direction: column;
+  }
 }
-
-

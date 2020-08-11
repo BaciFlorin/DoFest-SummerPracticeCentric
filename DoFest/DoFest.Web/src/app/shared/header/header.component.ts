@@ -5,7 +5,6 @@ import {
   OnInit,
   Output,
   EventEmitter,
-
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -16,7 +15,7 @@ import { UserService } from '../services';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   public username: string;
   @Output() private profileCLick: EventEmitter<string>;
 
@@ -36,13 +35,15 @@ export class HeaderComponent implements OnInit{
     sessionStorage.clear();
   }
 
-  public onProfileClick(){
+  public onProfileClick() {
     this.router.navigate(['userInfo']);
   }
 
-  public getUserName(): void{
-    if(sessionStorage.getItem("identity") != null)
-      this.userService.username = JSON.parse(sessionStorage.getItem("identity"))["username"];
-      this.username = this.userService.username;
+  public getUserName(): void {
+    if (sessionStorage.getItem('identity') != null)
+      this.userService.username = JSON.parse(
+        sessionStorage.getItem('identity')
+      )['username'];
+    this.username = this.userService.username;
   }
 }

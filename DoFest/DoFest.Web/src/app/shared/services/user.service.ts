@@ -6,7 +6,5 @@ import { Injectable } from '@angular/core';
 export class UserService {
   public username: string = null;
 
-  constructor() {
-
-  }
+  constructor() {}
 }

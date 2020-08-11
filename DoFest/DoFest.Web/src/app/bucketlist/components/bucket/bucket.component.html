@@ -1,13 +1,16 @@
 <div class="page-container">
-    <div class="image-container">
-        <img src="assets/images/bucket-activity.svg">
-    </div>
-    <div class="content-container">
-        <ng-container *ngIf="myBucket;else normalBucket">
-            <app-yourbucket [bucketlist]="bucketlist" [bucketListId]="bucketListId"></app-yourbucket>    
-        </ng-container>
-        <ng-template #normalBucket>
-            <app-normalbucket [bucketlist]="bucketlist"></app-normalbucket>  
-        </ng-template>
-    </div>
+  <div class="image-container">
+    <img src="assets/images/bucket-activity.svg" />
+  </div>
+  <div class="content-container">
+    <ng-container *ngIf="myBucket; else normalBucket">
+      <app-yourbucket
+        [bucketlist]="bucketlist"
+        [bucketListId]="bucketListId"
+      ></app-yourbucket>
+    </ng-container>
+    <ng-template #normalBucket>
+      <app-normalbucket [bucketlist]="bucketlist"></app-normalbucket>
+    </ng-template>
+  </div>
 </div>

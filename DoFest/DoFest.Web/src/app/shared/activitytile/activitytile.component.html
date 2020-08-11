@@ -1,17 +1,19 @@
 <div class="tile job">
-    <div class="header" [style.background]="background">
-    
+  <div class="header" [style.background]="background"></div>
+  <div class="body">
+    <div class="title" (click)="goToActivity()">{{ label }}</div>
+    <div class="location">
+      <i class="material-icons">location_on</i>
+      {{ location }}
+      <button
+        mat-raised-button
+        color="warn"
+        [disabled]="!inBucket"
+        (click)="addToBucket()"
+      >
+        Add to bucket
+      </button>
     </div>
-    <div class="body">
-      <div class="title" (click)="goToActivity()">{{ label }}</div>
-        <div class="location">
-          <i class="material-icons">location_on</i>
-          {{location}}
-            <button mat-raised-button color="warn" [disabled]="!inBucket" (click)="addToBucket()">Add to bucket</button>
-        </div>
-        <div class="trending">
-            Found in {{numberBuckets}} bucketLists
-        </div>
-    </div>
+    <div class="trending">Found in {{ numberBuckets }} bucketLists</div>
   </div>
-  
+</div>

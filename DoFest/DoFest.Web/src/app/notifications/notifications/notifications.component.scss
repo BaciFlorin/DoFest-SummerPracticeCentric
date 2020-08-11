@@ -31,31 +31,30 @@ ul li {
   margin-bottom: 20px;
 }
 
-ul li img.notification-image{
+ul li img.notification-image {
   width: 4%;
   padding: 10px;
   display: inline-block;
 }
 
-#big-image{
+#big-image {
   margin-left: 40px;
 }
 
-ul li div.notification-time{
+ul li div.notification-time {
   width: 20%;
   display: flexbox;
   padding: 10px;
   font-size: 15px;
 }
 
-ul li div.notification-content{
+ul li div.notification-content {
   display: flexbox;
   padding: 10px;
   width: 70%;
   font-size: 15px;
   font-weight: bold;
 }
-
 
 @media (max-width: 1250px) {
   .notifications-container img {
@@ -67,24 +66,22 @@ ul li div.notification-content{
     margin: 30px 2%;
   }
 
-  .notifications-container ul li{
+  .notifications-container ul li {
     margin: 10px 0px;
     width: 80%;
   }
 }
 
 @media (max-width: 900px) {
-
-  ul li img.notification-image{
+  ul li img.notification-image {
     width: 8%;
   }
 
-  .notifications-container ul li div.notification-time{
+  .notifications-container ul li div.notification-time {
     font-size: 10px;
   }
 
-  .notifications-container ul li div.notification-content{
+  .notifications-container ul li div.notification-content {
     font-size: 10px;
   }
-
 }

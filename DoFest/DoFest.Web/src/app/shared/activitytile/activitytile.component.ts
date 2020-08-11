@@ -3,10 +3,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-activitytile',
   templateUrl: './activitytile.component.html',
-  styleUrls: ['./activitytile.component.scss']
+  styleUrls: ['./activitytile.component.scss'],
 })
 export class ActivitytileComponent implements OnInit {
-
   @Input() public numberBuckets: number = 0;
   @Input() public label: string = '';
   @Input() public background: string = '';
@@ -21,18 +20,15 @@ export class ActivitytileComponent implements OnInit {
     if (this.background) {
       this.background = "url('" + this.background + "')";
     } else {
-      this.background = "linear-gradient(to bottom right, #4493C7, #70A3CC)";
+      this.background = 'linear-gradient(to bottom right, #4493C7, #70A3CC)';
     }
   }
 
-  public addToBucket()
-  {
-    this.addBucket.emit("Add");
+  public addToBucket() {
+    this.addBucket.emit('Add');
   }
 
-  public goToActivity()
-  {
-    this.goToAct.emit("go");
+  public goToActivity() {
+    this.goToAct.emit('go');
   }
 }
-

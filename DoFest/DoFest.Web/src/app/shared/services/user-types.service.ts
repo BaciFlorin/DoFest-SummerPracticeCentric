@@ -4,16 +4,14 @@ import { Observable } from 'rxjs';
 import { UserTypeModel } from '../models/user-type.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserTypesService {
+  private endpoint: string = 'https://localhost:5001/api/v1/auth/userTypes';
 
-  private endpoint:string = "https://localhost:5001/api/v1/auth/userTypes";
+  constructor(private readonly httpClient: HttpClient) {}
 
-  constructor(private readonly httpClient: HttpClient) { }
-
-  public getUserTypes():Observable<UserTypeModel[]>
-  {
+  public getUserTypes(): Observable<UserTypeModel[]> {
     return this.httpClient.get<UserTypeModel[]>(this.endpoint);
   }
 }
