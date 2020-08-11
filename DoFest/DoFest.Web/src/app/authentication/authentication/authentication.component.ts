@@ -138,7 +138,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
   }
 
   public isInvalid(form: AbstractControl): boolean {
-    return form.invalid && form.touched && form.dirty && this.isSetRegistered;
+    return form.invalid && form.touched && form.dirty;
   }
 
   private handleError(responseError: HttpErrorResponse): void {
