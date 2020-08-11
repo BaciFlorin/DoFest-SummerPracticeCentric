@@ -8,6 +8,7 @@
   </div>
 </ng-container>
 <div class="activity-container">
+  <ng-container *ngIf="bucketlist.activities.length != 0;else empty">
   <button
     class="save-changes"
     mat-raised-button
@@ -60,9 +61,10 @@
       </div>
     </li>
   </ul>
-  <ng-container *ngIf="bucketlist.activities.length == 0">
+  </ng-container>
+  <ng-template #empty>
     <div class="empty">
       Empty
     </div>
-  </ng-container>
+  </ng-template>
 </div>

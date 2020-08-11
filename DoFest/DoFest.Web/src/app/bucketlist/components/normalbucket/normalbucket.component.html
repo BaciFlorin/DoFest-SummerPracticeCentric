@@ -5,6 +5,7 @@
   by {{ bucketlist.username }}
 </div>
 <div class="activity-container">
+  <ng-container *ngIf="bucketlist.activities.length != 0;else empty">
   <ul class="list-activities">
     <li *ngFor="let activity of bucketlist.activities">
       <div class="activity-name" (click)="goToActivity(activity.activityId)">
@@ -13,9 +14,10 @@
       <div class="activity-status">Status: {{ activity.status }}</div>
     </li>
   </ul>
-  <ng-container *ngIf="bucketlist.activities.length == 0">
+  </ng-container>
+  <ng-template #empty>
     <div class="empty">
       Empty
     </div>
-  </ng-container>
+  </ng-template>
 </div>
