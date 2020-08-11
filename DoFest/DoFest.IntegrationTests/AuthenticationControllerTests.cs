@@ -10,13 +10,28 @@ namespace DoFest.IntegrationTests
     {
 
         [Fact]
-        public async Task InvalidCredentialsLogin()
+        public async Task InvalidEmailLogin()
         {
 
             LoginModelRequest loginModel = new LoginModelRequest
             {
-                Email = "atomeig@yahoo.com",
-                Password = "parola"
+                Email = "testeesttest1@gmail.com",
+                Password = "parola99"
+            };
+
+            var userAuthenticateResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/login", loginModel);
+            userAuthenticateResponse.IsSuccessStatusCode.Should().BeFalse();
+        }
+
+
+        [Fact]
+        public async Task InvalidPasswordLogin()
+        {
+
+            LoginModelRequest loginModel = new LoginModelRequest
+            {
+                Email = "testeesttest@gmail.com",
+                Password = "parola9999"
             };
 
             var userAuthenticateResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/login", loginModel);
