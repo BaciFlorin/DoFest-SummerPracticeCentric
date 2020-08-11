@@ -1,10 +1,8 @@
 ﻿using DoFest.Business.Activities.Models.Activity;
 using DoFest.Entities.Activities;
-using DoFest.Entities.Activities.Places;
 using DoFest.IntegrationTests.Shared.Extensions;
 using DoFest.IntegrationTests.Shared.Factories;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
